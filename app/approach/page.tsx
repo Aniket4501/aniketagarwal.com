@@ -24,6 +24,9 @@ export default function Approach() {
     <div className={readingFontVariable}>
       <Container className="pt-6 pb-3 lg:pt-10">
         <p className="eyebrow">Approach</p>
+        <h1 className="mt-2 max-w-[22ch] text-[length:var(--text-3xl)] leading-[1.08] font-semibold tracking-[var(--track-display)]">
+          Three beliefs, and the one section I cannot write yet.
+        </h1>
       </Container>
 
       <Container className="pb-10 lg:pb-14">

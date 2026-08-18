@@ -34,6 +34,7 @@ export function Figure({
         role="img"
         aria-label={alt}
         className={`border border-[var(--color-rule)] bg-[var(--color-paper-raised)] p-2 sm:p-3 ${scroll ? 'scroll-x' : ''}`}
+        {...(scroll ? { tabIndex: 0 } : {})}
       >
         {children}
       </div>

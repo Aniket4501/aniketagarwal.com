@@ -50,7 +50,10 @@ export default function About() {
 
       <Container className="pt-6 pb-8 lg:pt-10">
         <p className="eyebrow">About</p>
-        <div className="prose mt-3">
+        <h1 className="mt-2 max-w-[24ch] text-[length:var(--text-3xl)] leading-[1.08] font-semibold tracking-[var(--track-display)]">
+          Product Analyst at HCL Healthcare, on one app, since October 2024.
+        </h1>
+        <div className="prose mt-6">
           <Mdx source={content} />
         </div>
       </Container>

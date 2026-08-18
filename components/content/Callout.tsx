@@ -48,11 +48,11 @@ export function Callout({
 }) {
   const s = STYLE[variant]
   return (
-    <aside className={`my-4 border-t py-3 ${s.rule} ${s.ground}`}>
+    <div className={`my-4 border-t py-3 ${s.rule} ${s.ground}`}>
       <p className={`mb-1 eyebrow ${s.label}`}>{label}</p>
       <div className="[&>*+*]:mt-1.5 [&>p]:text-[var(--text-base)] [&>p]:leading-relaxed">
         {children}
       </div>
-    </aside>
+    </div>
   )
 }

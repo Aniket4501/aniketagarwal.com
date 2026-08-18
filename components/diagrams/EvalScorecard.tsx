@@ -17,7 +17,12 @@ export function EvalScorecard() {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="scroll-x">
+      <div
+        className="scroll-x"
+        tabIndex={0}
+        role="region"
+        aria-label="Grounded evaluator results per case"
+      >
         <table className="w-full min-w-[30rem] border-collapse text-left">
           <caption className="sr-only">
             Per-case results of the Grounded evaluator across four scored dimensions

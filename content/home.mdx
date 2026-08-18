@@ -25,25 +25,28 @@ subline: >-
   AI-generated health report.
 
 status: >-
-  Currently: [NEEDS: one clause — what is on your desk this month?] Open to PM
-  and APM roles — consumer product, health, applied AI.
+  Currently: [NEEDS: one clause — what is on your desk this month?] · Open to PM
+  and APM roles in consumer product, health and applied AI.
 
 labPointer: >-
   If you assess AI PMs by opening the demo first: Grounded scores generated
   health text against four rules, in your browser, with the whole rule set
   readable.
 
-# The hero number carries no unanswered token by design. It is the figure the
-# headline just claimed, and the qualifier that is missing is asked in full one
-# screen below, in the proof strip, where there is room to ask it properly.
+# The hero number carries no unanswered token by design, and it is deliberately
+# NOT the cold-start figure: the H1 states that one in words, the proof strip
+# states it in figures one screen below, and on a phone the two would render
+# back to back. Bundle size is the other half of the same eight weeks, it is the
+# only delta in the record that computes to an exact percentage (76.0%), and it
+# needs no qualifier it cannot supply.
 heroMetric:
-  label: COLD START
-  before: 15s
-  after: under 2s
-  delta: at least 7.5× faster
-  denominator: App launch, against a 2s benchmark
+  label: BUNDLE SIZE
+  before: 25MB
+  after: 6MB
+  delta: 76% smaller
+  denominator: The shipped bundle, not a per-user figure
   timeframe: 8 weeks
-  method: What the measurement was is the question below
+  method: The measurement basis is the question below
   direction: down-is-good
 
 proof:
@@ -82,15 +85,15 @@ beliefs:
   - claim: A feature shipped onto a broken foundation is measured against the people who already left.
     example: >-
       The roadmap in front of me was an engagement roadmap. The app opened in
-      15s against a 2s benchmark, so eight weeks went there first: bundle 25MB →
-      6MB, launch under 2s.
+      15s against a 2s benchmark, so I put eight weeks into the launch path
+      instead. We shipped it at 6MB, down from 25MB, and under 2s.
     href: /work/two-seconds
 
   - claim: The options I turned down are the decision. The one that shipped is only the result.
     example: >-
-      Three retention strategies were on the table — content, incentives,
+      Three retention strategies were on the table: content, incentives,
       gamification. I prioritised competitive mechanics, which meant accepting
-      that a share of users are alienated by competition.
+      that some users are alienated by competition itself.
     href: /work/steps-premier-league
 
   - claim: A number I can't put a population and a window on is an anecdote with a decimal point.

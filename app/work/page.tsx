@@ -31,7 +31,7 @@ export default function WorkIndex() {
 
       <Container className="pb-4">
         {cases.map((c) => (
-          <CaseCard key={c.meta.slug} meta={c.meta} />
+          <CaseCard key={c.meta.slug} meta={c.meta} level={2} />
         ))}
       </Container>
 

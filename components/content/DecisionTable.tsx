@@ -23,7 +23,12 @@ export function DecisionTable({
 }) {
   return (
     <div className="my-5">
-      <div className="scroll-x border border-[var(--color-rule)] bg-[var(--color-paper-raised)]">
+      <div
+        className="scroll-x border border-[var(--color-rule)] bg-[var(--color-paper-raised)]"
+        tabIndex={0}
+        role="region"
+        aria-label={caption}
+      >
         <table className="w-full min-w-[36rem] text-left text-[var(--text-sm)]">
           <caption className="decision-caption">{caption}</caption>
           <thead>

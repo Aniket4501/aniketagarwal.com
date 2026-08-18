@@ -12,7 +12,14 @@ import type { CaseStudyFrontmatter } from '@/lib/content/schema'
  *
  * The headline is the tension or the outcome. Never a feature name.
  */
-export function CaseCard({ meta }: { meta: CaseStudyFrontmatter }) {
+export function CaseCard({
+  meta,
+  level = 3,
+}: {
+  meta: CaseStudyFrontmatter
+  level?: 2 | 3
+}) {
+  const Heading = level === 2 ? ("h2" as const) : ("h3" as const)
   const lead = meta.metrics[0]
 
   return (
@@ -25,9 +32,9 @@ export function CaseCard({ meta }: { meta: CaseStudyFrontmatter }) {
           <p className="eyebrow">
             {String(meta.order).padStart(2, '0')} · {meta.title}
           </p>
-          <h3 className="max-w-[24ch] text-[var(--text-xl)] leading-[1.18] font-semibold tracking-[var(--track-h2)] transition-colors duration-[var(--duration-fast)] group-hover:text-[var(--color-signal)] sm:text-[var(--text-2xl)]">
+          <Heading className="max-w-[24ch] text-[var(--text-xl)] leading-[1.18] font-semibold tracking-[var(--track-h2)] transition-colors duration-[var(--duration-fast)] group-hover:text-[var(--color-signal)] sm:text-[var(--text-2xl)]">
             {meta.headline}
-          </h3>
+          </Heading>
           <p className="max-w-[52ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
             {meta.tagline}
           </p>

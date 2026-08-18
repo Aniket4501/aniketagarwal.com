@@ -8,15 +8,15 @@ role: Product Analyst, HCL Healthcare
 teamShape: "[NEEDS: how many engineers, a designer, a QA function?]"
 timeline: "[NEEDS: how long, first requirement to first report?]"
 owned:
-  - "The product requirements, the UX flow, and the personalisation logic that decides what an individual report says"
-  - "The cross-sell hooks inside the report — the decision that a health artifact would carry a commercial ask at all"
+  - The product requirements, the UX flow, and the personalisation logic that decides what an individual report says
+  - The cross-sell hooks inside the report — the decision that a health artifact would carry a commercial ask at all
 shipped:
-  - "AI Health Reports, built 0→1 on a consumer health app with 1M+ registered users"
-  - "Cross-sell hooks inside the report"
+  - AI Health Reports, built 0→1 on a consumer health app with 1M+ registered users
+  - Cross-sell hooks placed inside the report
 notOwned:
-  - "The sale. The reports were cited as a key USP in closing 5+ enterprise clients; I did not close one"
-  - "The implementation. I wrote requirements, flows and personalisation logic; I did not build what generates the text"
-  - "Acquisition. I did not bring a single reader onto the app"
+  - The sale. The reports were cited as a key USP in closing 5+ enterprise clients; I did not close one
+  - The implementation. I wrote requirements, flows and personalisation logic; I did not build what generates the text
+  - Acquisition. I did not bring a single reader onto the app
 metrics:
   - label: CROSS-SELL REVENUE
     before: unstated base
@@ -32,85 +32,7 @@ metrics:
     timeframe: "[NEEDS: over what period were the 5+ closes?]"
     method: I built the artifact; I did not own the sale
     direction: up-is-good
-artifacts:
-  - label: Why the person who reads a health report is not the person who pays for it
-    kind: reasoning
-    body: |
-      The buyer never opens one. That single fact reorganises the artifact.
-
-      Their evidence is aggregate and second-hand: how many beneficiaries received a
-      report, how many opened it, and what the programme looks like described in one
-      line by someone who has also never read one. So the report quietly acquires a
-      second output that nobody sets out to design — its own summary statistics — and
-      that output is the one the renewal decision is actually made on.
-
-      At renewal the report has to do a job it does not have to do on the day it is
-      opened: it has to be describable by a person who has not used it. Features that
-      cannot survive that translation do not survive renewals, however good they are.
-
-      The failure mode is obvious once you name it and invisible until you do. It is
-      entirely possible to build a report that summarises beautifully and helps nobody,
-      and the feedback loop will not correct you, because the buyer's signal arrives on
-      the renewal cycle and the reader's signal does not arrive at all unless somebody
-      goes and collects it.
-
-      So the discipline is to decide, before the two conflict, which one you optimise on
-      the day they do. The reader's usefulness is the leading indicator. The buyer's
-      legibility is the lagging one. Lagging indicators are the ones that pay you, which
-      is exactly why they are the ones that quietly start setting the roadmap.
-  - label: 15% incremental revenue is the weakest number in my record
-    kind: data
-    body: |
-      It has no baseline, no population, no period and no attribution method. Every
-      other number I publish has at least two of the four.
-
-      Here is what each would have to be for the figure to mean anything.
-
-      **Baseline** — the revenue line the hooks sit inside, as it stood before the
-      reports existed. Not total revenue, and not a line that changed for another reason
-      inside the same window.
-
-      **Population** — who was eligible to see a hook at all, which is not everyone with
-      an account and is probably not everyone who received a report.
-
-      **Period** — long enough to contain a full purchase cycle for whatever the hooks
-      point at, short enough not to absorb an unrelated pricing or packaging change.
-
-      **Method** — whether the movement was measured at the hook, as an attributable
-      path from the report to a purchase, or inferred from a period-over-period
-      comparison. Those are two different claims, and only the first is a claim about my
-      product. The second is a claim about a quarter.
-
-      Until I can say which, this is a direction rather than a measurement, and it
-      belongs on the page as one.
-
-      [NEEDS: 15% of what line, over what period, attributed how?]
-  - label: Four places the line between explaining and advising can live, and what each costs
-    kind: method
-    body: |
-      This is argument, not an account of what was built. None of it describes the
-      reports.
-
-      **In the prompt.** Cheapest to write and the least testable thing on the list. It
-      fails silently, it fails differently after a model update you did not schedule, and
-      you find out from a user rather than from a test.
-
-      **In deterministic rules around the model.** Testable, versionable, and it fails
-      loudly, which is the property you want. It only ever covers the cases someone sat
-      down and enumerated, so its coverage is a document, not a guarantee.
-
-      **In fixed templates the model fills.** The strongest guarantee available and the
-      weakest product. Past a certain amount of template, you have decided not to
-      generate — which is sometimes the right call and should be made deliberately
-      rather than discovered.
-
-      **In human review.** The only one of the four that catches what nobody anticipated,
-      and the only one whose cost scales with volume rather than with development time.
-      It is a real answer at a thousand reports and not an answer at a million.
-
-      Most real systems are a mix, and which mix you chose is the interesting part of the
-      conversation. Mine is not on this page, and I would rather leave the question
-      standing than describe a system I cannot show you.
+artifacts: []
 description: A consumer health report that became an enterprise asset — who reads it, who pays for it, and where a commercial ask can defensibly sit inside health content.
 ogHeadline: The reader and the buyer are different people.
 ogMetric: 0 → 5+ enterprise closes
@@ -118,11 +40,11 @@ ogMetric: 0 → 5+ enterprise closes
 
 ## I built a report for a reader who was not the customer
 
-A consumer health app with 1M+ registered users. I built the AI Health Reports on it 0→1: the product requirements, the UX flow, and the personalisation logic that decides what an individual report says.
+HCL Healthcare's consumer health app served more than a million registered users. I built the AI Health Reports on it 0→1: the product requirements, the UX flow, and the personalisation logic that decides what an individual report says about the person reading it.
 
-**A report like this is opened by one person and paid for by another, and almost every hard decision inside it comes out of that gap.**
+**A report like this is opened by one person and paid for by another, and most of the hard decisions inside it come out of that gap.**
 
-My record confirms the commercial end of that structure — 5+ enterprise clients — and not the channel. Employer health plans, insurers, hospitals, direct signup: the assumption running underneath this whole case study is that the reader and the payer are different parties, and it is stated once, here, as an assumption. [NEEDS: who pays, and how do readers arrive?]
+The commercial end of that structure is in my record — 5+ enterprise clients. The channel is not. Employer health plans, insurers, hospitals, direct signup: the assumption underneath this case study is that the reader and the payer are different parties, and it is stated here as an assumption rather than smuggled in as background. [NEEDS: who pays, and how do readers arrive?]
 
 ## On paper this was a personalisation project
 
@@ -130,103 +52,151 @@ Read the scope back and it is a consumer brief: requirements, a flow, and the lo
 
 **The beneficiary reads the report, the employer buys the programme, and the report is the thing that makes the programme legible at renewal — which is how a consumer feature ended up inside five enterprise closes.**
 
-Three parties, three unrelated tests. The reader's test is whether the report tells them something about themselves they could not already see, in language they can act on. The buyer's test is not a smaller version of that one: they will likely never open a single report, and they are deciding whether to renew a programme whose value is otherwise invisible to them. And in any product that says something about a person's health, somebody has to be willing to put their name to what it says. That third test is a veto rather than a preference. It does not make the product better, it decides whether the product is allowed to exist.
+Three parties, three unrelated tests. The reader's test is whether the report tells them something about themselves they could not already see, in language they can act on. The buyer's test is not a smaller version of that one: they will likely never open a single report, and they are deciding whether to renew a programme whose value is otherwise invisible to them. And in any product that says something about a person's health, somebody has to be willing to put their name to what it says — a veto rather than a preference. It does not make the product better; it decides whether the product is allowed to exist.
 
-Most consumer PMs never have to hold all three at once. When the reader is the buyer, the useful artifact and the sellable artifact are the same object and you get the second one free.
+Most consumer PMs never have to hold all three at once. When the reader is the buyer, the useful artifact and the sellable artifact are the same object and the second one comes free.
 
 Here they come apart.
+
+<Drawer label="Why the person who reads a health report is not the person who pays for it">
+
+The buyer never opens one. That single fact reorganises the artifact.
+
+Their evidence is aggregate and second-hand: how many beneficiaries received a report, how many opened it, and what the programme sounds like described in one line by somebody who has also never read one. So the report acquires a second output nobody sets out to design — its own summary statistics — and that is what the renewal decision gets made on.
+
+At renewal it has to do a job it does not have to do on the day it is opened. It has to be describable by a person who has not used it. Features that cannot survive that translation do not survive renewals, however good they are.
+
+Which means it is entirely possible to build a report that summarises beautifully and helps nobody, and the loop will not correct you: the buyer's signal arrives on the renewal cycle, and the reader's signal does not arrive at all unless somebody collects it.
+
+So the discipline is to decide which of the two you optimise on the day they disagree, before they disagree. The reader's usefulness is the leading indicator. The buyer's legibility is the lagging one. Lagging indicators are the ones that pay you, which is exactly why they quietly start setting the roadmap.
+
+</Drawer>
 
 ## What a report should say is decided by what the reader can do next
 
 Personalisation logic sounds like a ranking problem. **It is a series of decisions about what to say to a person who did not ask you a question.**
 
-Every one of those decisions needs the same input: what this reader is in a position to do about it. A result nobody can act on is not information, it is anxiety with a timestamp. Health results in particular arrive in units most people cannot interpret, and the distance between holding a number and knowing what it means about you is the entire reason an artifact like this gets funded.
+Every one of those decisions needs the same input: what this reader is in a position to do about it. A result nobody can act on is not information, it is anxiety with a timestamp. Health results in particular arrive in units most people cannot interpret, and the distance between holding a number and knowing what it means about you is the reason an artifact like this exists.
 
-What I will not do is reconstruct the research. My published record contains the scope of this work and not its method — no interview count, no sample, no instrument — and a case study that invents those reads worse to this audience than one that says it does not have them.
+What I will not do is reconstruct the research. My published record carries the scope of this work and not its method — no interview count, no sample, no instrument — and to this audience a case study that invents those reads worse than one that admits it does not have them.
 
-One unanswered question decides most of the rest. Personalisation over self-reported data is a different product from personalisation over lab results, and different again over wearable data. The first is a summary. The second carries an interpretation burden, and everything further down this page moves depending on which one it was. [NEEDS: which of those do the reports consume?]
+One unanswered question decides most of what follows. Personalisation over self-reported data is a different product from personalisation over lab results, and different again over wearable data: the first is a summary, the second carries an interpretation burden, and where a commercial ask can sit changes with it. [NEEDS: which of those do the reports consume?]
 
 ## Where a commercial ask can sit inside a health report
 
-The same artifact carries two things: an interpretation of somebody's health, and an ask. That is a genuine product problem with no comfortable answer, because **the placement that converts best is the placement that costs the most trust, and trust is the whole asset.** A report nobody believes is worth nothing to the reader, and one renewal later it is worth nothing to the buyer either.
+The same artifact carries two things: an interpretation of somebody's health, and an ask. That is a real product problem with no comfortable answer, because **the placement that converts best is the placement that costs the most trust, and trust is the whole asset.** A report nobody believes is worth nothing to the reader, and one renewal later it is worth nothing to the buyer either.
 
 <DecisionTable
-  caption="Three placements for a cross-sell hook. The record does not say which shipped, so no row is marked."
+  caption="Three placements for a cross-sell hook. My record says I built the hooks; it does not say where they went, so no row is marked."
   columns={["What it converts", "What it costs", "Reversibility"]}
   rows={[
     {
       option: "Inside the interpretation",
       cells: [
-        "Highest. The ask arrives at the exact moment of concern, which is what makes it work and what makes it a problem.",
-        "The reader can no longer tell where the explanation stops and the sale starts. Every sentence in the report is now suspect, including the honest ones.",
+        "Highest. The ask arrives at the exact moment of concern.",
+        "The reader can no longer tell where the explanation stops and the sale starts. Every sentence is suspect, including the honest ones.",
         "Low. You can delete the line in a deploy. You cannot delete the reading of it."
       ]
     },
     {
       option: "After the interpretation, still inside the report",
       cells: [
-        "Moderate. Attention is still on the page but the reader has finished being told about themselves first.",
-        "The report ends on a sale. Order is itself a message and this one says the interpretation was the setup.",
-        "High. It is a section, not a sentence — removable, and holdable back from a share of readers if you want to measure it."
+        "Moderate. Attention is still on the page, and the reader has been told about themselves first.",
+        "The report ends on a sale. Order is a message, and this one says the interpretation was the setup.",
+        "High. It is a section rather than a sentence — removable, and holdable back from a share of readers if you want to measure it."
       ]
     },
     {
       option: "Outside the report entirely",
       cells: [
         "Lowest. The ask arrives after the state that made it relevant has passed.",
-        "The report stays clean and somebody else has to carry the commercial load — which usually means it does not get carried.",
-        "Total. Nothing about the report changes, so nothing about the report has to be un-changed."
+        "The report stays clean and somebody else carries the commercial load, which usually means it does not get carried.",
+        "Total. Nothing about the report changes, so nothing has to be un-changed."
       ]
     }
   ]}
 />
 
-Reversibility is the column most people leave out, and here it is the one that decides the argument. Pulling a section takes a deploy. Pulling a reader's conclusion that your health report is a sales surface takes considerably longer, and you will not know you need to until the number that would have told you has already moved.
+Reversibility is the column most people leave out and here it decides the argument. Pulling a section takes a deploy. Pulling a reader's conclusion that a health report is a sales surface takes considerably longer, and you do not find out you need to until the number that would have told you has already moved.
 
-Which of the three shipped is not in my published record, and I am not going to fill it in from memory on a page whose whole argument is that I state things carefully. [NEEDS: which placement shipped, and what did you rule out?]
+Which of the three shipped is not in my record, and I am not filling it in from memory on a page whose whole argument is that I state things carefully. [NEEDS: which placement shipped, and what did you rule out?]
 
 ## The decision in the record is the bigger one
 
 What my record does say is that I created the cross-sell hooks. That is the prior decision and it is the larger one: this report would ask the reader for something.
 
-What I gave up is the version that asks for nothing. That report is easier to trust, easier to defend to anyone who has to approve it, and it earns nothing — which inside a programme that has to be renewed is not a neutral outcome.
+What I gave up is the version that asks for nothing. That report is easier to trust and easier to defend to whoever has to approve it, and it earns nothing — which inside a programme that has to be renewed is not a neutral outcome.
 
 <Callout variant="tradeoff" label="What the hooks cost">
-  The only revenue number attached to this work attaches to the hooks, not to the reports. So the most commercially legible part of the product is also its most trust-expensive part. That is not an accident of this project, it is the shape of the problem: anything that converts inside a health artifact converts because the reader is in a receptive state, and the reason they are receptive is that they were reading something they believed.
+
+The only revenue number attached to this work attaches to the hooks rather than to the reports. So the most commercially legible part of the product is also its most trust-expensive part. That is not an accident of this project, it is the shape of the problem: anything that converts inside a health artifact converts because the reader is in a receptive state, and the reason they are receptive is that they were reading something they believed.
+
 </Callout>
 
 ## The report is an event, not a surface
 
-What shipped: the reports, 0→1, with the requirements, the flow and the personalisation logic behind them, and the hooks inside them. There are no screenshots here — the product is not mine to publish.
+What shipped: the reports, 0→1, with the requirements, the flow and the personalisation logic behind them, and the cross-sell hooks inside them. There are no screenshots here — the product is not mine to publish.
 
-A report generated from a periodic input regenerates on the cadence of that input. **If the cadence is annual, the artifact is an event, and an event has to survive the fifty-one weeks in which it is not happening.** There are two honest answers and they are different products. Either the report becomes a surface that moves against something that changes daily, at which point it has stopped being a report; or it stays an event, the app around it carries the liveness, and the report is designed to be re-opened rather than re-generated. I am not claiming I solved that.
+**A report generated from a periodic input regenerates on the cadence of that input, and if that cadence is annual, the artifact is an event that has to survive the fifty-one weeks in which it is not happening.** There are two honest answers to that and they are different products. Either the report becomes a surface that moves against something changing daily, at which point it has stopped being a report; or it stays an event, the app around it carries the liveness, and the report is built to be re-opened rather than re-generated. I am not claiming I solved that.
 
 ## Two outcomes, and one of them is not mine
 
-My record attributes 15% incremental revenue to the cross-sell hooks. Not to the reports — and I hold that boundary because it is the boundary a sceptic draws for me in the first minute anyway. It does not say 15% of what line, measured over what period, or attributed by what method, which is why the figure sits at the top of this page with all three questions still attached to it.
+My record attributes 15% incremental revenue to the cross-sell hooks. Not to the reports — and I hold that boundary because it is the one a sceptic draws for me in the first minute anyway. It does not say 15% of what line, measured over what period, or attributed by what method, which is why the figure sits at the top of this page with the question still on it.
 
-The reports were cited as a key USP in closing 5+ enterprise clients. **I built the artifact; I did not own the sale.** A deal closes for a dozen reasons and a differentiator named in a close is not a differentiator that caused it. I attribute this directionally, not causally.
+<Drawer label="15% incremental revenue is the weakest number in my record">
 
-There is a sharper way to say what is missing here. The buyer's read on this product exists, because renewals and closes get reported to you whether or not you ask for them. The reader's read does not exist in my record at all.
+It has no baseline, no population, no period and no attribution method. Every other number I publish has at least two of the four.
+
+What each would have to be. The baseline is the revenue line the hooks sit inside as it stood before the reports existed — not total revenue, and not a line that moved for another reason in the same window. The population is whoever was eligible to see a hook, which is not everyone with an account and probably not everyone who received a report. The period has to be long enough to contain a full purchase cycle and short enough not to absorb an unrelated pricing change.
+
+The method is the one that changes the claim. Measured at the hook, as an attributable path from report to purchase, it is a statement about my product. Inferred from a period-over-period movement, it is a statement about a quarter that happened to contain my product.
+
+Until I can say which, this is a direction rather than a measurement, and it belongs on the page as one.
+
+[NEEDS: 15% of what line, over what period, attributed how?]
+
+</Drawer>
+
+The reports were cited as a key USP in closing 5+ enterprise clients. **I built the artifact; I did not own the sale.** A deal closes for a dozen reasons, and a differentiator named in a close is not a differentiator that caused it. I attribute this directionally, not causally.
+
+There is a sharper way to put what is missing. The buyer's read on this product exists, because renewals and closes get reported to you whether or not you ask for them. The reader's read does not exist in my record at all.
 
 ## The instrument I did not have would have measured the reader
 
-Both numbers here are on the buyer's side, and both are lagging and contaminated — revenue moves with pricing and with a sales motion I did not run, and closes move with everything.
+Both numbers here sit on the buyer's side, and both are lagging and contaminated: revenue moves with pricing and with a sales motion I did not run, and closes move with everything.
 
-The read that would settle whether the report worked sits on the other side, and it is cheap. Two things would do it: whether the reader takes the specific next step their own report recommends, broken out by what the report said, and whether they can restate what it told them a week later. The first is an action rate you can instrument in a sprint. The second needs people and a fortnight. Neither requires randomising anything, because the question is not whether the report improved a health outcome — it is whether the report was understood and acted on, which is a much lower bar and a far more useful one.
+The read that would settle whether the report worked sits on the other side, and it is cheap. Two things would do it. Whether the reader takes the specific next step their own report recommends, broken out by what the report said. And whether they can restate what it told them a week later. The first is an action rate you can instrument in a sprint; the second needs people and a fortnight. Neither requires randomising anything, because the question is not whether the report improved somebody's health — it is whether the report was understood and acted on, which is a lower bar and a far more useful one.
 
 <Callout variant="mistake" label="What this traded away">
-  The commercial read arrives whether or not you build it. The reader's read only exists if somebody builds it. So the default outcome of an artifact with a split audience is that you learn a great deal about the buyer and very little about the person it was written for — and the shape of my record is exactly that. It is structural rather than an oversight, which is the reason to design against it up front instead of resolving to try harder.
+
+The commercial read arrives whether or not you build it. The reader's read only exists if somebody builds it. So the default outcome of an artifact with a split audience is that you learn a great deal about the buyer and very little about the person it was written for — and the shape of my record is exactly that. It is structural rather than an oversight, which is the reason to design against it at the start rather than resolve to try harder.
+
 </Callout>
 
 ## The first question an AI-PM interviewer asks about this is not in my record
 
-Ask anyone who has shipped generative features in a regulated domain about a report like this and the first question is always the same one: how does it avoid giving medical advice? It is the right question, and it is not a compliance question. A sentence that explains a result and a sentence that prescribes a response to it are grammatically almost identical, and a model that is good at the first is good at the second by accident.
+Ask anyone who has shipped generative features in a regulated domain about a report like this and the first question is always the same: how does it avoid giving medical advice? It is the right question, and it is not a compliance question. A sentence that explains a result and a sentence that prescribes a response to it are grammatically almost identical, and a model that is good at the first is good at the second by accident.
 
 **I am not going to answer that with an architecture I cannot show you.**
 
-A boundary like that can be enforced in the prompt, in deterministic rules around the model, in fixed templates, or by a person reading the output. Where mine sat is the one thing an AI-PM reader most wants from this page, and it is not in the record. [NEEDS: prompt, rules, templates, review, or none of them?]
+Where that line sat is the single thing an AI-PM reader most wants from this page, and it is not in my record. [NEEDS: prompt, rules, templates, review, or none of them?]
 
-If the answer is any of the first four, this is the strongest case study on the site and it belongs at the front of it. Until that answer arrives, it sits third and says why.
+If the answer is any of the first four, this is the strongest case study on the site and it belongs at the front of it. Until that answer arrives it sits third, and says why.
+
+<Drawer label="Four places the line between explaining and advising can live, and what each one costs">
+
+This is argument, not an account of what was built.
+
+**In the prompt** is the cheapest to write and the least testable. It fails silently, it fails differently after a model update nobody scheduled, and you hear about it from a user rather than a test.
+
+**In deterministic rules around the model** is testable, versionable, and fails loudly, which is the property you want. It covers only what somebody sat down and enumerated, so its coverage is a document rather than a guarantee.
+
+**In fixed templates the model fills** is the strongest guarantee available and the weakest product. Past a certain amount of template you have decided not to generate, which should be a decision rather than a discovery.
+
+**In human review** is the only one that catches what nobody anticipated, and the only one whose cost scales with volume rather than build time. It is a real answer at a thousand reports and not an answer at a million.
+
+Most real systems are a mix, and which mix you chose is the interesting half of the conversation. Mine is not on this page.
+
+</Drawer>
 
 What does exist is a tool. [Grounded](/lab/grounded) scores generated health text on four things: whether every claim traces to the input it was given, whether it steps outside its scope, whether it hands off when it should, and whether an ordinary reader can follow it. I built it for this portfolio, not at work — it is labelled that way on its own page — and it exists because the question above deserves a real answer and this case study does not contain one.

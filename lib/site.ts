@@ -20,8 +20,12 @@ export const site = {
   // profile. Guessing it would publish an unverified link in the footer and in
   // JSON-LD. See CONTENT_GAPS.md B16.
   resume: '/aniket-agarwal-resume.pdf',
+  // Rewritten per D1-03: "retention" may appear only as a problem, never as an
+  // outcome. The previous string used it as an outcome, in the one sentence
+  // that shows up in search results. Case three is a monetisation case (D1-07),
+  // so it is described that way and not as AI safety work.
   defaultDescription:
-    'Product at HCL Healthcare — engagement and retention on a 1M+ registered-beneficiary consumer health app. Case studies on cold-start latency, habit-loop design and bounded generative AI in healthcare.',
+    'Product Analyst at HCL Healthcare — engagement on a consumer health app with 1M+ registered users. Cold-start latency, three retention strategies and one choice, and a health report that ended up inside the enterprise sale.',
 } as const
 
 /** Resolved once, so metadata, sitemap, robots and OG tags agree. */
