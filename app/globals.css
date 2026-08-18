@@ -1,0 +1,351 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Clinical Instrument — design tokens
+
+   Two accents, each with exactly one job:
+     --signal  a number moved
+     --flag    this is where I was wrong, or where I cannot yet substantiate
+
+   A reader learns that in ten seconds and it becomes a navigational system: an
+   amber block visible while scrolling is a promise of honesty before a single
+   word is read.
+
+   Every pair below was measured against WCAG 2.1 before it was written down.
+   Ratios are stated so a later change can be re-checked rather than assumed.
+   --------------------------------------------------------------------------- */
+
+@theme {
+  /* --- colour ------------------------------------------------------------ */
+  --color-paper: #f6f5f2; /* warm-neutral off-white, page ground */
+  --color-paper-raised: #ffffff; /* cards, drawers */
+  --color-ink: #14181a; /* cool near-black — 16.39:1 on paper */
+  --color-signal: #0e6f5c; /* deep clinical green — 5.59:1 on paper */
+  --color-flag: #a32f35; /* correction red — 6.39:1 on paper, 6.96 on white.
+                            Replaces the brief's burnt amber #B4551F, which
+                            measures hue 22 — MORE orange than the terracotta
+                            (#D97757, hue 15) the brief forbids. Paired with a
+                            warm off-white ground and a serif reading face,
+                            that accent reproduced two of the three markers of
+                            the exact template look the brief bans. Hue 357 is
+                            the register a lab report uses to flag an
+                            out-of-range value, and it clears AA on its own
+                            tint, which the amber did not (4.43). */
+  --color-flag-tint: #fbf2f3; /* mistake/gap callout ground — flag reads 6.33:1 */
+  --color-muted: #63696e; /* 5.10:1 on paper. Corrected from the brief's
+                             #6B7278, which measured 4.48:1 and failed AA
+                             body text by 0.02. */
+  --color-rule: #dedcd6; /* decorative hairlines only — 1.26:1, never a
+                            boundary that carries meaning */
+  --color-rule-strong: #8e8d89; /* 3.05:1 — table structure and any border a
+                                   reader must perceive to use the component */
+
+  /* --- type --------------------------------------------------------------
+     Families are assigned by next/font in app/fonts.ts and land here as CSS
+     variables, so a family swap touches one file.
+
+     Instrument Sans replaces the brief's Geist for the interface role. Geist
+     is named in 2026 generator-output audits as a default headline face, and
+     shipping Vercel's own typeface on a Vercel-hosted Next.js site adds a
+     "used the starter" signal. With 49% of hiring managers now treating
+     heavily AI-generated material as a red flag, that association is a real
+     cost. Instrument Sans is narrower and more editorial, carries the tnum
+     feature every number on this site needs, and its weight axis is 400–700 —
+     exactly the range used here. */
+  --font-sans: var(--font-interface), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-reading), ui-serif, Georgia, serif;
+  --font-mono: var(--font-data), ui-monospace, 'SF Mono', monospace;
+
+  /* Two scales, not one. A single 1.25 ratio forces interface and prose to
+     share steps and compounds too fast at the top. Nine interface steps,
+     three prose steps; twelve is enough for a five-page site. */
+
+  /* Interface / grotesk — ratio ~1.20 */
+  --text-2xs: 0.6875rem; /* 11 — mono eyebrow */
+  --text-xs: 0.75rem; /* 12 — denominators, metadata */
+  --text-sm: 0.875rem; /* 14 — nav, captions, table cells */
+  --text-base: 1rem; /* 16 — interface default */
+  --text-lg: 1.1875rem; /* 19 — belief statements, card headlines */
+  --text-xl: 1.5rem; /* 24 — h3 */
+  --text-2xl: 1.875rem; /* 30 — h2 */
+  --text-3xl: 2.375rem; /* 38 — page h1 */
+  --text-hero: clamp(2.25rem, 1.1rem + 4.6vw, 3.5rem); /* 36 → 56 */
+
+  /* Prose / serif — only three steps exist, because only three are needed.
+     Newsreader's x-height is 20% shorter than a grotesk's, so nominal sizes
+     lie: Newsreader at 19px reads SMALLER than 16px sans. 21px is the size
+     that reads one comfortable step larger. */
+  --text-prose-sm: 1.0625rem; /* 17 — aside prose, attribution */
+  --text-prose: 1.3125rem; /* 21 — case-study body */
+  --text-lede: 1.5rem; /* 24 — the one lede paragraph per case study */
+
+  /* Measure is set in rem, never in ch. `1ch` is the width of `0`, which in a
+     serif with lining figures is ~34% wider than an average character: the
+     brief's `68ch` renders at 91 characters per line in Newsreader, breaching
+     both the WCAG AAA 80-character ceiling and the 50–75 comfort band.
+     37rem = 592px = 68 real characters at 21px. */
+  --measure: 37rem;
+  --measure-narrow: 30rem;
+
+  /* Tracking is optical and size-dependent. Never track a text serif; it is
+     already fitted for continuous reading. All-caps always needs positive
+     tracking, and the eyebrow labels are the only place it goes positive. */
+  --track-display: -0.022em;
+  --track-h2: -0.014em;
+  --track-ui: -0.006em;
+  --track-body: 0em;
+  --track-eyebrow: 0.06em;
+
+  /* --- space -------------------------------------------------------------
+     8px base, no exceptions. Irregular vertical rhythm is the most common
+     tell of an amateur build. */
+  --spacing: 0.5rem;
+
+  /* --- geometry ---------------------------------------------------------- */
+  --radius-sm: 2px;
+  --radius: 4px; /* maximum. Nothing on this site is rounder. */
+
+  /* --- motion ------------------------------------------------------------
+     One orchestrated moment on arrival, absolute stillness thereafter. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration: 200ms;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    letter-spacing: var(--track-ui);
+    /* Load-bearing and easy to forget: the sans is proportional by default, so
+       without this the timeline years and every denominator fail to align. */
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Every numeral on the site is tabular, so figures in a column align and a
+     delta never reflows as it counts. */
+  :where(code, kbd, samp, pre) {
+    font-family: var(--font-mono);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-signal) 18%, transparent);
+  }
+
+  /* Focus is never removed. It is the same green that means "a number moved",
+     so the accent doubles as the keyboard affordance. */
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  :where(h1, h2, h3, h4) {
+    text-wrap: balance;
+    letter-spacing: var(--track-h2);
+  }
+  :where(p, li) {
+    text-wrap: pretty;
+  }
+
+  /* Tables scroll inside their own container rather than being squeezed. */
+  table {
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   The one orchestrated moment.
+
+   The hero metric rules extend left-to-right once on load; the figures fade in
+   over the final fraction. It never replays. Nothing else on the site animates
+   on scroll — scroll-triggered fade-ins on text make a reader wait for content
+   that already loaded, and they are the most common tell of a templated 2026
+   site.
+   --------------------------------------------------------------------------- */
+
+@keyframes draw-rule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .animate-draw {
+    transform-origin: left center;
+    animation: draw-rule 700ms var(--ease-out) both;
+  }
+
+  .animate-settle {
+    animation: settle 200ms linear both;
+    animation-delay: 500ms;
+  }
+
+  /* Horizontal scroll container with an edge affordance, used for tables and
+     wide diagrams. The fade tells a reader there is more to the right. */
+  .scroll-x {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      #000 0,
+      #000 calc(100% - 24px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
+  }
+  .scroll-x:not(:has(> *:first-child:last-child)),
+  .scroll-x {
+    scroll-snap-type: none;
+  }
+}
+
+/* Everything, including the hero sequence. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Long-form prose.
+
+   Applied only inside case studies. The register shift from interface grotesk
+   to reading serif is the design idea, and it only works if the two families
+   sit far apart: a grotesk plus a near-grotesk slab reads as an accident, a
+   grotesk plus a proper text serif reads as a decision.
+   --------------------------------------------------------------------------- */
+
+@layer components {
+  .prose {
+    font-family: var(--font-serif);
+    font-size: 1.125rem; /* 18 on mobile */
+    line-height: 1.65;
+    letter-spacing: var(--track-body);
+    max-width: var(--measure);
+  }
+
+  @media (min-width: 640px) {
+    .prose {
+      font-size: var(--text-prose); /* 21 */
+      line-height: 1.6;
+    }
+  }
+
+  /* AAA requires paragraph spacing >= 1.5x the line spacing. */
+  .prose > p + p,
+  .prose > p + ul,
+  .prose > ul + p {
+    margin-block-start: 1.5em;
+  }
+
+  .prose > h2 {
+    font-family: var(--font-sans);
+    font-size: var(--text-xl);
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: var(--track-h2);
+    margin-block: 2.2em 0.7em;
+  }
+
+  .prose > h3 {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    line-height: 1.3;
+    font-weight: 600;
+    margin-block: 1.8em 0.6em;
+  }
+
+  /* The load-bearing sentence in each section is bolded. A reviewer reading
+     only the bolded lines must still get the complete argument. */
+  .prose strong {
+    font-weight: 600;
+  }
+
+  .prose a {
+    color: var(--color-signal);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-signal) 35%, transparent);
+    text-underline-offset: 4px;
+  }
+  .prose a:hover {
+    text-decoration-color: var(--color-signal);
+  }
+
+  .prose > ul {
+    padding-inline-start: 1.1em;
+    list-style: none;
+  }
+  .prose > ul > li {
+    position: relative;
+    margin-block: 0.5em;
+  }
+  .prose > ul > li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: -1.1em;
+    inset-block-start: 0.75em;
+    width: 0.5em;
+    height: 1px;
+    background: var(--color-rule-strong);
+  }
+
+  /* The one lede paragraph per case study. */
+  .prose-lede {
+    font-family: var(--font-serif);
+    font-size: var(--text-lede);
+    line-height: 1.45;
+    max-width: var(--measure);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    text-transform: uppercase;
+    letter-spacing: var(--track-eyebrow);
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+}

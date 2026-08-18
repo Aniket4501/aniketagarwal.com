@@ -203,3 +203,105 @@ True, sourced, and it demonstrates the same metric literacy without ventriloquis
   or not at all.
 - **D1-25** — Total readable text target lowered from the brief's 6,000 words to **~4,000**. Volume of
   prose is itself an implicit claim about how much there is to say.
+
+---
+
+## Phase 1 continued — research reconciliation
+
+Agent 2a's findings are source-verified with URLs and an explicit evidence-quality tag per claim
+(`[V]` fetched and read · `[V-snip]` search summary only · `[INF]` inference · `[LOW-SRC]` vendor
+content marketing). It also warns, correctly, that this entire field is dominated by recruiting firms
+and PM training vendors with a commercial interest in the answer. Findings weighted accordingly.
+
+**D1-26 — `--flag` moves off the terracotta axis: `#B4551F` → `#A32F35`.**
+The brief forbids "cream background + high-contrast serif + terracotta accent" as templated look #1,
+then specifies a warm off-white ground, a serif reading face, and `#B4551F`. Measured, `#B4551F` is
+**hue 22 — more orange than the terracotta reference `#D97757` at hue 15.** Two of the three markers
+of the banned look were in the brief's own palette. `#A32F35` is hue 357: the register a lab report
+uses to flag an out-of-range value. It also gains headroom (4.52 → 6.39 on paper) and clears AA on
+its own tint at 6.33, which the amber could not (4.43) — so the mistake callout can now have a
+ground colour rather than only a border.
+
+**D1-27 — The failure requirement drops from four confessions to one.**
+The brief mandates "What I got wrong" in all three case studies plus a postmortem on `/approach`.
+The record contains zero failures. Four slots against zero material produces either fabrication or
+four trivial admissions, and *four trivial admissions read worse than one real one, because the
+pattern becomes visible as a format rather than as honesty.*
+
+The evidence bar is also lower than the brief assumes. A reviewer who has run hundreds of portfolio
+reviews names what sustains reading as *"A number. A decision. A trade-off you'd make differently"* —
+and the test is whether there is **visible friction anywhere on the site**, not whether every case
+study has a confession section. What ships:
+
+- Each case study ends with a section carrying genuine analytical content about what the work
+  traded away and what instrument would have been better — writable honestly, because it is
+  argument about the work rather than biography.
+- **One** visible `[NEEDS: …]` postmortem, on `/approach`.
+
+**This means the brief's Section 15 checkbox "every case study contains one specific, owned mistake
+with a consequence" ships UNMET, and the final report says so plainly with the question that unblocks
+it.** It cannot be met without inventing Aniket's judgment about his own work.
+
+**D1-28 — `mistake` is deliberately NOT a required schema field.** `notOwned` stays required. A
+required confession field guarantees the format-compliance reading, which is the failure mode above.
+
+**D1-29 — Grounded gets a first-class entry point above the attention cliff.**
+Two documented facts collide: general reviewer attention is exhausted around case study three, while
+AI-PM reviewers *"open the live URL first, search for the eval suite next, and read the reflection
+section last."* The brief puts Grounded at homepage section 5 of 6 and simultaneously calls it the
+load-bearing item for AI-PM credibility. Fix: a one-line pointer in the hero block linking straight
+to `/lab/grounded`, plus `Lab` in the primary nav. The homepage section stays where it is as the
+fuller treatment.
+
+**D1-30 — The case-study order stands, but case 3 is written for a reader arriving from Grounded**,
+not from the top of the homepage — because position three is where reading demonstrably stops. Two
+Seconds must stay first: it is the only case built on metrics that are already publishable.
+
+**D1-31 — The proof strip ships three cells, and the enterprise line leaves it.**
+A qualitative claim ("USP in 5+ closes") has no before, no after and no denominator, and does not
+belong in a grid whose stated purpose is qualified deltas. It moves to the case-study card.
+
+**D1-32 — The word-count constraint is replaced.** The brief caps the whole site at 6,000 words,
+which caps *available* depth as well as *required* depth — while the documented behaviour of a
+converted reader is nearly an hour on a single portfolio. New rule: **required reading path ≤ ~1,200
+words** (hero + proof + one case study's load-bearing sentences); optional depth uncapped, subject
+only to being load-bearing and honest. The failure mode to guard against is padding, not length.
+
+**D1-33 — The drawer is not called an artifact drawer in the UI.**
+A drawer labelled "Artifacts" that opens onto self-authored diagrams converts a neutral absence into
+a discovered overclaim — worse than having no drawer. It is labelled for what it contains:
+**"How I worked this out."** The word *artifact* is reserved for the day a real redacted document
+exists, and the component is already built to receive one.
+
+**D1-34 — Testimonials become LinkedIn recommendations with a public link.**
+A quote hosted on the candidate's own site is unverifiable by construction, and this audience
+discounts unverifiable claims — which is the entire premise of the brief. Same words, verifiable
+source, one click for the sceptic. Added to CONTENT_GAPS as N2.
+
+**D1-35 — No published Lighthouse badge in the footer.** The brief suggests it as an earned flex. It
+is checkable forever, decays silently on every deploy, and reads as a flex to precisely the reader
+who dislikes flexes. Keep the score; drop the badge.
+
+**D1-36 — The prose style is itself a hiring risk, and it is a build gate.**
+49% of 1,500 hiring managers now treat heavily AI-generated application material as a red flag —
+second only to job-hopping — and detection is tonal, not tool-based: *"generic phrasing, templated
+structure, tone mismatches."* A separate finding: 49% report candidates cannot defend AI-assisted
+claims under questioning. Two gates follow:
+
+- **The defensibility test.** Every sentence that ships must be one Aniket can expand on for ninety
+  seconds under hostile questioning. If he cannot, it is deleted regardless of how good it sounds.
+- **Anti-LLM-prose rules**, enforced in the content pass: no triads in consecutive sentences; no
+  "not just X, but Y"; no em-dash-per-paragraph rhythm; no abstract-noun section headers; no
+  uniform paragraph length; no perfectly balanced pro/con framing with no position taken. One
+  voice, one end-to-end rewrite pass, or the site reads as assembled.
+
+**D1-37 — Additions to the rejected list, adopted in full:** no "ask my portfolio anything" chatbot
+(a thin unevaluated API wrapper is the worst possible AI artifact for a candidate whose AI
+credibility rests on eval rigour) · no count-up numbers in the hero · no loading, splash, skeleton or
+route-transition animation (catastrophic for the candidate whose lead case study is a cold-start
+fix — the first paint *is* case study one's live demo) · no employer logo strip · no reading-time
+estimates · no `/now` page or personality furniture · no agency-voice CTA.
+
+**D1-38 — Rejected from the research: none.** One finding is noted but not acted on: Agent 2a
+suggests the case-study card layout risk of a three-up grid. The brief already specifies stacked
+full-width rows, and both agree — no change needed.
