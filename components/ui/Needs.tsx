@@ -1,26 +1,26 @@
 /**
  * A visible gap.
  *
- * Rendered in `--flag` amber, the same colour the site uses for "this is where
- * I was wrong". That is deliberate: a claim I cannot yet substantiate and a
- * decision I got wrong are the same kind of honesty, and giving them the same
- * colour means a reader can scan for either without reading a word.
+ * Set in the correction red the site uses for "this is where I was wrong" —
+ * deliberately, because a claim that cannot yet be substantiated and a decision
+ * that went wrong are the same kind of honesty, and one colour means a reader
+ * can scan for either without reading a word.
  *
- * Every token here is mirrored by an answerable question in CONTENT_GAPS.md.
+ * Rendered inline with no border, no vertical padding and no glyph. An earlier
+ * version was an inline-flex chip with a border and a U+21AF marker; it
+ * inflated the line box inside 21px serif prose, and the glyph is not in Geist
+ * Mono, so it fell back to a system font in the middle of a sentence.
+ *
+ * Every token here maps to an answerable question in CONTENT_GAPS.md.
  */
 export function Needs({ children }: { children: string }) {
   return (
     <span
-      className="inline-flex items-baseline gap-[0.4em] rounded-[2px] border border-[var(--color-flag)]/35 bg-[var(--color-flag)]/[0.06] px-[0.45em] py-[0.1em] align-baseline font-[family-name:var(--font-mono)] text-[0.82em] leading-snug text-[var(--color-flag)]"
+      className="font-[family-name:var(--font-mono)] text-[0.85em] text-[var(--color-flag)] decoration-[var(--color-flag)]/40 underline decoration-dotted underline-offset-[3px]"
       data-needs=""
     >
-      <span aria-hidden="true" className="select-none opacity-70">
-        ↯
-      </span>
-      <span>
-        <span className="sr-only">Unanswered: </span>
-        {children}
-      </span>
+      <span className="sr-only">Unanswered question: </span>
+      {children}
     </span>
   )
 }
@@ -28,9 +28,9 @@ export function Needs({ children }: { children: string }) {
 const TOKEN = /\[NEEDS:\s*([^\]]+)\]/g
 
 /**
- * Splits a string on `[NEEDS: …]` tokens and renders the tokens as chips.
- * Content files carry the token inline so the prose reads naturally with or
- * without an answer, and one search finds every remaining hole.
+ * Splits a string on `[NEEDS: …]` tokens. Content files carry the token inline
+ * so the prose reads naturally with or without an answer, and one search finds
+ * every remaining hole.
  */
 export function WithNeeds({ text }: { text: string }) {
   const parts: React.ReactNode[] = []

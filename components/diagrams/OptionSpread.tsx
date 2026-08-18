@@ -37,11 +37,11 @@ export function OptionSpread() {
       {options.map((o) => (
         <div
           key={o.name}
-          className={`flex flex-col gap-2 bg-[var(--color-paper-raised)] p-4 ${
+          className={`flex flex-col gap-1 bg-[var(--color-paper-raised)] p-2 ${
             o.chosen ? 'ring-1 ring-[var(--color-signal)] ring-inset' : ''
           }`}
         >
-          <div className="flex items-baseline gap-2">
+          <div className="flex items-baseline gap-1">
             <h4 className="text-[var(--text-base)] font-semibold">{o.name}</h4>
             {o.chosen ? (
               <span className="eyebrow text-[var(--color-signal)]">shipped</span>

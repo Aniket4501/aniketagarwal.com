@@ -29,7 +29,7 @@ export function CopyEmail({ size = 'default' }: { size?: 'default' | 'large' }) 
       : 'text-[var(--text-base)]'
 
   return (
-    <span className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-1">
+    <span className="inline-flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
       <a
         href={`mailto:${site.email}`}
         className={`font-[family-name:var(--font-mono)] ${type} text-[var(--color-signal)] underline decoration-[var(--color-signal)]/30 underline-offset-[6px] transition-colors duration-[var(--duration-fast)] hover:decoration-[var(--color-signal)]`}
@@ -39,7 +39,7 @@ export function CopyEmail({ size = 'default' }: { size?: 'default' | 'large' }) 
       <button
         type="button"
         onClick={copy}
-        className="rounded-[var(--radius-sm)] border border-[var(--color-rule-strong)] px-2 py-0.5 font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+        className="copy-btn rounded-[var(--radius-sm)] border border-[var(--color-rule-strong)] px-1 py-0.25 font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
       >
         {copied ? 'copied' : 'copy'}
       </button>

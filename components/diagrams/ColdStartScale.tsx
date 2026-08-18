@@ -28,16 +28,16 @@ const FILL = {
 
 export function ColdStartScale() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       {bars.map((b) => (
-        <div key={b.label} className="flex flex-col gap-1.5">
-          <div className="flex items-baseline justify-between gap-3">
+        <div key={b.label} className="flex flex-col gap-0.75">
+          <div className="flex items-baseline justify-between gap-1.5">
             <span className="eyebrow">{b.label}</span>
             <span className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] tabular-nums">
               {b.display}
             </span>
           </div>
-          <div className="h-3 w-full bg-[var(--color-rule)]/50">
+          <div className="h-1.5 w-full bg-[var(--color-rule)]/50">
             <div
               className={`h-full ${FILL[b.tone]}`}
               style={{ width: `${(b.value / MAX) * 100}%` }}
@@ -45,7 +45,7 @@ export function ColdStartScale() {
           </div>
         </div>
       ))}
-      <p className="mt-1 font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)]">
+      <p className="mt-0.5 font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)]">
         Drawn to scale. The record states an inequality for the result, so the bar shows the 2s
         ceiling, not a measured value.
       </p>

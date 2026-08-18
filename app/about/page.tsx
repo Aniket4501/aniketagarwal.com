@@ -48,29 +48,29 @@ export default function About() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
       />
 
-      <Container className="pt-12 pb-16 lg:pt-20">
+      <Container className="pt-6 pb-8 lg:pt-10">
         <p className="eyebrow">About</p>
-        <div className="prose mt-6">
+        <div className="prose mt-3">
           <Mdx source={content} />
         </div>
       </Container>
 
-      <Container className="pb-16">
+      <Container className="pb-8">
         <h2 className="eyebrow">Timeline</h2>
-        <div className="mt-5">
+        <div className="mt-2.5">
           <Timeline />
         </div>
       </Container>
 
-      <Container className="pb-20 lg:pb-28">
-        <div className="flex flex-col gap-6 border-t border-[var(--color-rule)] pt-8">
-          <div className="flex flex-col gap-2">
+      <Container className="pb-10 lg:pb-14">
+        <div className="flex flex-col gap-3 border-t border-[var(--color-rule)] pt-4">
+          <div className="flex flex-col gap-1">
             <p className="eyebrow">Tools</p>
             <p className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
               {tools}
             </p>
           </div>
-          <div className="flex flex-col gap-2 pt-2">
+          <div className="flex flex-col gap-1 pt-1">
             <p className="eyebrow">Contact</p>
             <CopyEmail />
           </div>

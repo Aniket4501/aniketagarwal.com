@@ -2,38 +2,40 @@ import type { ReactNode } from 'react'
 
 type Variant = 'insight' | 'tradeoff' | 'mistake' | 'gap'
 
-const STYLE: Record<Variant, { border: string; ground: string; label: string; color: string }> = {
+const STYLE: Record<Variant, { rule: string; ground: string; label: string }> = {
   insight: {
-    border: 'border-l-[var(--color-signal)]',
-    ground: 'bg-[var(--color-paper-raised)]',
+    rule: 'border-t-[var(--color-signal)]',
+    ground: '',
     label: 'text-[var(--color-signal)]',
-    color: '',
   },
   tradeoff: {
-    border: 'border-l-[var(--color-rule-strong)]',
-    ground: 'bg-[var(--color-paper-raised)]',
+    rule: 'border-t-[var(--color-rule-strong)]',
+    ground: '',
     label: 'text-[var(--color-muted)]',
-    color: '',
   },
   mistake: {
-    border: 'border-l-[var(--color-flag)]',
-    ground: 'bg-[var(--color-flag-tint)]',
+    rule: 'border-t-[var(--color-flag)]',
+    ground: 'bg-[var(--color-flag-tint)] px-3',
     label: 'text-[var(--color-flag)]',
-    color: '',
   },
   gap: {
-    border: 'border-l-[var(--color-flag)]',
-    ground: 'bg-[var(--color-flag-tint)]',
+    rule: 'border-t-[var(--color-flag)]',
+    ground: 'bg-[var(--color-flag-tint)] px-3',
     label: 'text-[var(--color-flag)]',
-    color: '',
   },
 }
 
 /**
- * `mistake` and `gap` share the correction red deliberately. A decision that
- * went wrong and a claim that cannot yet be substantiated are the same kind of
- * honesty, and giving them one colour means a reader scanning a long page can
- * find either without reading a word.
+ * A passage under a rule, not a box.
+ *
+ * The obvious construction — a card with a coloured left border — is one of the
+ * more reliable signatures of generated design, so the accent runs across the
+ * top instead. Scannability is unchanged: a reader still finds the amber block
+ * while scrolling, which is the whole job.
+ *
+ * `mistake` and `gap` share the correction red on purpose. A decision that went
+ * wrong and a claim that cannot yet be substantiated are the same kind of
+ * honesty.
  */
 export function Callout({
   variant = 'insight',
@@ -46,15 +48,9 @@ export function Callout({
 }) {
   const s = STYLE[variant]
   return (
-    <aside
-      className={`my-8 border border-[var(--color-rule)] border-l-2 ${s.border} ${s.ground} px-5 py-4 sm:px-6 sm:py-5`}
-    >
-      <p
-        className={`mb-2 font-[family-name:var(--font-mono)] text-[var(--text-xs)] font-medium tracking-[0.12em] uppercase ${s.label}`}
-      >
-        {label}
-      </p>
-      <div className="[&>*+*]:mt-3 [&>p]:text-[var(--text-base)] [&>p]:leading-relaxed">
+    <aside className={`my-4 border-t py-3 ${s.rule} ${s.ground}`}>
+      <p className={`mb-1 eyebrow ${s.label}`}>{label}</p>
+      <div className="[&>*+*]:mt-1.5 [&>p]:text-[var(--text-base)] [&>p]:leading-relaxed">
         {children}
       </div>
     </aside>

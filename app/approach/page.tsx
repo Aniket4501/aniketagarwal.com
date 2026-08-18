@@ -22,16 +22,16 @@ export default function Approach() {
 
   return (
     <div className={readingFontVariable}>
-      <Container className="pt-12 pb-6 lg:pt-20">
+      <Container className="pt-6 pb-3 lg:pt-10">
         <p className="eyebrow">Approach</p>
       </Container>
 
-      <Container className="pb-20 lg:pb-28">
-        <div className="lg:grid lg:grid-cols-[minmax(0,var(--measure))_minmax(0,1fr)] lg:gap-14">
+      <Container className="pb-10 lg:pb-14">
+        <div className="lg:grid lg:grid-cols-[minmax(0,var(--measure))_minmax(0,1fr)] lg:gap-7">
           <div className="prose order-1">
             <Mdx source={content} />
           </div>
-          <aside className="order-2 mt-14 lg:mt-2">
+          <aside className="order-2 mt-7 lg:mt-1">
             <Rail>
               <SectionIndex sections={sections} />
             </Rail>

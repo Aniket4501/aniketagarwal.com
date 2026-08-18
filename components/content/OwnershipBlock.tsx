@@ -28,16 +28,16 @@ export function OwnershipBlock({
   ]
 
   return (
-    <div className="grid gap-px border border-[var(--color-rule)] bg-[var(--color-rule)] sm:grid-cols-3">
+    <div className="grid gap-px border border-[var(--color-rule)] bg-[var(--color-rule)] md:grid-cols-3">
       {columns.map((c) => (
-        <div key={c.title} className="bg-[var(--color-paper-raised)] px-5 py-5">
-          <h3 className="mb-3 font-[family-name:var(--font-mono)] text-[var(--text-xs)] font-medium tracking-[0.12em] text-[var(--color-muted)] uppercase">
+        <div key={c.title} className="bg-[var(--color-paper-raised)] px-2.5 py-2.5">
+          <h3 className="mb-1.5 font-[family-name:var(--font-mono)] text-[var(--text-xs)] font-medium tracking-[0.12em] text-[var(--color-muted)] uppercase">
             {c.title}
           </h3>
-          <ul className={`flex flex-col gap-2 text-[var(--text-sm)] leading-relaxed ${c.accent}`}>
+          <ul className={`flex flex-col gap-1 text-[var(--text-sm)] leading-relaxed ${c.accent}`}>
             {c.items.map((item, i) => (
-              <li key={i} className="flex gap-2">
-                <span aria-hidden="true" className="mt-[0.55em] h-px w-2 shrink-0 bg-[var(--color-rule-strong)]" />
+              <li key={i} className="flex gap-1">
+                <span aria-hidden="true" className="mt-[0.55em] h-px w-1 shrink-0 bg-[var(--color-rule-strong)]" />
                 <span>
                   <WithNeeds text={item} />
                 </span>

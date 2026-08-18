@@ -24,13 +24,13 @@ export function Nav() {
     <>
       <a
         href="#main"
-        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3 focus-visible:left-3 focus-visible:z-50 focus-visible:rounded-[var(--radius)] focus-visible:bg-[var(--color-ink)] focus-visible:px-4 focus-visible:py-2 focus-visible:text-[var(--color-paper)]"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-1.5 focus-visible:left-1.5 focus-visible:z-50 focus-visible:rounded-[var(--radius)] focus-visible:bg-[var(--color-ink)] focus-visible:px-2 focus-visible:py-1 focus-visible:text-[var(--color-paper)]"
       >
         Skip to content
       </a>
 
-      <header className="site-nav sticky top-0 z-40 border-b border-[var(--color-rule)] bg-[var(--color-paper)]/92 backdrop-blur-[6px]">
-        <nav aria-label="Primary" className="mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-6 sm:px-8 lg:px-10">
+      <header className="site-nav sticky top-0 z-40 border-b border-[var(--color-rule)] bg-[var(--color-paper)]">
+        <nav aria-label="Primary" className="mx-auto flex max-w-[1200px] items-center justify-between gap-3 px-3 sm:px-4 lg:px-5">
           <Link
             href="/"
             className="nav-link text-[var(--text-base)] font-semibold tracking-[-0.01em] text-[var(--color-ink)]"
@@ -39,7 +39,7 @@ export function Nav() {
           </Link>
 
           {/* Desktop */}
-          <ul className="hidden items-center gap-7 md:flex">
+          <ul className="hidden items-center gap-3.5 md:flex">
             {LINKS.map((l) => (
               <li key={l.href}>
                 <Link
@@ -53,7 +53,7 @@ export function Nav() {
             <li>
               <a
                 href={site.resume}
-                className="rounded-[var(--radius)] border border-[var(--color-rule-strong)] px-3 py-1.5 text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+                className="rounded-[var(--radius)] border border-[var(--color-rule-strong)] px-1.5 py-0.75 text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
               >
                 Resume <span aria-hidden="true">↗</span>
                 <span className="sr-only">(PDF, opens in this tab)</span>
@@ -67,13 +67,13 @@ export function Nav() {
               <span className="group-open:hidden">Menu</span>
               <span className="hidden group-open:inline">Close</span>
             </summary>
-            <div className="absolute inset-x-0 top-full z-40 overflow-y-auto border-t border-[var(--color-rule)] bg-[var(--color-paper)] px-6 py-8">
-              <ul className="flex flex-col gap-1">
+            <div className="absolute inset-x-0 top-full z-40 overflow-y-auto border-t border-[var(--color-rule)] bg-[var(--color-paper)] px-3 py-4">
+              <ul className="flex flex-col gap-0.5">
                 {LINKS.map((l) => (
                   <li key={l.href}>
                     <Link
                       href={l.href}
-                      className="block border-b border-[var(--color-rule)] py-4 text-[var(--text-lg)] text-[var(--color-ink)]"
+                      className="block border-b border-[var(--color-rule)] py-2 text-[var(--text-lg)] text-[var(--color-ink)]"
                     >
                       {l.label}
                     </Link>
@@ -82,7 +82,7 @@ export function Nav() {
                 <li>
                   <a
                     href={site.resume}
-                    className="block border-b border-[var(--color-rule)] py-4 text-[var(--text-lg)] text-[var(--color-ink)]"
+                    className="block border-b border-[var(--color-rule)] py-2 text-[var(--text-lg)] text-[var(--color-ink)]"
                   >
                     Resume <span aria-hidden="true">↗</span>
                   </a>
@@ -90,7 +90,7 @@ export function Nav() {
               </ul>
               <a
                 href={`mailto:${site.email}`}
-                className="mt-8 inline-block font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]"
+                className="mt-4 inline-block font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]"
               >
                 {site.email}
               </a>

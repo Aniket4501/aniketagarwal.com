@@ -8,6 +8,10 @@ import type { ReactNode } from 'react'
  * and buys credibility — and where the underlying values do not exist at all,
  * the diagram is not drawn.
  *
+ * CONTRACT: because this wrapper carries role="img" and aria-label, every
+ * <svg> placed inside it must set aria-hidden="true" and focusable="false".
+ * Otherwise the SVG's own text nodes are announced after the alt text.
+ *
  * `alt` describes the FINDING, not the shape. "Cold start falling from fifteen
  * seconds to under two" — never "latency chart".
  */
@@ -25,15 +29,15 @@ export function Figure({
   scroll?: boolean
 }) {
   return (
-    <figure className="my-10">
+    <figure className="my-5">
       <div
         role="img"
         aria-label={alt}
-        className={`border border-[var(--color-rule)] bg-[var(--color-paper-raised)] p-4 sm:p-6 ${scroll ? 'scroll-x' : ''}`}
+        className={`border border-[var(--color-rule)] bg-[var(--color-paper-raised)] p-2 sm:p-3 ${scroll ? 'scroll-x' : ''}`}
       >
         {children}
       </div>
-      <figcaption className="mt-3 flex flex-col gap-1 text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+      <figcaption className="mt-1.5 flex flex-col gap-0.5 text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
         <span>{caption}</span>
         {reconstruction ? (
           <span className="font-[family-name:var(--font-mono)] text-[var(--text-xs)]">

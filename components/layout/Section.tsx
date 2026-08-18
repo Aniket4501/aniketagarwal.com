@@ -17,7 +17,7 @@ export function Section({
   labelledBy?: string
 }) {
   return (
-    <Tag id={id} aria-labelledby={labelledBy} className={`py-14 lg:py-24 ${className}`}>
+    <Tag id={id} aria-labelledby={labelledBy} className={`py-7 lg:py-12 ${className}`}>
       {children}
     </Tag>
   )

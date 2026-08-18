@@ -53,22 +53,22 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     <article>
       <ReadProgress />
 
-      <Container className="pt-12 pb-8 lg:pt-20">
+      <Container className="pt-6 pb-4 lg:pt-10">
         <p className="eyebrow">Case study {String(meta.order).padStart(2, '0')}</p>
-        <h1 className="mt-4 max-w-[18ch] text-[length:var(--text-3xl)] leading-[1.08] font-semibold tracking-[var(--track-display)] sm:text-[length:var(--text-hero)]">
+        <h1 className="mt-2 max-w-[18ch] text-[length:var(--text-3xl)] leading-[1.08] font-semibold tracking-[var(--track-display)] sm:text-[length:var(--text-hero)]">
           {meta.title}
         </h1>
-        <p className="mt-4 max-w-[46ch] text-[var(--text-lg)] leading-snug text-[var(--color-muted)]">
+        <p className="mt-2 max-w-[46ch] text-[var(--text-lg)] leading-snug text-[var(--color-muted)]">
           {meta.tagline}
         </p>
 
-        <dl className="mt-10 grid grid-cols-1 gap-x-8 gap-y-4 border-t border-[var(--color-rule)] pt-6 sm:grid-cols-3">
+        <dl className="mt-5 grid grid-cols-1 gap-x-4 gap-y-2 border-t border-[var(--color-rule)] pt-3 sm:grid-cols-3">
           {[
             { k: 'Role', v: meta.role },
             { k: 'Team', v: meta.teamShape },
             { k: 'Timeline', v: meta.timeline },
           ].map((row) => (
-            <div key={row.k} className="flex flex-col gap-1">
+            <div key={row.k} className="flex flex-col gap-0.5">
               <dt className="eyebrow">{row.k}</dt>
               <dd className="text-[var(--text-sm)] leading-relaxed">
                 <WithNeeds text={row.v} />
@@ -77,28 +77,28 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           ))}
         </dl>
 
-        <div className="mt-10 flex flex-col gap-8 sm:grid sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3">
           {meta.metrics.map((m) => (
             <MetricDelta key={m.label} metric={m} />
           ))}
         </div>
 
-        <div className="mt-12">
+        <div className="mt-6">
           <OwnershipBlock owned={meta.owned} shipped={meta.shipped} notOwned={meta.notOwned} />
         </div>
       </Container>
 
-      <Container className="pb-16 lg:pb-24">
-        <div className="lg:grid lg:grid-cols-[minmax(0,var(--measure))_minmax(0,1fr)] lg:gap-14">
+      <Container className="pb-8 lg:pb-12">
+        <div className="lg:grid lg:grid-cols-[minmax(0,var(--measure))_minmax(0,1fr)] lg:gap-7">
           <div className="prose order-1">
             <Mdx source={body} />
           </div>
 
-          <aside className="order-2 mt-14 lg:mt-2">
+          <aside className="order-2 mt-7 lg:mt-1">
             <Rail>
               <SectionIndex sections={sections} />
               {meta.artifacts.length > 0 ? (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1">
                   <p className="eyebrow">How I worked this out</p>
                   {meta.artifacts.map((a) => (
                     <Drawer key={a.label} label={a.label}>
@@ -114,9 +114,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </div>
       </Container>
 
-      <Container className="border-t border-[var(--color-rule)] py-12">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="flex flex-col gap-2">
+      <Container className="border-t border-[var(--color-rule)] py-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-1">
             <p className="eyebrow">Next</p>
             <Link
               href={`/work/${next?.meta.slug ?? ''}`}

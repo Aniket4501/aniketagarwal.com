@@ -15,7 +15,8 @@ export function FeedbackCadence() {
     <svg
       viewBox="0 0 640 220"
       className="h-auto w-full"
-      role="presentation"
+      aria-hidden="true"
+      focusable="false"
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>

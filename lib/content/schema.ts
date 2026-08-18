@@ -137,6 +137,14 @@ export const homeSchema = z.object({
   status: z.string().min(10),
   /** One line pointing at Grounded, for the reader who opens the demo first. */
   labPointer: z.string().min(10),
+  /**
+   * The visual anchor beside the headline. It is a separate field rather than
+   * proof[0] because the hero must carry NO unanswered token — a reader in the
+   * first ten seconds should meet a number that is complete. Unqualified
+   * fields belong in the proof strip, where there is room to say what is
+   * missing.
+   */
+  heroMetric: metricSchema,
   proof: z.array(metricSchema).min(2).max(3),
   workIntro: z.string().min(20),
   beliefs: z.array(beliefSchema).min(3).max(3),

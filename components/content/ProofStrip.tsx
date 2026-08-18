@@ -15,7 +15,7 @@ export function ProofStrip({ metrics }: { metrics: Metric[] }) {
   return (
     <div className="grid gap-px border-y border-[var(--color-rule)] bg-[var(--color-rule)] sm:grid-cols-2 lg:grid-cols-3">
       {metrics.map((m) => (
-        <div key={m.label} className="bg-[var(--color-paper)] px-1 py-8 sm:px-6">
+        <div key={m.label} className="bg-[var(--color-paper)] px-0.5 py-4 sm:px-3">
           <MetricDelta metric={m} />
         </div>
       ))}

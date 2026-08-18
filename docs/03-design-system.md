@@ -420,10 +420,14 @@ appears. Part 4 has the exact numbers.
 
 ## 3.4 `/approach` — Approach
 
-Four beliefs, unnumbered, each one a claim as a heading rather than a label.
+**Three beliefs**, unnumbered, each one a claim as a heading rather than a label.
+`beliefSchema` in `lib/content/schema.ts` fixes the count at three
+(`beliefs: z.array(beliefSchema).min(3).max(3)`) and this page matches the homepage rather than
+running a longer list. Three claims a reader remembers beats five they skim, and the fourth slot is
+where a belief with no case study behind it would end up.
 
-**375px stack:** Nav → h1 → one-paragraph lede → belief 1 → belief 2 → belief 3 → belief 4 → the
-one visible `[NEEDS:]` postmortem (D1-27) → footer.
+**375px stack:** Nav → h1 → one-paragraph lede → belief 1 → belief 2 → belief 3 → the one visible
+`[NEEDS:]` postmortem (D1-27) → footer.
 
 Each belief block:
 
@@ -784,6 +788,11 @@ LinkedIn is opened. The five titles are `Product Analyst`, `Product Intern`,
   load-bearing rather than a disclaimer: it is what makes Grounded's existence make sense on the
   page.
 - Links row: `Open Grounded →` in `--signal`, then `Source ↗` in `--signal`, 24px apart.
+  `labProjectSchema.repo` is optional and `lib/site.ts` deliberately carries no GitHub URL (the
+  resume hyperlinks the word but the target is not recoverable from the PDF). **When `repo` is
+  absent the second link is not rendered at all** — no disabled state, no "coming soon", no
+  placeholder href. A dead link on the one page that is meant to prove the artifact exists costs
+  more than a missing one.
 
 **≥768px:** padding 32px, `max-width: 640px`, `margin-inline: 0`. Two-up grid only if a second
 project ever exists.
@@ -1187,8 +1196,8 @@ rather than as a third bar.
 | Row B label | `(104, 134)`, anchor end | mono 11px `--muted` · `Shipped` |
 | Row B bar | `x=120 y=118 w=74.7 h=24` | fill `--signal` |
 | Row B open bound | `x=194.7`, `y 112 → 148` | 1.5px `--signal`, `stroke-dasharray="3 2"` |
-| Row B value | `(207, 128)` | mono 13px w500 `--signal` · `under 2s` |
-| Row B note | `(207, 144)` | mono 11px `--muted` · `upper bound` |
+| Row B value | `(207, 134)` | mono 13px w500 `--signal` · `under 2s` |
+| Row B note | `(207, 150)` | mono 11px `--muted` · `upper bound` |
 | Ticks | `x = 120, 306.7, 493.3, 680`, `y 180 → 186` | 1px `--rule` |
 | Tick labels | `y=198`, anchor middle (last: end) | mono 11px `--muted` · `0` `5s` `10s` `15s` |
 
@@ -1242,7 +1251,7 @@ Side lengths go as `√value`: `√(6/25) = 0.4899`.
 | Element | Geometry | Style |
 |---|---|---|
 | Before square | `x=8 y=32 w=180 h=180` | fill `--rule`, stroke `--rule-strong` 1px |
-| After square | `x=8 y=124 w=88 h=88` | fill `--signal`, no stroke |
+| After square | `x=8 y=123.8 w=88.2 h=88.2` | fill `--signal`, no stroke |
 | `25MB` | `(140, 72)`, anchor middle | mono 13px w500 `--ink` |
 | `before` | `(140, 88)`, anchor middle | mono 11px `--muted` |
 | `6MB` | `(52, 168)`, anchor middle | mono 13px w500 `--paper` |
@@ -1251,8 +1260,10 @@ Side lengths go as `√value`: `√(6/25) = 0.4899`.
 | `of the bundle removed` | `(210, 134)` | mono 11px `--muted` |
 | `in 8 weeks` | `(210, 152)` | mono 11px `--muted` |
 
-- `88 / 180 = 0.489`, which is `√(6/25)` to three places. State this in a code comment so a future
-  edit does not silently make it a length comparison.
+- `88.2 / 180 = 0.4900 = √(6/25)`. Derive the side in code — `const after = before * Math.sqrt(6 / 25)`
+  — rather than hardcoding it, and put the reason in a comment. A future edit that rounds this to a
+  tidy integer silently turns an area comparison into a length comparison, which overstates the
+  reduction by a factor of two.
 - `−76%` uses U+2212, never a hyphen-minus. It is the only exact percentage on the site:
   `(25 − 6) / 25 = 0.76` with no rounding and no inequality (D1-06).
 - `--paper` on `--signal` is 5.59:1 — AA at 11px.
@@ -1264,10 +1275,10 @@ Side lengths go as `√value`: `√(6/25) = 0.4899`.
 | Element | Geometry | Style |
 |---|---|---|
 | Before square | `x=8 y=24 w=150 h=150` | fill `--rule`, stroke `--rule-strong` 1px |
-| After square | `x=8 y=100 w=74 h=74` | fill `--signal` |
+| After square | `x=8 y=100.5 w=73.5 h=73.5` | fill `--signal` |
 | `25MB` | `(116, 56)`, anchor middle | mono 13px w500 `--ink` |
 | `before` | `(116, 72)`, anchor middle | mono 11px `--muted` |
-| `6MB` | `(45, 141)`, anchor middle | mono 12px w500 `--paper` |
+| `6MB` | `(44.8, 141)`, anchor middle | mono 12px w500 `--paper` |
 | `−76%` | `(170, 100)` | mono 15px w500 `--signal` |
 | `of the bundle` | `(170, 118)` | mono 11px `--muted` |
 | `removed, 8 weeks` | `(170, 134)` | mono 11px `--muted` |
@@ -1625,7 +1636,7 @@ Greppable checks. All must pass before the site is shareable.
 | `grep -rn "1\.9s\|15\.0s\|P75\|low-end Android\|mid-tier\|2–4GB\|Q1 2025" app components content lib public` | 0 |
 | `grep -rn "enrolled cohort\|1M+ user base\|six 0" app components content lib` | 0 |
 | `grep -rn "hand-labelled\|hand-labeled" app components content lib` | 0 |
-| `grep -rn "Insurance claims\|Auto marketplace\|Fintech onboarding" lib app content` | 0 (D-07) |
+| `grep -rn "Insurance claims\|Auto marketplace\|Fintech onboarding\|insurance\|fintech" lib app content` | 0 (D-07 — fixed once already; the gate is what keeps it fixed) |
 | `grep -rn "+122%" content` | 0 |
 | `grep -rn "#000\|#fff\b" app components` | 0 outside the `--paper-raised` token |
 | `grep -rn "max-w-\[.*ch\]" components app` | 0 (D-02) |
@@ -1652,8 +1663,8 @@ Manual passes, none of which a grep can do:
 
 | # | Item | Owner |
 |---|---|---|
-| O-1 | Which three metrics occupy the `ProofStrip` rows | content pass |
-| O-2 | The four belief headings on `/approach` | content pass |
+| O-1 | Which two or three metrics occupy the `ProofStrip` rows | content pass |
+| O-2 | The three belief headings, shared between `/` and `/approach` | content pass |
 | O-3 | The eight section anchors per case study, which set the `ProgressRail` contents | content pass |
 | O-4 | Whether the Grounded demo can sit above 900px of scroll depth at 375px, or whether the scorecard leads (3.6) | build pass |
 | O-5 | The exact `[NEEDS:]` wording in every caption in Part 8 — the questions here are drafts and must reconcile with `CONTENT_GAPS.md` B2, B9, B13 | content pass |

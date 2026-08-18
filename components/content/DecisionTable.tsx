@@ -22,20 +22,20 @@ export function DecisionTable({
   rows: DecisionRow[]
 }) {
   return (
-    <div className="my-10">
+    <div className="my-5">
       <div className="scroll-x border border-[var(--color-rule)] bg-[var(--color-paper-raised)]">
         <table className="w-full min-w-[36rem] text-left text-[var(--text-sm)]">
-          <caption className="sr-only">{caption}</caption>
+          <caption className="decision-caption">{caption}</caption>
           <thead>
             <tr className="border-b border-[var(--color-rule-strong)]">
-              <th scope="col" className="px-4 py-3 font-[family-name:var(--font-mono)] text-[var(--text-xs)] font-medium tracking-[0.1em] text-[var(--color-muted)] uppercase">
+              <th scope="col" className="px-2 py-1.5 font-[family-name:var(--font-mono)] text-[var(--text-xs)] font-medium tracking-[0.1em] text-[var(--color-muted)] uppercase">
                 Option
               </th>
               {columns.map((c) => (
                 <th
                   key={c}
                   scope="col"
-                  className="px-4 py-3 font-[family-name:var(--font-mono)] text-[var(--text-xs)] font-medium tracking-[0.1em] text-[var(--color-muted)] uppercase"
+                  className="px-2 py-1.5 font-[family-name:var(--font-mono)] text-[var(--text-xs)] font-medium tracking-[0.1em] text-[var(--color-muted)] uppercase"
                 >
                   {c}
                 </th>
@@ -50,11 +50,11 @@ export function DecisionTable({
                   r.chosen ? 'bg-[var(--color-signal)]/[0.05]' : ''
                 }`}
               >
-                <th scope="row" className="px-4 py-3 align-top font-medium">
+                <th scope="row" className="px-2 py-1.5 align-top font-medium">
                   {r.chosen ? (
                     <span
                       aria-hidden="true"
-                      className="mr-2 font-[family-name:var(--font-mono)] text-[var(--color-signal)]"
+                      className="mr-1 font-[family-name:var(--font-mono)] text-[var(--color-signal)]"
                     >
                       ▸
                     </span>
@@ -62,13 +62,13 @@ export function DecisionTable({
                   {r.option}
                   {r.chosen ? <span className="sr-only"> — chosen</span> : null}
                   {r.note ? (
-                    <span className="mt-1 block text-[var(--text-xs)] font-normal text-[var(--color-muted)]">
+                    <span className="mt-0.5 block text-[var(--text-xs)] font-normal text-[var(--color-muted)]">
                       {r.note}
                     </span>
                   ) : null}
                 </th>
                 {r.cells.map((cell, i) => (
-                  <td key={i} className="px-4 py-3 align-top text-[var(--color-ink)]">
+                  <td key={i} className="px-2 py-1.5 align-top text-[var(--color-ink)]">
                     <WithNeeds text={cell} />
                   </td>
                 ))}
@@ -77,7 +77,6 @@ export function DecisionTable({
           </tbody>
         </table>
       </div>
-      <p className="mt-3 text-[var(--text-sm)] text-[var(--color-muted)]">{caption}</p>
     </div>
   )
 }

@@ -16,7 +16,7 @@ export function EvalScorecard() {
   const cases = baseline.cases as unknown as Case[]
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <div className="scroll-x">
         <table className="w-full min-w-[30rem] border-collapse text-left">
           <caption className="sr-only">
@@ -24,11 +24,11 @@ export function EvalScorecard() {
           </caption>
           <thead>
             <tr>
-              <th scope="col" className="eyebrow px-2 pb-2 text-left">
+              <th scope="col" className="eyebrow px-1 pb-1 text-left">
                 Case
               </th>
               {DIMENSIONS.map((d) => (
-                <th key={d} scope="col" className="eyebrow px-2 pb-2 text-left">
+                <th key={d} scope="col" className="eyebrow px-1 pb-1 text-left">
                   {d}
                 </th>
               ))}
@@ -37,7 +37,7 @@ export function EvalScorecard() {
           <tbody className="font-[family-name:var(--font-mono)] text-[var(--text-xs)]">
             {cases.map((c) => (
               <tr key={c.id} className="border-t border-[var(--color-rule)]">
-                <th scope="row" className="px-2 py-1.5 font-normal whitespace-nowrap">
+                <th scope="row" className="px-1 py-0.75 font-normal whitespace-nowrap">
                   <span className="text-[var(--color-ink)]">{c.id}</span>{' '}
                   <span className="text-[var(--color-muted)]">{c.category}</span>
                 </th>
@@ -45,7 +45,7 @@ export function EvalScorecard() {
                   const dim = c.dimensions.find((x) => x.dimension === d)
                   const passed = dim?.passed ?? false
                   return (
-                    <td key={d} className="px-2 py-1.5">
+                    <td key={d} className="px-1 py-0.75">
                       <span
                         className={
                           passed ? 'text-[var(--color-signal)]' : 'text-[var(--color-flag)]'

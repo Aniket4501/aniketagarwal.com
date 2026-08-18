@@ -18,10 +18,10 @@ export function CaseCard({ meta }: { meta: CaseStudyFrontmatter }) {
   return (
     <Link
       href={`/work/${meta.slug}`}
-      className="group block border-t border-[var(--color-rule)] py-10 transition-colors duration-[var(--duration-fast)] last:border-b lg:py-12"
+      className="group block border-t border-[var(--color-rule)] py-5 transition-colors duration-[var(--duration-fast)] last:border-b lg:py-6"
     >
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-16">
-        <div className="flex flex-col gap-4">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-8">
+        <div className="flex flex-col gap-2">
           <p className="eyebrow">
             {String(meta.order).padStart(2, '0')} · {meta.title}
           </p>
@@ -31,13 +31,13 @@ export function CaseCard({ meta }: { meta: CaseStudyFrontmatter }) {
           <p className="max-w-[52ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
             {meta.tagline}
           </p>
-          <p className="mt-1 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]">
+          <p className="mt-0.5 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]">
             Read <span aria-hidden="true">→</span>
           </p>
         </div>
 
         {lead ? (
-          <div className="lg:pt-8">
+          <div className="lg:pt-4">
             <MetricDelta metric={lead} />
           </div>
         ) : null}

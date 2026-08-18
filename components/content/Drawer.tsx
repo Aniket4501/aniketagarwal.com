@@ -18,8 +18,8 @@ import type { ReactNode } from 'react'
  */
 export function Drawer({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <details className="group my-6 border border-[var(--color-rule)] bg-[var(--color-paper-raised)]">
-      <summary className="flex cursor-pointer list-none items-start gap-3 px-5 py-4 text-[var(--text-sm)] leading-snug text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-signal)] [&::-webkit-details-marker]:hidden">
+    <details className="group my-3 border border-[var(--color-rule)] bg-[var(--color-paper-raised)]">
+      <summary className="flex cursor-pointer list-none items-start gap-1.5 px-2.5 py-2 text-[var(--text-sm)] leading-snug text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-signal)] [&::-webkit-details-marker]:hidden">
         <span
           aria-hidden="true"
           className="mt-[0.15em] shrink-0 font-[family-name:var(--font-mono)] text-[var(--color-signal)] transition-transform duration-[var(--duration)] group-open:rotate-90"
@@ -28,7 +28,7 @@ export function Drawer({ label, children }: { label: string; children: ReactNode
         </span>
         <span>{label}</span>
       </summary>
-      <div className="border-t border-[var(--color-rule)] px-5 py-5 text-[var(--text-sm)] leading-relaxed [&>*+*]:mt-4">
+      <div className="border-t border-[var(--color-rule)] px-2.5 py-2.5 text-[var(--text-sm)] leading-relaxed [&>*+*]:mt-2">
         {children}
       </div>
     </details>

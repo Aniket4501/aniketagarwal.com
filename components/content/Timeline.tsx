@@ -15,12 +15,12 @@ export function Timeline({ showEducation = true }: { showEducation?: boolean }) 
       {timeline.map((row) => (
         <li
           key={`${row.org}-${row.period}`}
-          className="grid grid-cols-1 gap-1 border-b border-[var(--color-rule)] py-4 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-6"
+          className="grid grid-cols-1 gap-0.5 border-b border-[var(--color-rule)] py-2 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-3"
         >
           <span className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] tabular-nums text-[var(--color-muted)]">
             {row.period}
           </span>
-          <span className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[var(--text-sm)] leading-relaxed">
+          <span className="flex flex-wrap items-baseline gap-x-1 gap-y-0.25 text-[var(--text-sm)] leading-relaxed">
             <span className="font-medium">{row.role}</span>
             <span aria-hidden="true" className="text-[var(--color-muted)]">
               ·
@@ -37,7 +37,7 @@ export function Timeline({ showEducation = true }: { showEducation?: boolean }) 
         </li>
       ))}
       {showEducation ? (
-        <li className="grid grid-cols-1 gap-1 border-b border-[var(--color-rule)] py-4 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-6">
+        <li className="grid grid-cols-1 gap-0.5 border-b border-[var(--color-rule)] py-2 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-3">
           <span className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] tabular-nums text-[var(--color-muted)]">
             2019 — 2024
           </span>

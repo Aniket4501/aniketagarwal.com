@@ -35,20 +35,20 @@ export function MetricDelta({
   const qualifiers = [denominator, timeframe, method].filter(Boolean)
 
   return (
-    <figure className="flex flex-col gap-2">
+    <figure className="flex flex-col gap-1">
       <figcaption className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] font-medium tracking-[0.12em] text-[var(--color-muted)] uppercase">
         {label}
       </figcaption>
 
       <div
-        className={`flex items-baseline gap-3 font-[family-name:var(--font-mono)] tabular-nums ${figure}`}
+        className={`flex items-baseline gap-1.5 font-[family-name:var(--font-mono)] tabular-nums ${figure}`}
       >
         <span className="shrink-0 text-[var(--color-ink)]">{before}</span>
 
         {/* The rule is decorative: the arrow's meaning is carried by the
             visually-hidden "to" below, so a screen reader hears
             "15s to under 2s" rather than a dash. */}
-        <span aria-hidden="true" className="flex min-w-8 flex-1 items-center self-center">
+        <span aria-hidden="true" className="flex min-w-4 flex-1 items-center self-center">
           <span
             className={`h-px flex-1 bg-[var(--color-rule-strong)] ${animate ? 'animate-draw' : ''}`}
           />
@@ -56,7 +56,7 @@ export function MetricDelta({
             width="7"
             height="8"
             viewBox="0 0 7 8"
-            className={`shrink-0 fill-[var(--color-rule-strong)] ${animate ? 'animate-settle' : ''}`}
+            className="shrink-0 fill-[var(--color-rule-strong)]"
           >
             <path d="M0 0L7 4L0 8Z" />
           </svg>
@@ -64,7 +64,7 @@ export function MetricDelta({
         <span className="sr-only"> to </span>
 
         <span
-          className={`shrink-0 font-medium text-[var(--color-signal)] ${animate ? 'animate-settle' : ''}`}
+          className="shrink-0 font-medium text-[var(--color-signal)]"
         >
           {after}
         </span>

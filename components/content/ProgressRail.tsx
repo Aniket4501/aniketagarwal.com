@@ -24,11 +24,11 @@ export function ReadProgress() {
 export function SectionIndex({ sections }: { sections: RailSection[] }) {
   if (sections.length === 0) return null
   return (
-    <nav aria-label="Sections in this case study" className="flex flex-col gap-3">
+    <nav aria-label="Sections in this case study" className="flex flex-col gap-1.5">
       <p className="eyebrow">Sections</p>
-      <ol className="flex flex-col gap-2">
+      <ol className="flex flex-col gap-1">
         {sections.map((s, i) => (
-          <li key={s.id} className="flex gap-2 text-[var(--text-sm)] leading-snug">
+          <li key={s.id} className="flex gap-1 text-[var(--text-sm)] leading-snug">
             <span className="mt-[0.15em] shrink-0 font-[family-name:var(--font-mono)] text-[var(--text-xs)] tabular-nums text-[var(--color-muted)]">
               {String(i + 1).padStart(2, '0')}
             </span>
@@ -47,5 +47,5 @@ export function SectionIndex({ sections }: { sections: RailSection[] }) {
 
 /** The right rail on desktop; inline blocks between paragraphs on mobile. */
 export function Rail({ children }: { children: ReactNode }) {
-  return <div className="flex flex-col gap-8 lg:sticky lg:top-24">{children}</div>
+  return <div className="flex flex-col gap-4 lg:sticky lg:top-12">{children}</div>
 }

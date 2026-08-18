@@ -22,27 +22,27 @@ export default function LabIndex() {
 
   return (
     <>
-      <Container className="pt-12 pb-4 lg:pt-20">
+      <Container className="pt-6 pb-2 lg:pt-10">
         <p className="eyebrow">Lab</p>
-        <h1 className="mt-4 max-w-[22ch] text-[length:var(--text-3xl)] leading-[1.08] font-semibold tracking-[var(--track-display)]">
+        <h1 className="mt-2 max-w-[22ch] text-[length:var(--text-3xl)] leading-[1.08] font-semibold tracking-[var(--track-display)]">
           One thing, built properly, that you can actually use.
         </h1>
-        <p className="mt-5 max-w-[58ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
+        <p className="mt-2.5 max-w-[58ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
           Everything else on this site is something to read. This is the one page with something to
           run.
         </p>
       </Container>
 
-      <Container className="pb-20 lg:pb-28">
+      <Container className="pb-10 lg:pb-14">
         {projects.map((p) => (
           <article
             key={p.meta.slug}
-            className="mt-8 border border-[var(--color-rule)] bg-[var(--color-paper-raised)]"
+            className="mt-4 border border-[var(--color-rule)] bg-[var(--color-paper-raised)]"
           >
-            <div className="flex flex-col gap-4 p-6 sm:p-8">
-              <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-col gap-2 p-3 sm:p-4">
+              <div className="flex flex-wrap items-center gap-1.5">
                 <span
-                  className={`eyebrow rounded-[var(--radius-sm)] border px-2 py-0.5 ${
+                  className={`eyebrow rounded-[var(--radius-sm)] border px-1 py-0.25 ${
                     p.meta.status === 'live'
                       ? 'border-[var(--color-signal)]/40 text-[var(--color-signal)]'
                       : 'border-[var(--color-flag)]/40 text-[var(--color-flag)]'
@@ -62,7 +62,7 @@ export default function LabIndex() {
                 {p.meta.tagline}
               </p>
 
-              <dl className="mt-2 flex flex-wrap gap-x-8 gap-y-3 border-t border-[var(--color-rule)] pt-4 font-[family-name:var(--font-mono)] text-[var(--text-xs)] tabular-nums">
+              <dl className="mt-1 flex flex-wrap gap-x-4 gap-y-1.5 border-t border-[var(--color-rule)] pt-2 font-[family-name:var(--font-mono)] text-[var(--text-xs)] tabular-nums">
                 {[
                   ['Cases', String(baseline.stats.total)],
                   ['Hand-labelled', String(baseline.stats.handLabelled)],
@@ -72,17 +72,17 @@ export default function LabIndex() {
                   ],
                   ['Full run', `${baseline.totalElapsedMs}ms`],
                 ].map(([k, v]) => (
-                  <div key={k} className="flex flex-col gap-1">
+                  <div key={k} className="flex flex-col gap-0.5">
                     <dt className="eyebrow">{k}</dt>
                     <dd className="text-[var(--text-sm)]">{v}</dd>
                   </div>
                 ))}
               </dl>
 
-              <div className="mt-3 flex flex-wrap gap-4">
+              <div className="mt-1.5 flex flex-wrap gap-2">
                 <Link
                   href={`/lab/${p.meta.slug}`}
-                  className="rounded-[var(--radius)] border border-[var(--color-signal)] px-4 py-2 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)] transition-colors duration-[var(--duration-fast)] hover:bg-[var(--color-signal)] hover:text-[var(--color-paper)]"
+                  className="rounded-[var(--radius)] border border-[var(--color-signal)] px-2 py-1 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)] transition-colors duration-[var(--duration-fast)] hover:bg-[var(--color-signal)] hover:text-[var(--color-paper)]"
                 >
                   Run it <span aria-hidden="true">→</span>
                 </Link>
