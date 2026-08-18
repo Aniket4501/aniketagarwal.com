@@ -2,12 +2,14 @@ import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 import {
+  homeSchema,
   caseStudySchema,
   shortCaseSchema,
   labProjectSchema,
   type CaseStudyFrontmatter,
   type ShortCaseFrontmatter,
   type LabProjectFrontmatter,
+  type HomeFrontmatter,
 } from './schema'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
@@ -70,4 +72,10 @@ export function getLabProjects(): Doc<LabProjectFrontmatter>[] {
 
 export function getLabProject(slug: string): Doc<LabProjectFrontmatter> | undefined {
   return getLabProjects().find((d) => d.meta.slug === slug)
+}
+
+export function getHome(): Doc<HomeFrontmatter> {
+  const file = path.join(CONTENT_DIR, 'home.mdx')
+  const { data, content } = matter(fs.readFileSync(file, 'utf8'))
+  return { meta: strict(homeSchema)(data, 'home.mdx'), body: content }
 }

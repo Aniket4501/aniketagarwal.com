@@ -113,3 +113,35 @@ export const labProjectSchema = z.object({
 })
 
 export type LabProjectFrontmatter = z.infer<typeof labProjectSchema>
+
+/**
+ * The homepage.
+ *
+ * Its six sections are fixed; only the words move. Keeping them in content
+ * rather than in the page component means the copy is diffable and the one
+ * place a claim can be introduced is a content file the gates already scan.
+ */
+export const beliefSchema = z.object({
+  /** One sentence. Present tense. Something an operator says. */
+  claim: z.string().min(10),
+  /** Two lines of concrete example. Must trace to the record. */
+  example: z.string().min(20),
+  /** The case study that evidences it. */
+  href: z.string().startsWith('/'),
+})
+
+export const homeSchema = z.object({
+  /** Names the role, the scale and the arrival. Never "1M users". */
+  subline: z.string().min(20),
+  /** Renders with a [NEEDS:] token until CONTENT_GAPS B12 is answered. */
+  status: z.string().min(10),
+  /** One line pointing at Grounded, for the reader who opens the demo first. */
+  labPointer: z.string().min(10),
+  proof: z.array(metricSchema).min(2).max(3),
+  workIntro: z.string().min(20),
+  beliefs: z.array(beliefSchema).min(3).max(3),
+  builtIntro: z.string().min(20),
+  closing: z.string().min(10),
+})
+
+export type HomeFrontmatter = z.infer<typeof homeSchema>
