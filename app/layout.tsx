@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { fontVariables } from './fonts'
+import { baseFontVariables } from './fonts'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { site, siteUrl } from '@/lib/site'
@@ -61,7 +61,7 @@ function personJsonLd() {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={fontVariables}>
+    <html lang="en" className={baseFontVariables}>
       <body>
         <script
           type="application/ld+json"

@@ -349,3 +349,36 @@
     font-weight: 500;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Case-study progress.
+
+   A CSS scroll-driven animation, so the rail costs no JavaScript. Where
+   `animation-timeline` is unsupported the bar simply stays at zero width and
+   the static section index beside it still works — the navigation was never
+   dependent on the indicator.
+   --------------------------------------------------------------------------- */
+
+@keyframes progress-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .read-progress {
+    transform-origin: left center;
+    animation: progress-grow linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .read-progress {
+    animation: none !important;
+    transform: scaleX(0) !important;
+  }
+}

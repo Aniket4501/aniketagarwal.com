@@ -45,4 +45,16 @@ export const dataFont = Geist_Mono({
   weight: ['400', '500'],
 })
 
-export const fontVariables = `${interfaceFont.variable} ${readingFont.variable} ${dataFont.variable}`
+/**
+ * Loaded on every route: the interface grotesk and the data mono.
+ */
+export const baseFontVariables = `${interfaceFont.variable} ${dataFont.variable}`
+
+/**
+ * The reading serif is scoped to the routes that actually set long-form prose
+ * — the case studies and /approach. The homepage sets no serif at all, so
+ * loading Newsreader there would cost 56.8 KB for a face that never renders.
+ * Next only emits a font's CSS on pages whose tree references it, so applying
+ * this variable in a nested layout keeps it off the homepage's critical path.
+ */
+export const readingFontVariable = readingFont.variable

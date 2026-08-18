@@ -305,3 +305,39 @@ estimates · no `/now` page or personality furniture · no agency-voice CTA.
 **D1-38 — Rejected from the research: none.** One finding is noted but not acted on: Agent 2a
 suggests the case-study card layout risk of a three-up grid. The brief already specifies stacked
 full-width rows, and both agree — no change needed.
+
+---
+
+# Phase 2 — Build decisions taken by the orchestrator
+
+**D2-01 — There is no API route.** The brief specifies
+`app/api/grounded/evaluate/route.ts` as "the ONLY dynamic route", rate-limited, with an optional
+API key. It was cut. All four Grounded dimensions — grounding, scope, escalation, readability —
+are decidable by deterministic rules, and rules run in the browser. The consequences are all good:
+the demo works offline, costs nothing, needs no key, cannot be rate-limited into uselessness, and
+has no server to fail. **Every route on the site is now static.**
+
+The evaluator is loaded with a dynamic `import()` only when a visitor edits the text, so the rules
+engine is not in the initial payload of `/lab/grounded`.
+
+**D2-02 — The reading serif is scoped to the routes that set prose.** Newsreader costs 56.8 KB and
+the homepage sets no serif at all. Applying its font variable in a nested layout rather than the
+root keeps it off the homepage's critical path entirely.
+
+**D2-03 — Nav and Drawer ship zero client JavaScript.** The brief lists both as Client Components.
+Neither needs to be: the mobile panel and the disclosure are both native `<details>`, which are
+keyboard operable, correctly announced, and functional before hydration — none of which a
+`useState` toggle can claim. The only client components on the site are `CopyEmail` and
+`GroundedDemo`.
+
+**D2-04 — The measured framework floor is 134.2 KB gzipped**, on a page containing one heading and
+no client components. The brief's "homepage JS under 90KB gzipped" is below the Next.js 16 +
+React 19 App Router baseline and is not reachable on this stack at any level of discipline.
+Enforcing it would ship a gate that can only fail. The budget script therefore separates the
+framework floor from application code and enforces both — total ≤ 145 KB, application ≤ 20 KB per
+route — and the final report states the 90 KB criterion as **unmet, with the measurement**.
+
+**D2-05 — Diagrams are React components with CSS where text legibility matters, hand-authored SVG
+where drawing matters.** The two scale comparisons and the option spread use real text so they stay
+selectable and legible at 320px without a viewBox fighting the type scale. Only the feedback-cadence
+argument diagram is SVG, because it is actually a drawing.
