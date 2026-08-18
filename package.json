@@ -1,0 +1,36 @@
+{
+  "name": "aniket-agarwal-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Product portfolio for Aniket Agarwal — Next.js App Router, statically generated.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "check:content": "tsx scripts/validate-content.ts",
+    "check:budget": "tsx scripts/check-budget.ts",
+    "analyze": "ANALYZE=true next build",
+    "verify": "npm run typecheck && npm run check:content && npm run build && npm run check:budget"
+  },
+  "dependencies": {
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "16.3.1",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "26.2.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "gray-matter": "4.0.3",
+    "next-mdx-remote": "6.0.0",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.12",
+    "typescript": "5.9.3",
+    "zod": "4.4.3"
+  },
+  "engines": { "node": ">=20.9.0" }
+}

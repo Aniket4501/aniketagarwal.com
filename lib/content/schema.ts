@@ -1,0 +1,115 @@
+import { z } from 'zod'
+
+/**
+ * Content schema.
+ *
+ * Two fields here are deliberately non-optional and exist to force a
+ * credibility behaviour into every case study that is ever added to this site:
+ *
+ *   1. `notOwned` — a case study that cannot state what it did NOT own does
+ *      not ship. Candidates maximise ownership claims; strong ones bound them.
+ *   2. `metrics[].denominator` — no number reaches a reader without a
+ *      population, a timeframe and a measurement method attached.
+ *
+ * Do not relax either one. `npm run check:content` fails the build on both.
+ */
+
+/** A number that has earned the right to be displayed. */
+export const metricSchema = z.object({
+  /** Short uppercase label, e.g. "COLD START". Rendered in mono. */
+  label: z.string().min(1),
+  /** Value before the work. Include the unit: "15s", "3.5 min", "25MB". */
+  before: z.string().min(1),
+  /** Value after the work. Same unit as `before`. */
+  after: z.string().min(1),
+  /** Population or segment the number is measured over. REQUIRED. */
+  denominator: z.string().min(1),
+  /** Measurement window. REQUIRED. */
+  timeframe: z.string().min(1),
+  /** How it was measured. REQUIRED. */
+  method: z.string().min(1),
+  /** Which direction counts as good. Drives the delta colour, not the sign. */
+  direction: z.enum(['down-is-good', 'up-is-good']),
+  /** Pre-computed delta string, e.g. "−87%". Omit when a % is meaningless. */
+  delta: z.string().optional(),
+  /** Set only on the hero instances. Everything else is static. */
+  animate: z.boolean().default(false),
+})
+
+export type Metric = z.infer<typeof metricSchema>
+
+/** A collapsed disclosure containing depth, not decoration. */
+export const artifactSchema = z.object({
+  /**
+   * A specific claim, never "Read more".
+   * Good: "How I defined session time, and the metric I nearly used instead"
+   */
+  label: z.string().min(12, 'Artifact labels must be a specific claim, not a generic prompt'),
+  kind: z.enum(['reasoning', 'method', 'decision', 'data']),
+  /** Server-rendered markdown body. Indexed and Cmd-F-able while collapsed. */
+  body: z.string().min(1),
+})
+
+export type Artifact = z.infer<typeof artifactSchema>
+
+export const caseStudySchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  title: z.string().min(1),
+  tagline: z.string().min(1),
+  /** The tension line used on the homepage card. Never a feature name. */
+  headline: z.string().min(1),
+  /** Manual ordering. Never sort by date. */
+  order: z.number().int().positive(),
+  role: z.string().min(1),
+  teamShape: z.string().min(1),
+  timeline: z.string().min(1),
+  /** What Aniket personally decided, prioritised or led. */
+  owned: z.array(z.string().min(1)).min(1),
+  /** What the team delivered together. */
+  shipped: z.array(z.string().min(1)).min(1),
+  /** What engineering, design, leadership or another team owned. REQUIRED. */
+  notOwned: z
+    .array(z.string().min(1))
+    .min(1, 'A case study that cannot state what it did not own does not ship.'),
+  metrics: z.array(metricSchema).min(1),
+  artifacts: z.array(artifactSchema).max(4, 'Maximum four artifact drawers per case study'),
+  /** SEO. 150–160 chars. */
+  description: z.string().min(80).max(200),
+  ogHeadline: z.string().min(1),
+  ogMetric: z.string().min(1),
+  published: z.boolean().default(true),
+})
+
+export type CaseStudyFrontmatter = z.infer<typeof caseStudySchema>
+
+export const shortCaseSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  title: z.string().min(1),
+  company: z.string().min(1),
+  timeline: z.string().min(1),
+  role: z.string().min(1),
+  order: z.number().int().positive(),
+  /** The trade-off, stated first. Short cases lead with the cost, not the win. */
+  tradeoff: z.string().min(1),
+  metrics: z.array(metricSchema),
+  notOwned: z.array(z.string().min(1)).min(1),
+})
+
+export type ShortCaseFrontmatter = z.infer<typeof shortCaseSchema>
+
+export const labProjectSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  title: z.string().min(1),
+  tagline: z.string().min(1),
+  /**
+   * Honest liveness. `live` may only be used when the demo runs end to end in
+   * production. Everything else says so on the page, in the badge.
+   */
+  status: z.enum(['live', 'in-development', 'concept']),
+  statusNote: z.string().min(1),
+  repo: z.string().url().optional(),
+  order: z.number().int().positive(),
+  description: z.string().min(80).max(200),
+})
+
+export type LabProjectFrontmatter = z.infer<typeof labProjectSchema>

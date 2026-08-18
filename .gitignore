@@ -1,0 +1,45 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# production
+build/
+dist/
+
+# env
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel
+
+# os
+.DS_Store
+Thumbs.db
+
+# editor
+.idea/
+.vscode/
+*.swp
+
+# logs
+npm-debug.log*
+yarn-error.log*
+.npm
+
+# build artifacts from QA
+docs/screenshots/
+docs/lighthouse/
+
+# private source material — never published (see CONTENT_GAPS.md redaction decisions D-R2, D-R3)
+portfolio-strategy-aniket-agarwal.md
+Profile.pdf
+Aniket_s_PM_Resume.pdf
