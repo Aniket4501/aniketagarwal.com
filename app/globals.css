@@ -382,3 +382,56 @@
     transform: scaleX(0) !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Nav condense.
+
+   Past ~120px of scroll the bar tightens. This is a CSS scroll-driven
+   animation over a registered custom property, so the nav needs no scroll
+   listener and no client component. Where `animation-timeline` is unsupported
+   the bar simply stays at its full height, which is a fine resting state.
+
+   The wordmark's type size does not change — only the padding — because a
+   heading that resizes under the reader is a distraction, not an affordance.
+   --------------------------------------------------------------------------- */
+
+@property --nav-pad {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 16px;
+}
+
+.site-nav {
+  --nav-pad: 16px;
+}
+
+.site-nav .nav-link {
+  padding-block: var(--nav-pad);
+}
+
+@keyframes nav-condense {
+  to {
+    --nav-pad: 9px;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .site-nav {
+    animation: nav-condense linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav {
+    animation: none !important;
+    --nav-pad: 16px;
+  }
+}
+
+/* The mobile panel hangs off the sticky header rather than the viewport, so it
+   lands in the right place whatever the condensed height happens to be. */
+.nav-panel > div {
+  max-height: calc(100dvh - 100%);
+}

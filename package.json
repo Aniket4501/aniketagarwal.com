@@ -12,6 +12,8 @@
     "check:content": "tsx scripts/validate-content.ts",
     "check:budget": "tsx scripts/check-budget.ts",
     "check:truth": "tsx scripts/check-truth.ts",
+    "capture": "tsx scripts/capture.ts",
+    "check:a11y": "tsx scripts/check-a11y.ts",
     "analyze": "ANALYZE=true next build",
     "verify": "npm run typecheck && npm run check:truth && npm run check:content && npm run build && npm run check:budget"
   },
@@ -21,6 +23,7 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/eslintrc": "^3.3.6",
     "@next/bundle-analyzer": "16.3.1",
     "@tailwindcss/postcss": "4.3.3",
@@ -31,6 +34,7 @@
     "eslint-config-next": "^16.3.1",
     "gray-matter": "4.0.3",
     "next-mdx-remote": "6.0.0",
+    "playwright": "^1.62.1",
     "tailwindcss": "4.3.3",
     "tsx": "4.23.12",
     "typescript": "5.9.3",

@@ -22,9 +22,6 @@ const LINKS = [
 export function Nav() {
   return (
     <>
-      {/* Scroll sentinel: 120px tall, drives the condense animation. */}
-      <div aria-hidden="true" className="nav-sentinel pointer-events-none absolute top-0 h-30 w-px" />
-
       <a
         href="#main"
         className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3 focus-visible:left-3 focus-visible:z-50 focus-visible:rounded-[var(--radius)] focus-visible:bg-[var(--color-ink)] focus-visible:px-4 focus-visible:py-2 focus-visible:text-[var(--color-paper)]"
@@ -36,7 +33,7 @@ export function Nav() {
         <nav aria-label="Primary" className="mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-6 sm:px-8 lg:px-10">
           <Link
             href="/"
-            className="nav-mark py-4 text-[var(--text-base)] font-semibold tracking-[-0.01em] text-[var(--color-ink)]"
+            className="nav-link text-[var(--text-base)] font-semibold tracking-[-0.01em] text-[var(--color-ink)]"
           >
             {site.name}
           </Link>
@@ -47,7 +44,7 @@ export function Nav() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="py-4 text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-signal)]"
+                  className="nav-link text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-signal)]"
                 >
                   {l.label}
                 </Link>
@@ -66,11 +63,11 @@ export function Nav() {
 
           {/* Mobile */}
           <details className="nav-panel group md:hidden">
-            <summary className="cursor-pointer list-none py-4 text-[var(--text-sm)] text-[var(--color-ink)] [&::-webkit-details-marker]:hidden">
+            <summary className="nav-link cursor-pointer list-none text-[var(--text-sm)] text-[var(--color-ink)] [&::-webkit-details-marker]:hidden">
               <span className="group-open:hidden">Menu</span>
               <span className="hidden group-open:inline">Close</span>
             </summary>
-            <div className="fixed inset-x-0 top-[var(--nav-h,3.5rem)] bottom-0 z-40 border-t border-[var(--color-rule)] bg-[var(--color-paper)] px-6 py-8">
+            <div className="absolute inset-x-0 top-full z-40 overflow-y-auto border-t border-[var(--color-rule)] bg-[var(--color-paper)] px-6 py-8">
               <ul className="flex flex-col gap-1">
                 {LINKS.map((l) => (
                   <li key={l.href}>
