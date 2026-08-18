@@ -15,7 +15,12 @@ export function ProofStrip({ metrics }: { metrics: Metric[] }) {
   return (
     <div className="grid gap-px border-y border-[var(--color-rule)] bg-[var(--color-rule)] sm:grid-cols-2 lg:grid-cols-3">
       {metrics.map((m) => (
-        <div key={m.label} className="bg-[var(--color-paper)] px-0.5 py-4 sm:px-3">
+        <div
+          key={m.label}
+          /* First cell flush left, last flush right, so the strip's type lines
+             up with the headline above it rather than sitting inset from it. */
+          className="bg-[var(--color-paper)] py-4 sm:px-3 sm:first:pl-0 sm:last:pr-0"
+        >
           <MetricDelta metric={m} />
         </div>
       ))}

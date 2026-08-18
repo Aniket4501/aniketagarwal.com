@@ -1,0 +1,295 @@
+---
+slug: two-seconds
+title: Two Seconds
+tagline: A fifteen-second launch is an adoption problem, and feature analytics cannot see it.
+headline: The roadmap was engagement. The app took fifteen seconds to open.
+order: 1
+role: Product Analyst, HCL Healthcare
+teamShape: "Tech team; VP-Product and stakeholders on scope. [NEEDS: how many engineers, a designer, a QA function?]"
+timeline: 8 weeks
+owned:
+  - Diagnosing launch time as the adoption blocker, and putting it ahead of the engagement features on the roadmap I had defined
+  - The call to hold that roadmap for eight weeks, and the argument for why a latency number belonged to product rather than to an engineering backlog
+  - Treating launch time and bundle size as product requirements with a stated ceiling, rather than as housekeeping
+shipped:
+  - Launch time from 15s to under 2s
+  - Bundle size from 25MB to 6MB
+  - Both inside eight weeks, on a live app serving 1M+ registered users
+notOwned:
+  - The engineering. I did not pick the levers, profile the startup path, or write a line of the code — the tech team did
+  - The instrumentation. Whatever measurement existed was not built by me, and its limits are the limits of what I can claim here
+  - The release process, and whatever was or was not put in place afterwards to stop the win decaying
+metrics:
+  - label: COLD START
+    before: 15s
+    after: under 2s
+    denominator: not stated
+    timeframe: 8 weeks
+    method: "[NEEDS: which percentile, which devices, measured how?]"
+    direction: down-is-good
+    delta: at least 7.5× faster
+  - label: BUNDLE SIZE
+    before: 25MB
+    after: 6MB
+    denominator: the shipped build — a physical quantity, not a user population
+    timeframe: 8 weeks
+    method: "[NEEDS: download size, install size, or APK/AAB?]"
+    direction: down-is-good
+    delta: 76% smaller
+artifacts: []
+description: A fifteen-second launch time was the adoption blocker on a health app with 1M+ registered users. I held the engagement roadmap for eight weeks instead. Cold start 15s to under 2s.
+ogHeadline: The roadmap was engagement. The app took fifteen seconds to open.
+ogMetric: 15s → under 2s
+---
+
+## The app took fifteen seconds to open. The benchmark was two.
+
+HCL Healthcare's consumer health app served more than a million registered users. I had defined the
+product roadmap, and what was on it was engagement — features that give a person a reason to open a
+health app in a week when nothing about their health has changed.
+
+Then I looked at how long the app took to launch.
+
+Fifteen seconds.
+
+**Against a two-second benchmark that is not a performance statistic. It is the price of admission to
+everything else on the roadmap.** A person who taps the icon and waits fifteen seconds is not forming
+an opinion about your streaks feature. They are forming one about whether the app works.
+
+## Latency was on the engineering backlog. Adoption was on my roadmap.
+
+A fifteen-second launch was already known. It sat where slow things sit — in the engineering column,
+next to refactors and platform upgrades, competing for engineering time against other engineering
+work. Classified that way it is a quality problem, and quality problems lose to deadlines for years
+at a stretch.
+
+I reclassified it, and not because I could fix it. I could not have written any of that code. A
+problem's category decides what it gets compared against, and a latency number owned by product
+competes against features. That is the only comparison in which its real value is visible.
+
+**The roadmap I owned was an engagement roadmap. I spent eight weeks on a fifteen-second launch time
+instead, because every engagement feature I shipped onto that foundation would have been measured
+against users who had already left.**
+
+That argument is falsifiable, which is the part of it I trust. If launch time was not what blocked
+adoption, then eight weeks of my roadmap bought two impressive numbers and nothing else.
+
+## The churn happened before the first analytics event fired
+
+Here is the property that makes this a case study rather than a ticket.
+
+A funnel begins at the first event the app emits, and the app cannot emit one until it has finished
+launching. Everyone who abandoned during those fifteen seconds is therefore missing from the
+denominator. They are not a drop-off; a drop-off needs two measured points and these people never
+produced the first. They are an absence, and you have to already suspect an absence to go looking
+for it.
+
+You cannot fix what your instrumentation never saw. Which is also why I cannot show you the chart
+that would make this section persuasive: the instrument that would have counted those people is the
+thing that was broken.
+
+[NEEDS: what share left before the app finished launching?]
+
+There is no user research behind this section and I am not going to invent any. The argument runs
+from the number and from what the instrument can and cannot see.
+
+A note on the statistic. A mean launch time is the wrong one here. The mean is pulled toward fast
+devices, and fast devices belong disproportionately to the people who build the app and the people
+least likely to leave. Abandonment lives in the tail. A mean that improves while the tail does not
+is a number that got better for a population that was never going anywhere, and it will look exactly
+like a win.
+
+<Figure
+  caption="The three numbers that exist in the record, drawn to scale: the launch time, the benchmark it was measured against, and the ceiling we shipped under."
+  alt="A fifteen-second launch time next to a two-second benchmark and a result at or below that benchmark; the before bar is more than seven times the length of the other two."
+  reconstruction={false}
+>
+  <ColdStartScale />
+</Figure>
+
+<Drawer label="Why you cannot A/B test a latency fix, and what you compare instead">
+
+Randomisation is the thing that makes an A/B test work. You assign the treatment, and because
+assignment is random the two arms differ only in what you assigned. Device capability breaks that. A
+phone's processor, its free storage and how much memory the other apps on it are holding are the
+variables that decide what a cold start costs, and none of them is assignable. You can randomise
+which build a device receives. You cannot randomise the device.
+
+So the instrument degrades, and it is worth being precise about how far. A staged rollout with the
+old build held back gives you a contemporaneous comparison: it controls for seasonality, but not for
+whichever devices happened to receive the new build first. A pre/post comparison inside a fixed
+device tier controls for capability, but not for anything else that moved that week — another
+release, a campaign, a festival.
+
+Neither is a clean causal read. Saying which one you ran, and what it fails to control for, costs
+nothing. Being caught not knowing costs the rest of the page.
+
+[NEEDS: staged rollout by device tier, or pre/post?]
+
+</Drawer>
+
+## Three ways to spend eight weeks
+
+Eight weeks could take three shapes. The first was already the plan and needed no argument from
+anyone, which is what makes it the dangerous one.
+
+Reversibility is the dimension I want to lean on, because it usually gets read backwards. Shipping
+features looks like the reversible choice, since a feature can be turned off next week. But the eight
+weeks are not refundable, and every measurement taken inside them is contaminated: when a feature
+underperforms on a foundation that loses people before the first screen, you cannot separate "this
+feature is weak" from "almost nobody reached it". You lose the time and you lose the ability to learn
+from it.
+
+Fixing launch time is the least reversible of the three in calendar terms, and I would rather say
+that than dress it up. What it buys is durability. A foundation, once fixed, does not need
+re-deciding — though it does need defending, which is the last section.
+
+<DecisionTable
+  caption="Three shapes the eight weeks could take. This is the reasoning laid out, not a scored matrix run at the time — where the real scoring is unknown the cell says so."
+  columns={["What it costs", "Reversible?", "How you would learn you were wrong"]}
+  rows={[
+    {
+      option: "Ship the engagement roadmap as written",
+      note: "The default. It needed no argument from anyone.",
+      cells: [
+        "Nothing new. It was already the plan.",
+        "Per feature, yes. The eight weeks, no.",
+        "You would not. Every read is taken on the people who got in."
+      ]
+    },
+    {
+      option: "Instrument the pre-launch window first, then decide",
+      note: "The cheapest of the three to be wrong about.",
+      cells: [
+        "Engineering time on measurement, and the roadmap still waits.",
+        "Most reversible — the instrument outlives whichever way the decision goes.",
+        "Directly. That is the entire point of it."
+      ]
+    },
+    {
+      option: "Fix launch time first, hold the roadmap",
+      chosen: true,
+      note: "What I chose. Scored worst on reversibility.",
+      cells: [
+        "Eight weeks of engagement work, not shipped.",
+        "Least reversible in calendar terms. Durable in outcome, until it regresses.",
+        "The number moves and adoption does not follow. Then the diagnosis was wrong."
+      ]
+    }
+  ]}
+/>
+
+## I held a roadmap I had written myself
+
+I chose the third option. **A decision with no cost is not a decision, and this one cost eight weeks
+of a roadmap I had defined myself — a more awkward thing to spend than eight weeks of someone else's
+plan.**
+
+It cost a second thing that matters more to me now. I picked a problem whose success criterion I
+could not measure cleanly, for the reason set out in the drawer above: device capability is not
+randomisable, so the clean instrument was never available. I traded a measurable bet for an
+unmeasurable one because I believed the unmeasurable one was larger.
+
+The sceptical reading deserves an answer before anyone has to ask for it. You fixed something
+engineering would have got to eventually. Probably true, but not in eight weeks, and not while it was
+being ranked against other engineering work by people who were correctly optimising for engineering
+throughput. The reframe did not change who did the work. It changed what the work competed against,
+and that is what a PM is for.
+
+## Under two seconds, and 25MB down to 6MB
+
+We shipped both inside the eight weeks. Launch time under two seconds. Bundle from 25MB to 6MB.
+
+The second pair is worth pausing on. It is a 76% reduction computed from two stated values, nothing
+rounded and nothing inferred — the only delta on this site that is arithmetic rather than estimate. I
+point it out because the precision is the point rather than the size.
+
+The caveat comes with it. "Bundle size" is at least three different measurements: what a person
+downloads, what the install occupies, and what the build artifact weighs. Those are not the same
+number. I would rather volunteer that than be asked for it.
+
+<Figure
+  caption="25MB and 6MB, drawn as area. Both totals are in the record. What the 25MB was made of is not, which is why this is two squares and not a treemap."
+  alt="A large square representing a 25MB bundle beside a square less than a quarter its area representing 6MB."
+  reconstruction={false}
+>
+  <BundleScale />
+</Figure>
+
+<Drawer label="Why 25MB to 6MB is the only figure here I show as an exact percentage">
+
+Both ends of that one are stated values, so the reduction is arithmetic: nineteen of twenty-five,
+which is 76.0% exactly.
+
+The launch-time number is a different kind of object. What I can stand behind is "under two seconds",
+which is an inequality rather than a measurement, and an inequality does not license a percentage.
+The record does not say 1.5 or 1.99, and those two imply meaningfully different reductions from
+fifteen. Publishing one tidy figure would assert a precision the source does not contain, and the
+first person to ask "under two, or exactly what?" would find that out in a single question.
+
+So the page publishes the bound instead: at least 7.5× faster. That is true for every value the
+inequality permits, it is more striking than the percentage would have been, and it survives the
+question.
+
+This is not fussiness about one number. It is the rule the rest of the page is written under. A
+figure is displayed at the precision its source actually supports, and where the source supports
+less, the page says less.
+
+</Drawer>
+
+## The numbers moved. Here is what they do not prove.
+
+Launch time went from 15s to under 2s and the bundle from 25MB to 6MB, both in eight weeks, on an app
+that was live throughout.
+
+I attribute the adoption argument directionally, not causally. There was no holdback I can publish,
+and per the drawer above there was no clean randomised design available to build one from. What I
+have is two physical quantities about a piece of software, measured before and after a period in
+which a team worked on them.
+
+**A launch-time fix removes a reason to leave. It does not demonstrate that anyone stayed, and those
+are different claims.** The second is the one a Head of Product actually wants, and it is not in what
+I can publish.
+
+<Drawer label="A launch-time fix cannot tell you whether anyone came back">
+
+Latency is an input to adoption, not a measure of it. Making an app open in under two seconds removes
+one reason to abandon it. Whether the people who had been abandoning it came back is a separate
+question with a separate instrument.
+
+That instrument is not exotic. Define a cohort before the change ships, hold the definition fixed,
+and read the same cohort's return rate afterwards, on a device population that did not itself change
+between the two reads. It is a modest piece of analytics work, and it is the whole difference between
+"we made it faster" and "the people who were bouncing came back".
+
+I do not have that read to publish. I would rather write that sentence here than have it drawn out of
+me in an interview, because the version where I claim the second thing and cannot produce the cohort
+is much worse than the version where I say which claim the evidence supports.
+
+</Drawer>
+
+## What eight weeks of latency work could not buy
+
+<Callout variant="mistake" label="The measurement I did not buy">
+
+Eight weeks bought a foundation and two physical numbers. They did not buy a read on whether the
+people who had been bouncing came back, and the window in which that read was cheapest is the window
+the fix consumed. The counterfactual only exists while the old build is still out there.
+
+Run again, I would define the cohort before the fix rather than after, and accept a slower start in
+exchange for an answer. Not because the fix was the wrong call. Because a fix and the evidence that
+it worked are two deliverables, and I shipped one of them.
+
+</Callout>
+
+The other thing eight weeks cannot buy is durability, and this is where a performance win usually
+dies. A performance budget becomes a product requirement when it has three parts: a stated ceiling, a
+named owner, and a gate that stops a release from crossing it. With all three it is a requirement.
+With two it is a preference, and preferences lose to deadlines. Every dependency added after week
+eight spends the budget, nobody is ever the person who broke it, and the number drifts back over a
+few releases without anyone having decided to let it.
+
+[NEEDS: was any guardrail added to stop regression?]
+
+That is the question I would ask a candidate who told me this story, so it belongs on the page rather
+than in the interview.

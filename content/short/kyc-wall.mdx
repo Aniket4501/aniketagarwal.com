@@ -1,0 +1,61 @@
+---
+slug: kyc-wall
+title: The KYC wall
+company: Infinyte Club
+timeline: Feb – Apr 2023
+role: Product Operations
+order: 1
+# Title and dates are the conservative reading of the two sources
+# (CONTENT_GAPS C3, C4). Everything factual below traces to two resume bullets:
+#   "Identified 5-step KYC as signup blocker via funnel analysis; proposed
+#    deferred-verification flow, aligned with CEO → +100% signup completion"
+#   "Implemented nudge system (push + in-app) to drive post-signup KYC
+#    completion; shipped with engineering in 3 weeks"
+tradeoff: >-
+  Deferring verification does not delete the KYC step, it moves it — and it buys
+  completed signups by accepting a population of unverified accounts that
+  somebody then has to bring back. I proposed the deferral, which made the
+  recovery mine to design as well.
+metrics:
+  - label: SIGNUP COMPLETION
+    before: baseline
+    after: 2× baseline
+    denominator: "[NEEDS: baseline completion rate, of which step, N?]"
+    timeframe: Window and baseline period not stated
+    method: Funnel analysis
+    direction: up-is-good
+notOwned:
+  - The decision to carry the risk. I proposed deferring verification; the CEO signed it off.
+  - The build. Engineering shipped the nudge system in three weeks.
+---
+
+Five steps of identity verification stood between a new user and the product,
+and the funnel said that is where people stopped. That finding offers two very
+different remedies. Make the five steps less painful, or stop making them a
+precondition for seeing anything at all.
+
+I proposed the second one, and took it to the CEO rather than treating it as a
+flow change, because moving a compliance step is not a question about screens.
+It is a question about what risk the company is willing to hold on its own
+balance sheet for a while.
+
+**Signup completion doubled, which is the least interesting sentence in this
+case.** What doubling produced was a queue: accounts sitting inside the product
+that had not been verified, each one a promise to finish something later. A
+deferred step is a debt, and debts are only good decisions when there is a plan
+for collection.
+
+That plan was the nudge system — push and in-app, aimed at post-signup KYC
+completion, shipped with engineering in three weeks. I would argue it is the
+actual product here rather than a follow-up to it. Deferral moves the wall. Only
+the nudges take it down.
+
+The number I would want, and the one this record does not contain, is what
+happened on the other side of the deferral.
+[NEEDS: what share completed KYC after the nudges?]
+Without it,
+"+100% signup completion" measures how many people got through a door, not how
+many ended up in the room. A funnel that counts arrivals and never checks the
+destination is the easiest kind to move and the least useful kind to report — so
+if I ran this again, the recovery target would be set before the deferral
+shipped, not after.

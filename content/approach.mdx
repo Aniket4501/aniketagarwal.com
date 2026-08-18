@@ -1,0 +1,79 @@
+Three beliefs, each with the work attached, and each with the part of it I would argue about. This page is argument rather than record. The record is under [Work](/work), where every number carries its population and its method, and where the ones I cannot qualify are marked instead of filled in.
+
+## Fix the floor before you build the ceiling
+
+**The roadmap was engagement. The app took fifteen seconds to open, against a 2s benchmark.**
+
+An engagement feature shipped onto a fifteen-second launch is not measured by the people it was designed for. It is measured by whoever is still waiting after fifteen seconds, and that is a smaller and far more patient group. Whatever numbers come back, they are not about the feature.
+
+I prioritised launch time instead. We shipped it under two seconds in eight weeks, and the bundle came down from 25MB to 6MB along the way.
+
+The failure mode on the other side of this belief is real: a team can spend a quarter on foundations, ship nothing anyone outside the building can see, and call it maturity. So the test I use is narrower than "is the tech debt bad". It is whether the floor is currently corrupting the measurement, so that you could not read the result of the next feature even if you shipped it. At fifteen seconds you cannot.
+
+Read [Two Seconds](/work/two-seconds) for the eight weeks this comes from.
+
+## A decision with no cost was not a decision
+
+**Three retention strategies were on the table: content, incentives, gamification. I prioritised competitive mechanics, which means I accepted that a leaderboard is a reason to open the app for the person who is winning and a reason to delete it for the person who is last.**
+
+Content and incentives buy attention you have to keep paying for. Another article, another voucher, next week, forever. Competition manufactures the reason to come back out of other users, which is the only engine of the three with no recurring invoice attached to it.
+
+That is the argument for. The argument against is the same sentence read from the other end: a competition sorts a user base into people who like being ranked and people who feel worse for having been ranked, and in a health product the second group is not a rounding error.
+
+So I would rather put the cost in the same sentence as the choice. A trade-off named at the time is a decision. The same trade-off named afterwards is a defence.
+
+Read [Steps Premier League](/work/steps-premier-league) for what shipped and what it gave up.
+
+## A metric you cannot defend is a metric you do not own
+
+**Session time was the declared north star for that launch, and it moved 3.5 → 7.8 min. Session time is a contestable north star in a health app, and I would rather argue about it in public than quietly swap it for something safer.**
+
+The objection is fair. A health product that works can shorten sessions: open it, log the thing, leave. Time in app is a reasonable metric for a competitive feature whose loop is checking where you stand, and a poor one for a product whose job is to get you out of the app and onto a walk. Both are true at once, which is why the number needs an argument beside it rather than a bigger typeface.
+
+What it cannot tell you is whether anybody came back. The number I would want next to it is week-2 to week-4 return, measured on the people who joined a league against the same weeks for people who did not.
+
+Which is also why session time and DAU appear on this site with their population, window and method left as open questions rather than filled in with the most flattering reading available. A denominator I cannot state is worth more to you visible than hidden.
+
+## The postmortem is the section I cannot write yet
+
+Everything above is a belief that worked, which is a suspicious set. **A page of beliefs with nothing broken attached to it is either very early or heavily edited.**
+
+There is a version of this section I could write in ten minutes: something small, safely historical, with a lesson bolted on the end. Those are easy to spot, because they cost the writer nothing. A postmortem is worth reading only if the decision had a consequence, and "I would have communicated more" is not a consequence.
+
+So the slot stays open, with the question I owe it in the same type size as the beliefs above: one decision that did not work, what it cost, and what I would put in its place.
+
+<Callout variant="gap" label="Not answered yet">
+
+[NEEDS: one decision that did not work, and what it cost]
+
+</Callout>
+
+Still open.
+
+## Manual logging is the ceiling on health-app engagement in India
+
+A point of view, not a case study. None of what follows is work I have shipped.
+
+Every engagement mechanic in a consumer health app is eventually competing with a person's willingness to type. Steps are the exception, and not because step challenges are clever: the phone counts steps whether or not anyone opens the app. The moment a loop needs a number only the user can supply, whether that is a meal, a reading, a home test or a paper report, it acquires a daily tax. The people who pay that tax longest tend to be the people who needed the product least.
+
+India has a structural answer to this that most markets do not. Under the [Ayushman Bharat Digital Mission](https://abdm.gov.in), a person holds an ABHA identifier and can consent to their health records being shared between registered providers and applications. A lab report or a prescription can arrive in an app because someone consented once, rather than because they photographed it on a kitchen table.
+
+**That changes what the product is allowed to open on.** An app that receives a verified panel does not have to ask a person what their last result was, or rely on what they remember. The first screen stops being a form.
+
+### The objections are stronger than the pitch
+
+**Consent is a funnel, and a hard one.** Linking records is not a permission dialog. It is a person handing over their medical history on the strength of whatever trust the app has earned so far, which at signup is close to none. The pull is most valuable at exactly the moment the app has least earned it, and every screen in that flow drops people.
+
+**Coverage decides whether the promise survives contact.** A pull returns what the producer of a record has published to the network. Where participation is uneven, the honest version of the feature is "some of your records, sometimes", and an app that promises a complete history and returns two documents is worse off than one that promised nothing.
+
+**An identifier is not a user.** A number created at a hospital registration desk, and a person who knows they have one and chooses to use it, are different populations. Any adoption figure has to be read for which of the two it counts before it means anything.
+
+**And verified data is not interpreted data.** Pulling the report solves acquisition. It says nothing about whether the person can read what arrived, which is a different product problem, and the one I went and built [a tool](/lab/grounded) for.
+
+There is a retention figure for ABDM-linked users circulating in Indian healthtech writing. I could not get to a study behind it, so it is not on this page. Mechanism is the argument here; a ranking is not mine to hand you.
+
+What would settle it is not a benchmark anyway. It is a funnel: what share of people who begin the linking flow finish it, what share of them have anything worth pulling, and what those people do in the fortnight afterwards. Until someone publishes that, everyone arguing this, me included, is arguing from mechanism.
+
+## If you read one case study, make it the latency one
+
+Start with [Two Seconds](/work/two-seconds). It is the shortest distance on this site between a decision and what the decision cost.

@@ -85,17 +85,21 @@ async function capture(browser: Browser) {
   return problems
 }
 
-const browser = await chromium.launch()
-try {
-  const problems = await capture(browser)
-  console.log(`\nScreenshots → ${path.relative(process.cwd(), OUT)}`)
-  if (problems.length) {
-    console.error(`\n${problems.length} problem(s):`)
-    for (const p of problems) console.error(`  ${p}`)
-    process.exitCode = 1
-  } else {
-    console.log('No HTTP errors, no console errors, no horizontal scroll at any width.')
+async function main() {
+  const browser = await chromium.launch()
+  try {
+    const problems = await capture(browser)
+    console.log(`\nScreenshots → ${path.relative(process.cwd(), OUT)}`)
+    if (problems.length) {
+      console.error(`\n${problems.length} problem(s):`)
+      for (const p of problems) console.error(`  ${p}`)
+      process.exitCode = 1
+    } else {
+      console.log('No HTTP errors, no console errors, no horizontal scroll at any width.')
+    }
+  } finally {
+    await browser.close()
   }
-} finally {
-  await browser.close()
 }
+
+void main()

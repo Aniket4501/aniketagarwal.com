@@ -52,5 +52,26 @@ const components = {
 }
 
 export function Mdx({ source }: { source: string }) {
-  return <MDXRemote source={source} components={components} />
+  return (
+    <MDXRemote
+      source={source}
+      components={components}
+      options={{
+        /**
+         * next-mdx-remote v6 defaults `blockJS` to true, which strips every
+         * `{…}` expression from the source as a hardening measure for
+         * user-supplied MDX. That silently removes every component prop:
+         * `<DecisionTable columns={[…]} rows={[…]} />` arrives with only its
+         * string attributes and the component throws on `columns.map`.
+         *
+         * The default is right for content submitted by strangers. It is wrong
+         * here: this MDX lives in the repository, is authored by one person,
+         * changes only through a pull request, and is validated by Zod and two
+         * gate scripts before it can build. Turning it off is what makes the
+         * content components work at all.
+         */
+        blockJS: false,
+      }}
+    />
+  )
 }

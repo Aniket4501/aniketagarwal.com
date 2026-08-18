@@ -25,13 +25,18 @@ export default function Home() {
   return (
     <>
       {/* 1 — Identity */}
-      <Container as="header" className="pt-5 pb-7 lg:pt-10 lg:pb-10">
-        <div className="grid gap-6 lg:grid-cols-12 lg:gap-5">
-          <div className="flex flex-col gap-3.5 lg:col-span-7">
-            <h1 className="max-w-[17ch] text-[length:var(--text-hero)] leading-[1.06] font-semibold tracking-[var(--track-display)] text-balance">
-              The roadmap was engagement. The app took fifteen seconds to open.
-              <br />
-              <span className="text-[var(--color-muted)]">
+      <Container as="header" className="pt-6 pb-8 lg:pt-10 lg:pb-12">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-5">
+          <div className="flex flex-col gap-4 lg:col-span-7">
+            {/* Both sentences are in the h1 — the second one is the payoff and
+                the reason to keep reading, so it is set smaller rather than
+                greyer. A large block of muted type reads as de-emphasis, and
+                the judgment signal is the part that must not be de-emphasised. */}
+            <h1 className="flex flex-col gap-2">
+              <span className="max-w-[17ch] text-[length:var(--text-hero)] leading-[1.04] font-semibold tracking-[var(--track-display)] text-balance">
+                The roadmap was engagement. The app took fifteen seconds to open.
+              </span>
+              <span className="max-w-[30ch] text-[length:var(--text-xl)] leading-[1.25] font-medium tracking-[var(--track-h2)] text-balance sm:text-[length:var(--text-2xl)]">
                 I spent eight weeks there instead. We shipped it under two.
               </span>
             </h1>

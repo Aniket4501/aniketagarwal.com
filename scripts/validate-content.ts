@@ -12,7 +12,12 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
-import { caseStudySchema, shortCaseSchema, labProjectSchema } from '../lib/content/schema'
+import {
+  caseStudySchema,
+  shortCaseSchema,
+  labProjectSchema,
+  homeSchema,
+} from '../lib/content/schema'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
 
@@ -74,6 +79,10 @@ for (const file of files) {
 
   // --- schema ---
   const collection = path.basename(path.dirname(file))
+  const name = path.basename(file, '.mdx')
+  // `about` and `approach` are single pages whose body is the content and
+  // whose frontmatter carries nothing the site reads, so they have no schema.
+  const unschemad = collection === 'content' && (name === 'about' || name === 'approach')
   const schema =
     collection === 'work'
       ? caseStudySchema
@@ -81,11 +90,13 @@ for (const file of files) {
         ? shortCaseSchema
         : collection === 'lab'
           ? labProjectSchema
-          : null
+          : collection === 'content' && name === 'home'
+            ? homeSchema
+            : null
 
-  if (!schema) {
+  if (!schema && !unschemad) {
     errors.push(`${rel}: file sits in an unrecognised collection "${collection}"`)
-  } else {
+  } else if (schema) {
     const result = schema.safeParse(data)
     if (!result.success) {
       for (const issue of result.error.issues) {
@@ -125,9 +136,33 @@ for (const file of files) {
     }
   }
 
-  // Visible placeholder tokens are allowed but must be surfaced loudly.
+  // Visible placeholder tokens are allowed, but they are MARKERS, not briefs.
+  // A five-line question rendered inline turns an honest gap into a page that
+  // looks broken, so the long form lives in CONTENT_GAPS.md and the chip stays
+  // short enough to read as a deliberate annotation.
   const needs = content.match(/\[NEEDS:[^\]]*\]/g) ?? []
-  for (const n of needs) warnings.push(`${rel}: visible placeholder ${n}`)
+  for (const n of needs) {
+    const inner = n.slice(7, -1).trim()
+    if (inner.length > 52) {
+      errors.push(
+        `${rel}: [NEEDS:] token is ${inner.length} chars, max 52 — "${inner.slice(0, 46)}…". ` +
+          `Shorten the chip and put the full question in CONTENT_GAPS.md.`,
+      )
+    }
+    warnings.push(`${rel}: visible placeholder ${n}`)
+  }
+
+  // At most ONE token per metric. Three unqualified fields rendering as three
+  // separate chips under one number reads as a broken template; one chip
+  // naming what is missing reads as someone who knows their own number.
+  const metricBlocks = raw.match(/^\s*-\s+label:[\s\S]*?(?=^\s*-\s+label:|^[a-zA-Z]|\Z)/gm) ?? []
+  for (const block of metricBlocks) {
+    const count = (block.match(/\[NEEDS:/g) ?? []).length
+    if (count > 1) {
+      const label = block.match(/label:\s*(.+)/)?.[1]?.trim() ?? '?'
+      errors.push(`${rel}: metric "${label}" has ${count} [NEEDS:] tokens, max 1 per metric`)
+    }
+  }
 }
 
 for (const w of warnings) console.warn(`  warn  ${w}`)

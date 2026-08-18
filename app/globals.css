@@ -456,3 +456,29 @@
   color: var(--color-muted);
   line-height: 1.5;
 }
+
+/* The scale bar is CONTENT, not motion. `prefers-reduced-motion` disables the
+   draw; it never removes the proportional widths, which carry information. */
+.metric-rule--animate {
+  transform-origin: left center;
+  animation: draw-rule var(--duration-hero) var(--ease-out) both;
+}
+
+/* Standard notation for an open bound: the source says "<2s", so the bar stops
+   at the bound and says so at its edge rather than asserting a value. */
+.metric-bound {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0,
+    #000 calc(100% - 6px),
+    transparent calc(100% - 6px)
+  );
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 6px), transparent calc(100% - 6px));
+  border-right: 2px dashed currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-rule--animate {
+    animation: none !important;
+  }
+}

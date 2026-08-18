@@ -20,14 +20,15 @@ const ROUTES = [
   '/about',
 ]
 
-const browser = await chromium.launch()
-const context = await browser.newContext({ viewport: { width: 390, height: 844 } })
-const page = await context.newPage()
+async function main() {
+  const browser = await chromium.launch()
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } })
+  const page = await context.newPage()
 
-let violations = 0
-const structural: string[] = []
+  let violations = 0
+  const structural: string[] = []
 
-for (const route of ROUTES) {
+  for (const route of ROUTES) {
   await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
 
   const results = await new AxeBuilder({ page })
@@ -73,19 +74,23 @@ for (const route of ROUTES) {
   if (shape.imagesNoAlt) structural.push(`${route}: ${shape.imagesNoAlt} image(s) with no alt`)
   if (!shape.skipLink) structural.push(`${route}: no skip-to-content link`)
   if (!shape.main) structural.push(`${route}: no <main> landmark`)
-}
+  }
 
-await browser.close()
+  await browser.close()
 
-if (structural.length) {
+  if (structural.length) {
   console.error('\nStructural:')
   for (const s of structural) console.error(`  ${s}`)
-}
+  }
 
-const total = violations + structural.length
-console.log(
+  const total = violations + structural.length
+  console.log(
   total === 0
     ? `\naxe + structural checks clean across ${ROUTES.length} routes`
     : `\n${total} accessibility issue(s)`,
-)
-process.exitCode = total === 0 ? 0 : 1
+  )
+  process.exitCode = total === 0 ? 0 : 1
+
+}
+
+void main()

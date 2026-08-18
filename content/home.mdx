@@ -1,82 +1,124 @@
 ---
+# Homepage copy. Six sections, and every line here is rendered by app/page.tsx.
+#
+# The H1 is not in this file. It is fixed in the page component per D1-04, in
+# exactly those words. Everything below is written to sit under it.
+#
+# Provenance for every claim in this file:
+#   role, dates            R/L — "Product Analyst", Oct'24 – Present
+#   1M+ registered users   R:HCL-b1 "serving 1M+ users", read conservatively (A3)
+#   roadmap / PRDs / order R:HCL-b1 "defined product roadmap, wrote PRDs,
+#                          prioritized engagement features"
+#   two 0→1                R:HCL-b3, R:HCL-b4 — the only two the record labels
+#   15s → under 2s         R:HCL-b2, verbatim inequality. Never a decimal
+#   25MB → 6MB             R:HCL-b2, the only exact delta on the site (76.0%)
+#   3.5 → 7.8 min          R:HCL-b3. No percentage rendered beside it (D1-12)
+#   content/incentives/    R:HCL-b3 "evaluated 3 retention strategies"
+#     gamification
+#   15% incremental rev.   R:HCL-b4, attributed to the cross-sell hooks
+#   5+ enterprise clients  R:HCL-b4
+
 subline: >-
-  Product Analyst at HCL Healthcare since October 2024, working on engagement for
-  a consumer health app with 1M+ registered users. The distribution was there when
-  I arrived; getting people to come back was the part I owned.
+  Product Analyst at HCL Healthcare since October 2024 — the roadmap, the PRDs,
+  and what ships in what order, on a consumer health app with 1M+ registered
+  users. Two of those launches were 0→1: a step-based league, and an
+  AI-generated health report.
 
 status: >-
-  Currently: [NEEDS: one clause — what is on your desk this month?] Open to product
-  roles in consumer and health product.
+  Currently: [NEEDS: one clause — what is on your desk this month?] Open to PM
+  and APM roles — consumer product, health, applied AI.
 
 labPointer: >-
-  I also built Grounded, an evaluator that scores LLM-generated health summaries
-  against a visible rubric. It runs in your browser, no key, no setup.
+  If you assess AI PMs by opening the demo first: Grounded scores generated
+  health text against four rules, in your browser, with the whole rule set
+  readable.
 
+# The hero number carries no unanswered token by design. It is the figure the
+# headline just claimed, and the qualifier that is missing is asked in full one
+# screen below, in the proof strip, where there is room to ask it properly.
 heroMetric:
-  label: BUNDLE
-  before: 25MB
-  after: 6MB
-  denominator: the app bundle itself
+  label: COLD START
+  before: 15s
+  after: under 2s
+  delta: at least 7.5× faster
+  denominator: App launch, against a 2s benchmark
   timeframe: 8 weeks
-  method: a size comparison, not a sampled metric
+  method: What the measurement was is the question below
   direction: down-is-good
-  delta: −76%
 
 proof:
   - label: COLD START
     before: 15s
     after: under 2s
-    denominator: not stated
+    delta: at least 7.5× faster
+    denominator: "[NEEDS: percentile, device population, instrument]"
     timeframe: 8 weeks
-    method: '[NEEDS: which percentile, which device population, and measured how?]'
+    method: Launch time against a 2s benchmark
     direction: down-is-good
-  - label: BUNDLE
+
+  - label: BUNDLE SIZE
     before: 25MB
     after: 6MB
-    denominator: the app bundle itself
+    delta: 76% smaller
+    denominator: The shipped bundle, not a per-user figure
     timeframe: 8 weeks
-    method: a size comparison, not a sampled metric
+    method: "[NEEDS: download, install, or APK/AAB size?]"
     direction: down-is-good
-    delta: −76%
+
   - label: SESSION TIME
     before: 3.5 min
     after: 7.8 min
-    denominator: '[NEEDS: measured on league entrants, or on everyone?]'
-    timeframe: not stated
-    method: not stated
+    denominator: "[NEEDS: league players, or all daily actives?]"
+    timeframe: Window and baseline period not stated
+    method: The declared North Star, before and after
     direction: up-is-good
 
 workIntro: >-
-  Three problems of three different shapes, from one product surface. A latency
-  problem, a choice between mechanics, and a commercial one.
+  Three decisions on one product surface. Each is written the same way: what was
+  on the roadmap, what the evidence said instead, what I turned down, and what
+  the choice cost.
 
 beliefs:
-  - claim: Fix the floor before you build the ceiling.
+  - claim: A feature shipped onto a broken foundation is measured against the people who already left.
     example: >-
-      The roadmap I owned was an engagement roadmap. I spent eight weeks on launch
-      time instead, because a feature shipped onto a fifteen-second cold start is
-      measured against the people who were still there to see it.
+      The roadmap in front of me was an engagement roadmap. The app opened in
+      15s against a 2s benchmark, so eight weeks went there first: bundle 25MB →
+      6MB, launch under 2s.
     href: /work/two-seconds
-  - claim: A decision with no cost was not a decision.
+
+  - claim: The options I turned down are the decision. The one that shipped is only the result.
     example: >-
-      Three retention strategies were on the table and one got built. Choosing
-      competition meant accepting that some people do not want to compete, and that
-      the mechanic would work least well for the users who needed it most.
+      Three retention strategies were on the table — content, incentives,
+      gamification. I prioritised competitive mechanics, which meant accepting
+      that a share of users are alienated by competition.
     href: /work/steps-premier-league
-  - claim: A metric you cannot defend is a metric you do not own.
+
+  - claim: A number I can't put a population and a window on is an anecdote with a decimal point.
     example: >-
-      Session time was the north star we declared, and it is a contestable choice in
-      a health app. A product that works can shorten a session rather than lengthen
-      it. I would rather argue that out loud than quote the number and move on.
-    href: /work/steps-premier-league
+      Cross-sell hooks in the AI health report drove 15% incremental revenue.
+      Which revenue line, and over what period, I can't substantiate here — so
+      the page says that rather than implying otherwise.
+    href: /work/ai-health-reports
 
 builtIntro: >-
-  An evaluator for LLM-generated health summaries. It scores text on grounding,
-  scope, escalation and readability against a rubric you can read, and shows you
-  the spans that failed. Every check is a deterministic rule, so it runs in the
-  browser with no model call and no key. Built for this site, not at work.
+  Generated health text is quick to produce and slow to check. Grounded scores
+  it on four things: whether every figure traces back to a value on the panel,
+  whether it interprets without prescribing, whether an out-of-range result gets
+  pointed at a clinician, and what reading grade it lands on. The rules are
+  deterministic and readable in the repo, so the demo runs in the browser with
+  no model call and no key. The starter set is synthetic and unlabelled — the
+  counts beside this come out of the harness at build time, not out of me.
 
-closing: >-
-  If retention in a product people have no daily reason to open is a problem you
-  have right now, I would like to hear about it.
+closing: If you want to argue with a number on this page, that is the conversation I want.
 ---
+
+{/*
+
+No prose lives in this body. app/page.tsx reads the frontmatter only, and the
+homepage is deliberately built from named fields rather than free text so that
+a claim cannot be introduced anywhere the content gates do not already scan.
+
+If you are adding to the homepage, add a field to `homeSchema` and render it.
+Do not start writing paragraphs here.
+
+*/}
