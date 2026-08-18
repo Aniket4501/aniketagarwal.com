@@ -65,46 +65,104 @@ Currently `Product Analysis, Wireframing, Google Analytics`. These are the first
 
 ## Blocking gaps
 
-*(Populated in full at Phase 3. Seeded at Phase 0 with what is already certain from the source inventory.)*
+**Thirteen questions. The site renders a visible `[NEEDS: …]` token for each one until it is answered.
+Answering all thirteen is roughly two hours of Aniket's time and it is worth more than the entire
+design and engineering effort combined.**
 
-### B1 — One real, specific, owned failure with a consequence
-**Required by:** `/approach` postmortem (mandatory), and the "What I got wrong" section of all three case studies (mandatory, Section 8 of the build spec).
-**Status:** the source material contains **zero failures across seventeen resume bullets**. There is nothing to draw on and it cannot be invented.
-**Question:** name one decision you made at HCL, Circle Health or Infinyte that did not work. What did you decide, what happened, what did it cost, and what do you do differently now? "I would have communicated more" is not an answer. One specific thing, with a consequence, per case study, plus one longer one for `/approach`.
+Derived from the adversarial truth audit (`docs/01b-truth-audit.md` §7) and the narrative review
+(`docs/01-narrative.md` §4). Each is phrased as a question that can be answered in one or two
+sentences.
 
-### B2 — Denominators for every displayed metric
-**Required by:** Section 0.4. No unqualified number ships.
-Per metric, the missing fields are:
-- **Cold start 15s → under 2s:** which percentile (the site claims P75 — **is that true?**), which device population, measured how (synthetic device lab? RUM? staged rollout pre/post?)
-- **Session time 3.5 → 7.8 min:** measured over which population (enrolled league users only, or all DAU?), over what window, and against what baseline period
-- **DAU +20%:** +20% relative to what baseline, on what denominator (of 1M+ registered, how many were DAU?), measured over which 12 weeks
-- **Incremental revenue 15%:** 15% of what line, over what period, attributed how
-- **CSAT +50%:** what scale (5-point? 10-point? NPS?), what baseline value, what post value, N of respondents, over what period
-- **Signup completion +100%:** completion of what step, baseline rate, post rate, N
-**Question:** for each of the six, give `before → after · population · timeframe · measurement method`. Where you cannot disclose absolute values, say so — "I can't share the base; the relative movement was X on a 28-day rolling cohort" is a strong sentence and the site will use it verbatim.
+### B1 — One real failure with a consequence, per case study, plus one for `/approach`
+The record contains **zero failures across sixteen work bullets**. It cannot be sourced and it will
+not be invented. The "What I got wrong" section is mandatory in every case study and currently renders
+as a token.
+**Question:** name one decision at HCL, Circle Health or Infinyte that did not work. What did you
+decide, what happened, what did it cost, and what would you do differently? "I would have communicated
+more" is not an answer.
 
-### B3 — Team shape and ownership boundary, per case study
-**Required by:** the `OwnershipBlock` schema — `owned`, `shipped` and `notOwned` are all required fields and the build fails without them.
-**Status:** the source material says only `"cross-functional collaboration with VP-Product and stakeholders"` and `"led cross-functional initiative with tech team"`. No headcount, no roles, no reporting line.
-**Question, per case study:** how many engineers? Was there a designer? A QA function? Who approved scope? What decision could you make alone, and what needed sign-off?
+### B2 — Cold start: the measurement, not the number
+The site says `15s → under 2s · 8 weeks`, which is fully sourced. Everything about *how it was
+measured* is missing, and the strategy document's answer (`P75, low-end Android`) is invented.
+**Question:** which percentile — P50, P75, P90, or a mean? Which device population? Cold start to
+which event — first frame, first meaningful paint, or interactive? Measured by a synthetic device
+lab, production telemetry, or a staged-rollout pre/post comparison?
 
-### B4 — What you are shipping right now
-**Required by:** the homepage status line, which currently reads `Currently: [NEEDS: …]`.
+### B3 — Session time 3.5 → 7.8 min: population and window
+**Question:** measured on league enrollees only, or on all daily actives? Over what window, against
+which baseline period? Was session time defined as a median or a mean?
+
+### B4 — DAU +20%: baseline and denominator
+The resume attributes this to the **engagement suite**, not to Steps Premier League. The site keeps
+that attribution.
+**Question:** +20% relative to what baseline DAU? DAU as a share of what — the registered base, the
+enrolled base, or MAU? Which twelve weeks?
+
+### B5 — 15% incremental revenue: what line, what period
+The weakest metric in the record — the only one missing all four required fields. The resume
+attributes it to the **cross-sell hooks**, not to the reports as a whole.
+**Question:** 15% of what revenue line, over what period, attributed how? **If this cannot be
+answered, case study 3 loses its only quantified outcome and is demoted to a 300-word short case.**
+
+### B6 — Signup completion +100% (Infinyte)
+**Question:** completion of which step, baseline rate, post rate, N?
+
+### B7 — Team shape and decision rights, per case study
+The `OwnershipBlock` requires `owned`, `shipped` and `notOwned`. The record contains only
+"cross-functional collaboration with VP-Product and stakeholders". **No headcount will be invented** —
+the strategy document supplies three different engineer counts in four places, which is proof its
+number is illustrative.
+**Question, per case study:** how many engineers? Was there a designer? A QA function? What could you
+decide alone, and what needed sign-off?
+
+### B8 — The distribution channel
+The entire B2B2C framing rests on this, and it is currently an unconfirmed assumption (A1).
+**Question:** how do users arrive — employer health plans, insurers, hospitals, or direct consumer
+signup? And who is the paying customer?
+
+### B9 — What the AI Health Reports actually consume
+Not stated anywhere. This also determines whether Grounded is genuinely an extension of the job.
+**Question:** lab results, self-reported data, wearable data, or claims data?
+
+### B10 — How the report avoided giving medical advice
+**The single highest-value answer on this list.** The strategy proposes a seven-stage architecture and
+the sentence *"the model writes the prose; deterministic rules decide the medicine."* None of it is in
+the record, so all of it is cut.
+**Question:** was the boundary enforced at the prompt, by deterministic rules, by fixed templates, by
+human review, or not at all? **If you built any of it, case study 3 becomes the strongest piece on the
+site and moves to position 2.**
+
+### B11 — The 0→1 list
+The resume explicitly labels two (Steps Premier League, AI Health Reports). "Revamped QuickSell"
+contradicts the 0→1 label. The site currently claims only the two.
+**Question:** list the products you took 0→1 and confirm each was net-new rather than a revamp.
+
+### B12 — What you are shipping now
+Renders on the homepage as `Currently: [NEEDS: …]`.
 **Question:** one clause. What is on your desk this month?
 
-### B5 — Real artifacts for the artifact drawers
-**Status:** the working directory contains no PRDs, exports, briefs, matrices or screenshots. **The site therefore ships with hand-authored diagrams that reconstruct reasoning, each captioned as a reconstruction, and with no drawer that claims to contain a real document.** Nothing has been fabricated.
-**Question:** can you export — redacted — any one of: a PRD section header list, an experiment brief, a cohort table, a prioritisation matrix, one anonymised product screenshot? One real artifact is worth three paragraphs of claim and it is the single largest upgrade available to this site.
-
-### B6 — The GitHub URL
-The resume links the word "GitHub" but the URL is not recoverable from the PDF text layer. `gh` is authenticated as `Aniket4501`.
-**Question:** confirm `github.com/Aniket4501` is the right handle for the site footer and JSON-LD.
-
-### B7 — Grounded: the hand-labelled golden set
-The labels are the part that demonstrates domain judgment and they must come from Aniket, not from a model.
-**Question:** will you hand-label the synthetic starter set the build ships with? Until you do, the page states the set is synthetic and unlabelled, which is honest but weaker.
+### B13 — The golden set for Grounded
+The harness ships with a **16-case synthetic starter set, explicitly marked unlabelled**. The labels
+are the part that demonstrates domain judgment and they must come from you, not from a model.
+**Question:** will you review and hand-label the set? Until you do, the page says the set is synthetic,
+which is honest but weaker than it needs to be.
 
 ---
+
+### Secondary — visible but lower cost
+
+| # | Question | Kills |
+|---|---|---|
+| B14 | Does "Product Analyst" match your offer letter? Which Infinyte and Circle Health titles are correct? | C3, C6 |
+| B15 | What is the exact degree name on the certificate? Until answered, **no discipline is named anywhere on the site**. | C2 |
+| B16 | Confirm `github.com/Aniket4501` is your public handle. | Omitted from JSON-LD until confirmed |
+| B17 | Was the engagement roadmap your assigned brief when you joined, or one you defined? | The hero currently assumes you defined it, which is the conservative reading |
+| B18 | What did you actually run on Steps Premier League — staged rollout, A/B, pre/post, or nothing? | The experiments section |
+| B19 | What criteria did you score content / incentives / gamification on? | The decision matrix's scores |
+| B20 | What actually went into Won't-Have, and who objected? **Never claim Trackers or Live Events were cut — the resume says they shipped.** | The MoSCoW rewrite |
+| B21 | Were 25MB and 6MB download size, install size, or APK/AAB? | The bundle metric's method |
+| B22 | Is publishing the internal product name "Steps Premier League" acceptable to HCL? | A disclosure question this build cannot resolve |
+| B23 | Can the app be named? | The site says "a consumer health app" throughout |
 
 ## Non-blocking gaps
 
