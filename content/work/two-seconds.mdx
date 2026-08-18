@@ -44,9 +44,9 @@ ogMetric: 15s → under 2s
 
 ## The app took fifteen seconds to open. The benchmark was two.
 
-HCL Healthcare's consumer health app served more than a million registered users. I had defined the
-product roadmap, and what was on it was engagement — features that give a person a reason to open a
-health app in a week when nothing about their health has changed.
+HCL Healthcare's health app served more than a million registered users. I had defined the product
+roadmap, and what was on it was engagement: reasons to open a health app in a week when nothing
+about your health has changed.
 
 Then I looked at how long the app took to launch.
 
@@ -60,8 +60,7 @@ an opinion about your streaks feature. They are forming one about whether the ap
 
 A fifteen-second launch was already known. It sat where slow things sit — in the engineering column,
 next to refactors and platform upgrades, competing for engineering time against other engineering
-work. Classified that way it is a quality problem, and quality problems lose to deadlines for years
-at a stretch.
+work. Classified that way it is a quality problem, and quality problems lose to deadlines for years.
 
 I reclassified it, and not because I could fix it. I could not have written any of that code. A
 problem's category decides what it gets compared against, and a latency number owned by product
@@ -94,10 +93,9 @@ There is no user research behind this section and I am not going to invent any. 
 from the number and from what the instrument can and cannot see.
 
 A note on the statistic. A mean launch time is the wrong one here. The mean is pulled toward fast
-devices, and fast devices belong disproportionately to the people who build the app and the people
-least likely to leave. Abandonment lives in the tail. A mean that improves while the tail does not
-is a number that got better for a population that was never going anywhere, and it will look exactly
-like a win.
+devices, and fast devices belong to the people who build the app and the people least likely to
+leave. Abandonment lives in the tail. A mean that improves while the tail does not is a number that
+got better for a population that was never going anywhere, and it will look exactly like a win.
 
 <Figure
   caption="The three numbers that exist in the record, drawn to scale: the launch time, the benchmark it was measured against, and the ceiling we shipped under."
@@ -140,9 +138,9 @@ underperforms on a foundation that loses people before the first screen, you can
 feature is weak" from "almost nobody reached it". You lose the time and you lose the ability to learn
 from it.
 
-Fixing launch time is the least reversible of the three in calendar terms, and I would rather say
-that than dress it up. What it buys is durability. A foundation, once fixed, does not need
-re-deciding — though it does need defending, which is the last section.
+Fixing launch time is the least reversible of the three in calendar terms, and I would rather say so
+than dress it up. What it buys is durability: a foundation, once fixed, does not need re-deciding.
+It does need defending, which is the last section.
 
 <DecisionTable
   caption="Three shapes the eight weeks could take. This is the reasoning laid out, not a scored matrix run at the time — where the real scoring is unknown the cell says so."
@@ -185,24 +183,24 @@ I chose the third option. **A decision with no cost is not a decision, and this 
 of a roadmap I had defined myself — a more awkward thing to spend than eight weeks of someone else's
 plan.**
 
-It cost a second thing that matters more to me now. I picked a problem whose success criterion I
-could not measure cleanly, for the reason set out in the drawer above: device capability is not
-randomisable, so the clean instrument was never available. I traded a measurable bet for an
-unmeasurable one because I believed the unmeasurable one was larger.
+It cost a second thing. I picked a problem whose success criterion I could not measure cleanly, for
+the reason set out in the drawer above: device capability is not randomisable, so the clean
+instrument was never available. I traded a measurable bet for an unmeasurable one because I believed
+the unmeasurable one was larger.
 
-The sceptical reading deserves an answer before anyone has to ask for it. You fixed something
-engineering would have got to eventually. Probably true, but not in eight weeks, and not while it was
-being ranked against other engineering work by people who were correctly optimising for engineering
-throughput. The reframe did not change who did the work. It changed what the work competed against,
-and that is what a PM is for.
+The sceptical reading deserves an answer before anyone has to ask. You fixed something engineering
+would have got to eventually. Probably true, but not in eight weeks, and not while it was ranked
+against other engineering work by people correctly optimising for engineering throughput. The reframe
+did not change who did the work. It changed what the work competed against, and that is what a PM is
+for.
 
 ## Under two seconds, and 25MB down to 6MB
 
-We shipped both inside the eight weeks. Launch time under two seconds. Bundle from 25MB to 6MB.
+Two numbers came out of the eight weeks, and one of them deserves a note.
 
-The second pair is worth pausing on. It is a 76% reduction computed from two stated values, nothing
-rounded and nothing inferred — the only delta on this site that is arithmetic rather than estimate. I
-point it out because the precision is the point rather than the size.
+25MB to 6MB is a 76% reduction computed from two stated values, nothing rounded and nothing inferred:
+the only delta on this site that is arithmetic rather than estimate. I point that out because the
+precision is the point rather than the size.
 
 The caveat comes with it. "Bundle size" is at least three different measurements: what a person
 downloads, what the install occupies, and what the build artifact weighs. Those are not the same
@@ -243,9 +241,9 @@ Launch time went from 15s to under 2s and the bundle from 25MB to 6MB, both in e
 that was live throughout.
 
 I attribute the adoption argument directionally, not causally. There was no holdback I can publish,
-and per the drawer above there was no clean randomised design available to build one from. What I
-have is two physical quantities about a piece of software, measured before and after a period in
-which a team worked on them.
+and per the drawer above no clean randomised design was available to build one from. What I have is
+two physical quantities about a piece of software, measured before and after a period in which a team
+worked on them.
 
 **A launch-time fix removes a reason to leave. It does not demonstrate that anyone stayed, and those
 are different claims.** The second is the one a Head of Product actually wants, and it is not in what
@@ -284,12 +282,11 @@ it worked are two deliverables, and I shipped one of them.
 
 The other thing eight weeks cannot buy is durability, and this is where a performance win usually
 dies. A performance budget becomes a product requirement when it has three parts: a stated ceiling, a
-named owner, and a gate that stops a release from crossing it. With all three it is a requirement.
-With two it is a preference, and preferences lose to deadlines. Every dependency added after week
-eight spends the budget, nobody is ever the person who broke it, and the number drifts back over a
-few releases without anyone having decided to let it.
+named owner, and a gate that stops a release from crossing it. With two of the three it is a
+preference, and preferences lose to deadlines. Every dependency added after week eight spends the
+budget, nobody is ever the person who broke it, and the number drifts back without anyone having
+decided to let it.
 
 [NEEDS: was any guardrail added to stop regression?]
 
-That is the question I would ask a candidate who told me this story, so it belongs on the page rather
-than in the interview.
+That is the question I would ask a candidate who told me this story, so it belongs on the page.
