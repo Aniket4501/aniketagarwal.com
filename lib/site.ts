@@ -14,7 +14,11 @@ export const site = {
   location: 'Noida, India',
   email: 'aniketagarwalmhq24@gmail.com',
   linkedin: 'https://www.linkedin.com/in/aniket-agarwal-pm',
-  github: 'https://github.com/Aniket4501',
+  // No GitHub URL. The resume hyperlinks the word "GitHub" but the target is
+  // not recoverable from the PDF's text layer, and `gh` being authenticated as
+  // a handle on this machine is a local credential, not a stated public
+  // profile. Guessing it would publish an unverified link in the footer and in
+  // JSON-LD. See CONTENT_GAPS.md B16.
   resume: '/aniket-agarwal-resume.pdf',
   defaultDescription:
     'Product at HCL Healthcare — engagement and retention on a 1M+ registered-beneficiary consumer health app. Case studies on cold-start latency, habit-loop design and bounded generative AI in healthcare.',
@@ -48,7 +52,7 @@ export const timeline = [
     role: 'Product Intern',
     org: 'Circle Health',
     place: 'Bangalore',
-    note: 'Insurance claims',
+    note: 'Claims journey',
     conflict: 'C6',
   },
   {
@@ -56,14 +60,13 @@ export const timeline = [
     role: 'Product Management Intern',
     org: 'Droom',
     place: 'Gurugram',
-    note: 'Auto marketplace',
   },
   {
     period: '2023',
     role: 'Product Operations',
     org: 'Infinyte Club',
     place: 'Bangalore',
-    note: 'Fintech onboarding',
+    note: 'Signup and KYC',
     conflict: 'C3, C4',
   },
   {
@@ -71,7 +74,7 @@ export const timeline = [
     role: 'Product Management Intern',
     org: 'YourStory Media',
     place: 'Bangalore',
-    note: 'Media',
+
     conflict: 'C5',
   },
 ] as const

@@ -4,7 +4,7 @@ import { site } from '@/lib/site'
 const LINKS = [
   { href: '/work', label: 'Work' },
   { href: '/approach', label: 'Approach' },
-  { href: '/lab', label: 'Lab' },
+  { href: '/lab/grounded', label: 'Lab' },
   { href: '/about', label: 'About' },
 ]
 

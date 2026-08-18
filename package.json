@@ -11,8 +11,9 @@
     "typecheck": "tsc --noEmit",
     "check:content": "tsx scripts/validate-content.ts",
     "check:budget": "tsx scripts/check-budget.ts",
+    "check:truth": "tsx scripts/check-truth.ts",
     "analyze": "ANALYZE=true next build",
-    "verify": "npm run typecheck && npm run check:content && npm run build && npm run check:budget"
+    "verify": "npm run typecheck && npm run check:truth && npm run check:content && npm run build && npm run check:budget"
   },
   "dependencies": {
     "next": "16.3.1",
@@ -20,11 +21,14 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
     "@next/bundle-analyzer": "16.3.1",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "26.2.0",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.1",
     "gray-matter": "4.0.3",
     "next-mdx-remote": "6.0.0",
     "tailwindcss": "4.3.3",
@@ -32,5 +36,7 @@
     "typescript": "5.9.3",
     "zod": "4.4.3"
   },
-  "engines": { "node": ">=20.9.0" }
+  "engines": {
+    "node": ">=20.9.0"
+  }
 }
