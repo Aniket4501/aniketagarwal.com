@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { MetricDelta } from '@/components/content/MetricDelta'
+import { Stat } from '@/components/content/Stat'
 import type { CaseStudyFrontmatter } from '@/lib/content/schema'
 
 /**
@@ -15,12 +16,21 @@ import type { CaseStudyFrontmatter } from '@/lib/content/schema'
 export function CaseCard({
   meta,
   level = 3,
+  showFigure = true,
 }: {
   meta: CaseStudyFrontmatter
   level?: 2 | 3
+  /**
+   * False on the homepage, where the proof strip one screen above already
+   * carries these numbers. A figure repeated three times in a screen and a
+   * half stops reading as a system and starts reading as a loop that did not
+   * terminate.
+   */
+  showFigure?: boolean
 }) {
   const Heading = level === 2 ? ("h2" as const) : ("h3" as const)
   const lead = meta.metrics[0]
+  const leadStat = meta.stats[0]
 
   return (
     <Link
@@ -43,9 +53,13 @@ export function CaseCard({
           </p>
         </div>
 
-        {lead ? (
+        {showFigure && lead ? (
           <div className="lg:pt-4">
             <MetricDelta metric={lead} />
+          </div>
+        ) : showFigure && leadStat ? (
+          <div className="lg:pt-4">
+            <Stat stat={leadStat} />
           </div>
         ) : null}
       </div>

@@ -49,6 +49,13 @@ export default function Home() {
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-0.5">
               <a
+                href={site.resume}
+                className="rounded-[var(--radius)] border border-[var(--color-rule-strong)] px-2 py-1 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+              >
+                Resume <span aria-hidden="true">↗</span>
+                <span className="sr-only">(PDF)</span>
+              </a>
+              <a
                 href="#proof"
                 className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]"
               >
@@ -102,7 +109,7 @@ export default function Home() {
         </div>
         <div className="mt-5">
           {cases.map((c) => (
-            <CaseCard key={c.meta.slug} meta={c.meta} />
+            <CaseCard key={c.meta.slug} meta={c.meta} showFigure={false} />
           ))}
         </div>
         <p className="mt-4 text-[var(--text-base)] text-[var(--color-muted)]">
@@ -211,7 +218,6 @@ export default function Home() {
           <p className="max-w-[46ch] text-[var(--text-xl)] leading-snug font-semibold tracking-[var(--track-h2)]">
             {meta.closing}
           </p>
-          <CopyEmail size="large" />
         </div>
       </Container>
     </>

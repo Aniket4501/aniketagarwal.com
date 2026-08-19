@@ -57,7 +57,7 @@ export const timeline = [
     role: 'Product Analyst',
     org: 'HCL Healthcare',
     place: 'Noida',
-    note: 'Consumer health · 1M+ registered beneficiaries',
+    note: 'Consumer health · 1M+ registered users',
   },
   {
     period: '2024',

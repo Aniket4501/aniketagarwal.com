@@ -13,7 +13,7 @@ import type { Metric } from '@/lib/content/schema'
  */
 export function ProofStrip({ metrics }: { metrics: Metric[] }) {
   return (
-    <div className="grid gap-px border-y border-[var(--color-rule)] bg-[var(--color-rule)] sm:grid-cols-2 lg:grid-cols-3">
+    <div className={`grid gap-px border-y border-[var(--color-rule)] bg-[var(--color-rule)] sm:grid-cols-2 ${metrics.length > 2 ? "lg:grid-cols-3" : ""}`}>
       {metrics.map((m) => (
         <div
           key={m.label}

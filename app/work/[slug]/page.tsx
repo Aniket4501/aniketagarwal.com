@@ -6,6 +6,7 @@ import { extractHeadings } from '@/lib/content/headings'
 import { Mdx } from '@/lib/content/mdx'
 import { Container } from '@/components/layout/Container'
 import { MetricDelta } from '@/components/content/MetricDelta'
+import { Stat } from '@/components/content/Stat'
 import { OwnershipBlock } from '@/components/content/OwnershipBlock'
 import { Drawer } from '@/components/content/Drawer'
 import { ReadProgress, SectionIndex, Rail } from '@/components/content/ProgressRail'
@@ -80,6 +81,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div className="mt-5 flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3">
           {meta.metrics.map((m) => (
             <MetricDelta key={m.label} metric={m} />
+          ))}
+          {meta.stats.map((st) => (
+            <Stat key={st.label} stat={st} />
           ))}
         </div>
 

@@ -52,7 +52,22 @@ export const artifactSchema = z.object({
 
 export type Artifact = z.infer<typeof artifactSchema>
 
-export const caseStudySchema = z.object({
+/**
+ * A figure with no before. Same qualifier discipline, different shape — the
+ * rule was never "every delta carries a denominator", it was every number.
+ */
+export const statSchema = z.object({
+  label: z.string().min(1),
+  value: z.string().min(1),
+  denominator: z.string().min(1),
+  timeframe: z.string().min(1),
+  method: z.string().min(1),
+})
+
+export type Stat = z.infer<typeof statSchema>
+
+export const caseStudySchema = z
+  .object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
   title: z.string().min(1),
   tagline: z.string().min(1),
@@ -71,14 +86,23 @@ export const caseStudySchema = z.object({
   notOwned: z
     .array(z.string().min(1))
     .min(1, 'A case study that cannot state what it did not own does not ship.'),
-  metrics: z.array(metricSchema).min(1),
+  /**
+   * A delta needs a real before. Where the record gives an outcome with no
+   * baseline, it belongs in `stats`, not here with an invented starting point.
+   */
+  metrics: z.array(metricSchema).default([]),
+  stats: z.array(statSchema).default([]),
   artifacts: z.array(artifactSchema).max(4, 'Maximum four artifact drawers per case study'),
   /** SEO. 150–160 chars. */
   description: z.string().min(80).max(200),
   ogHeadline: z.string().min(1),
   ogMetric: z.string().min(1),
   published: z.boolean().default(true),
-})
+  })
+  .refine((c) => c.metrics.length + c.stats.length >= 1, {
+    message: 'A case study must display at least one qualified figure, delta or otherwise.',
+    path: ['metrics'],
+  })
 
 export type CaseStudyFrontmatter = z.infer<typeof caseStudySchema>
 
