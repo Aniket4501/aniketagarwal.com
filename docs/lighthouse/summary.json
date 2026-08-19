@@ -1,0 +1,200 @@
+[
+  {
+    "route": "/",
+    "form": "mobile",
+    "perf": 96,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "2.1 s",
+    "cls": "0",
+    "tbt": "10 ms"
+  },
+  {
+    "route": "/",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.5 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/work",
+    "form": "mobile",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "1.9 s",
+    "cls": "0",
+    "tbt": "10 ms"
+  },
+  {
+    "route": "/work",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.4 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/work/two-seconds",
+    "form": "mobile",
+    "perf": 99,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "2.0 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/work/two-seconds",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.4 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/work/steps-premier-league",
+    "form": "mobile",
+    "perf": 95,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "2.3 s",
+    "cls": "0",
+    "tbt": "10 ms"
+  },
+  {
+    "route": "/work/steps-premier-league",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.5 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/work/ai-health-reports",
+    "form": "mobile",
+    "perf": 99,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "2.0 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/work/ai-health-reports",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.4 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/approach",
+    "form": "mobile",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "1.9 s",
+    "cls": "0",
+    "tbt": "10 ms"
+  },
+  {
+    "route": "/approach",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.4 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/lab",
+    "form": "mobile",
+    "perf": 99,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "2.0 s",
+    "cls": "0",
+    "tbt": "10 ms"
+  },
+  {
+    "route": "/lab",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.4 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/lab/grounded",
+    "form": "mobile",
+    "perf": 99,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "2.1 s",
+    "cls": "0",
+    "tbt": "10 ms"
+  },
+  {
+    "route": "/lab/grounded",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.4 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  },
+  {
+    "route": "/about",
+    "form": "mobile",
+    "perf": 99,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "2.0 s",
+    "cls": "0.008",
+    "tbt": "10 ms"
+  },
+  {
+    "route": "/about",
+    "form": "desktop",
+    "perf": 100,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "lcp": "0.4 s",
+    "cls": "0",
+    "tbt": "0 ms"
+  }
+]
