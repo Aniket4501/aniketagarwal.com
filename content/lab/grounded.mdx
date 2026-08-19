@@ -58,9 +58,15 @@ with it — nothing here is stored.
 
 <RegressionDiff />
 
-Five verdicts moved and **none of them moved the wrong way**: no case that agreed with its label
-under v1 disagrees under v2. That is the number I would want first from any eval change, because a
-rubric edit that fixes four cases and quietly breaks two is a trade being reported as a win.
+Five verdicts moved and none moved the wrong way — **and the table says out loud why that is worth
+less than it sounds.** v1 fails every case, so it cannot produce a pass→fail regression no matter
+what v2 does, and its 11/16 is just the share of fail-labels in the set. Zero regressions here is a
+property of the baseline, not evidence that I was careful.
+
+I would rather ship that admission than the flattering reading. The real payload is one fact: v2
+fixed five false failures and introduced none. Getting a regression number that means something
+needs a v1 that passes something, which is the next thing to fix about this harness rather than
+about this page.
 
 <Callout variant="caveat" label="The part that is not flattering">
 

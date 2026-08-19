@@ -99,9 +99,13 @@ export function EvalScorecard() {
         </table>
       </div>
       <p className="text-[length:var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
-        {baseline.stats.total} cases · {baseline.stats.handLabelled} hand-labelled ·{' '}
+        {/* Not "0 hand-labelled" — the labels ARE hand-written, by me, which the
+            page says two paragraphs down. The field counts clinician review,
+            and printing it as "hand-labelled" made the caption contradict the
+            prose on the one page that cannot afford a wrong number. */}
+        {baseline.stats.total} cases · {baseline.stats.handLabelled} reviewed by a clinician ·{' '}
         {baseline.agreement.dimensions.matched}/{baseline.agreement.dimensions.total} agreement with
-        the labels · {baseline.totalElapsedMs}ms total. Generated from a real run at build time.
+        my own labels · {baseline.totalElapsedMs}ms total. Generated from a real run at build time.
       </p>
     </div>
   )

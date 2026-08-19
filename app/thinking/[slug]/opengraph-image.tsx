@@ -3,7 +3,8 @@ import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from '@/lib/og'
 
 export const size = OG_SIZE
 export const contentType = OG_CONTENT_TYPE
-export const alt = 'Thinking — Aniket Agarwal'
+export const alt =
+  'Not shipped work — analysis by Aniket Agarwal, labelled as analysis rather than as a case study'
 
 export function generateStaticParams() {
   return getThinking().map((p) => ({ slug: p.meta.slug }))

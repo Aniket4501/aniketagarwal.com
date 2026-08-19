@@ -8,9 +8,9 @@ order: 2
 readingTime: 6 min
 
 hook: >-
-  India built the plumbing that could remove the daily typing tax from health products. Nearly a
-  billion identifiers exist. On average each one holds 1.17 records, and that ratio is the whole
-  argument — in both directions.
+  India built the plumbing that could remove the daily typing tax from health products. Each of its
+  967 million identifiers holds 1.17 records on average — and this month the network is linking them
+  six times faster than that. The stock and the flow disagree, and the flow is the one that decides.
 
 sources:
   - label: ABDM public dashboard
@@ -18,8 +18,8 @@ sources:
   - label: abdm.gov.in
     note: Mission overview and component definitions. ABDM launched September 2021.
 
-description: A point of view on why manual logging caps engagement in Indian health apps, what ABDM changes, and the four objections that are stronger than the pitch.
-ogHeadline: 967 million identifiers. 1.17 records each. Both halves matter.
+description: Not shipped work — a point of view on why manual logging caps engagement in Indian health apps, what ABDM changes, and the objections stronger than the pitch.
+ogHeadline: The stock says the cupboard is bare. The flow says it is filling.
 ogMetric: Point of view · not shipped work
 ---
 
@@ -33,17 +33,17 @@ can be argued with.
 
 ## The thesis
 
-Every engagement mechanic in a consumer health app eventually competes with a person’s willingness
-to type.
+**The retention ceiling on an Indian health app is set by how much typing its core loop requires** —
+not by the quality of its content, and not by the cleverness of its notifications. Anything that
+removes typing raises that ceiling more than anything that improves what sits above it.
 
-Steps are the exception, and not because step challenges are clever — the phone counts them whether
-or not anyone opens the app. The moment a loop needs a number only the user can supply, a meal, a
-reading, a home test, it acquires a daily tax. And the people who keep paying that tax longest tend
-to be the people who needed the product least: the already-motivated, who would have been fine.
+I argue the input-tax half of this from experience, in the
+[Steps Premier League case study](/work/steps-premier-league), and I am not going to restate it
+here. What that case study does not have is the second half: if manual entry is the ceiling, what
+actually removes it at national scale, and is that thing real yet.
 
-**So the retention ceiling on an Indian health app is not set by the quality of its content or the
-cleverness of its notifications. It is set by how much typing the core loop requires.** Anything
-that removes typing raises the ceiling more than anything that improves what sits above it.
+India is the one market where the answer is a specific piece of public infrastructure with a
+published dashboard, which means the question can be argued with numbers instead of intuitions.
 
 ## The mechanism
 
@@ -91,14 +91,57 @@ linked records is not a proof of concept; it is one of the largest health data n
 
 **Now divide.** 1,131,987,043 records across 967,178,326 accounts is **1.17 records per account.**
 
-That single ratio is the honest version of this entire thesis. The pipes exist at a scale nothing
-else in the world matches, and the average account behind them holds barely more than one document.
-A mean also hides its own distribution — records are almost certainly concentrated in a minority of
-accounts, which means the median account probably holds fewer than the mean, not more.
+Which sounds like the end of the thesis. The pipes exist at a scale nothing else in the world
+matches, and the average account behind them holds barely more than one document. A mean also hides
+its own distribution — records are almost certainly concentrated in a minority of accounts, so the
+median account probably holds fewer than the mean, not more.
+
+### That ratio is a stock, and the decision needs the flow
+
+A lifetime cumulative average is the wrong statistic for a question about direction. It includes
+every identifier generated in 2021 and averages four years of a growing network into one number, so
+it will understate the current rate for as long as the network is accelerating.
+
+The same dashboard publishes the flow alongside the stock. Month-to-date for August 2026, against
+the same 07:46 AM stamp:
+
+<StatRow
+  source="Same dashboard, same reading. Month-to-date columns rather than the lifetime totals above. Caveat below, and it matters."
+  stats={[
+    {
+      value: '1.17',
+      label: 'Records per account, lifetime',
+      context: 'The cumulative stock. Four years of network averaged into one figure.',
+    },
+    {
+      value: '7.4',
+      label: 'August ratio',
+      context: '57,261,266 records linked against 7,733,516 accounts created, month to date.',
+    },
+    {
+      value: '6.3×',
+      label: 'Flow over stock',
+      context: 'The current month is running at roughly six times the lifetime average.',
+    },
+  ]}
+/>
+
+**The caveat, and it is not small: 7.4 is not "records per new account".** Records linked in August
+attach to whichever account owns them, most of which were created in earlier years. So this is a
+comparison of two rates, not a per-person figure, and I would not put it in a deck as one.
+
+What it does support is narrower and still worth having: **the network is currently adding records
+far faster, relative to identities, than it did on average over its life.** The stock says the
+cupboard is nearly bare. The flow says it is filling. Both are true, and a thesis that quotes only
+the first has picked the number that makes its own argument sound more contrarian.
+
+One month is not a trend, and I have one reading. The honest next step is to take the same two
+columns weekly for a quarter and see whether the ratio holds — which costs nothing but patience, and
+is the difference between this being an observation and being evidence.
 
 For a product manager the implication is specific and unglamorous. **A consent-based pull is an
-acquisition feature today and a retention feature later**, and building as though it were already
-the second is how you ship a beautiful empty state to most of your users.
+acquisition feature today and a retention feature on a timeline you do not control**, and building
+as though it were already the second is how you ship a beautiful empty state to most of your users.
 
 ## The objections, taken seriously
 

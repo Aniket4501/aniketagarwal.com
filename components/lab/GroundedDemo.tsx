@@ -175,7 +175,11 @@ export function GroundedDemo() {
                     d.passed ? 'text-[var(--color-accent)]' : 'text-[var(--color-flag)]'
                   }`}
                 >
-                  {d.score} / {d.threshold}
+                  {d.score}
+                  <span className="font-normal text-[var(--color-muted)]">
+                    {' '}
+                    · needs {d.threshold}
+                  </span>
                 </span>
               </div>
               <p className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">

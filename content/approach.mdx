@@ -98,34 +98,6 @@ you arrive; it is somewhere you hold, and the next three sprints of feature work
 back. The size ceiling belongs in the build on week one, so the win stops depending on anyone
 remembering it.
 
-## The first five numbers I would instrument
-
-Everything above happened on one product surface at one employer, which is a fair thing for a
-reader to be suspicious of. So: a new consumer product, week one, nothing instrumented yet. These
-are the five I would put in first, and they are deliberately boring.
-
-1. **Activation, defined as the first time the product does its job** — not signup, not onboarding
-   completion. For a health app that is the first useful reading in front of the user; for a
-   marketplace it is the first search that returns something worth clicking. Everything downstream
-   is uninterpretable until this one is defined, because every retention curve is a curve of people
-   who reached *something* and you have to say what.
-2. **Week-1 → week-4 return rate, by activation cohort.** Not DAU. DAU moves when marketing spends
-   and tells you nothing about whether the product works.
-3. **Time to first value, at the median and the 90th percentile.** The median tells you the design
-   works. The 90th tells you who the design abandoned, and that is usually the larger group.
-4. **The one action that correlates with week-4 return**, found rather than assumed. Every product
-   has one and it is rarely the one on the roadmap. This is the only number on the list that
-   requires analysis rather than instrumentation.
-5. **A guardrail I would be embarrassed to miss** — notification opt-outs, uninstalls, support
-   volume per thousand actives. Cheap to log, and the thing that catches a win bought with something
-   you cannot get back.
-
-**What I would deliberately not measure yet:** anything about revenue attribution, anything
-requiring a funnel definition longer than one sentence, and NPS. Not because they do not matter, but
-because instrumenting them in week one produces numbers precise enough to argue about and too early
-to be true, and an organisation that starts arguing about a bad number is slower than one with no
-number at all.
-
 ## What I cut, and why
 
 The résumé says I prioritised using MoSCoW. **A framework name is not a judgement — the cut is**,
@@ -173,12 +145,12 @@ in the record that went the other way.
       items: [
         {
           item: 'Content as the retention strategy',
-          why: 'Buys attention you have to keep paying for. Another article, next week, forever — the cost is the fuel, and the fuel bill never stops.',
+          why: 'Rejected on recurring cost, argued in full under principle 02 above.',
           from: 'Steps Premier League',
         },
         {
           item: 'Incentives as the retention strategy',
-          why: 'Same recurring-cost shape as content, with the added problem that the behaviour tends to stop when the incentive does.',
+          why: 'Same, plus the behaviour tends to stop when the incentive does.',
           from: 'Steps Premier League',
         },
       ],

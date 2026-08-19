@@ -55,23 +55,6 @@ drawers:
       build a device receives. You cannot randomise the device. So the instrument degrades to a
       staged rollout with a before-and-after comparison held within a device tier — weaker, and worth
       saying out loud rather than dressing up as an experiment.
-  - label: What "step-sync completion" actually counts, and the two definitions I rejected
-    body: >-
-      A completion rate is a fraction, and the argument is always about the denominator. Three
-      readings of this one are defensible and they are not the same number. **Per attempt**: syncs
-      that succeeded over syncs that started — an engineering reliability metric, which moves when
-      the pipeline gets better and stays flat when nobody tries. **Per session**: sessions where the
-      step count was displayed over sessions opened — the most flattering of the three, because a
-      faster launch mechanically raises it whether or not anybody got more value. **Per user, per
-      period**: users who saw their current step count at least once in a week over users who opened
-      the app that week. That last one is the one I would defend, because it is the only version
-      that answers the question the work was actually about — did more people reach the number they
-      came for. I rejected per-session precisely because it is the one my own intervention would
-      inflate, and a metric that improves as a side effect of the thing you did is not evidence
-      about the thing you did. **Where my published record stops:** it does not fix which of the
-      three the 35% was measured against, and I am not going to assert one after the fact. That is
-      the reason this figure carries a caveat rather than a denominator, and it is the single thing
-      I would most want back.
   - label: Why a mean launch time is the wrong statistic here
     body: >-
       A mean is pulled toward the fast devices, and the fast devices belong disproportionately to the
@@ -182,6 +165,54 @@ the thing standing between them and it was gone.
 period with other work in it, and I would rather say that than let a clean number imply a clean
 experiment. What I can say without hedging is that 25MB became 6MB and fifteen seconds became under
 two, and those two are not attribution questions.
+
+## What "step-sync completion" actually counts
+
+A completion rate is a fraction, and the argument is always about the denominator. Three readings of
+this one are defensible and they are not the same number.
+
+<DecisionTable
+  caption="The definition work behind the 35%. Reversibility is not the axis here — inflation is: which of these moves for reasons that have nothing to do with whether the product got better."
+  columns={['What it measures', 'What inflates it', 'Verdict']}
+  rows={[
+    {
+      option: 'Per attempt',
+      note: 'Syncs that succeeded ÷ syncs that started.',
+      cells: [
+        'Pipeline reliability.',
+        'Nothing much — but it also moves when nobody tries, because failed attempts leave the denominator too.',
+        'An engineering metric wearing a product label.',
+      ],
+    },
+    {
+      option: 'Per session',
+      note: 'Sessions where the step count rendered ÷ sessions opened.',
+      cells: [
+        'How often the app showed the number.',
+        'A faster launch. Mechanically. Whether or not one extra person got value.',
+        'Rejected. It is the reading my own intervention inflates.',
+      ],
+    },
+    {
+      option: 'Per user, per period',
+      note: 'Users who saw a current step count that week ÷ users who opened the app that week.',
+      chosen: true,
+      cells: [
+        'Whether more people reached the number they came for.',
+        'Little. A user who opens twice and sees it once counts once either way.',
+        'The one I would defend. It answers the question the work was about.',
+      ],
+    },
+  ]}
+/>
+
+**A metric that improves as a side effect of the thing you did is not evidence about the thing you
+did.** That is the whole reason per-session is out: it would have given me a bigger number and a
+worse argument.
+
+**Where my published record stops.** It does not fix which of the three the 35% was measured
+against, and I am not going to assert one after the fact. That is why this figure carries a caveat
+rather than a denominator, and it is the single thing I would most want back.
 
 ## What I would do differently
 

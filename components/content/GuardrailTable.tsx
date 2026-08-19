@@ -20,9 +20,16 @@ export type Guardrail = {
 export function GuardrailTable({
   caption,
   rows,
+  /**
+   * The third column's heading. It defaults to the retrospective form, which is
+   * right for a launch that happened and wrong for a teardown of somebody
+   * else's product — there was no rollout of mine to stop.
+   */
+  thresholdHeading = 'What would have stopped the rollout',
 }: {
   caption: string
   rows: Guardrail[]
+  thresholdHeading?: string
 }) {
   return (
     <div className="decision-block my-5">
@@ -43,7 +50,7 @@ export function GuardrailTable({
                 The false win it catches
               </th>
               <th scope="col" className="eyebrow px-2.5 py-2 align-bottom">
-                What would have stopped the rollout
+                {thresholdHeading}
               </th>
             </tr>
           </thead>
@@ -70,7 +77,7 @@ export function GuardrailTable({
                 {r.catches}
               </dd>
               <dd className="mt-1.5 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
-                <span className="eyebrow">Would have stopped it: </span>
+                <span className="eyebrow">{thresholdHeading}: </span>
                 {r.rollback}
               </dd>
             </div>

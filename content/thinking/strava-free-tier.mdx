@@ -1,15 +1,16 @@
 ---
 slug: strava-free-tier
 kind: teardown
-title: Strava gives away the social product and sells the competitive one
+title: Strava sells the comparison that stings
 subject: Strava
 eyebrow: Product teardown · not shipped work
 order: 1
 readingTime: 6 min
 
 hook: >-
-  The two mechanics that manufacture a reason to come back — segment leaderboards and group
-  challenges — are both behind the paywall. Kudos is a reason to post. It is not a reason to return.
+  Challenges are free and compare you to a number. Segment leaderboards compare you to named people
+  on the road you actually ride — and those, plus every filter that makes the comparison bearable,
+  are the paid half.
 
 sources:
   - label: App Store listing
@@ -24,10 +25,11 @@ reached:
   - The public marketing site and the subscribe flow up to the payment step
   - Strava’s own help-centre article listing every subscription feature
 notReached:
-  - The signed-in onboarding, the first-run experience and the empty feed. Reaching those requires creating an account, which I did not do. Nothing below describes a screen I have not seen.
+  - The signed-in onboarding, the first-run experience and the empty feed. Reaching those requires creating an account, which I did not do.
+  - Anything about how the free tier feels in use. Every claim below is bounded to what Strava’s own help centre states about which features the subscription gates — I am not going to reason past the fence and then point at the fence.
 
-description: A product teardown of Strava’s free tier — why the mechanics that create a reason to return are the ones behind the paywall, three fixes, and what each would cost.
-ogHeadline: Kudos is a reason to post. It is not a reason to return.
+description: Not shipped work — a product teardown. Strava gives away the goal and sells the rivalry. Three friction points, three fixes, and what each would cost the business.
+ogHeadline: A challenge compares you to a number. A segment compares you to a person.
 ogMetric: Product teardown · Strava
 ---
 
@@ -61,55 +63,68 @@ advanced training analysis and more.*
 
 **The help centre is the honest version of that list**, and it is longer than the pitch. Behind the
 subscription: overall segment leaderboards, filtered leaderboards, segment effort comparison, Live
-Segments, **Group Challenges**, custom goals, Relative Effort, Fitness & Freshness, the training
-log, route creation, suggested routes and personal heatmaps.
+Segments, Group Challenges, custom goals, Relative Effort, Fitness & Freshness, the training log,
+route creation, suggested routes and personal heatmaps.
+
+**And a distinction that a first draft of this piece got wrong.** Strava runs two different things
+called challenges. *Group Challenges* — private, invite-based, up to 199 people you follow — are
+subscriber-only, and are the ones named in the subscription pitch. Strava’s *public* Challenges are
+a separate product with their own gallery, are not listed among subscription features, and athletes
+are automatically entered into segment challenges by riding the segment. So the free tier is not
+without a time-boxed goal. It matters, and it is checkable in two clicks on the same help centre I
+was already citing.
 
 <Callout variant="tradeoff" label="The observation the rest of this rests on">
 
-Read that list again for what it does to a *new* user rather than a serious one. Segment
-leaderboards and Group Challenges are both on the paid side. Those are the two mechanics in the
-entire product that generate a reason to open the app on a day when you did not already want to
-exercise.
+Set the two side by side and the split stops looking like "competition is paid" and starts looking
+like something sharper.
 
-The free tier keeps kudos. **Kudos is a reason to post. It is not a reason to return.**
+**A public challenge compares you to a number.** Ride 1,000km this month. You either reach it or you
+do not, and nobody else’s result changes yours.
+
+**A segment leaderboard compares you to a person**, by name, on a stretch of road you actually ride,
+repeatedly, with a rank. That is Strava’s signature mechanic and the reason the product has a
+culture rather than a user base — and it is paid. So is every tool for making the comparison
+survivable: the help centre lists filtering a leaderboard by your followers, by your clubs, and by
+age and weight as subscription features.
+
+**Strava gives away the goal and sells the rivalry.**
 
 </Callout>
 
 ## Three friction points, and what each costs the business
 
-### 1. The free tier has no recurring obligation in it
+### 1. The free tier’s motivation does not renew
 
-A free user records a run, posts it, receives kudos, and has no reason to open the app again until
-they next decide to run. The decision to run is upstream of the product and the product has no
-purchase on it. Everything that would create a downstream obligation — a leaderboard you are
-slipping down, a challenge with days remaining — is behind the paywall.
+A monthly distance challenge creates one obligation per month, and it is an obligation to a number
+you already agreed to. A rank you are slipping down creates one every time somebody else rides.
+Kudos, the other free social mechanic, is a reason to post rather than a reason to return — the
+reward arrives after the activity you had already decided to do.
 
-**What it costs the business:** the funnel is inverted. Strava has to convert people into
-subscribers *before* they have felt the mechanic that makes the subscription worth paying for. That
-is a harder sale than it needs to be, and it means the 30-day trial is carrying the entire job of
-demonstrating value.
+**What it costs the business:** the free tier has to convert people into subscribers before they
+have felt the mechanic the subscription is actually for. That is a harder sale than it needs to be,
+and it leaves the 30-day trial carrying the entire job of demonstrating value.
 
-### 2. Competitive comparison is hostile to the median new user by default
+### 2. The unfiltered leaderboard is the demoralising one, and the filters are the paid part
 
-Segment leaderboards are ranked against everyone who has ever ridden or run that stretch of road.
-The help centre notes you can filter by followers, club, age and weight — **and that filtering is
-itself a subscription feature.** So the unfiltered, most demoralising view is the one that
-approximately every new user meets first.
+A segment leaderboard ranks against everyone who has ever ridden or run that stretch. The help
+centre lists filtering by followers, club, age and weight as subscription features — which means the
+harshest possible view of a comparison is the one on the free side of the line, if it is visible at
+all.
 
-**What it costs the business:** the people most likely to lapse are the people the comparison lands
-worst on, and they are also the largest segment. I have shipped this exact mechanic and this is the
-part I got wrong too: in a step league I built, the standings sorted the user base into people who
-enjoyed being ranked and people who felt worse for having been ranked, and the second group is not a
-rounding error.
+**What it costs the business:** the people the comparison lands worst on are the largest group and
+the most likely to lapse. I shipped this exact mechanic without the escape hatch and
+[wrote up what it cost](/work/steps-premier-league) — the short version is that a cohort you cannot
+choose is a cohort you can only lose in. Strava already built the fix. It sells it.
 
-### 3. Value is metered by feature, not by depth
+### 3. Value is gated by feature, not by depth
 
-The split is binary — you have segment leaderboards or you do not. There is no version where a free
-user gets three segments, or one challenge a month, or a leaderboard restricted to people they
-follow.
+The split is binary. You have segment leaderboards or you do not. There is no version where a free
+athlete gets three segments, or a leaderboard restricted to people they follow, or last month’s
+Fitness & Freshness.
 
-**What it costs the business:** every free user is a person who has never experienced the core loop,
-which makes the conversion decision an act of faith rather than a renewal of a habit.
+**What it costs the business:** every free athlete is someone who has never experienced the loop,
+which makes upgrading an act of faith rather than the renewal of a habit.
 
 ## One proposal per friction point, and what each would cost
 
@@ -149,6 +164,7 @@ None of the above is a recommendation yet. It is a hypothesis about a product I 
 outside, and I would want four things before spending a sprint on it.
 
 <GuardrailTable
+  thresholdHeading="What would send me back to diagnosis"
   caption="Not measured — I have no access to Strava’s data. This is the instrumentation I would want before treating any of the three proposals as a decision rather than an opinion."
   rows={[
     {

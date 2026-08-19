@@ -40,9 +40,17 @@ export function RegressionDiff() {
   const v2Agree = rows.filter((r) => r.v2 === r.expected).length
   const changed = rows.filter((r) => r.v1 !== r.v2)
   // A regression is a case the change made worse: it agreed with the label
-  // before and does not now. This is the number that decides whether a diff is
-  // a fix or a trade.
+  // before and does not now.
   const regressions = changed.filter((r) => r.v1 === r.expected && r.v2 !== r.expected)
+
+  // The two numbers above are weaker than they look, and the table has to say
+  // so itself. v1 returns `fail` on every case, so its agreement score is
+  // exactly the share of fail-labels in the set — a stub that always answered
+  // "fail" would score identically — and no case could move pass→fail, which
+  // makes "0 regressions" structurally guaranteed rather than earned.
+  const v1Passes = rows.filter((r) => r.v1).length
+  const failLabels = rows.filter((r) => !r.expected).length
+  const v1Degenerate = v1Passes === 0
 
   return (
     <div className="wide-block my-5">
@@ -54,10 +62,14 @@ export function RegressionDiff() {
 
         <dl className="grid grid-cols-2 gap-px border-b border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-4">
           {[
-            ['v1 agreement', `${v1Agree}/${rows.length}`, null],
+            ['v1 agreement', `${v1Agree}/${rows.length}*`, null],
             ['v2 agreement', `${v2Agree}/${rows.length}`, 'accent'],
             ['Verdicts changed', String(changed.length), null],
-            ['Regressions', String(regressions.length), regressions.length ? 'flag' : 'accent'],
+            [
+              'Regressions',
+              v1Degenerate ? `${regressions.length}*` : String(regressions.length),
+              regressions.length ? 'flag' : null,
+            ],
           ].map(([k, v, tone]) => (
             <div key={k} className="flex flex-col gap-0.5 bg-[var(--color-surface)] p-2.5">
               <dt className="eyebrow">{k}</dt>
@@ -75,6 +87,22 @@ export function RegressionDiff() {
             </div>
           ))}
         </dl>
+
+        {v1Degenerate ? (
+          <p className="border-b border-[var(--color-line)] bg-[var(--color-flag-soft)] px-2.5 py-2 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
+            <span className="eyebrow text-[var(--color-flag)]">
+              * What these two numbers do not prove
+            </span>
+            <br />
+            v1 returns <strong>fail</strong> on all {rows.length} cases — it never passes anything.
+            So its {v1Agree}/{rows.length} is exactly the share of fail-labels in the set (
+            {failLabels} of {rows.length}); a stub that always answered “fail” would score the same.
+            And because v1 produced no passes, no case <em>could</em> move pass→fail, which makes
+            zero regressions structurally guaranteed rather than earned. The honest payload of this
+            table is one fact: v2 fixed {changed.length} false failures and introduced none. A real
+            regression check needs a v1 that passes something.
+          </p>
+        ) : null}
 
         <table className="hidden w-full table-fixed text-left text-[length:var(--text-sm)] sm:table">
           <caption className="sr-only">

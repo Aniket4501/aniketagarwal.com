@@ -10,6 +10,12 @@ import { LaunchDurations } from '@/components/diagrams/LaunchImpact'
 import { site, education, tools, experience } from '@/lib/site'
 import baseline from '@/public/grounded-baseline.json'
 
+/** Inline links in body copy. The homepage has no prose stylesheet, so a bare
+ *  <Link> renders as body-grey text — which is how the only in-page route to
+ *  /thinking shipped invisible. */
+const LINK =
+  'font-medium text-[var(--color-accent)] underline decoration-[var(--color-accent)]/30 underline-offset-[3px] hover:decoration-[var(--color-accent)]'
+
 /** The visual half of each case card, keyed by slug. */
 function cardVisual(slug: string) {
   switch (slug) {
@@ -93,29 +99,15 @@ export default function Home() {
               {meta.intro}
             </p>
 
-            <div
-              className="animate-rise mt-1 flex flex-wrap items-center gap-1.5 sm:gap-2"
-              style={{ '--delay': '180ms' } as React.CSSProperties}
-            >
-              <Button href="#work" size="large">
-                View my work <span aria-hidden="true">→</span>
-              </Button>
-              <Button href={site.resume} variant="secondary" size="large">
-                Résumé <span aria-hidden="true">↗</span>
-              </Button>
-              <Button href={site.linkedin} variant="secondary" size="large">
-                LinkedIn <span aria-hidden="true">↗</span>
-              </Button>
-            </div>
-
-            {/* Identification. Title, location and what he wants — all three
-                sat below 23,000px on a phone before this, which is nowhere.
+            {/* Identification, above the button row. These four facts decide whether
+                the page gets forwarded, and the stacked CTA pills were pushing
+                them past the fold on a phone.
                 No interpunct separators: this list wraps at every width, and a
                 separator rendered before its item orphans a dot onto the start
                 of the next line, which reads as a rendering fault. */}
             <ul
-              className="animate-rise mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-[var(--color-line)] pt-3 text-[length:var(--text-sm)] text-[var(--color-muted)]"
-              style={{ '--delay': '240ms' } as React.CSSProperties}
+              className="animate-rise mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-[var(--color-line)] pt-3 text-[length:var(--text-sm)] text-[var(--color-muted)]"
+              style={{ '--delay': '180ms' } as React.CSSProperties}
             >
               {meta.meta.map((m, i) => (
                 <li key={m} className={i === 0 ? 'font-medium text-[var(--color-ink)]' : ''}>
@@ -131,6 +123,21 @@ export default function Home() {
                 </a>
               </li>
             </ul>
+            <div
+              className="animate-rise mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2"
+              style={{ '--delay': '240ms' } as React.CSSProperties}
+            >
+              <Button href="#work" size="large">
+                View my work <span aria-hidden="true">→</span>
+              </Button>
+              <Button href={site.resume} variant="secondary" size="large">
+                Résumé <span aria-hidden="true">↗</span>
+              </Button>
+              <Button href={site.linkedin} variant="secondary" size="large">
+                LinkedIn <span aria-hidden="true">↗</span>
+              </Button>
+            </div>
+
           </div>
 
           <HeroPanel figures={meta.proofPanel} />
@@ -204,7 +211,7 @@ export default function Home() {
           <SectionHead
             id="exp-h"
             eyebrow="Experience"
-            title="Four years of product work, one of them owning a surface."
+            title="Four years of product work, nearly two of them owning a surface."
             action={
               <Button href="/about" variant="secondary">
                 Full timeline <span aria-hidden="true">→</span>
@@ -285,9 +292,14 @@ export default function Home() {
               route; its length is the competitive advantage. */}
           <p className="mt-3 max-w-[62ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)]">
             Applied to things nobody handed me: a{' '}
-            <Link href="/thinking/strava-free-tier">teardown of Strava’s free tier</Link>, and a{' '}
-            <Link href="/thinking/abdm-manual-logging">thesis on why manual logging caps</Link>{' '}
-            engagement for Indian health apps. Both are analysis, not shipped work, and say so.
+            <Link href="/thinking/strava-free-tier" className={LINK}>
+              teardown of Strava’s free tier
+            </Link>
+            , and a{' '}
+            <Link href="/thinking/abdm-manual-logging" className={LINK}>
+              thesis on why manual logging caps engagement for Indian health apps
+            </Link>
+            . Both are analysis, not shipped work, and say so.
           </p>
         </Container>
       </Section>
