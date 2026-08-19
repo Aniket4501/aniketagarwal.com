@@ -414,3 +414,52 @@ user.
 - **"Case studies run 900 words over budget once drawers are counted."** Reported rather than
   closed. Closing it means deleting argument that is load-bearing and honest, and the *required*
   reading path measures 736 words against a 1,200 budget.
+
+---
+
+## Expansion round 2 — 2026-08-19
+
+### D39 — `/thinking` gets top-level nav, and the rejected roadmap does not go in it
+
+Nav ceiling is five. Current four plus `/thinking` is exactly five, so this spends the last slot and
+the question is whether the teardown and the thesis earn it.
+
+They do, for one reason: the profile's structural weakness is that every piece of evidence on the
+site comes from **one product surface at one employer**. A Head of Product reading three HCL case
+studies cannot tell whether the judgement transfers. The teardown and the thesis are the only two
+artifacts on the site that demonstrate product thinking applied to something Aniket was not handed,
+and burying them under `/approach` — which is about *how he works*, a different question — would
+make them findable only by someone already convinced.
+
+The rejected roadmap goes on `/approach` instead, because it is not a piece of thinking about the
+outside world; it is evidence for a claim about his own decision-making, which is what `/approach`
+is. It also gives the résumé's otherwise-inert "prioritised using MoSCoW" line something to point at.
+
+Result: nav is Work · Thinking · Approach · Lab · About. Five, at the ceiling, and no room for more
+without removing something.
+
+### D40 — the teardown subject is Strava, and the piece says what it could not reach
+
+Chosen over the Indian health apps (HealthifyMe, Cult.fit) despite those being closer to the domain,
+because the ABDM thesis already occupies the Indian-health-market ground and two pieces on the same
+market is range in name only.
+
+Strava earns it on a different axis: Aniket shipped a competitive mechanic built on passively
+collected activity data, and Strava is the largest existing version of that idea. A teardown of its
+free tier by someone who has shipped the same primitive is a transferability argument that a
+generic teardown cannot make.
+
+**What the piece is built on, and what it is not.** Every factual claim traces to a public source
+read on 19 Aug 2026: the App Store listing, the subscribe page, and Strava's own help-centre article
+enumerating subscription features. The piece does **not** describe the signed-in onboarding, because
+reaching it requires creating an account, which this build does not do. The piece says so in its own
+text rather than implying a walkthrough that did not happen.
+
+### D41 — Grounded gets the regression diff (Option A), and no second Lab tool is invented
+
+The brief offered a second tool as Option B "only if it emerges naturally from Aniket's real work."
+Nothing does. Inventing one to fill a grid is the exact failure mode this round was warned about.
+
+The regression view is also the more valuable half: Grounded currently scores one output against a
+rubric, which makes it a scorer. An eval harness is a thing you run *again* — its job is to tell you
+what a change broke. Adding the diff turns the demo into the argument it was already making.

@@ -17,6 +17,7 @@ const ROUTES = [
   '/work/step-syncing',
   '/work/steps-premier-league',
   '/work/ai-health-report',
+  '/thinking/strava-free-tier',
   '/approach',
   '/lab',
   '/lab/grounded',

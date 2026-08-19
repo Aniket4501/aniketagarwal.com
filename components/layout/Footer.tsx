@@ -26,6 +26,7 @@ export function Footer() {
               {[
                 ['/work', 'Work'],
                 ['/approach', 'Approach'],
+                ['/thinking', 'Thinking'],
                 ['/lab/grounded', 'Lab'],
                 ['/about', 'About'],
               ].map(([href, label]) => (

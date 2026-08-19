@@ -6,9 +6,11 @@ import {
   caseStudySchema,
   shortCaseSchema,
   labProjectSchema,
+  thinkingSchema,
   type CaseStudyFrontmatter,
   type ShortCaseFrontmatter,
   type LabProjectFrontmatter,
+  type ThinkingFrontmatter,
   type HomeFrontmatter,
 } from './schema'
 
@@ -72,6 +74,16 @@ export function getLabProjects(): Doc<LabProjectFrontmatter>[] {
 
 export function getLabProject(slug: string): Doc<LabProjectFrontmatter> | undefined {
   return getLabProjects().find((d) => d.meta.slug === slug)
+}
+
+export function getThinking(): Doc<ThinkingFrontmatter>[] {
+  return readCollection('thinking', strict(thinkingSchema)).sort(
+    (a, b) => a.meta.order - b.meta.order,
+  )
+}
+
+export function getThinkingPiece(slug: string): Doc<ThinkingFrontmatter> | undefined {
+  return getThinking().find((d) => d.meta.slug === slug)
 }
 
 export function getHome(): Doc<HomeFrontmatter> {

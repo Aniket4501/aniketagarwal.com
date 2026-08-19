@@ -4,8 +4,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { site } from '@/lib/site'
 
+/**
+ * Five is the ceiling and this is five. Anything added from here replaces
+ * something rather than joining it.
+ */
 const LINKS = [
   { href: '/work', label: 'Work' },
+  { href: '/thinking', label: 'Thinking' },
   { href: '/approach', label: 'Approach' },
   { href: '/lab/grounded', label: 'Lab' },
   { href: '/about', label: 'About' },

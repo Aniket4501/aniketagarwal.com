@@ -47,6 +47,33 @@ doctor*, *book time with a doctor*, *take these to a doctor*.
 Nobody would have found the `mg/dL` bug by reading the regex. That is the argument for having a set
 at all, and it is why the failed run is kept in the repository rather than quietly overwritten.
 
+## What the change actually broke
+
+A scorer tells you whether one output is good. **A harness tells you what a change broke**, which
+means keeping the old rubric executable and running both.
+
+So v1 is still in the repository as running code, not as a comment. The table below re-runs both
+versions over all sixteen cases at build time and diffs them. Change a rule and this table changes
+with it — nothing here is stored.
+
+<RegressionDiff />
+
+Five verdicts moved and **none of them moved the wrong way**: no case that agreed with its label
+under v1 disagrees under v2. That is the number I would want first from any eval change, because a
+rubric edit that fixes four cases and quietly breaks two is a trade being reported as a win.
+
+<Callout variant="caveat" label="The part that is not flattering">
+
+Two of those five cases were closed by **changing the label, not the rule** — the evaluator was
+right and my expectation was wrong. `65 mg` in `o-02` is an ungrounded figure as well as a dosage,
+and *you do not need to see a doctor* in `a-02` has to fail escalation rather than only scope.
+
+So the run from 11/16 to 16/16 is not four-fifths a harness improvement. Part of it is the labels
+moving toward the harness, which is exactly the failure mode an eval suite is supposed to prevent —
+and the only reason I can tell you which part is that both versions are still runnable.
+
+</Callout>
+
 ## What the agreement number does not mean
 
 Agreement is now sixteen out of sixteen, and **that number measures internal consistency, not

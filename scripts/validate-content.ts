@@ -20,6 +20,7 @@ import {
   caseStudySchema,
   shortCaseSchema,
   labProjectSchema,
+  thinkingSchema,
   homeSchema,
 } from '../lib/content/schema'
 
@@ -91,6 +92,8 @@ for (const file of files) {
         ? shortCaseSchema
         : collection === 'lab'
           ? labProjectSchema
+          : collection === 'thinking'
+            ? thinkingSchema
           : collection === 'content' && name === 'home'
             ? homeSchema
             : null

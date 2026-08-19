@@ -1,12 +1,12 @@
 import type { MetadataRoute } from 'next'
-import { getCaseStudies, getLabProjects } from '@/lib/content'
+import { getCaseStudies, getLabProjects, getThinking } from '@/lib/content'
 import { siteUrl } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteUrl()
   const now = new Date()
 
-  const staticRoutes = ['', '/work', '/approach', '/about'].map((path) => ({
+  const staticRoutes = ['', '/work', '/thinking', '/approach', '/about'].map((path) => ({
     url: `${base}${path}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
@@ -20,6 +20,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
+  const thinking = getThinking().map((p) => ({
+    url: `${base}/thinking/${p.meta.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
   const lab = getLabProjects().map((p) => ({
     url: `${base}/lab/${p.meta.slug}`,
     lastModified: now,
@@ -27,5 +34,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticRoutes, ...cases, ...lab]
+  return [...staticRoutes, ...cases, ...thinking, ...lab]
 }

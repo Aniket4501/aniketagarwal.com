@@ -4,6 +4,7 @@ import { Callout } from '@/components/content/Callout'
 import { Drawer } from '@/components/content/Drawer'
 import { DecisionTable } from '@/components/content/DecisionTable'
 import { GuardrailTable } from '@/components/content/GuardrailTable'
+import { CutTable } from '@/components/content/CutTable'
 import { Figure } from '@/components/content/Figure'
 import { Metric, MetricDelta } from '@/components/content/Metric'
 import { Flow, BeforeAfterFlow, DurationBars, Funnel, LoopDiagram } from '@/components/diagrams/Flow'
@@ -11,6 +12,7 @@ import { LaunchJourney, LaunchDurations, BundleImpact } from '@/components/diagr
 import { LeagueLoop, StrategySpread } from '@/components/diagrams/LeagueMechanic'
 import { ReportFlow, ThreeParties, KycFunnel } from '@/components/diagrams/ReportPipeline'
 import { EvalScorecard } from '@/components/diagrams/EvalScorecard'
+import { RegressionDiff } from '@/components/lab/RegressionDiff'
 import { Reconstruction } from '@/components/product/Reconstruction'
 import { LeagueStandings } from '@/components/product/LeagueStandings'
 import { ReportPage } from '@/components/product/ReportPage'
@@ -24,6 +26,7 @@ const components = {
   Drawer,
   DecisionTable,
   GuardrailTable,
+  CutTable,
   Figure,
   Metric,
   MetricDelta,
@@ -41,6 +44,7 @@ const components = {
   ThreeParties,
   KycFunnel,
   EvalScorecard,
+  RegressionDiff,
   Reconstruction,
   LeagueStandings,
   ReportPage,

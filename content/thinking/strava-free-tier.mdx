@@ -1,0 +1,203 @@
+---
+slug: strava-free-tier
+kind: teardown
+title: Strava gives away the social product and sells the competitive one
+subject: Strava
+eyebrow: Product teardown · not shipped work
+order: 1
+readingTime: 6 min
+
+hook: >-
+  The two mechanics that manufacture a reason to come back — segment leaderboards and group
+  challenges — are both behind the paywall. Kudos is a reason to post. It is not a reason to return.
+
+sources:
+  - label: App Store listing
+    note: Read 19 Aug 2026. 4.8 from 368K ratings, #1 in Health & Fitness, free with in-app purchases.
+  - label: strava.com/subscribe
+    note: Read 19 Aug 2026 from India. 30-day trial, then ₹208.25/month billed annually.
+  - label: Strava Help Centre — "Strava Subscription Features"
+    note: Read 19 Aug 2026. Strava’s own enumeration of what the subscription unlocks.
+
+reached:
+  - The App Store listing, its screenshots and its category ranking
+  - The public marketing site and the subscribe flow up to the payment step
+  - Strava’s own help-centre article listing every subscription feature
+notReached:
+  - The signed-in onboarding, the first-run experience and the empty feed. Reaching those requires creating an account, which I did not do. Nothing below describes a screen I have not seen.
+
+description: A product teardown of Strava’s free tier — why the mechanics that create a reason to return are the ones behind the paywall, three fixes, and what each would cost.
+ogHeadline: Kudos is a reason to post. It is not a reason to return.
+ogMetric: Product teardown · Strava
+---
+
+## What this product is trying to get you to do
+
+Record an activity, publish it to people who know you, and come back tomorrow because they are
+watching.
+
+Everything else — the maps, the training analysis, the equipment tracking — sits underneath that one
+sentence. Strava’s own App Store subtitle is **"Track & share with friends"**, and the second word
+is doing the work: a tracker you keep to yourself is a utility, and utilities get replaced by
+whatever is already on the phone.
+
+## Walking what I could reach
+
+I read the App Store listing, the marketing site, the subscribe flow up to the payment step, and
+Strava’s help-centre article enumerating subscription features. **I did not create an account**, so
+I have not seen the signed-in onboarding, the empty first-run feed, or what a new user is shown on
+day one. I am not going to describe those from memory or inference. What follows is built only on
+what is publicly readable.
+
+Three things are visible from outside, and all three matter.
+
+**The store listing sells community, not measurement.** The screenshot carousel leads with "Track
+your workouts", then "Get motivated by the community" over a feed of activities carrying kudos and
+comments. The product is positioned as social before it is positioned as analytical.
+
+**The subscribe page names the paywall explicitly.** It offers a 30-day trial and then ₹208.25 per
+month billed annually, and describes what unlocking gets you: *routes, segment leaderboards,
+advanced training analysis and more.*
+
+**The help centre is the honest version of that list**, and it is longer than the pitch. Behind the
+subscription: overall segment leaderboards, filtered leaderboards, segment effort comparison, Live
+Segments, **Group Challenges**, custom goals, Relative Effort, Fitness & Freshness, the training
+log, route creation, suggested routes and personal heatmaps.
+
+<Callout variant="tradeoff" label="The observation the rest of this rests on">
+
+Read that list again for what it does to a *new* user rather than a serious one. Segment
+leaderboards and Group Challenges are both on the paid side. Those are the two mechanics in the
+entire product that generate a reason to open the app on a day when you did not already want to
+exercise.
+
+The free tier keeps kudos. **Kudos is a reason to post. It is not a reason to return.**
+
+</Callout>
+
+## Three friction points, and what each costs the business
+
+### 1. The free tier has no recurring obligation in it
+
+A free user records a run, posts it, receives kudos, and has no reason to open the app again until
+they next decide to run. The decision to run is upstream of the product and the product has no
+purchase on it. Everything that would create a downstream obligation — a leaderboard you are
+slipping down, a challenge with days remaining — is behind the paywall.
+
+**What it costs the business:** the funnel is inverted. Strava has to convert people into
+subscribers *before* they have felt the mechanic that makes the subscription worth paying for. That
+is a harder sale than it needs to be, and it means the 30-day trial is carrying the entire job of
+demonstrating value.
+
+### 2. Competitive comparison is hostile to the median new user by default
+
+Segment leaderboards are ranked against everyone who has ever ridden or run that stretch of road.
+The help centre notes you can filter by followers, club, age and weight — **and that filtering is
+itself a subscription feature.** So the unfiltered, most demoralising view is the one that
+approximately every new user meets first.
+
+**What it costs the business:** the people most likely to lapse are the people the comparison lands
+worst on, and they are also the largest segment. I have shipped this exact mechanic and this is the
+part I got wrong too: in a step league I built, the standings sorted the user base into people who
+enjoyed being ranked and people who felt worse for having been ranked, and the second group is not a
+rounding error.
+
+### 3. Value is metered by feature, not by depth
+
+The split is binary — you have segment leaderboards or you do not. There is no version where a free
+user gets three segments, or one challenge a month, or a leaderboard restricted to people they
+follow.
+
+**What it costs the business:** every free user is a person who has never experienced the core loop,
+which makes the conversion decision an act of faith rather than a renewal of a habit.
+
+## One proposal per friction point, and what each would cost
+
+### Give the free tier one challenge at a time
+
+Group Challenges move to free, capped at one active challenge. Not the leaderboards — the challenge,
+which is time-boxed, has a finish line, and does not require being fast to be satisfying.
+
+**The trade-off, and who objects.** Challenges are named in the subscription pitch, so this removes
+a line from the paid list, and someone owning subscription revenue will say so immediately and be
+right to. The counter is that a challenge is a *demonstration* of the loop rather than the loop
+itself, and a capped one leaves the ceiling intact.
+
+### Make the followers-filtered leaderboard the free default
+
+Invert the current split: the leaderboard restricted to people you follow becomes free, and the
+global leaderboard plus the age, weight and time filters stay paid.
+
+**The trade-off, and who objects.** This is the smallest change and the one I would ship first,
+because it costs Strava almost nothing — a leaderboard among eight people you know is not a
+substitute for the global one that serious athletes pay for. Growth will like it. The objection will
+come from whoever owns the paid feature list, because "segment leaderboards" stops being a clean
+bullet and becomes a bullet with an asterisk.
+
+### Meter by depth, not by feature
+
+Three saved segments free. One challenge free. Fitness & Freshness visible for the trailing 30 days
+rather than not at all.
+
+**The trade-off, and who objects.** This is the most expensive of the three to build and the hardest
+to communicate — a feature list with limits in it is harder to put on a pricing page than a feature
+list with checkmarks. Marketing objects, correctly. I would put this third for exactly that reason.
+
+## What I would need to see before shipping any of it
+
+None of the above is a recommendation yet. It is a hypothesis about a product I have read about from
+outside, and I would want four things before spending a sprint on it.
+
+<GuardrailTable
+  caption="Not measured — I have no access to Strava’s data. This is the instrumentation I would want before treating any of the three proposals as a decision rather than an opinion."
+  rows={[
+    {
+      metric: 'Week-4 return rate, free vs trial',
+      catches: 'The whole premise. If free users already return at the same rate as trialists, the paywall is not the retention problem and everything above is a solution to nothing.',
+      rollback: 'A gap smaller than a few points would send me back to diagnosis rather than to a proposal.',
+    },
+    {
+      metric: 'Trial-to-paid conversion, split by whether a challenge was completed',
+      catches: 'Whether the challenge actually drives the subscription, or whether people who would convert anyway are also the people who finish challenges.',
+      rollback: 'No difference between the groups means giving the challenge away costs revenue and buys nothing.',
+    },
+    {
+      metric: 'Lapse rate against first-week leaderboard position',
+      catches: 'Friction point 2, directly. If people who land in the bottom quartile of their first segment lapse faster, the default view is the problem and the filter is the fix.',
+      rollback: 'A flat curve means I have projected my own product experience onto a different user base.',
+    },
+    {
+      metric: 'Subscription revenue per cohort, not in aggregate',
+      catches: 'The obvious failure: giving away a paid feature and reading the resulting engagement lift as a win while the revenue line quietly moves the other way.',
+      rollback: 'Any cohort-level decline that persists past one renewal cycle.',
+    },
+  ]}
+/>
+
+I would also want a sample size that can detect a small effect, because the effect here is small by
+construction — one capped challenge is not going to double anything, and a test underpowered to see
+a two-point move will read as "no difference" and kill a real improvement.
+
+## What Strava does well that I would steal
+
+**The activity is the post.** Most consumer health products ask you to do the thing and then
+separately tell them about it. Strava collapsed those into one action, which is why its feed has
+content in it without anyone having to be a content creator. Every product asking a user to log
+something manually should look at that and ask what it could capture instead.
+
+**Kudos costs nothing to give and is worth something to receive.** It is a lower-effort like than a
+like, and it is the single cheapest social mechanic I have seen in a health product.
+
+**The paid tier is aimed at people who already identify as athletes**, and the pricing follows the
+identity rather than the usage. ₹208.25 a month is not priced for a casual walker and is not trying
+to be. Knowing precisely who you are not for is worth more than most positioning exercises produce.
+
+## Where this stops
+
+I have read this product from outside. I have not seen its onboarding, its retention numbers, its
+cohort structure, or the reasoning behind a split that the people who built it have certainly
+already argued about at more length than this piece.
+
+**What I would ask in the first meeting is not "why is the leaderboard paid".** It is: what happened
+the last time you moved something across that line, and what did it do to the renewal cohort. That
+answer is worth more than everything above it.

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-type Variant = 'insight' | 'tradeoff' | 'mistake'
+type Variant = 'insight' | 'tradeoff' | 'mistake' | 'caveat'
 
 const STYLE: Record<Variant, { wrap: string; label: string }> = {
   insight: {
@@ -12,6 +12,17 @@ const STYLE: Record<Variant, { wrap: string; label: string }> = {
     label: 'text-[var(--color-muted)]',
   },
   mistake: {
+    wrap: 'border-[var(--color-flag)]/25 bg-[var(--color-flag-soft)]',
+    label: 'text-[var(--color-flag)]',
+  },
+  /**
+   * Scope disclaimer — "this is not shipped work", "this was not measured".
+   * Shares the flag treatment with `mistake` because both are things a reader
+   * must not skim past, but it is named separately: an unmeasured guardrail is
+   * not an error, and a variant whose name lies about its content is how the
+   * wrong one gets picked next time.
+   */
+  caveat: {
     wrap: 'border-[var(--color-flag)]/25 bg-[var(--color-flag-soft)]',
     label: 'text-[var(--color-flag)]',
   },

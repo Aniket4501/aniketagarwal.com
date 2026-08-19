@@ -140,6 +140,50 @@ export const labProjectSchema = z.object({
 
 export type LabProjectFrontmatter = z.infer<typeof labProjectSchema>
 
+/**
+ * A thinking piece — a teardown or a thesis.
+ *
+ * `eyebrow` is required and is enforced to carry a disclaimer, because the one
+ * genuine risk of publishing analysis next to case studies is that a reader
+ * skims and files an opinion as a track record. The label is the guard.
+ *
+ * `reached` / `notReached` exist for the same reason at the level of method: a
+ * teardown built from public sources must say which screens the author
+ * actually saw. A piece that cannot name its own limits is an opinion wearing
+ * a walkthrough's clothes.
+ */
+export const thinkingSourceSchema = z.object({
+  label: cleanMin('source.label'),
+  note: cleanMin('source.note'),
+})
+
+export const thinkingSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  kind: z.enum(['teardown', 'thesis']),
+  title: cleanMin('title'),
+  /** What is being examined — a product name, or a policy. */
+  subject: cleanMin('subject'),
+  eyebrow: cleanMin('eyebrow').refine((v) => /not shipped work/i.test(v), {
+    message:
+      'A thinking piece must say "not shipped work" in its eyebrow. A reader skimming past an opinion filed as a track record is the one failure this collection can cause.',
+  }),
+  order: z.number().int().positive(),
+  readingTime: cleanMin('readingTime'),
+  hook: clean('hook').pipe(z.string().min(60).max(320)),
+  sources: z.array(thinkingSourceSchema).min(1, 'A piece with no sources is an opinion.'),
+  reached: z.array(cleanMin('reached')).optional(),
+  notReached: z
+    .array(cleanMin('notReached'))
+    .min(1, 'State what you could not reach. Every teardown has a boundary.')
+    .optional(),
+  description: clean('description').pipe(z.string().min(80).max(200)),
+  ogHeadline: cleanMin('ogHeadline'),
+  ogMetric: cleanMin('ogMetric'),
+})
+
+export type ThinkingFrontmatter = z.infer<typeof thinkingSchema>
+export type ThinkingSource = z.infer<typeof thinkingSourceSchema>
+
 /** A belief, with the work that evidences it. */
 export const principleSchema = z.object({
   title: cleanMin('principle.title'),

@@ -1,0 +1,151 @@
+---
+slug: abdm-manual-logging
+kind: thesis
+title: Manual logging is the retention ceiling for Indian health apps
+subject: ABDM / ABHA
+eyebrow: Point of view · not shipped work
+order: 2
+readingTime: 6 min
+
+hook: >-
+  India built the plumbing that could remove the daily typing tax from health products. Nearly a
+  billion identifiers exist. On average each one holds 1.17 records, and that ratio is the whole
+  argument — in both directions.
+
+sources:
+  - label: ABDM public dashboard
+    note: dashboard.abdm.gov.in, read 19 Aug 2026, stamped "Last Updated 19/08/2026 07:46 AM".
+  - label: abdm.gov.in
+    note: Mission overview and component definitions. ABDM launched September 2021.
+
+description: A point of view on why manual logging caps engagement in Indian health apps, what ABDM changes, and the four objections that are stronger than the pitch.
+ogHeadline: 967 million identifiers. 1.17 records each. Both halves matter.
+ogMetric: Point of view · not shipped work
+---
+
+<Callout variant="caveat" label="What this is">
+
+A point of view, not a case study. **None of what follows is work I have shipped**, and no number
+below comes from a product I have worked on. It is an argument about a market, published so that it
+can be argued with.
+
+</Callout>
+
+## The thesis
+
+Every engagement mechanic in a consumer health app eventually competes with a person’s willingness
+to type.
+
+Steps are the exception, and not because step challenges are clever — the phone counts them whether
+or not anyone opens the app. The moment a loop needs a number only the user can supply, a meal, a
+reading, a home test, it acquires a daily tax. And the people who keep paying that tax longest tend
+to be the people who needed the product least: the already-motivated, who would have been fine.
+
+**So the retention ceiling on an Indian health app is not set by the quality of its content or the
+cleverness of its notifications. It is set by how much typing the core loop requires.** Anything
+that removes typing raises the ceiling more than anything that improves what sits above it.
+
+## The mechanism
+
+India has a structural answer that most markets do not.
+
+Under the [Ayushman Bharat Digital Mission](https://abdm.gov.in), launched in September 2021, a
+person holds an ABHA identifier. With their consent, records held by registered providers can be
+shared to a registered application. A lab report can arrive in an app because someone consented
+once, rather than because they photographed it on a kitchen table at 11pm.
+
+That changes what a product is allowed to *open on*. The first screen stops being a form. Instead of
+"tell us your numbers so we can help you," it becomes "here is your last panel, and here is what
+changed since the one before it." The difference is not cosmetic — one asks for work before value,
+and the other delivers value before asking for anything.
+
+Every downstream mechanic gets cheaper. A trend needs two readings; if both arrive by consent, the
+trend is free. A nudge that references a real value is a different object from a nudge that
+references a category.
+
+## The evidence, and what it actually says
+
+From ABDM’s own public dashboard, read on 19 August 2026:
+
+<Metric value="96.7 crore" label="ABHA accounts created" context="967,178,326 — the identifier layer, at national scale." />
+
+<Metric value="113.2 crore" label="Health records linked" context="1,131,987,043 — records actually attached to those accounts." />
+
+<Metric value="5.5 lakh" label="Verified facilities on the registry" context="553,738 facilities, plus 10,58,921 verified healthcare professionals." />
+
+The infrastructure is real, and it is not a pilot. Nearly a billion identifiers and over a billion
+linked records is not a proof of concept; it is one of the largest health data networks ever built.
+
+**Now divide.** 1,131,987,043 records across 967,178,326 accounts is **1.17 records per account.**
+
+That single ratio is the honest version of this entire thesis. The pipes exist at a scale nothing
+else in the world matches, and the average account behind them holds barely more than one document.
+A mean also hides its own distribution — records are almost certainly concentrated in a minority of
+accounts, which means the median account probably holds fewer than the mean, not more.
+
+For a product manager the implication is specific and unglamorous. **A consent-based pull is an
+acquisition feature today and a retention feature later**, and building as though it were already
+the second is how you ship a beautiful empty state to most of your users.
+
+## The objections, taken seriously
+
+This is the section that decides whether the thesis is worth anything, so it gets the most room.
+
+**Consent is a funnel, and a hard one.** Linking records is not a permission dialog. It is handing
+over a medical history on the strength of whatever trust an app has earned, which at signup is close
+to none. The pull is most valuable exactly when the app has least earned the right to ask. Every
+product that has tried to front-load this has discovered that the moment you ask, you convert the
+warm curiosity of a new user into a decision about medical privacy — and a meaningful share of
+people answer that decision by closing the app. I do not think this objection has a clean answer. I
+think it means the ask has to come second, after something useful has already happened, which costs
+you the first-screen benefit that made the mechanism attractive in the first place.
+
+**Coverage decides whether the promise survives contact.** A pull returns what the producer of a
+record has published to the network. Participation is uneven across states, provider types and
+private-versus-public facilities. The honest version of the feature is therefore *some of your
+records, sometimes* — and an app that promises a complete history and returns two documents is worse
+off than one that promised nothing, because it has now demonstrated its own limits at the exact
+moment it asked for trust.
+
+**An identifier is not a user.** Many ABHA numbers are created at a hospital registration desk, as a
+step in someone else’s workflow, for a person who may not know they now hold one. A number generated
+that way and a person who knows they have an ABHA and chooses to use it are different populations.
+Any adoption figure has to be read for which of the two it counts, and the headline figure counts
+the first.
+
+**And the counter-thesis, which I cannot dismiss.** Maybe typing was never the ceiling. Maybe the
+ceiling is that most healthy adults simply do not want a relationship with a health app, at any
+level of friction, and removing the tax just gets you a better-instrumented version of the same
+churn. I do not have the data to rule this out. What makes me still hold the thesis is a narrower
+claim: **among people who have already decided to engage, friction is the thing that decides how
+long they last.** That is a smaller claim than "this fixes retention," and it is the one I would
+actually defend.
+
+## What I would build first if I owned it
+
+Not the pull. **The empty state.**
+
+The first thing to build is what the product does for the roughly-everyone whose consent returns one
+record or none — because on today’s ratio that is the modal experience, and a feature whose modal
+experience is an empty screen will be judged on the empty screen. If the product is good for the
+person with one document, the pull makes it better. If it is only good for the person with a full
+history, the pull is a demo.
+
+Second, the ask moves after first value, not before it. Third, the consent screen tells the truth
+about coverage in advance — *we will fetch what your providers have published, which may be nothing*
+— because managing that expectation before the pull costs one sentence and after the pull costs the
+relationship.
+
+## What would have to be true
+
+1. **Records per account rises materially**, and rises for ordinary outpatient care rather than only
+   for the encounters that already generate paperwork.
+2. **Consent completion clears a rate that makes the funnel worth it** — and I would want that
+   measured on people who have used the product for a week, not on people who met the ask at signup.
+3. **The thing you do with a record is worth more than the record.** Getting the data is the easy
+   half. Pulling a verified report says nothing about whether the person holding it can read it,
+   which is a different product problem and the one I went and built
+   [Grounded](/lab/grounded) for.
+
+If those three do not hold, this is infrastructure looking for a use case, and I would rather write
+that sentence myself than have it said back to me in an interview.

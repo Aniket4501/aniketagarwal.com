@@ -98,42 +98,78 @@ you arrive; it is somewhere you hold, and the next three sprints of feature work
 back. The size ceiling belongs in the build on week one, so the win stops depending on anyone
 remembering it.
 
+## What I cut, and why
+
+The résumé says I prioritised using MoSCoW. **A framework name is not a judgement — the cut is**,
+and a prioritisation claim with no rejected item behind it proves nothing. So here are the decisions
+in the record that went the other way.
+
+<CutTable
+  caption="A partial set, drawn only from decisions that appear in the record. It is not a full quarter and I am not going to reconstruct one — the rows below are the ones I can point at."
+  columns={[
+    {
+      heading: 'Shipped',
+      note: 'What actually got built, and what it displaced.',
+      items: [
+        {
+          item: 'Launch time and bundle size',
+          why: 'Reclassified from an engineering backlog item to a product requirement with a stated ceiling. Fifteen seconds to under two, 25MB to 6MB.',
+          from: 'Step Syncing',
+        },
+        {
+          item: 'Competitive mechanics',
+          why: 'The only one of three retention strategies whose cost is the mechanic rather than the fuel — no recurring bill after launch.',
+          from: 'Steps Premier League',
+        },
+      ],
+    },
+    {
+      heading: 'Deferred',
+      note: 'Not rejected. Moved, at a cost I could name at the time.',
+      items: [
+        {
+          item: 'The engagement features on my own roadmap',
+          why: 'Held for eight weeks behind the launch-time work. I had defined that roadmap, which is what made deferring it a decision rather than an escalation.',
+          from: 'Step Syncing',
+        },
+        {
+          item: 'A cohort instrument for the league',
+          why: 'The reason the league headlines session time instead of a return rate. Deferring the instrument decided the north star, which I did not fully see at the time.',
+          from: 'Steps Premier League',
+        },
+      ],
+    },
+    {
+      heading: 'Won’t have',
+      note: 'Evaluated as live options and rejected outright.',
+      items: [
+        {
+          item: 'Content as the retention strategy',
+          why: 'Buys attention you have to keep paying for. Another article, next week, forever — the cost is the fuel, and the fuel bill never stops.',
+          from: 'Steps Premier League',
+        },
+        {
+          item: 'Incentives as the retention strategy',
+          why: 'Same recurring-cost shape as content, with the added problem that the behaviour tends to stop when the incentive does.',
+          from: 'Steps Premier League',
+        },
+      ],
+    },
+  ]}
+/>
+
+**What this artifact is missing, and I would rather say it than let the omission pass as tidiness:
+who objected.** The record captures what was decided and why. It does not capture who pushed back,
+on what grounds, or how it resolved — and a prioritisation table with no unhappy person in it is
+only half of what prioritisation actually is. That is a real gap in my own record rather than a
+gap in this page, and it is the first thing I would fix about how I document decisions.
+
 ## Manual logging is the ceiling on health-app engagement in India
 
-A point of view, not a case study. None of what follows is work I have shipped.
+I think the retention ceiling on an Indian health app is set by how much typing its core loop
+requires, and that [ABDM](https://abdm.gov.in) is the structural answer most products underuse — with
+four objections that are stronger than the pitch.
 
-Every engagement mechanic in a consumer health app eventually competes with a person’s willingness
-to type. Steps are the exception, and not because step challenges are clever — the phone counts them
-whether or not anyone opens the app. The moment a loop needs a number only the user can supply, it
-acquires a daily tax, and the people who pay that tax longest tend to be the people who needed the
-product least.
-
-India has a structural answer most markets do not. Under the
-[Ayushman Bharat Digital Mission](https://abdm.gov.in), a person holds an ABHA identifier and can
-consent to their records being shared between registered providers and applications. A lab report
-can arrive in an app because someone consented once, rather than because they photographed it on a
-kitchen table. **That changes what the product is allowed to open on.** The first screen stops being
-a form.
-
-### The objections are stronger than the pitch
-
-**Consent is a funnel, and a hard one.** Linking records is not a permission dialog — it is handing
-over a medical history on the strength of whatever trust the app has earned, which at signup is
-close to none. The pull is most valuable exactly when the app has least earned it.
-
-**Coverage decides whether the promise survives contact.** A pull returns what the producer of a
-record has published to the network. Where participation is uneven, the honest version of the
-feature is *some of your records, sometimes* — and an app that promises a complete history and
-returns two documents is worse off than one that promised nothing.
-
-**An identifier is not a user.** A number created at a hospital registration desk and a person who
-knows they have one and chooses to use it are different populations, and any adoption figure has to
-be read for which of the two it counts.
-
-**Getting the data is the easy half.** Pulling a verified report solves acquisition and says nothing
-about whether the person holding it can read it. That is a different product problem, and it is the
-one I went and built [Grounded](/lab/grounded) for.
-
-What would settle this is not a benchmark. It is a funnel: what share of people who begin the
-linking flow finish it, what share of them have anything worth pulling, and what those people do in
-the fortnight afterwards.
+That argument is long enough to deserve its own page rather than a section here.
+[Read the full thesis →](/thinking/abdm-manual-logging) It is a point of view, not shipped work, and
+it is labelled that way throughout.
