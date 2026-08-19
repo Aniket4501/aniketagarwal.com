@@ -44,9 +44,7 @@ export function OwnershipBlock({
               <li key={i} className="flex gap-1.5">
                 <span
                   aria-hidden="true"
-                  className={`mt-[0.6em] h-1 w-1 shrink-0 rounded-full ${
-                    c.accent ? 'bg-[var(--color-accent)]' : 'bg-[var(--color-line-strong)]'
-                  }`}
+                  className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-[var(--color-line-strong)]" 
                 />
                 <span>{item}</span>
               </li>

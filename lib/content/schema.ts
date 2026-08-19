@@ -83,8 +83,12 @@ export const caseStudySchema = z
       .array(cleanMin('notOwned'))
       .min(1, 'A case study that cannot state what it did not own does not ship.'),
 
-    /** The one number the card leads with. */
-    headline: metricSchema,
+    /**
+     * The one number the card leads with, where it is a real before → after.
+     * Omit it where there is no baseline; the first `figure` leads instead.
+     * Forcing a delta on a figure with no before produced two equal bars.
+     */
+    headline: metricSchema.optional(),
     /** Everything measured, shown in the results block. */
     metrics: z.array(metricSchema).default([]),
     figures: z.array(figureSchema).default([]),

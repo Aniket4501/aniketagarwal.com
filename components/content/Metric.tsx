@@ -75,28 +75,37 @@ export function MetricDelta({
     <figure className="flex flex-col gap-2">
       <figcaption className="eyebrow">{metric.label}</figcaption>
 
-      <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-center gap-x-2 gap-y-1.5 text-[length:var(--text-base)] tabular-nums">
-        <span className="text-right text-[var(--color-muted)]">{metric.before}</span>
-        <span aria-hidden="true" className="flex h-2 items-center">
-          <span
-            className={`h-full rounded-[2px] bg-[var(--color-line-strong)] ${animate ? 'animate-bar' : ''}`}
-            style={{ width: `${scale?.a ?? 100}%`, '--delay': `${delay}ms` } as React.CSSProperties}
-          />
-        </span>
+      {scale ? (
+        <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-center gap-x-2 gap-y-1.5 text-[length:var(--text-base)] tabular-nums">
+          <span className="text-right text-[var(--color-muted)]">{metric.before}</span>
+          <span aria-hidden="true" className="flex h-2 items-center">
+            <span
+              className={`h-full rounded-[2px] bg-[var(--color-line-strong)] ${animate ? 'animate-bar' : ''}`}
+              style={{ width: `${scale.a}%`, '--delay': `${delay}ms` } as React.CSSProperties}
+            />
+          </span>
 
-        <span className="text-right font-semibold text-[var(--color-ink)]">{metric.after}</span>
-        <span aria-hidden="true" className="flex h-2 items-center">
-          <span
-            className={`h-full rounded-[2px] bg-[var(--color-accent)] ${
-              bounded ? 'border-r-2 border-dashed border-[var(--color-accent)]' : ''
-            } ${animate ? 'animate-bar' : ''}`}
-            style={{
-              width: `${scale?.b ?? 100}%`,
-              '--delay': `${delay + 90}ms`,
-            } as React.CSSProperties}
-          />
-        </span>
-      </div>
+          <span className="text-right font-semibold text-[var(--color-ink)]">{metric.after}</span>
+          <span aria-hidden="true" className="flex h-2 items-center">
+            <span
+              className={`h-full rounded-[2px] bg-[var(--color-accent)] ${
+                bounded ? 'border-r-2 border-dashed border-[var(--color-accent)]' : ''
+              } ${animate ? 'animate-bar' : ''}`}
+              style={
+                { width: `${scale.b}%`, '--delay': `${delay + 90}ms` } as React.CSSProperties
+              }
+            />
+          </span>
+        </div>
+      ) : (
+        <p className="flex items-baseline gap-1.5 text-[length:var(--text-base)] tabular-nums">
+          <span className="text-[var(--color-muted)]">{metric.before}</span>
+          <span aria-hidden="true" className="text-[var(--color-line-strong)]">
+            →
+          </span>
+          <span className="font-semibold text-[var(--color-ink)]">{metric.after}</span>
+        </p>
+      )}
 
       {metric.delta ? (
         <p className="text-[length:var(--text-sm)] font-medium text-[var(--color-accent)] tabular-nums">

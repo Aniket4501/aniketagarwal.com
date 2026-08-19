@@ -90,7 +90,7 @@ function Points({ points }: { points: readonly string[] }) {
         <li key={i} className="flex max-w-[64ch] gap-2">
           <span
             aria-hidden="true"
-            className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]"
+            className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-[var(--color-line-strong)]"
           />
           <span className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
             {p}

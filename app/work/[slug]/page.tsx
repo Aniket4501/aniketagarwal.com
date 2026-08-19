@@ -88,10 +88,21 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
 
           <div className="card flex flex-col gap-3 p-3 sm:p-4">
-            <MetricDelta metric={meta.headline} animate />
+            {/* A case with no baseline leads with its figure. Forcing a delta
+                on it drew two equal bars, which encodes nothing. */}
+            {meta.headline ? (
+              <MetricDelta metric={meta.headline} animate />
+            ) : meta.figures[0] ? (
+              <Metric
+                value={meta.figures[0].value}
+                label={meta.figures[0].label}
+                context={meta.figures[0].context}
+                size="large"
+              />
+            ) : null}
             {meta.figures.length > 0 ? (
               <dl className="grid grid-cols-2 gap-3 border-t border-[var(--color-line)] pt-3">
-                {meta.figures.slice(0, 2).map((f) => (
+                {meta.figures.slice(meta.headline ? 0 : 1, meta.headline ? 2 : 3).map((f) => (
                   <div key={f.label} className="flex flex-col gap-0.5">
                     <dt className="text-[length:var(--text-xl)] font-semibold tabular-nums">
                       {f.value}

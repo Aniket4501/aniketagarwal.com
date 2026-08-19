@@ -261,7 +261,7 @@ export default function Home() {
           <div className="mt-5 grid gap-2 sm:mt-6 sm:gap-3 sm:grid-cols-2">
             {meta.principles.map((p, i) => (
               <div key={p.title} className="card flex flex-col gap-1.5 p-2.5 sm:gap-2 sm:p-3">
-                <span className="text-[length:var(--text-sm)] font-semibold tabular-nums text-[var(--color-accent)]">
+                <span className="text-[length:var(--text-sm)] font-semibold tabular-nums text-[var(--color-muted)]">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <h3 className="max-w-[26ch] text-[length:var(--text-lg)] leading-snug font-semibold tracking-[var(--track-heading)]">

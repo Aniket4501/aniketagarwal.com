@@ -99,10 +99,13 @@ export function DurationBars({
   max: number
   unit?: string
 }) {
+  // "Before" is neutral, not red. Red is reserved for corrections; a starting
+  // value is not a mistake, and colouring it as one also made the same datum
+  // render in two different colours on two pages.
   const fill = {
-    problem: 'bg-[var(--color-flag)]',
+    problem: 'bg-[var(--color-line-strong)]',
     accent: 'bg-[var(--color-accent)]',
-    default: 'bg-[var(--color-line-strong)]',
+    default: 'bg-[var(--color-line-strong)]/60',
   }
   return (
     <div className="flex flex-col gap-2.5">
