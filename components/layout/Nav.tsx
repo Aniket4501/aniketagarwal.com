@@ -56,7 +56,7 @@ export function Nav() {
                 className="rounded-[var(--radius)] border border-[var(--color-rule-strong)] px-1.5 py-0.75 text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
               >
                 Resume <span aria-hidden="true">↗</span>
-                <span className="sr-only">(PDF, opens in this tab)</span>
+                <span className="sr-only">(PDF)</span>
               </a>
             </li>
           </ul>
@@ -71,12 +71,12 @@ export function Nav() {
               <ul className="flex flex-col gap-0.5">
                 {LINKS.map((l) => (
                   <li key={l.href}>
-                    <Link
+                    <a
                       href={l.href}
                       className="block border-b border-[var(--color-rule)] py-2 text-[var(--text-lg)] text-[var(--color-ink)]"
                     >
                       {l.label}
-                    </Link>
+                    </a>
                   </li>
                 ))}
                 <li>

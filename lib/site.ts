@@ -19,13 +19,21 @@ export const site = {
   // a handle on this machine is a local credential, not a stated public
   // profile. Guessing it would publish an unverified link in the footer and in
   // JSON-LD. See CONTENT_GAPS.md B16.
-  resume: '/aniket-agarwal-resume.pdf',
+  /**
+   * The speakable URL, not the file path. It 307s to the PDF via next.config,
+   * so the filename can change without breaking a link anyone has said out
+   * loud or written on a resume.
+   */
+  resume: '/resume',
   // Rewritten per D1-03: "retention" may appear only as a problem, never as an
   // outcome. The previous string used it as an outcome, in the one sentence
   // that shows up in search results. Case three is a monetisation case (D1-07),
   // so it is described that way and not as AI safety work.
   defaultDescription:
-    'Product Analyst at HCL Healthcare — engagement on a consumer health app with 1M+ registered users. Cold-start latency, three retention strategies and one choice, and a health report that ended up inside the enterprise sale.',
+    // "retention" is deliberately absent. It appears in the record only as a
+  // problem being addressed, never as an outcome, and a meta description is
+  // read out of context where the distinction is invisible.
+  'Product Analyst at HCL Healthcare — engagement on a consumer health app with 1M+ registered users. Cold-start latency, three strategies on the table and one choice, and a health report that ended up inside the enterprise sale.',
 } as const
 
 /** Resolved once, so metadata, sitemap, robots and OG tags agree. */
