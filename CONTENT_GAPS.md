@@ -8,7 +8,62 @@ The site ships only what is verified. This file is the private record of what is
 copy can be sharpened rather than padded.
 
 Live: https://aniketagarwal-com.vercel.app · Repo: https://github.com/Aniket4501/aniketagarwal.com
-Last updated: V2, 2026-08-19.
+Last updated: expansion round 2, 2026-08-19.
+
+---
+
+## BLOCKING — the four things that would change the site most
+
+Each is phrased as a question you can answer in one sitting. Everything below this section is
+secondary to these four.
+
+### B1. What was the week-2 → week-4 return rate for people who joined a Steps Premier League season?
+`[NEEDS: week-2 → week-4 return rate for people who joined a league, against the same weeks for
+people who did not, with N for each group]`
+
+**Why this is first.** Steps Premier League was built to fix a drop-off. A drop-off is a retention
+problem, and the case study currently headlines *session time* — which the résumé does record as the
+declared north star, and which is the wrong instrument for the question. The case study now says so
+in its own results section rather than hiding it. That is the honest version of not having the
+number; it is not as good as having it.
+
+**Note on what the record does and does not contain.** The résumé attaches "Week-2 retention
+drop-off" to a *different* bullet — the engagement suite (Challenges, Streaks, Live Events,
+Trackers), whose stated outcome is `+20% DAU within 12 weeks`. That is DAU, not retention, and it
+belongs to different work. The site does not borrow it for the league, and will not.
+
+### B2. One redacted page of a real document.
+`[NEEDS: one redacted PRD page, experiment brief, or cohort export — any single one]`
+
+The highest-value asset still missing from the site, and it has been the highest-value missing asset
+since V1. All six artifact drawers currently contain reasoning. Reasoning is good; four of the six
+earn their place without a document (see `docs/11-evidence-audit.md` §C). Two do not, and the cohort
+chart behind *"cohort analysis put a drop-off on the table"* is the single most load-bearing
+unbacked claim on the site — the résumé confirms the analysis happened and says nothing about what
+it found.
+
+### B3. Denominators for the three percentages on the homepage proof panel.
+`[NEEDS: population + window + method for +35% step-sync completion, +20% DAU, 15% incremental revenue]`
+
+`+35% step-sync completion` sits on the hero panel carrying three of the four qualifiers the site's
+own rule requires, all missing. See `docs/11-evidence-audit.md` §B for the full table. This cannot
+be fixed by writing.
+
+### B4. Two LinkedIn recommendations, requested today.
+`[NEEDS: public LinkedIn recommendations from the VP-Product at HCL Healthcare and the Circle Health manager]`
+
+**Ask for LinkedIn recommendations, not site testimonials.** A quote hosted on your own site is
+unverifiable by construction and reads as decoration; a LinkedIn recommendation is attributable and
+survives a click. Two or three sentences from each would do more to neutralise the Product Analyst
+title than anything else available — a manager saying you owned the surface outweighs the title
+field on the org chart.
+
+Both names are in your own LinkedIn history: your Circle Health farewell post names your manager
+there, and the résumé names the VP-Product collaboration at HCL. They are deliberately not written
+into this file, because this repository is public and a third party's name does not belong in
+someone else's job-hunt notes.
+
+**This has the longest lead time of anything in this document. Ask today.**
 
 ---
 
@@ -108,6 +163,44 @@ someone with clinical training would make the agreement number mean something.
 | D2 | The strategy document and the LinkedIn export are never published, and are gitignored. | Both contain frank third-party assessments and full employment history. |
 | D3 | No client, colleague or employer-customer is named. | "5+ enterprise clients" stays unnamed; naming them would be invention. |
 | D4 | Every reconstructed diagram is labelled as one. | The KYC funnel says "reconstructed shape"; the report pipeline says "illustrative product flow — the journey I designed, not a system architecture". |
+
+## Visual assets — what exists, what was rejected, what is needed
+
+### The photograph in the repo — found, and not shipped
+`Image (2) copy.png` is a headshot of Aniket. It is **not on the site**, for two independent
+reasons, either of which alone would be enough:
+
+1. **It carries an AI-generation sparkle badge in the lower-right corner**, and the rendering has the
+   signature of an AI headshot generator. On a site whose entire argument is *nothing here is
+   fabricated*, the one photograph being synthetic is the cheapest possible way to lose that
+   argument. A reviewer who spots it stops trusting the numbers too.
+2. **It is a blazer-and-glass-office corporate headshot**, which is precisely the register the brief
+   rules out.
+
+`[NEEDS: one real photograph — natural light, plain background, no blazer, phone camera is fine]`
+Roughly 200px on `/about` only. Not the hero, not the homepage. One small human photo does real work
+with founders and the site currently has none.
+
+### Product screenshots — none exist in the repo
+Searched: no image assets of the product anywhere in the source folder.
+
+- `[NEEDS: Steps Premier League standings screen, anonymised]` — the case study argues that a
+  standings table is a daily notice to whoever is last. Showing the table would make that argument
+  visible instead of assertable.
+- `[NEEDS: one page of a generated AI Smart Health Report, anonymised]` — the case claims people
+  could finally read it. This is the weakest-backed headline claim on the site (`docs/11-evidence-audit.md` §A).
+- `[NEEDS: splash/launch screen before and after]` — lower value than the two above; the to-scale
+  duration chart already carries that argument well.
+
+**What shipped instead:** clearly-labelled reconstructions built in the site's own tokens, captioned
+`Reconstructed · layout and hierarchy accurate, all data synthetic`. No screenshot was fabricated and
+no image model was used to produce one.
+
+### Redactions applied to every reconstruction
+Synthetic names, synthetic values, no employee names, no internal URLs, no account identifiers, no
+unreleased roadmap items, no client names. The app is never named beyond "a consumer health app".
+
+---
 
 ## What the site will not do
 

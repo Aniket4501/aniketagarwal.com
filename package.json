@@ -12,11 +12,13 @@
     "check:content": "tsx scripts/validate-content.ts",
     "check:budget": "tsx scripts/check-budget.ts",
     "check:truth": "tsx scripts/check-truth.ts",
+    "check:links": "tsx scripts/check-links.mts",
     "capture": "tsx scripts/capture.ts",
     "check:a11y": "tsx scripts/check-a11y.ts",
     "lighthouse": "tsx scripts/lighthouse.mts",
     "analyze": "ANALYZE=true next build",
-    "verify": "npm run typecheck && npm run lint && npm run check:truth && npm run check:content && npm run build && npm run check:budget"
+    "verify": "npm run typecheck && npm run lint && npm run check:truth && npm run check:content && npm run build && npm run check:budget",
+    "verify:live": "tsx scripts/check-a11y.ts && tsx scripts/check-links.mts"
   },
   "dependencies": {
     "next": "16.3.1",
@@ -36,9 +38,11 @@
     "lighthouse": "^13.4.1",
     "next-mdx-remote": "6.0.0",
     "playwright": "^1.62.1",
+    "remark-smartypants": "^3.0.3",
     "tailwindcss": "4.3.3",
     "tsx": "4.23.12",
     "typescript": "5.9.3",
+    "wait-on": "^9.1.0",
     "zod": "4.4.3"
   },
   "engines": {

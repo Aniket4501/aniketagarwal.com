@@ -50,7 +50,7 @@ drawers:
     body: >-
       Randomisation is what makes an A/B test work: you assign the treatment, and because assignment
       is random the two arms differ only in what you assigned. Device capability breaks that. A
-      phone's processor, its free storage and what the other apps on it are holding are the variables
+      phone’s processor, its free storage and what the other apps on it are holding are the variables
       that decide what a cold start costs, and none of them is assignable. You can randomise which
       build a device receives. You cannot randomise the device. So the instrument degrades to a
       staged rollout with a before-and-after comparison held within a device tier — weaker, and worth
@@ -69,7 +69,7 @@ ogMetric: 15s → under 2s
 
 ## The step count was behind a fifteen-second wall
 
-HCL Healthcare's consumer health app serves more than a million registered users. I had defined the
+HCL Healthcare’s consumer health app serves more than a million registered users. I had defined the
 product roadmap, and what was on it was engagement — reasons to open a health app in a week when
 nothing about your health has changed.
 
@@ -80,8 +80,8 @@ roadmap.** Someone who taps the icon and waits fifteen seconds is not forming an
 streaks feature. They are forming one about whether the app works.
 
 <Figure
-  alt="The user's path to their step count, before and after: a fifteen-second splash screen removed, and sync completion rising 35%."
-  caption="The whole case study lives inside one arrow. Steps are counted by the phone whether or not the app is open — the product's only job is to be openable."
+  alt="The user’s path to their step count, before and after: a fifteen-second splash screen removed, and sync completion rising 35%."
+  caption="The whole case study lives inside one arrow. Steps are counted by the phone whether or not the app is open — the product’s only job is to be openable."
 >
   <LaunchJourney />
 </Figure>
@@ -109,7 +109,7 @@ showed up as nothing at all.
 
 <DecisionTable
   caption="The reasoning laid out. Reversibility is in the table because it is the dimension that separates a strategist from a prioritiser, and it is the one this decision scored worst on."
-  columns={["What it costs", "Reversible?", "How you'd learn you were wrong"]}
+  columns={["What it costs", "Reversible?", "How you’d learn you were wrong"]}
   rows={[
     {
       option: "Ship the engagement roadmap as written",
@@ -117,7 +117,7 @@ showed up as nothing at all.
       cells: [
         "Nothing new. It was already the plan.",
         "Per feature, yes. The eight weeks, no.",
-        "You wouldn't. Every read is taken on the people who got in."
+        "You wouldn’t. Every read is taken on the people who got in."
       ]
     },
     {
@@ -136,7 +136,7 @@ showed up as nothing at all.
       cells: [
         "Eight weeks of engagement work, not shipped.",
         "Least reversible in calendar terms. Durable in outcome, until it regresses.",
-        "The number moves and adoption doesn't follow. Then the diagnosis was wrong."
+        "The number moves and adoption doesn’t follow. Then the diagnosis was wrong."
       ]
     }
   ]}

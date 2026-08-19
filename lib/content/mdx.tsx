@@ -1,7 +1,9 @@
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import smartypants from 'remark-smartypants'
 import { Callout } from '@/components/content/Callout'
 import { Drawer } from '@/components/content/Drawer'
 import { DecisionTable } from '@/components/content/DecisionTable'
+import { GuardrailTable } from '@/components/content/GuardrailTable'
 import { Figure } from '@/components/content/Figure'
 import { Metric, MetricDelta } from '@/components/content/Metric'
 import { Flow, BeforeAfterFlow, DurationBars, Funnel, LoopDiagram } from '@/components/diagrams/Flow'
@@ -18,6 +20,7 @@ const components = {
   Callout,
   Drawer,
   DecisionTable,
+  GuardrailTable,
   Figure,
   Metric,
   MetricDelta,
@@ -55,6 +58,20 @@ export function Mdx({ source }: { source: string }) {
          * scripts before it can build.
          */
         blockJS: false,
+        mdxOptions: {
+          /**
+           * Typographic punctuation, applied by the pipeline rather than by
+           * whoever is typing. The designer review caught the same word
+           * rendering with a straight apostrophe on one page and a curly one
+           * on another; hand-authoring `’` fixes that instance and guarantees
+           * the next one. Only quotes and dashes are converted — ellipses are
+           * left alone so a deliberate "…" is not double-processed.
+           *
+           * Runs on text nodes only, so inline code and code blocks keep their
+           * literal ASCII quotes.
+           */
+          remarkPlugins: [[smartypants, { dashes: 'oldschool', ellipses: false }]],
+        },
       }}
     />
   )

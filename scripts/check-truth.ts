@@ -19,6 +19,8 @@ type Rule = {
   why: string
   /** Files matching this are exempt — docs record the bans, so they contain them. */
   allow?: RegExp
+  /** If set, the rule applies only to files matching it. */
+  only?: RegExp
 }
 
 const RULES: Rule[] = [
@@ -29,6 +31,13 @@ const RULES: Rule[] = [
     // The schema and the gate exist in order to ban this string, so they are
     // the two files allowed to contain it.
     allow: /^(scripts\/|lib\/content\/schema\.ts)/,
+  },
+  {
+    id: 'T01',
+    pattern: /(?<=[A-Za-z])'(?=[A-Za-z])/,
+    why: 'straight apostrophe in content. The MDX pipeline curls prose, but not YAML frontmatter or component props, so those are normalised at source and held here',
+    // Only content is typeset. Source files are code and keep ASCII quotes.
+    only: /^content\//,
   },
   { id: 'T25', pattern: /\b1\.9\s?s\b/i, why: 'the record says "<2s"; 1.9 appears in no source' },
   { id: 'T26', pattern: /\b15\.0\s?s\b/i, why: 'fabricated precision; the record says "15s"' },
@@ -102,6 +111,7 @@ for (const file of files) {
   lines.forEach((line, i) => {
     for (const rule of RULES) {
       if (rule.allow?.test(rel)) continue
+      if (rule.only && !rule.only.test(rel)) continue
       if (rule.pattern.test(line)) {
         hits.push({ rule, file: rel, line: i + 1, text: line.trim().slice(0, 120) })
       }

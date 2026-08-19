@@ -2,8 +2,8 @@
 slug: steps-premier-league
 title: Steps Premier League
 category: 0→1 · Engagement
-outcome: A competitive step league built from nothing, moving session time from 3.5 to 7.8 minutes.
-problem: A step counter competes with the one already on the phone. It needs a reason to be opened that the OS widget doesn't have.
+outcome: A competitive step league built from nothing, moving session time from 3.5 to 7.8 minutes — on a north star I would not choose again, and I explain why.
+problem: A step counter competes with the one already on the phone. It needs a reason to be opened that the OS widget doesn’t have.
 change: I evaluated three retention strategies and shipped the one with no recurring bill — and named who it costs.
 order: 2
 
@@ -26,12 +26,12 @@ headline:
   label: Session time
   before: 3.5 min
   after: 7.8 min
-  note: The declared north star for this launch — and a contestable one, which I take up below.
+  note: The declared north star for this launch. It is the wrong one for a retention feature, which I take up below.
 metrics:
   - label: Session time
     before: 3.5 min
     after: 7.8 min
-    note: The declared north star for this launch.
+    note: Declared north star. Supporting metric at best — the retention number this should have led with was never instrumented.
 figures:
   - value: '0→1'
     label: Built from nothing
@@ -43,7 +43,7 @@ figures:
 drawers:
   - label: Why the phone already having the data is the whole opportunity
     body: >-
-      Almost every engagement mechanic in a consumer health app eventually competes with a person's
+      Almost every engagement mechanic in a consumer health app eventually competes with a person’s
       willingness to type. Steps are the exception, and not because step challenges are clever: the
       phone counts them whether or not anyone opens the app. The moment a loop needs a number only
       the user can supply — a meal, a reading, a home test — it acquires a daily tax, and the people
@@ -116,26 +116,67 @@ A recurring, time-boxed league built on step data the phone already collects —
 season that ends and restarts. The design insight is in the restart: a league with no season end has
 no urgency, and one with no restart has no second chance for anybody who fell behind.
 
-## What happened
+## What happened — and the number that should have been here instead
 
-Session time moved from 3.5 to 7.8 minutes. That was the declared north star for the launch.
+Session time moved from 3.5 to 7.8 minutes. That was the declared north star for the launch, and it
+is the number I have.
 
-**It is also a contestable north star in a health app, and I would rather argue about it here than
-quietly swap it for something safer.** A health product that works can *shorten* a session: open it,
-log the thing, leave. Time in app is a reasonable metric for a competitive feature whose loop is
-checking where you stand, and a poor one for a product whose job is to get you out of the app and
-onto a walk. Both are true at once, which is why the number needs an argument beside it rather than
-a bigger typeface.
+**It is the wrong north star for this feature, and I would rather say so beside it than four
+paragraphs later.** This was built to fix a drop-off. A drop-off is a retention problem, and the
+metric that answers a retention problem is whether people came back — a week-two-to-week-four return
+rate for the people who joined a league, measured against the same weeks for the people who did not.
+That is the headline this case study should have. It is not here because that instrument did not
+exist when the launch did, and I am not going to derive it now from numbers that cannot produce it.
+
+Session time is a defensible *supporting* metric for a loop whose whole action is checking where you
+stand. It is a poor primary one for a health product, because a health product that works can
+*shorten* a session — open it, log the thing, leave. Both are true at once, which is why the number
+needs an argument beside it rather than a bigger typeface.
+
+<Callout variant="tradeoff" label="What I actually chose here">
+
+I picked the north star the existing instrument could produce, rather than building the instrument
+that could answer the question. That is a real error and it is the one I would fix first. Choosing
+your metric from what is already logged is how a launch ends up optimising for the thing that was
+easy to count.
+
+</Callout>
+
+## The guardrails I would have watched
+
+I did not have these. A retention mechanic that buys its numbers by burning notification permission
+is a loss wearing a win’s clothes, and none of the counter-metrics that would catch it were in the
+launch plan. They belong there rather than in a post-mortem, so here is the plan I would run it with
+now.
+
+<GuardrailTable
+  caption="Not measured. These are the counter-metrics I would put in the launch plan if I ran this again, and the thresholds at which I would have stopped the rollout rather than argued with it."
+  rows={[
+    {
+      metric: 'Notification opt-out rate',
+      catches: 'A league that manufactures its daily open by spending permission it can never get back. Opt-out is one-way — every point you lose here is a point every future feature is also missing.',
+      rollback: 'Any rise among people who joined a league, against the same weeks for people who did not.',
+    },
+    {
+      metric: 'Uninstalls',
+      catches: 'The person in last place leaving. Session time goes up when they go, because the people who stayed are the people who were winning — the metric improves precisely because the mechanic failed someone.',
+      rollback: 'An uninstall rate among league joiners above the same weeks for non-joiners, at all.',
+    },
+    {
+      metric: 'Silent season non-entry',
+      catches: 'Quitting that does not look like quitting. Somebody who stops entering a new season but keeps the app installed is a churned user the install count will never show you.',
+      rollback: 'Season-two re-entry below season-one enrolment by a margin I would set before launch, not after seeing it.',
+    },
+    {
+      metric: 'A fairness or complaint signal',
+      catches: 'Leagues that are not contests. A cohort where one person is unreachably ahead is demotivating for everyone else in it, and step data is trivially gamed by putting a phone on a treadmill.',
+      rollback: 'Any support-ticket theme about rank fairness, or cohorts where the leader is unreachable by week one.',
+    },
+  ]}
+/>
 
 ## What I would do differently
 
-**I would instrument the cohort before picking the metric, not after.** What session time cannot
-tell you is whether anybody came back. The number I would want next to it is a week-two-to-week-four
-return rate, measured on people who joined a league against the same weeks for people who did not —
-and choosing the north star before that instrument existed meant choosing the metric the existing
-instrument could produce.
-
-The second thing is guardrails. A retention mechanic that burns notification permission is a loss
-wearing a win's clothes, and the counter-metrics that would catch it — notification opt-outs,
-uninstalls, how many people quietly stop entering a season — belong in the launch plan rather than
-in the post-mortem.
+**I would instrument the cohort before picking the metric, not after.** Everything above follows
+from that one sequencing error: the north star, the missing guardrails, and the fact that the
+strongest claim I could make about a retention feature is a number about session length.
