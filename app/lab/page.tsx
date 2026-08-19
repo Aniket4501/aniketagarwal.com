@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { getLabProjects } from '@/lib/content'
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
@@ -43,9 +44,9 @@ export default function LabIndex() {
                       </span>
                     </div>
                     <h2 className="text-[length:var(--text-2xl)] leading-tight font-semibold tracking-[var(--track-heading)]">
-                      <a href={`/lab/${p.meta.slug}`} className="after:absolute after:inset-0">
+                      <Link href={`/lab/${p.meta.slug}`} className="after:absolute after:inset-0">
                         {p.meta.title}
-                      </a>
+                      </Link>
                     </h2>
                     <p className="max-w-[50ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]">
                       {p.meta.tagline}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
@@ -28,12 +29,12 @@ export default function Approach() {
         <p className="mt-3 max-w-[58ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]">
           Four principles, each with the work attached, and each with the part of it I would argue
           about. This page is argument; the record is under{' '}
-          <a
+          <Link
             href="/work"
             className="font-medium text-[var(--color-accent)] underline decoration-[var(--color-accent)]/35 underline-offset-[3px]"
           >
             Work
-          </a>
+          </Link>
           .
         </p>
       </Container>
