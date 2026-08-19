@@ -279,6 +279,16 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          {/* Thinking is surfaced from inside this section rather than given a
+              section of its own. The homepage does not gain a block for every
+              route; its length is the competitive advantage. */}
+          <p className="mt-3 max-w-[62ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)]">
+            Applied to things nobody handed me: a{' '}
+            <Link href="/thinking/strava-free-tier">teardown of Strava’s free tier</Link>, and a{' '}
+            <Link href="/thinking/abdm-manual-logging">thesis on why manual logging caps</Link>{' '}
+            engagement for Indian health apps. Both are analysis, not shipped work, and say so.
+          </p>
         </Container>
       </Section>
 

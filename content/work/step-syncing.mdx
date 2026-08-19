@@ -55,6 +55,23 @@ drawers:
       build a device receives. You cannot randomise the device. So the instrument degrades to a
       staged rollout with a before-and-after comparison held within a device tier — weaker, and worth
       saying out loud rather than dressing up as an experiment.
+  - label: What "step-sync completion" actually counts, and the two definitions I rejected
+    body: >-
+      A completion rate is a fraction, and the argument is always about the denominator. Three
+      readings of this one are defensible and they are not the same number. **Per attempt**: syncs
+      that succeeded over syncs that started — an engineering reliability metric, which moves when
+      the pipeline gets better and stays flat when nobody tries. **Per session**: sessions where the
+      step count was displayed over sessions opened — the most flattering of the three, because a
+      faster launch mechanically raises it whether or not anybody got more value. **Per user, per
+      period**: users who saw their current step count at least once in a week over users who opened
+      the app that week. That last one is the one I would defend, because it is the only version
+      that answers the question the work was actually about — did more people reach the number they
+      came for. I rejected per-session precisely because it is the one my own intervention would
+      inflate, and a metric that improves as a side effect of the thing you did is not evidence
+      about the thing you did. **Where my published record stops:** it does not fix which of the
+      three the 35% was measured against, and I am not going to assert one after the fact. That is
+      the reason this figure carries a caveat rather than a denominator, and it is the single thing
+      I would most want back.
   - label: Why a mean launch time is the wrong statistic here
     body: >-
       A mean is pulled toward the fast devices, and the fast devices belong disproportionately to the
