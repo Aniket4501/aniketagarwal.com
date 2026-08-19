@@ -15,7 +15,7 @@ import type { Stat as StatType } from '@/lib/content/schema'
  * a denominator" — it was every number.
  */
 export function Stat({ stat }: { stat: StatType }) {
-  const qualifiers = [stat.denominator, stat.timeframe, stat.method].filter(Boolean)
+  const qualifiers = [...new Set([stat.denominator, stat.timeframe, stat.method].filter(Boolean))]
 
   return (
     <figure className="flex flex-col gap-1">

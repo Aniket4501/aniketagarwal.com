@@ -28,7 +28,7 @@ export function OwnershipBlock({
   ]
 
   return (
-    <div className="grid gap-px border border-[var(--color-rule)] bg-[var(--color-rule)] md:grid-cols-3">
+    <div className="grid gap-px border border-[var(--color-rule)] bg-[var(--color-rule)] lg:grid-cols-3">
       {columns.map((c) => (
         <div key={c.title} className="bg-[var(--color-paper-raised)] px-2.5 py-2.5">
           <p className="eyebrow mb-1.5" id={`own-${c.title.replace(/\s+/g, '-')}`}>

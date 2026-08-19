@@ -61,7 +61,9 @@ export function MetricDelta({
         ? 'text-[var(--text-sm)]'
         : 'text-[var(--text-base)]'
 
-  const qualifiers = [denominator, timeframe, method].filter(Boolean)
+  // Collapse repeats: "not stated · not stated · NEEDS: …" says the same thing
+  // twice before it says the useful thing once.
+  const qualifiers = [...new Set([denominator, timeframe, method].filter(Boolean))]
 
   return (
     <figure className="flex flex-col gap-1.5">

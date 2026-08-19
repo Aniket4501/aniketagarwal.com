@@ -13,6 +13,9 @@ import { ReadProgress, SectionIndex, Rail } from '@/components/content/ProgressR
 import { WithNeeds } from '@/components/ui/Needs'
 import { site } from '@/lib/site'
 
+/** A field whose entire value is an unanswered question. */
+const ONLY_TOKEN = /^\s*\[NEEDS:[^\]]*\]\s*$/
+
 export function generateStaticParams() {
   return getCaseStudies().map((c) => ({ slug: c.meta.slug }))
 }
@@ -63,20 +66,38 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           {meta.tagline}
         </p>
 
-        <dl className="mt-5 grid grid-cols-1 gap-x-4 gap-y-2 border-t border-[var(--color-rule)] pt-3 sm:grid-cols-3">
-          {[
+        {(() => {
+          const rows = [
             { k: 'Role', v: meta.role },
             { k: 'Team', v: meta.teamShape },
             { k: 'Timeline', v: meta.timeline },
-          ].map((row) => (
-            <div key={row.k} className="flex flex-col gap-0.5">
-              <dt className="eyebrow">{row.k}</dt>
-              <dd className="text-[var(--text-sm)] leading-relaxed">
-                <WithNeeds text={row.v} />
-              </dd>
-            </div>
-          ))}
-        </dl>
+          ]
+          const known = rows.filter((r) => !ONLY_TOKEN.test(r.v))
+          const unknown = rows.filter((r) => ONLY_TOKEN.test(r.v))
+          return (
+            <>
+              <dl className="mt-5 grid grid-cols-1 gap-x-4 gap-y-2 border-t border-[var(--color-rule)] pt-3 sm:grid-cols-3">
+                {known.map((row) => (
+                  <div key={row.k} className="flex flex-col gap-0.5">
+                    <dt className="eyebrow">{row.k}</dt>
+                    <dd className="text-[var(--text-sm)] leading-relaxed">
+                      <WithNeeds text={row.v} />
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              {unknown.length > 0 ? (
+                <p className="mt-3 max-w-[62ch] text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+                  {unknown.map((r) => r.k).join(' and ')}{' '}
+                  {unknown.length > 1 ? 'are' : 'is'} not in my published record.{' '}
+                  {unknown.map((r) => (
+                    <WithNeeds key={r.k} text={r.v} />
+                  ))}
+                </p>
+              ) : null}
+            </>
+          )
+        })()}
 
         <div className="mt-5 flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3">
           {meta.metrics.map((m) => (

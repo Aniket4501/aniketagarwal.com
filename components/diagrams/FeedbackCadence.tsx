@@ -10,7 +10,7 @@
  * Nothing here asserts anything about Aniket's product. It is the reasoning
  * behind choosing competition over content or rewards.
  */
-export function FeedbackCadence() {
+function Wide() {
   return (
     <svg
       viewBox="0 0 640 220"
@@ -56,5 +56,72 @@ export function FeedbackCadence() {
         A social cost that lands every single day, whether or not motivation does.
       </text>
     </svg>
+  )
+}
+
+/**
+ * Below 640px the wide viewBox pushes the labels under 8px. Same finding,
+ * stacked: one signal arriving once, against one arriving every day.
+ */
+function Narrow() {
+  return (
+    <svg
+      viewBox="0 0 288 250"
+      className="h-auto w-full"
+      aria-hidden="true"
+      focusable="false"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <text x="0" y="12" className="fill-[var(--color-muted)] font-[family-name:var(--font-mono)]" fontSize="9" letterSpacing="1">
+        WHAT A HEALTH APP SELLS
+      </text>
+      <line x1="2" y1="36" x2="286" y2="36" stroke="var(--color-rule-strong)" strokeWidth="1" />
+      <circle cx="2" cy="36" r="3" fill="var(--color-rule-strong)" />
+      <circle cx="286" cy="36" r="3" fill="var(--color-rule-strong)" />
+      <text x="0" y="54" className="fill-[var(--color-ink)]" fontSize="11">today</text>
+      <text x="288" y="54" textAnchor="end" className="fill-[var(--color-ink)]" fontSize="11">
+        a decade out
+      </text>
+      <text x="0" y="76" className="fill-[var(--color-muted)]" fontSize="11">
+        One signal, arriving far too
+      </text>
+      <text x="0" y="92" className="fill-[var(--color-muted)]" fontSize="11">
+        late to change tonight.
+      </text>
+
+      <text x="0" y="140" className="fill-[var(--color-muted)] font-[family-name:var(--font-mono)]" fontSize="9" letterSpacing="1">
+        WHAT A LEAGUE BORROWS
+      </text>
+      <line x1="2" y1="164" x2="286" y2="164" stroke="var(--color-signal)" strokeWidth="1" />
+      {Array.from({ length: 9 }, (_, i) => (
+        <circle key={i} cx={2 + i * 35.5} cy={164} r="3" fill="var(--color-signal)" />
+      ))}
+      <text x="0" y="182" className="fill-[var(--color-ink)]" fontSize="11">today</text>
+      <text x="288" y="182" textAnchor="end" className="fill-[var(--color-ink)]" fontSize="11">
+        two weeks out
+      </text>
+      <text x="0" y="204" className="fill-[var(--color-muted)]" fontSize="11">
+        A social cost that lands every
+      </text>
+      <text x="0" y="220" className="fill-[var(--color-muted)]" fontSize="11">
+        day, whether motivation does
+      </text>
+      <text x="0" y="236" className="fill-[var(--color-muted)]" fontSize="11">
+        or not.
+      </text>
+    </svg>
+  )
+}
+
+export function FeedbackCadence() {
+  return (
+    <>
+      <span className="block sm:hidden">
+        <Narrow />
+      </span>
+      <span className="hidden sm:block">
+        <Wide />
+      </span>
+    </>
   )
 }

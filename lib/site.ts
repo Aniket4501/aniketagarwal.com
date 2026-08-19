@@ -86,7 +86,6 @@ export const timeline = [
     role: 'Product Management Intern',
     org: 'YourStory Media',
     place: 'Bangalore',
-
     conflict: 'C5',
   },
 ] as const

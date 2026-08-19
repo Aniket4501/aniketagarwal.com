@@ -31,7 +31,7 @@
                             the register a lab report uses to flag an
                             out-of-range value, and it clears AA on its own
                             tint, which the amber did not (4.43). */
-  --color-flag-tint: #fbf2f3; /* mistake/gap callout ground — flag reads 6.33:1 */
+  --color-flag-tint: #f7e9ea; /* mistake/gap callout ground — flag reads 6.33:1 */
   --color-muted: #63696e; /* 5.10:1 on paper. Corrected from the brief's
                              #6B7278, which measured 4.48:1 and failed AA
                              body text by 0.02. */

@@ -16,10 +16,11 @@
 export function Needs({ children }: { children: string }) {
   return (
     <span
-      className="font-[family-name:var(--font-mono)] text-[0.85em] text-[var(--color-flag)] decoration-[var(--color-flag)]/40 underline decoration-dotted underline-offset-[3px]"
+      className="rounded-[2px] bg-[var(--color-flag-tint)] px-[0.35em] font-[family-name:var(--font-mono)] text-[0.85em] text-[var(--color-flag)] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
       data-needs=""
     >
       <span className="sr-only">Unanswered question: </span>
+      <span aria-hidden="true" className="font-medium">NEEDS: </span>
       {children}
     </span>
   )

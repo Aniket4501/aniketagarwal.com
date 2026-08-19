@@ -15,10 +15,42 @@ const DIMENSIONS = ['grounding', 'scope', 'escalation', 'readability'] as const
 export function EvalScorecard() {
   const cases = baseline.cases as unknown as Case[]
 
+  // Below 640px the sixteen-row matrix loses two of four columns off-screen.
+  // The finding survives without the matrix: which dimension fails most, and
+  // how many cases clear all four.
+  const counts = DIMENSIONS.map((d) => ({
+    dimension: d,
+    passed: cases.filter((c) => c.dimensions.find((x) => x.dimension === d)?.passed).length,
+  }))
+  const allFour = cases.filter((c) => c.dimensions.every((d) => d.passed)).length
+
   return (
     <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 sm:hidden">
+        {counts.map((c) => (
+          <div key={c.dimension} className="flex flex-col gap-1">
+            <div className="flex items-baseline justify-between gap-2">
+              <span className="eyebrow">{c.dimension}</span>
+              <span className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] tabular-nums text-[var(--color-muted)]">
+                {c.passed}/{cases.length} pass
+              </span>
+            </div>
+            <div className="flex h-2 w-full bg-[var(--color-rule)]">
+              <div
+                className="h-full bg-[var(--color-signal)]"
+                style={{ width: `${(c.passed / cases.length) * 100}%` }}
+              />
+            </div>
+          </div>
+        ))}
+        <p className="mt-1 font-[family-name:var(--font-mono)] text-[var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
+          {allFour} of {cases.length} cases clear all four. The per-case matrix is on a wider
+          screen.
+        </p>
+      </div>
+
       <div
-        className="scroll-x"
+        className="scroll-x hidden sm:block"
         tabIndex={0}
         role="region"
         aria-label="Grounded evaluator results per case"

@@ -62,7 +62,15 @@ export function Nav() {
           </ul>
 
           {/* Mobile */}
-          <details className="nav-panel group md:hidden">
+          <div className="flex items-center gap-4 md:hidden">
+            <a
+              href={site.resume}
+              className="nav-link font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-ink)]"
+            >
+              Resume <span aria-hidden="true">↗</span>
+              <span className="sr-only">(PDF)</span>
+            </a>
+            <details className="nav-panel group">
             <summary className="nav-link cursor-pointer list-none text-[var(--text-sm)] text-[var(--color-ink)] [&::-webkit-details-marker]:hidden">
               <span className="group-open:hidden">Menu</span>
               <span className="hidden group-open:inline">Close</span>
@@ -94,8 +102,9 @@ export function Nav() {
               >
                 {site.email}
               </a>
-            </div>
-          </details>
+              </div>
+            </details>
+          </div>
         </nav>
       </header>
     </>

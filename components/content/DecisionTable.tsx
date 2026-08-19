@@ -24,10 +24,7 @@ export function DecisionTable({
   return (
     <div className="prose-wide my-5">
       <div
-        className="scroll-x border border-[var(--color-rule)] bg-[var(--color-paper-raised)]"
-        tabIndex={0}
-        role="region"
-        aria-label={caption}
+        className="hidden border border-[var(--color-rule)] bg-[var(--color-paper-raised)] sm:block"
       >
         <table className="w-full min-w-[34rem] table-fixed text-left font-[family-name:var(--font-sans)] text-[var(--text-sm)] leading-snug tracking-[var(--track-ui)]">
           <caption className="decision-caption">{caption}</caption>
@@ -82,6 +79,50 @@ export function DecisionTable({
           </tbody>
         </table>
       </div>
+      {/* Small screens: one block per option. */}
+      <ul className="flex flex-col gap-px border border-[var(--color-rule)] bg-[var(--color-rule)] sm:hidden">
+        {rows.map((r) => (
+          <li
+            key={r.option}
+            className={`flex flex-col gap-2 p-3 ${
+              r.chosen
+                ? 'bg-[var(--color-paper-raised)] ring-1 ring-[var(--color-signal)] ring-inset'
+                : 'bg-[var(--color-paper-raised)]'
+            }`}
+          >
+            <div className="flex flex-col gap-0.5">
+              <p className="font-[family-name:var(--font-sans)] text-[var(--text-base)] leading-snug font-semibold">
+                {r.chosen ? (
+                  <span aria-hidden="true" className="mr-1 text-[var(--color-signal)]">
+                    ▸
+                  </span>
+                ) : null}
+                {r.option}
+                {r.chosen ? <span className="sr-only"> — chosen</span> : null}
+              </p>
+              {r.note ? (
+                <p className="font-[family-name:var(--font-sans)] text-[var(--text-sm)] leading-snug text-[var(--color-muted)]">
+                  {r.note}
+                </p>
+              ) : null}
+            </div>
+            <dl className="flex flex-col gap-1.5">
+              {r.cells.map((cell, i) => (
+                <div key={i} className="flex flex-col gap-0.5">
+                  <dt className="eyebrow">{columns[i]}</dt>
+                  <dd className="font-[family-name:var(--font-sans)] text-[var(--text-sm)] leading-snug">
+                    <WithNeeds text={cell} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </li>
+        ))}
+      </ul>
+
+      <p className="mt-1.5 font-[family-name:var(--font-sans)] text-[var(--text-sm)] leading-snug text-[var(--color-muted)] sm:hidden">
+        {caption}
+      </p>
     </div>
   )
 }
