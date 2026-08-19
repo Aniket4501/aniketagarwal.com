@@ -51,22 +51,24 @@ The gate runs over source **and** over the built HTML, because a banned string c
 render time. It caught two violations in code written for this repo — three unsourced industry
 descriptors and an unverified GitHub URL — after they had already been committed.
 
-### `[NEEDS: …]`
+### Internal QA never ships
 
-Where a fact could not be derived and cutting the claim would leave a hole, the content carries a
-visible token:
+V1 rendered its own content gaps on the public site — twenty-six amber `[NEEDS: …]` markers, in
+red, in production. The intent was "this person knows what a denominator is." The effect was a form
+with validation errors, and it trained the reader to scan every page for what was missing.
 
+V2 inverted the rule. The schema **rejects** an internal marker in any field, and both gates fail
+the build on one:
+
+```ts
+const clean = (label: string) =>
+  z.string().refine((v) => !/\[NEEDS:/i.test(v), {
+    message: `${label} contains an internal marker. Those belong in CONTENT_GAPS.md, never on the site.`,
+  })
 ```
-denominator: "[NEEDS: which device population was measured?]"
-```
 
-It renders as an amber chip in the same colour the site uses for *this is where I was wrong* — a
-claim that cannot yet be substantiated and a decision that went wrong are the same kind of honesty,
-so a reader can scan for either without reading a word. Every token maps to an answerable question
-in [`CONTENT_GAPS.md`](./CONTENT_GAPS.md).
-
-**The site is not ready to share until those questions are answered.** That is the honest state of
-it, and the tokens are how it says so.
+Open questions live in [`CONTENT_GAPS.md`](./CONTENT_GAPS.md) and nowhere else. The site shows only
+what is verified; where a fact is missing, the sentence is written so it does not need it.
 
 ---
 
@@ -76,34 +78,40 @@ One file. `content/work/<slug>.mdx`:
 
 ```mdx
 ---
-slug: two-seconds
-title: Two Seconds
-tagline: Cutting cold start from 15s to under 2s
-headline: The roadmap was engagement. The app took fifteen seconds to open.
+slug: step-syncing
+title: Step Syncing
+category: Performance & adoption
+outcome: A fifteen-second launch cut to under two seconds, and step-sync completion up 35%.
+problem: The step count people opened the app for sat behind a fifteen-second wait.
+change: I reclassified launch time from an engineering backlog item into a product requirement.
 order: 1
 role: Product Analyst, HCL Healthcare
-teamShape: "4 engineers, one designer, no dedicated QA"
 timeline: 8 weeks
-owned: ['Problem diagnosis', 'Scope arbitration', 'The launch gate']
-shipped: ['A cold start under two seconds', 'A 6MB bundle']
-notOwned: ['The implementation. Engineering owned the technical approach.']
-metrics:
-  - label: COLD START
-    before: 15s
-    after: under 2s
-    denominator: 'production telemetry'
-    timeframe: '8 weeks'
-    method: 'staged rollout, pre/post within device tier'
-    direction: down-is-good
-artifacts: []
-description: A launch-time problem that was actually an adoption problem.
-ogHeadline: I spent eight weeks on launch time instead.
+team: Cross-functional initiative with the engineering team
+scope: Diagnosis · prioritisation · scope arbitration · launch gate
+owned: ['Diagnosing launch time as the adoption blocker']
+shipped: ['Launch time from 15s to under 2s']
+notOwned: ['The engineering. I did not choose the technical approach or write any of the code.']
+headline:
+  label: App launch time
+  before: 15s
+  after: under 2s
+  delta: At least 7.5× faster
+metrics: []
+figures:
+  - value: +35%
+    label: Step-sync completion
+    context: More people reached the number they opened the app for.
+drawers: []
+description: A fifteen-second app launch was the real adoption blocker on a health app with 1M+ users.
+ogHeadline: The roadmap said engagement. The app took fifteen seconds to open.
 ogMetric: 15s → under 2s
 ---
 
-## The app took fifteen seconds to open
+## Section headings are claims, not labels
 
-Section headers are claims, not labels...
+Body copy. Available in MDX: `<Callout>`, `<Drawer>`, `<DecisionTable>`, `<Figure>`, `<Flow>`,
+`<BeforeAfterFlow>`, `<DurationBars>`, `<Funnel>`, `<LoopDiagram>`, and the per-case artifacts.
 ```
 
 Then `npm run verify`. The route, the sitemap entry, the section index and a per-case Open Graph
@@ -146,7 +154,7 @@ no browser that can run this site fetches.
 
 | | |
 |---|---|
-| Framework floor | **134.2 KB gzipped**, measured on a page with one heading and no client components |
+| Framework floor | **136.3 KB gzipped**, measured on a page with one heading and no client components |
 | Total per route | ≤ 145 KB gzipped, enforced |
 | Application code per route | ≤ 20 KB gzipped, enforced |
 
@@ -154,9 +162,10 @@ The original brief set a 90 KB homepage ceiling. That is below the Next.js 16 + 
 baseline and is not reachable on this stack at any level of discipline, so it is reported as unmet
 with the measurement rather than enforced as a gate that can only fail.
 
-Client JavaScript exists in exactly two places: `CopyEmail` and `GroundedDemo`. The navigation, the
-mobile menu, the disclosure drawers and the reading-progress indicator are all native `<details>`
-and CSS scroll-driven animations.
+Client JavaScript exists in three places: `Nav` (for its active state), `CopyEmail`, and
+`GroundedDemo`. The mobile menu and every disclosure drawer are native `<details>` with no
+JavaScript at all. Application code measures **0 KB on every route except `/lab/grounded`**, which
+carries the 6.5 KB demo.
 
 ---
 
@@ -191,6 +200,7 @@ These are deliverables, not notes. A technical hiring manager may read them.
 | [`docs/00-source-facts.md`](./docs/00-source-facts.md) | The verbatim record. Nothing on the site may exceed it. |
 | [`docs/01b-truth-audit.md`](./docs/01b-truth-audit.md) | The adversarial audit. Section 8 is the list `check:truth` enforces. |
 | [`docs/06-architecture.md`](./docs/06-architecture.md) | Stack, routes, schema, budget, and every departure from the brief |
+| [`docs/current-site-critique.md`](./docs/current-site-critique.md) | The V1 teardown that produced this redesign |
 
 ## Deployment
 
