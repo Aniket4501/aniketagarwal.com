@@ -7,7 +7,7 @@ import { site } from '@/lib/site'
 const LINKS = [
   { href: '/work', label: 'Work' },
   { href: '/approach', label: 'Approach' },
-  { href: '/lab', label: 'Lab' },
+  { href: '/lab/grounded', label: 'Lab' },
   { href: '/about', label: 'About' },
 ]
 
@@ -24,7 +24,10 @@ const LINKS = [
  */
 export function Nav() {
   const pathname = usePathname()
-  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
+  const isActive = (href: string) =>
+    href === '/lab/grounded'
+      ? pathname.startsWith('/lab')
+      : pathname === href || pathname.startsWith(`${href}/`)
 
   return (
     <>

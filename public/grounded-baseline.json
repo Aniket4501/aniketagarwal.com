@@ -20,7 +20,7 @@
       "total": 16
     }
   },
-  "totalElapsedMs": 2.62,
+  "totalElapsedMs": 2.95,
   "cases": [
     {
       "id": "n-01",
@@ -117,7 +117,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 1.25
+      "elapsedMs": 1.37
     },
     {
       "id": "n-02",
@@ -237,7 +237,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 0.61
+      "elapsedMs": 0.73
     },
     {
       "id": "n-03",
@@ -338,7 +338,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 0.05
+      "elapsedMs": 0.06
     },
     {
       "id": "b-01",
@@ -421,7 +421,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 0.13
+      "elapsedMs": 0.16
     },
     {
       "id": "b-02",
@@ -615,7 +615,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 0.1
+      "elapsedMs": 0.12
     },
     {
       "id": "o-01",
@@ -835,7 +835,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 0.04
+      "elapsedMs": 0.05
     },
     {
       "id": "o-03",
@@ -921,7 +921,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 0.05
+      "elapsedMs": 0.07
     },
     {
       "id": "o-04",
@@ -1130,7 +1130,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 0.06
+      "elapsedMs": 0.05
     },
     {
       "id": "a-01",
@@ -1532,7 +1532,7 @@
       ],
       "verdictAgrees": true,
       "dimensionsAgree": true,
-      "elapsedMs": 0.03
+      "elapsedMs": 0.04
     },
     {
       "id": "a-05",

@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
       // 404s is a broken link in somebody's inbox.
       { source: '/work/two-seconds', destination: '/work/step-syncing', permanent: true },
       { source: '/work/ai-health-reports', destination: '/work/ai-health-report', permanent: true },
+      // The lab index was a single card repeating the homepage block and then
+      // charging a click for the demo. The demo is the point; go straight there.
+      { source: '/lab', destination: '/lab/grounded', permanent: false },
     ]
   },
   async headers() {

@@ -14,7 +14,7 @@ import { site, tools, siteUrl } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Aniket Agarwal — product manager at HCL Healthcare, working on engagement for a consumer health app with 1M+ registered users. Based in Noida, India.',
+    'Aniket Agarwal — Product Analyst at HCL Healthcare, owning engagement on a consumer health app with 1M+ registered users. Based in Noida, India.',
   alternates: { canonical: '/about' },
 }
 
@@ -54,7 +54,7 @@ export default function About() {
           <div>
             <p className="eyebrow">About</p>
             <h1 className="mt-2 max-w-[18ch] text-[length:var(--text-3xl)] leading-[1.05] font-semibold tracking-[var(--track-display)] sm:text-[length:var(--text-hero)]">
-              I find the reason a product isn&rsquo;t being used.
+              I find the reason a product isn’t being used.
             </h1>
             <div className="case-body mt-4">
               <Mdx source={content} />

@@ -298,3 +298,37 @@ checked it independently and all four passed it. `lib/content/schema.ts`, `scrip
 5. Fixes 12–15 — craft pass.
 6. Re-screenshot into `docs/screenshots/iteration-v2-2/` **before** any further review. Four of the
    defects in the source reviews are already fixed on disk and would be re-reported against stale PNGs.
+
+---
+
+## Close-out — all seventeen, verified against the tree on 2026-08-19
+
+Screenshots re-captured to `docs/screenshots/iteration-v2-2/` **after** every fix below, so this
+iteration is the one to review. `iteration-v2-1` is stale and will re-report fixed defects.
+
+| # | Status | What landed |
+|---|---|---|
+| F1 | FIXED | "Product Manager" removed from `lib/site.ts` (`title: 'Product Analyst'`), the layout title default, the OG card eyebrow, the About description and `content/about.mdx`. The About copy now names both: the title is Product Analyst, the scope is a PM's. |
+| F2 | FIXED | `GroundedDemo` rebound to live tokens (`--color-surface`, `--color-canvas`, `--color-accent`, `--color-line`, `--color-line-strong`) and every `text-[var(--text-*)]` corrected to `text-[length:var(--text-*)]`. |
+| F3 | FIXED | The `/lab` index is deleted. It was one card repeating the homepage block verbatim and then charging a click for the demo; `/lab` now 307s to `/lab/grounded`, and nav, footer, sitemap and the capture route list follow. The homepage timeline is compact and links out to `/about` for the full one. |
+| F4 | FIXED | The footer no longer repeats the CTA pitch. |
+| F5 | FIXED | `MetricDelta` draws bars only when both endpoints parse to positive numbers; otherwise it renders `before → after` as text. |
+| F6 | FIXED | The `problem` tone in `Flow` is `--color-line-strong`, not `--color-flag`. A starting value is not a mistake, and the same datum now renders identically on every page. |
+| F7 | FIXED | `DecisionTable` emits `.decision-block`, which is what the `.case-body` wide-element rule matches. The table now spans the full 58rem figure track instead of the 576px prose measure. |
+| F8 | FIXED | `/approach` carries visual anchors and the empty left column is gone. |
+| F9 | FIXED | The Lab card's stat rail dropped `content-start`; its rows stretch to fill the column, and each cell centres its own content. The 505x190 slab of bare divider colour is gone. |
+| F10 | **OPEN — cannot be closed without the user** | Two case studies have no timeline because the record does not state one. Inventing dates is the one thing this build will not do. Logged in `CONTENT_GAPS.md` as a ranked ask. |
+| F11 | FIXED | Grounded's tiles are "Adversarial cases · 5" and "Setup required · None". The 2.62ms runtime and the zero-server-call count are gone from the pitch surface. |
+| F12 | FIXED | The hero intro now reads "an audience I inherited rather than acquired, which makes getting them to come back the entire job" — the deflation is stated before the reader gets there. |
+| F13 | FIXED | Green is reserved for accent, live status and measured-improvement direction. Decorative green rules deleted from the hero panel. |
+| F14 | FIXED | The hero CTA row gap tightened; the three buttons hold one line at 1024 and wrap cleanly at 390. |
+| F15 | FIXED | Typographic apostrophe in the headline; the sentence now matches its About counterpart. |
+| F16 | FIXED | One label for one figure: "+20% Daily actives" in both the proof panel and the numbers grid. |
+| F17 | **IMPROVED, not eliminated** | 12,773 → 11,278 CSS px at 390 (−12%), plus one whole route removed from the site. The remaining length is evidence, not padding: 2,847px of it is three case cards that each carry a problem statement, an ownership statement, a to-scale chart and two captioned metrics. The compression came from deleting the abstract restatement between each principle and its example — the maxim half, which read as filler and lives on `/approach` in full. |
+
+### The two things a reviewer should still push on
+
+1. **F10.** Two of three case studies cannot state how long the work took. That is a real gap in the
+   evidence and it is not fixable from this side.
+2. **F17.** Thirteen screens on a phone is still long for a first visit. Every further cut costs
+   evidence, so the next move is a judgement call the user should make, not a defect to fix silently.

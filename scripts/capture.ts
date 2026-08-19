@@ -24,7 +24,6 @@ const ROUTES = [
   '/work/steps-premier-league',
   '/work/ai-health-report',
   '/approach',
-  '/lab',
   '/lab/grounded',
   '/about',
   '/this-route-does-not-exist',

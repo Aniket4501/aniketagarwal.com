@@ -94,7 +94,7 @@ export default function Home() {
             </p>
 
             <div
-              className="animate-rise mt-1 flex flex-wrap items-center gap-2"
+              className="animate-rise mt-1 flex flex-wrap items-center gap-1.5 sm:gap-2"
               style={{ '--delay': '180ms' } as React.CSSProperties}
             >
               <Button href="#work" size="large">
@@ -109,25 +109,20 @@ export default function Home() {
             </div>
 
             {/* Identification. Title, location and what he wants — all three
-                sat below 23,000px on a phone before this, which is nowhere. */}
+                sat below 23,000px on a phone before this, which is nowhere.
+                No interpunct separators: this list wraps at every width, and a
+                separator rendered before its item orphans a dot onto the start
+                of the next line, which reads as a rendering fault. */}
             <ul
-              className="animate-rise mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-[var(--color-line)] pt-3 text-[length:var(--text-sm)] text-[var(--color-muted)]"
+              className="animate-rise mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-[var(--color-line)] pt-3 text-[length:var(--text-sm)] text-[var(--color-muted)]"
               style={{ '--delay': '240ms' } as React.CSSProperties}
             >
               {meta.meta.map((m, i) => (
-                <li key={m} className="flex items-center gap-2">
-                  {i > 0 ? (
-                    <span aria-hidden="true" className="text-[var(--color-line-strong)]">
-                      ·
-                    </span>
-                  ) : null}
-                  <span className={i === 0 ? 'font-medium text-[var(--color-ink)]' : ''}>{m}</span>
+                <li key={m} className={i === 0 ? 'font-medium text-[var(--color-ink)]' : ''}>
+                  {m}
                 </li>
               ))}
-              <li className="flex items-center gap-2">
-                <span aria-hidden="true" className="text-[var(--color-line-strong)]">
-                  ·
-                </span>
+              <li>
                 <a
                   href={`mailto:${site.email}`}
                   className="font-medium text-[var(--color-accent)] underline decoration-[var(--color-accent)]/30 underline-offset-[3px] hover:decoration-[var(--color-accent)]"
@@ -267,10 +262,10 @@ export default function Home() {
                 <h3 className="max-w-[26ch] text-[length:var(--text-lg)] leading-snug font-semibold tracking-[var(--track-heading)]">
                   {p.title}
                 </h3>
+                {/* The principle is the claim; the example is the evidence. The
+                    abstract restatement that used to sit between them read as a
+                    maxim and is on /approach in full. */}
                 <p className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
-                  {p.body}
-                </p>
-                <p className="mt-auto border-t border-[var(--color-line)] pt-2 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
                   {p.example}
                 </p>
                 {p.href ? (
@@ -319,14 +314,21 @@ export default function Home() {
                     </Button>
                   </div>
                 </div>
-                <dl className="grid grid-cols-2 content-start gap-px border-t border-[var(--color-line)] bg-[var(--color-line)] lg:border-t-0 lg:border-l">
+                {/* No content-start: the tiles are shorter than the prose
+                    column beside them, and holding them to the top left a
+                    505x190 slab of bare divider colour under the last row. The
+                    rows stretch to fill the column instead. */}
+                <dl className="grid grid-cols-2 gap-px border-t border-[var(--color-line)] bg-[var(--color-line)] lg:border-t-0 lg:border-l">
                   {[
                     ['Cases in the set', String(baseline.stats.total)],
                     ['Scored dimensions', '4'],
-                    ['Full run', `${baseline.totalElapsedMs}ms`],
-                    ['Server calls', '0'],
+                    ['Adversarial cases', String(baseline.stats.byCategory.adversarial)],
+                    ['Setup required', 'None'],
                   ].map(([k, v]) => (
-                    <div key={k} className="flex flex-col gap-0.5 bg-[var(--color-surface)] p-2.5">
+                    <div
+                      key={k}
+                      className="flex flex-col justify-center gap-0.5 bg-[var(--color-surface)] p-2.5"
+                    >
                       <dt className="eyebrow">{k}</dt>
                       <dd className="text-[length:var(--text-xl)] font-semibold tabular-nums">
                         {v}

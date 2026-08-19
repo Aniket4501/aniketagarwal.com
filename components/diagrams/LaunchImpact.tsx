@@ -66,10 +66,6 @@ export function BundleImpact() {
           </span>
         </div>
       </div>
-      <p className="max-w-[26ch] text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
-        Area is proportional to size. A 76% reduction — the one figure here that
-        computes exactly from two stated totals.
-      </p>
     </div>
   )
 }

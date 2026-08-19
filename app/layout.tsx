@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: {
     // Outcome first, name last. Someone searching his name finds him either
     // way; outcome-first titles perform better when links are shared.
-    default: 'Aniket Agarwal — Product Manager, consumer health & applied AI',
+    default: 'Aniket Agarwal — Product, consumer health & applied AI',
     template: '%s | Aniket Agarwal',
   },
   description: site.defaultDescription,

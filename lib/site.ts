@@ -10,7 +10,8 @@ import type { Role } from './content/schema'
 
 export const site = {
   name: 'Aniket Agarwal',
-  role: 'Product Manager',
+  /** The literal title in both source documents. Never 'Product Manager'. */
+  title: 'Product Analyst',
   company: 'HCL Healthcare',
   location: 'Noida, India',
   email: 'aniketagarwalmhq24@gmail.com',
@@ -18,7 +19,7 @@ export const site = {
   /** The speakable URL. 307s to the PDF, so the filename can change freely. */
   resume: '/resume',
   defaultDescription:
-    'Product Manager at HCL Healthcare building consumer health and applied-AI products for 1M+ registered users. Step syncing, a 0→1 engagement league, and an AI health report that became an enterprise USP.',
+    'Product Analyst at HCL Healthcare, owning engagement on a consumer health app with 1M+ registered users. Step syncing, a 0→1 engagement league, and an AI health report that became an enterprise USP.',
 } as const
 
 export function siteUrl(): string {

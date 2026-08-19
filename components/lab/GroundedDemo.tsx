@@ -69,9 +69,9 @@ export function GroundedDemo() {
   }
 
   return (
-    <div className="my-5 flex flex-col gap-px border border-[var(--color-rule)] bg-[var(--color-rule)] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+    <div className="my-5 flex flex-col gap-px border border-[var(--color-line)] bg-[var(--color-line)] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
       {/* ---- input ---- */}
-      <div className="flex flex-col gap-2.5 bg-[var(--color-paper-raised)] p-2.5">
+      <div className="flex flex-col gap-2.5 bg-[var(--color-surface)] p-2.5">
         <div className="flex flex-col gap-1">
           <label htmlFor="gd-case" className="eyebrow">
             Sample case
@@ -83,7 +83,7 @@ export function GroundedDemo() {
               setSelected(e.target.value)
               reset()
             }}
-            className="w-full rounded-[var(--radius-sm)] border border-[var(--color-rule-strong)] bg-[var(--color-paper)] px-1.5 py-1 font-[family-name:var(--font-mono)] text-[var(--text-sm)]"
+            className="w-full rounded-[var(--radius-sm)] border border-[var(--color-line-strong)] bg-[var(--color-canvas)] px-1.5 py-1 text-[length:var(--text-sm)]"
           >
             {CASES.map((c) => (
               <option key={c.id} value={c.id}>
@@ -91,14 +91,14 @@ export function GroundedDemo() {
               </option>
             ))}
           </select>
-          <p className="text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+          <p className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
             {active.note}
           </p>
         </div>
 
         <div className="flex flex-col gap-1">
           <p className="eyebrow">Source panel</p>
-          <ul className="flex flex-col gap-0.5 font-[family-name:var(--font-mono)] text-[var(--text-xs)] tabular-nums">
+          <ul className="flex flex-col gap-0.5 text-[length:var(--text-xs)] tabular-nums">
             {active.labs.map((l) => {
               const out = l.value < l.refLow || l.value > l.refHigh
               return (
@@ -127,17 +127,17 @@ export function GroundedDemo() {
             onChange={(e) => void evaluateCustom(e.target.value)}
             rows={7}
             spellCheck={false}
-            className="w-full resize-y rounded-[var(--radius-sm)] border border-[var(--color-rule-strong)] bg-[var(--color-paper)] p-1.5 text-[var(--text-sm)] leading-relaxed"
+            className="w-full resize-y rounded-[var(--radius-sm)] border border-[var(--color-line-strong)] bg-[var(--color-canvas)] p-1.5 text-[length:var(--text-sm)] leading-relaxed"
           />
           <div className="flex items-center gap-1.5">
-            <p className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)]">
+            <p className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
               Edit it. Scores update as you type — no server, no key.
             </p>
             {custom !== null ? (
               <button
                 type="button"
                 onClick={reset}
-                className="rounded-[var(--radius-sm)] border border-[var(--color-rule-strong)] px-1 py-0.25 font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+                className="rounded-[var(--radius-sm)] border border-[var(--color-line-strong)] px-1 py-0.25 text-[length:var(--text-xs)] text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
               >
                 reset
               </button>
@@ -147,12 +147,12 @@ export function GroundedDemo() {
       </div>
 
       {/* ---- scorecard ---- */}
-      <div className="flex flex-col gap-2.5 bg-[var(--color-paper-raised)] p-2.5">
+      <div className="flex flex-col gap-2.5 bg-[var(--color-surface)] p-2.5">
         <div className="flex items-baseline justify-between gap-1.5">
           <p className="eyebrow">Verdict</p>
           <p
-            className={`font-[family-name:var(--font-mono)] text-[var(--text-lg)] ${
-              passed ? 'text-[var(--color-signal)]' : 'text-[var(--color-flag)]'
+            className={`text-[length:var(--text-lg)] ${
+              passed ? 'text-[var(--color-accent)]' : 'text-[var(--color-flag)]'
             }`}
             aria-live="polite"
           >
@@ -164,21 +164,21 @@ export function GroundedDemo() {
           {dimensions.map((d) => (
             <li
               key={d.dimension}
-              className="flex flex-col gap-0.5 border-t border-[var(--color-rule)] pt-1.5"
+              className="flex flex-col gap-0.5 border-t border-[var(--color-line)] pt-1.5"
             >
               <div className="flex items-baseline justify-between gap-1.5">
-                <span className="font-[family-name:var(--font-mono)] text-[var(--text-sm)]">
+                <span className="text-[length:var(--text-sm)]">
                   {d.dimension}
                 </span>
                 <span
-                  className={`font-[family-name:var(--font-mono)] text-[var(--text-sm)] tabular-nums ${
-                    d.passed ? 'text-[var(--color-signal)]' : 'text-[var(--color-flag)]'
+                  className={`text-[length:var(--text-sm)] tabular-nums ${
+                    d.passed ? 'text-[var(--color-accent)]' : 'text-[var(--color-flag)]'
                   }`}
                 >
                   {d.score} / {d.threshold}
                 </span>
               </div>
-              <p className="text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+              <p className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
                 {d.rationale}
               </p>
             </li>
@@ -188,14 +188,14 @@ export function GroundedDemo() {
         {findings.length > 0 ? (
           <div className="flex flex-col gap-1">
             <p className="eyebrow">Failing spans</p>
-            <p className="text-[var(--text-sm)] leading-relaxed">
+            <p className="text-[length:var(--text-sm)] leading-relaxed">
               <Highlighted text={text} findings={findings} />
             </p>
             <ul className="flex flex-col gap-0.75 pt-0.5">
               {findings.map((f, i) => (
                 <li
                   key={i}
-                  className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] leading-relaxed text-[var(--color-muted)]"
+                  className="text-[length:var(--text-xs)] leading-relaxed text-[var(--color-muted)]"
                 >
                   <span className="text-[var(--color-flag)]">{f.rule}</span>
                   {f.text ? <> · &ldquo;{f.text}&rdquo;</> : null} · {f.reason}
@@ -206,7 +206,7 @@ export function GroundedDemo() {
         ) : null}
 
         {custom === null ? (
-          <p className="border-t border-[var(--color-rule)] pt-1.5 font-[family-name:var(--font-mono)] text-[var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
+          <p className="border-t border-[var(--color-line)] pt-1.5 text-[length:var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
             Label says{' '}
             {active.expected.failingDimensions.length
               ? active.expected.failingDimensions.join(', ')

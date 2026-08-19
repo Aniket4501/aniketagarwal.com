@@ -23,7 +23,7 @@ export function DecisionTable({
   rows: DecisionRow[]
 }) {
   return (
-    <div className="my-5">
+    <div className="decision-block my-5">
       <div className="card hidden overflow-hidden sm:block">
         <table className="w-full table-fixed text-left text-[length:var(--text-sm)] leading-snug">
           <caption className="sr-only">{caption}</caption>
