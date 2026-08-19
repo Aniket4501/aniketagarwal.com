@@ -14,9 +14,9 @@ const OUT = path.join(process.cwd(), 'docs', 'lighthouse')
 const ROUTES = [
   '/',
   '/work',
-  '/work/two-seconds',
+  '/work/step-syncing',
   '/work/steps-premier-league',
-  '/work/ai-health-reports',
+  '/work/ai-health-report',
   '/approach',
   '/lab',
   '/lab/grounded',
