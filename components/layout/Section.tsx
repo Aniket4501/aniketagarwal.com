@@ -20,7 +20,7 @@ export function Section({
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={`py-8 lg:py-11 ${band ? 'band border-y border-[var(--color-line)]' : ''} ${className}`}
+      className={`py-6 sm:py-8 lg:py-11 ${band ? 'band border-y border-[var(--color-line)]' : ''} ${className}`}
     >
       {children}
     </section>

@@ -75,8 +75,8 @@ export default function Home() {
   return (
     <>
       {/* 1 — Hero */}
-      <Container as="header" className="pt-6 pb-8 lg:pt-10 lg:pb-12">
-        <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
+      <Container as="header" className="pt-4 pb-6 sm:pt-6 sm:pb-8 lg:pt-10 lg:pb-12">
+        <div className="grid items-center gap-5 sm:gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
           <div className="flex flex-col gap-3">
             <p className="animate-rise eyebrow">{meta.eyebrow}</p>
 
@@ -88,7 +88,7 @@ export default function Home() {
             </h1>
 
             <p
-              className="animate-rise max-w-[54ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]"
+              className="animate-rise max-w-[54ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)] sm:text-[length:var(--text-md)]"
               style={{ '--delay': '120ms' } as React.CSSProperties}
             >
               {meta.intro}
@@ -127,7 +127,7 @@ export default function Home() {
             title="What the work actually moved."
             lead="Every figure below comes from shipped product work at HCL Healthcare."
           />
-          <div className="mt-6 grid gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-x-6 gap-y-5 sm:mt-6 sm:gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
             {meta.numbers.map((n, i) => (
               <div
                 key={n.label}
@@ -206,9 +206,9 @@ export default function Home() {
               </Button>
             }
           />
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+          <div className="mt-5 grid gap-2 sm:mt-6 sm:gap-3 sm:grid-cols-2">
             {meta.principles.map((p, i) => (
-              <div key={p.title} className="card flex flex-col gap-2 p-3">
+              <div key={p.title} className="card flex flex-col gap-1.5 p-2.5 sm:gap-2 sm:p-3">
                 <span className="text-[length:var(--text-sm)] font-semibold tabular-nums text-[var(--color-accent)]">
                   {String(i + 1).padStart(2, '0')}
                 </span>

@@ -14,7 +14,7 @@ export function Experience() {
       {experience.map((role, i) => (
         <li
           key={role.company}
-          className={`border-t border-[var(--color-line)] py-4 ${i === 0 ? 'border-t-0 pt-0' : ''}`}
+          className={`border-t border-[var(--color-line)] py-3 sm:py-4 ${i === 0 ? 'border-t-0 pt-0' : ''}`}
         >
           <div className="grid gap-2 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-6">
             <div className="flex flex-col gap-1">
@@ -64,7 +64,7 @@ export function Experience() {
         </li>
       ))}
 
-      <li className="border-t border-[var(--color-line)] py-4">
+      <li className="border-t border-[var(--color-line)] py-3 sm:py-4">
         <div className="grid gap-2 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-6">
           <div className="flex flex-col gap-1">
             <h3 className="text-[length:var(--text-lg)] font-semibold tracking-[var(--track-heading)]">

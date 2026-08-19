@@ -33,7 +33,7 @@ export function CaseCard({
       <div
         className={`grid lg:grid-cols-2 ${reversed ? 'lg:[&>*:first-child]:order-2' : ''}`}
       >
-        <div className="flex flex-col gap-2.5 p-3 sm:p-4">
+        <div className="flex flex-col gap-2 p-2.5 sm:gap-2.5 sm:p-4">
           <div className="flex items-center gap-1.5">
             <span className="text-[length:var(--text-xs)] font-semibold tabular-nums text-[var(--color-muted)]">
               {String(index).padStart(2, '0')}
@@ -51,7 +51,7 @@ export function CaseCard({
             {meta.outcome}
           </p>
 
-          <dl className="mt-1 flex flex-col gap-2 border-t border-[var(--color-line)] pt-2.5">
+          <dl className="mt-0.5 flex flex-col gap-1.5 border-t border-[var(--color-line)] pt-2 sm:mt-1 sm:gap-2 sm:pt-2.5">
             <div className="flex flex-col gap-0.5">
               <dt className="eyebrow">Problem</dt>
               <dd className="max-w-[48ch] text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
@@ -77,7 +77,7 @@ export function CaseCard({
           </p>
         </div>
 
-        <div className="flex items-center border-t border-[var(--color-line)] bg-[var(--color-canvas)] p-3 sm:p-4 lg:border-t-0 lg:border-l">
+        <div className="flex items-center border-t border-[var(--color-line)] bg-[var(--color-canvas)] p-2.5 sm:p-4 lg:border-t-0 lg:border-l">
           <div className="w-full">{visual}</div>
         </div>
       </div>

@@ -23,12 +23,14 @@ export function CopyEmail({ size = 'default' }: { size?: 'default' | 'large' }) 
   }
 
   return (
-    <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1.5">
+    <span className="flex max-w-full flex-wrap items-center gap-x-2 gap-y-1.5">
       <a
         href={`mailto:${site.email}`}
-        className={`inline-flex items-center gap-1.5 rounded-[var(--radius)] bg-[var(--color-ink)] font-medium text-[var(--color-canvas)] transition-colors duration-[var(--duration-fast)] hover:bg-[var(--color-accent)] ${
+        /* The address is a long unbreakable token; without a break rule it
+           pushed the whole page 50px wide at 320. */
+        className={`inline-flex max-w-full items-center gap-1.5 rounded-[var(--radius)] bg-[var(--color-ink)] font-medium break-all text-[var(--color-canvas)] transition-colors duration-[var(--duration-fast)] hover:bg-[var(--color-accent)] ${
           size === 'large'
-            ? 'px-3.5 py-2 text-[length:var(--text-base)]'
+            ? 'px-3 py-2 text-[length:var(--text-sm)] sm:px-3.5 sm:text-[length:var(--text-base)]'
             : 'px-2.5 py-1.5 text-[length:var(--text-sm)]'
         }`}
       >

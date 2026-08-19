@@ -111,7 +111,7 @@ export function Nav() {
                 </ul>
                 <a
                   href={`mailto:${site.email}`}
-                  className="mt-3 inline-block text-[length:var(--text-sm)] font-medium text-[var(--color-accent)]"
+                  className="mt-3 block break-all text-[length:var(--text-sm)] font-medium text-[var(--color-accent)]"
                 >
                   {site.email}
                 </a>

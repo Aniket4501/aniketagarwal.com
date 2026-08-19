@@ -19,11 +19,8 @@ export function HeroPanel({ figures }: { figures: Figure[] }) {
     <div className="card overflow-hidden shadow-[var(--shadow-card)]">
       <div className="flex items-center justify-between gap-2 border-b border-[var(--color-line)] bg-[var(--color-canvas)] px-2.5 py-1.5">
         <p className="eyebrow">Product impact</p>
-        <p className="flex items-center gap-1 text-[length:var(--text-xs)] text-[var(--color-muted)]">
-          <span
-            aria-hidden="true"
-            className="h-1 w-1 rounded-full bg-[var(--color-accent)]"
-          />
+        <p className="hidden items-center gap-1 text-[length:var(--text-xs)] whitespace-nowrap text-[var(--color-muted)] sm:flex">
+          <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[var(--color-accent)]" />
           Consumer health · 1M+ users
         </p>
       </div>
@@ -32,10 +29,10 @@ export function HeroPanel({ figures }: { figures: Figure[] }) {
         {tiles.map((f, i) => (
           <div
             key={f.label}
-            className="animate-rise flex flex-col gap-1 bg-[var(--color-surface)] px-2.5 py-3"
+            className="animate-rise flex flex-col gap-0.5 bg-[var(--color-surface)] px-2 py-2.5 sm:gap-1 sm:px-2.5 sm:py-3"
             style={{ '--delay': `${140 + i * 70}ms` } as React.CSSProperties}
           >
-            <p className="text-[length:var(--text-3xl)] leading-none font-semibold tracking-[var(--track-display)] text-[var(--color-ink)] tabular-nums">
+            <p className="text-[length:var(--text-2xl)] leading-none font-semibold tracking-[var(--track-display)] text-[var(--color-ink)] tabular-nums sm:text-[length:var(--text-3xl)]">
               {f.value}
             </p>
             <p className="text-[length:var(--text-sm)] leading-snug font-medium text-[var(--color-ink)]">
