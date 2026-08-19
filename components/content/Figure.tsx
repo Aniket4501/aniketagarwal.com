@@ -29,7 +29,7 @@ export function Figure({
   scroll?: boolean
 }) {
   return (
-    <figure className="my-5">
+    <figure className="prose-wide my-5">
       <div
         role="img"
         aria-label={alt}

@@ -93,7 +93,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       </Container>
 
       <Container className="pb-8 lg:pb-12">
-        <div className="lg:grid lg:grid-cols-[minmax(0,var(--measure))_minmax(0,1fr)] lg:gap-7">
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(14rem,17rem)] lg:gap-10">
           <div className="prose order-1">
             <Mdx source={body} />
           </div>

@@ -22,14 +22,14 @@ export function DecisionTable({
   rows: DecisionRow[]
 }) {
   return (
-    <div className="my-5">
+    <div className="prose-wide my-5">
       <div
         className="scroll-x border border-[var(--color-rule)] bg-[var(--color-paper-raised)]"
         tabIndex={0}
         role="region"
         aria-label={caption}
       >
-        <table className="w-full min-w-[36rem] text-left text-[var(--text-sm)]">
+        <table className="w-full min-w-[34rem] table-fixed text-left font-[family-name:var(--font-sans)] text-[var(--text-sm)] leading-snug tracking-[var(--track-ui)]">
           <caption className="decision-caption">{caption}</caption>
           <thead>
             <tr className="border-b border-[var(--color-rule-strong)]">

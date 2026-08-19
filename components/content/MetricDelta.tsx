@@ -4,32 +4,31 @@ import type { Metric } from '@/lib/content/schema'
 /**
  * The signature element, and the most-repeated component on the site.
  *
- * The connecting rule is drawn TO SCALE. Its filled segment is the smaller of
- * the two values as a proportion of the larger, so a reader sees the ratio
- * before reading either number. That is the one aesthetic risk this site
- * takes: on a page whose whole argument is that furniture and evidence should
- * be told apart, the most-repeated ornament had to become data ink or go.
+ * TWO BARS FROM ONE ORIGIN, drawn to a shared scale. The reader compares two
+ * lengths, which is the comparison a bar chart is for, and no legend is needed
+ * to know which is which because each bar is labelled at its own end.
+ *
+ * The first version was a single track whose filled segment was the smaller
+ * value. That produced three different meanings for one widget — fill = after
+ * on `25MB → 6MB`, fill = before on `3.5 → 7.8 min` — separated only by hue.
+ * A numerate reviewer would have called it wrong, on the site whose whole
+ * argument is that figures should be checkable.
  *
  * Where `after` is a BOUND rather than a value — "under 2s" comes from "<2s",
  * an inequality — the bar is drawn to the bound and terminated with a dashed
- * edge, which is the standard notation for an open interval. Drawing a solid
- * bar there would assert a precision the source does not contain.
+ * edge, the standard notation for an open interval. A solid bar there would
+ * assert a precision the source does not contain.
  *
- * Where the two values cannot be compared (different units, or no numeric
- * before), the scale is not drawn at all. A bar implying a ratio that the
- * record does not support would be exactly the invention this site exists to
- * avoid.
+ * Where the two values cannot be compared (different units, no numeric before)
+ * no bars are drawn at all. A figure with no baseline belongs in `Stat`.
  *
  * The denominator renders at the same size as the label — never smaller, never
  * in a tooltip, never on hover. A denominator you have to hover to see is a
  * denominator you are hiding.
  */
 
-type Scale = { fraction: number; smallerIsAfter: boolean; bounded: boolean }
-
 const BOUND = /^\s*(under|below|<|less than|at most)\b/i
 
-/** "15s" -> 15 · "3.5 min" -> 3.5 · "under 2s" -> 2 */
 function parse(value: string): { n: number; unit: string } | null {
   const m = value.match(/(-?\d+(?:\.\d+)?)\s*([%A-Za-z/]*)/)
   if (!m?.[1]) return null
@@ -37,20 +36,12 @@ function parse(value: string): { n: number; unit: string } | null {
   return Number.isFinite(n) ? { n, unit: (m[2] ?? '').toLowerCase() } : null
 }
 
-function computeScale(before: string, after: string): Scale | null {
+function scaleOf(before: string, after: string) {
   const a = parse(before)
   const b = parse(after)
-  if (!a || !b) return null
-  if (a.unit !== b.unit) return null
-  if (a.n <= 0 || b.n <= 0) return null
-
-  const larger = Math.max(a.n, b.n)
-  const smaller = Math.min(a.n, b.n)
-  return {
-    fraction: smaller / larger,
-    smallerIsAfter: b.n < a.n,
-    bounded: BOUND.test(after),
-  }
+  if (!a || !b || a.unit !== b.unit || a.n <= 0 || b.n <= 0) return null
+  const max = Math.max(a.n, b.n)
+  return { before: (a.n / max) * 100, after: (b.n / max) * 100, bounded: BOUND.test(after) }
 }
 
 export function MetricDelta({
@@ -61,58 +52,49 @@ export function MetricDelta({
   size?: 'default' | 'large' | 'compact'
 }) {
   const { label, before, after, denominator, timeframe, method, delta, animate } = metric
-  const scale = computeScale(before, after)
+  const scale = scaleOf(before, after)
 
   const figure =
     size === 'large'
-      ? 'text-[var(--text-xl)] sm:text-[var(--text-2xl)]'
+      ? 'text-[var(--text-lg)] sm:text-[var(--text-xl)]'
       : size === 'compact'
-        ? 'text-[var(--text-base)]'
-        : 'text-[var(--text-lg)]'
+        ? 'text-[var(--text-sm)]'
+        : 'text-[var(--text-base)]'
 
   const qualifiers = [denominator, timeframe, method].filter(Boolean)
 
   return (
-    <figure className="flex flex-col gap-1">
+    <figure className="flex flex-col gap-1.5">
       <figcaption className="eyebrow">{label}</figcaption>
 
       <div
-        className={`flex items-baseline gap-1.5 font-[family-name:var(--font-mono)] tabular-nums ${figure}`}
+        className={`grid grid-cols-[max-content_minmax(0,1fr)] items-center gap-x-1.5 gap-y-1 font-[family-name:var(--font-mono)] tabular-nums ${figure}`}
       >
-        <span className="shrink-0 text-[var(--color-ink)]">{before}</span>
-
-        <span aria-hidden="true" className="flex min-w-4 flex-1 items-center self-center">
-          {scale ? (
-            /* The track is the larger value; the filled segment is the smaller
-               one, drawn at its true proportion. */
+        <span className="text-right text-[var(--color-ink)]">{before}</span>
+        {scale ? (
+          <span aria-hidden="true" className="flex h-2 items-center">
             <span
-              className={`relative h-[3px] flex-1 bg-[var(--color-rule)] ${
-                animate ? 'metric-rule--animate' : ''
-              }`}
-            >
-              <span
-                className={`absolute inset-y-0 left-0 ${
-                  scale.smallerIsAfter
-                    ? 'bg-[var(--color-signal)]'
-                    : 'bg-[var(--color-rule-strong)]'
-                } ${scale.bounded ? 'metric-bound' : ''}`}
-                style={{ width: `${(scale.fraction * 100).toFixed(2)}%` }}
-              />
-            </span>
-          ) : (
-            <span
-              className={`h-px flex-1 bg-[var(--color-rule-strong)] ${
-                animate ? 'metric-rule--animate' : ''
-              }`}
+              className={`h-full bg-[var(--color-ink)]/70 ${animate ? 'metric-rule--animate' : ''}`}
+              style={{ width: `${scale.before.toFixed(2)}%` }}
             />
-          )}
-          <svg width="7" height="8" viewBox="0 0 7 8" className="ml-1 shrink-0 fill-[var(--color-rule-strong)]">
-            <path d="M0 0L7 4L0 8Z" />
-          </svg>
-        </span>
-        <span className="sr-only"> to </span>
+          </span>
+        ) : (
+          <span aria-hidden="true" className="h-px bg-[var(--color-rule-strong)]" />
+        )}
 
-        <span className="shrink-0 font-medium text-[var(--color-signal)]">{after}</span>
+        <span className="text-right font-medium text-[var(--color-signal)]">{after}</span>
+        {scale ? (
+          <span aria-hidden="true" className="flex h-2 items-center">
+            <span
+              className={`h-full bg-[var(--color-signal)] ${
+                scale.bounded ? 'border-r-2 border-dashed border-[var(--color-signal)]' : ''
+              } ${animate ? 'metric-rule--animate' : ''}`}
+              style={{ width: `${scale.after.toFixed(2)}%` }}
+            />
+          </span>
+        ) : (
+          <span />
+        )}
       </div>
 
       {delta ? (
@@ -122,7 +104,7 @@ export function MetricDelta({
       ) : null}
 
       {qualifiers.length > 0 ? (
-        <div className="mt-0.5 font-[family-name:var(--font-mono)] text-[var(--text-xs)] leading-relaxed">
+        <div className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] leading-relaxed">
           {qualifiers.map((q, i) => (
             <span key={i} className={hasNeeds(q) ? '' : 'text-[var(--color-muted)]'}>
               {i > 0 ? <span className="text-[var(--color-muted)]"> · </span> : null}
@@ -133,8 +115,8 @@ export function MetricDelta({
       ) : null}
 
       {scale?.bounded ? (
-        <p className="font-[family-name:var(--font-mono)] text-[var(--text-2xs)] text-[var(--color-muted)]">
-          Bar drawn to the bound — the source states an inequality, not a value.
+        <p className="font-[family-name:var(--font-mono)] text-[var(--text-2xs)] leading-snug text-[var(--color-muted)]">
+          Drawn to the bound — the source states an inequality, not a value.
         </p>
       ) : null}
     </figure>

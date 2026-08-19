@@ -262,15 +262,31 @@
    --------------------------------------------------------------------------- */
 
 @layer components {
+  /**
+   * The prose COLUMN is wide; the TEXT inside it is not.
+   *
+   * Constraining the whole column to the measure left a decision table clipped
+   * mid-word behind a scroll fade with 570px of empty page beside it — on the
+   * two pages a Head of Product actually opens, on a site whose thesis is that
+   * it states things precisely. Text keeps its 68-character measure; tables and
+   * diagrams take the column.
+   */
   .prose {
-    /* Reference --font-reading directly, not --font-serif: see the note at the
-       token. This is the register shift the whole design rests on — interface
-       grotesk for the argument's furniture, a text serif for the argument. */
+    display: grid;
+    grid-template-columns: [content-start] min(100%, var(--measure)) [content-end] minmax(0, 1fr);
     font-family: var(--font-reading, ui-serif), Georgia, serif;
     font-size: 1.125rem; /* 18 on mobile */
     line-height: 1.65;
     letter-spacing: var(--track-body);
-    max-width: var(--measure);
+  }
+
+  .prose > * {
+    grid-column: content;
+    min-width: 0;
+  }
+
+  .prose > .prose-wide {
+    grid-column: 1 / -1;
   }
 
   @media (min-width: 640px) {
