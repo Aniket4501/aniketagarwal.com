@@ -90,9 +90,14 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 <p className="mt-3 max-w-[62ch] text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
                   {unknown.map((r) => r.k).join(' and ')}{' '}
                   {unknown.length > 1 ? 'are' : 'is'} not in my published record.{' '}
-                  {unknown.map((r) => (
-                    <WithNeeds key={r.k} text={r.v} />
-                  ))}
+                  {/* One chip, not one per field: the labels above already name
+                      which fields are missing, so a second and third marker
+                      just adds red without adding information. */}
+                  <WithNeeds
+                    text={`[NEEDS: ${unknown
+                      .map((r) => (r.v.match(/\[NEEDS:\s*([^\]]+)\]/)?.[1] ?? '').trim())
+                      .join(' · ')}]`}
+                  />
                 </p>
               ) : null}
             </>
