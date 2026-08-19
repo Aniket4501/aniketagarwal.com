@@ -12,10 +12,31 @@ Last updated: expansion round 2, 2026-08-19.
 
 ---
 
-## BLOCKING — the four things that would change the site most
+## BLOCKING — the five things that would change the site most
 
 Each is phrased as a question you can answer in one sitting. Everything below this section is
-secondary to these four.
+secondary to these.
+
+### B0. Name one person who disagreed with you, and what happened.
+`[NEEDS: one decision where a named colleague pushed back, on what grounds, and how it resolved]`
+
+**Two independent reviewers found the same hole, and it is now the site's largest.** There is not one
+named counterparty anywhere on eleven pages. Every disagreement published here is between you and
+your past self: what a number does not prove, where a record stops, what you would do differently.
+That register is rare and it is genuinely good — and it is structurally incapable of showing that
+you have survived a disagreement with a living, funded, unreasonable person, which is most of the
+job. The Strava teardown even *invents* its opposition ("Growth will like it", "Marketing objects").
+
+The question the site cannot currently survive: *tell me about a time you were wrong at the time, a
+specific person told you so, and you changed your mind.* Two sentences would close it. More writing
+in the current register will not.
+
+### B0b. What is the population and window behind "+20% daily actives"?
+`[NEEDS: denominator, window and method for +20% DAU]`
+
+The site now dissects a 4.3-minute session-time delta in several places and says nothing about the
+20% DAU lift, which has no case study, no caveat and no attribution boundary. A reviewer noticed the
+asymmetry immediately and said it is where they would attack. Either qualify it or cut it.
 
 ### B1. What was the week-2 → week-4 return rate for people who joined a Steps Premier League season?
 `[NEEDS: week-2 → week-4 return rate for people who joined a league, against the same weeks for

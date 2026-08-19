@@ -83,19 +83,19 @@ export default function Home() {
       <Container as="header" className="pt-4 pb-6 sm:pt-6 sm:pb-8 lg:pt-10 lg:pb-12">
         <div className="grid items-center gap-5 sm:gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
           <div className="flex flex-col gap-3">
-            <p className="animate-rise eyebrow">{meta.eyebrow}</p>
+            {/* No entrance animation on the eyebrow, headline or intro.
+                `animate-rise` starts at opacity 0, and the headline is the LCP
+                element — a 420ms fade with a 60ms delay was pushing Largest
+                Contentful Paint back by nearly half a second and costing the
+                homepage its performance budget. The motion below the fold is
+                free; the motion on the LCP candidate is not. */}
+            <p className="eyebrow">{meta.eyebrow}</p>
 
-            <h1
-              className="animate-rise max-w-[16ch] text-[length:var(--text-hero)] leading-[1.04] font-semibold tracking-[var(--track-display)]"
-              style={{ '--delay': '60ms' } as React.CSSProperties}
-            >
+            <h1 className="max-w-[16ch] text-[length:var(--text-hero)] leading-[1.04] font-semibold tracking-[var(--track-display)]">
               {meta.headline}
             </h1>
 
-            <p
-              className="animate-rise max-w-[54ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)] sm:text-[length:var(--text-md)]"
-              style={{ '--delay': '120ms' } as React.CSSProperties}
-            >
+            <p className="max-w-[54ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)] sm:text-[length:var(--text-md)]">
               {meta.intro}
             </p>
 
@@ -107,7 +107,7 @@ export default function Home() {
                 of the next line, which reads as a rendering fault. */}
             <ul
               className="animate-rise mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-[var(--color-line)] pt-3 text-[length:var(--text-sm)] text-[var(--color-muted)]"
-              style={{ '--delay': '180ms' } as React.CSSProperties}
+              style={{ '--delay': '60ms' } as React.CSSProperties}
             >
               {meta.meta.map((m, i) => (
                 <li key={m} className={i === 0 ? 'font-medium text-[var(--color-ink)]' : ''}>
@@ -125,7 +125,7 @@ export default function Home() {
             </ul>
             <div
               className="animate-rise mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2"
-              style={{ '--delay': '240ms' } as React.CSSProperties}
+              style={{ '--delay': '120ms' } as React.CSSProperties}
             >
               <Button href="#work" size="large">
                 View my work <span aria-hidden="true">→</span>
