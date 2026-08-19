@@ -5,10 +5,9 @@ import { Section, SectionHead, Eyebrow } from '@/components/layout/Section'
 import { Button, Tag } from '@/components/ui/Button'
 import { CopyEmail } from '@/components/ui/CopyEmail'
 import { HeroPanel } from '@/components/home/HeroPanel'
-import { Experience } from '@/components/home/Experience'
 import { CaseCard, CardMetric } from '@/components/work/CaseCard'
 import { LaunchDurations } from '@/components/diagrams/LaunchImpact'
-import { site, education, tools } from '@/lib/site'
+import { site, education, tools, experience } from '@/lib/site'
 import baseline from '@/public/grounded-baseline.json'
 
 /** The visual half of each case card, keyed by slug. */
@@ -104,14 +103,39 @@ export default function Home() {
               <Button href={site.resume} variant="secondary" size="large">
                 Résumé <span aria-hidden="true">↗</span>
               </Button>
-              <a
-                href={site.linkedin}
-                rel="me noopener"
-                className="px-1 py-1.5 text-[length:var(--text-sm)] font-medium text-[var(--color-muted)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-ink)]"
-              >
+              <Button href={site.linkedin} variant="secondary" size="large">
                 LinkedIn <span aria-hidden="true">↗</span>
-              </a>
+              </Button>
             </div>
+
+            {/* Identification. Title, location and what he wants — all three
+                sat below 23,000px on a phone before this, which is nowhere. */}
+            <ul
+              className="animate-rise mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-[var(--color-line)] pt-3 text-[length:var(--text-sm)] text-[var(--color-muted)]"
+              style={{ '--delay': '240ms' } as React.CSSProperties}
+            >
+              {meta.meta.map((m, i) => (
+                <li key={m} className="flex items-center gap-2">
+                  {i > 0 ? (
+                    <span aria-hidden="true" className="text-[var(--color-line-strong)]">
+                      ·
+                    </span>
+                  ) : null}
+                  <span className={i === 0 ? 'font-medium text-[var(--color-ink)]' : ''}>{m}</span>
+                </li>
+              ))}
+              <li className="flex items-center gap-2">
+                <span aria-hidden="true" className="text-[var(--color-line-strong)]">
+                  ·
+                </span>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="font-medium text-[var(--color-accent)] underline decoration-[var(--color-accent)]/30 underline-offset-[3px] hover:decoration-[var(--color-accent)]"
+                >
+                  Email me
+                </a>
+              </li>
+            </ul>
           </div>
 
           <HeroPanel figures={meta.proofPanel} />
@@ -179,17 +203,45 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* 4 — Experience */}
+      {/* 4 — Experience, compact. The full timeline lives on /about. */}
       <Section band labelledBy="exp-h">
         <Container>
           <SectionHead
             id="exp-h"
             eyebrow="Experience"
             title="Four years of product work, one of them owning a surface."
+            action={
+              <Button href="/about" variant="secondary">
+                Full timeline <span aria-hidden="true">→</span>
+              </Button>
+            }
           />
-          <div className="mt-6">
-            <Experience />
-          </div>
+          <ol className="mt-6 border-t border-[var(--color-line)]">
+            {experience.map((role) => (
+              <li
+                key={role.company}
+                className="grid gap-x-4 gap-y-1 border-b border-[var(--color-line)] py-2.5 sm:grid-cols-[minmax(0,11rem)_minmax(0,9rem)_minmax(0,1fr)] sm:items-baseline"
+              >
+                <span className="flex items-center gap-1.5 font-semibold">
+                  {role.company}
+                  {role.current ? (
+                    <span
+                      aria-hidden="true"
+                      className="h-1 w-1 rounded-full bg-[var(--color-accent)]"
+                    />
+                  ) : null}
+                </span>
+                <span className="text-[length:var(--text-sm)] text-[var(--color-ink)]">
+                  {role.title}
+                </span>
+                <span className="flex flex-wrap gap-x-2 text-[length:var(--text-sm)] text-[var(--color-muted)] tabular-nums">
+                  <span>{role.period}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>{role.place}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
         </Container>
       </Section>
 

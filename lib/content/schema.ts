@@ -147,6 +147,8 @@ export const principleSchema = z.object({
 export const homeSchema = z.object({
   eyebrow: cleanMin('eyebrow'),
   headline: cleanMin('headline'),
+  /** Identification facts, on the first screen: title, location, target role. */
+  meta: z.array(cleanMin('meta')).min(2).max(5),
   /** 2–3 lines: current role, product scope, scale, what makes him different. */
   intro: cleanMin('intro'),
   /** The hero's evidence panel. */

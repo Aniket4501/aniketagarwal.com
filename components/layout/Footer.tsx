@@ -8,16 +8,15 @@ export function Footer() {
     <footer className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
       <Container className="py-8 lg:py-10">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-10">
-          <div className="flex flex-col gap-3">
-            <p className="max-w-[24ch] text-[length:var(--text-xl)] leading-tight font-semibold tracking-[var(--track-heading)]">
-              Have a product problem worth solving?
+          <div className="flex flex-col gap-2">
+            <p className="text-[length:var(--text-lg)] font-semibold tracking-[var(--track-heading)]">
+              {site.name}
             </p>
-            <p className="max-w-[46ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)]">
-              I&rsquo;m open to PM, APM and AI PM roles across consumer product, health and applied
-              AI.
+            <p className="max-w-[38ch] text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+              Product Analyst at HCL Healthcare · {site.location} · open to PM, APM and AI PM roles.
             </p>
             <div className="mt-1">
-              <CopyEmail size="large" />
+              <CopyEmail />
             </div>
           </div>
 

@@ -46,12 +46,11 @@ export function Nav() {
           >
             <span
               aria-hidden="true"
-              className="grid h-3 w-3 place-items-center rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[10px] font-bold text-[var(--color-canvas)] transition-colors duration-[var(--duration-fast)] group-hover:bg-[var(--color-accent)]"
+              className="hidden h-3 w-3 place-items-center rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[10px] font-bold text-[var(--color-canvas)] transition-colors duration-[var(--duration-fast)] group-hover:bg-[var(--color-accent)] sm:grid"
             >
               AA
             </span>
-            <span className="hidden sm:inline">{site.name}</span>
-            <span className="sr-only sm:hidden">{site.name} — home</span>
+            <span>{site.name}</span>
           </Link>
 
           <div className="hidden items-center gap-0.5 md:flex">
@@ -71,7 +70,7 @@ export function Nav() {
             ))}
             <a
               href={site.resume}
-              className="ml-1.5 rounded-[var(--radius)] border border-[var(--color-line-strong)] px-2 py-1 text-[length:var(--text-sm)] font-medium text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-ink)] hover:bg-[var(--color-surface)]"
+              className="ml-1 rounded-[var(--radius)] border border-[var(--color-line-strong)] px-2 py-1 text-[length:var(--text-sm)] font-medium text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-ink)] hover:bg-[var(--color-surface)]"
             >
               Résumé <span aria-hidden="true">↗</span>
               <span className="sr-only">(PDF)</span>
