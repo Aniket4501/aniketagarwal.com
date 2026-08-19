@@ -2,13 +2,13 @@
   {
     "route": "/",
     "form": "mobile",
-    "perf": 96,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.1 s",
+    "lcp": "2.5 s",
     "cls": "0",
-    "tbt": "10 ms"
+    "tbt": "30 ms"
   },
   {
     "route": "/",
@@ -24,11 +24,11 @@
   {
     "route": "/work",
     "form": "mobile",
-    "perf": 100,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "1.9 s",
+    "lcp": "2.3 s",
     "cls": "0",
     "tbt": "10 ms"
   },
@@ -39,36 +39,36 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.4 s",
+    "lcp": "0.5 s",
     "cls": "0",
     "tbt": "0 ms"
   },
   {
-    "route": "/work/two-seconds",
+    "route": "/work/step-syncing",
     "form": "mobile",
-    "perf": 99,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.0 s",
+    "lcp": "2.5 s",
     "cls": "0",
-    "tbt": "0 ms"
+    "tbt": "10 ms"
   },
   {
-    "route": "/work/two-seconds",
+    "route": "/work/step-syncing",
     "form": "desktop",
     "perf": 100,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.4 s",
+    "lcp": "0.5 s",
     "cls": "0",
     "tbt": "0 ms"
   },
   {
     "route": "/work/steps-premier-league",
     "form": "mobile",
-    "perf": 95,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
@@ -88,35 +88,35 @@
     "tbt": "0 ms"
   },
   {
-    "route": "/work/ai-health-reports",
+    "route": "/work/ai-health-report",
     "form": "mobile",
-    "perf": 99,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.0 s",
+    "lcp": "2.3 s",
     "cls": "0",
-    "tbt": "0 ms"
+    "tbt": "10 ms"
   },
   {
-    "route": "/work/ai-health-reports",
+    "route": "/work/ai-health-report",
     "form": "desktop",
     "perf": 100,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.4 s",
+    "lcp": "0.5 s",
     "cls": "0",
     "tbt": "0 ms"
   },
   {
     "route": "/approach",
     "form": "mobile",
-    "perf": 100,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "1.9 s",
+    "lcp": "2.3 s",
     "cls": "0",
     "tbt": "10 ms"
   },
@@ -127,20 +127,20 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.4 s",
+    "lcp": "0.5 s",
     "cls": "0",
     "tbt": "0 ms"
   },
   {
     "route": "/lab",
     "form": "mobile",
-    "perf": 99,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.0 s",
+    "lcp": "2.3 s",
     "cls": "0",
-    "tbt": "10 ms"
+    "tbt": "0 ms"
   },
   {
     "route": "/lab",
@@ -149,18 +149,18 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.4 s",
+    "lcp": "0.5 s",
     "cls": "0",
     "tbt": "0 ms"
   },
   {
     "route": "/lab/grounded",
     "form": "mobile",
-    "perf": 99,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.1 s",
+    "lcp": "2.3 s",
     "cls": "0",
     "tbt": "10 ms"
   },
@@ -171,19 +171,19 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.4 s",
+    "lcp": "0.5 s",
     "cls": "0",
     "tbt": "0 ms"
   },
   {
     "route": "/about",
     "form": "mobile",
-    "perf": 99,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.0 s",
-    "cls": "0.008",
+    "lcp": "2.3 s",
+    "cls": "0",
     "tbt": "10 ms"
   },
   {
@@ -193,7 +193,7 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.4 s",
+    "lcp": "0.5 s",
     "cls": "0",
     "tbt": "0 ms"
   }
