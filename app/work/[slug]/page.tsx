@@ -57,7 +57,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     <article>
       {/* Header */}
       <Container className="pt-6 pb-6 lg:pt-9">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-10">
+        <div className="grid items-stretch gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-1.5">
               <span className="text-[length:var(--text-xs)] font-semibold tabular-nums text-[var(--color-muted)]">
@@ -71,6 +71,20 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <p className="max-w-[46ch] text-[length:var(--text-md)] leading-snug text-[var(--color-body)]">
               {meta.outcome}
             </p>
+
+            {/* The facts sit inside the left column rather than in a full-width
+                row beneath it, which had left ~250px of dead space beside the
+                metric card. */}
+            <dl className="mt-auto grid gap-x-5 gap-y-3 border-t border-[var(--color-line)] pt-3 sm:grid-cols-2">
+              {facts.map(([k, v]) => (
+                <div key={k} className="flex flex-col gap-0.5">
+                  <dt className="eyebrow">{k}</dt>
+                  <dd className="text-[length:var(--text-sm)] leading-snug text-[var(--color-body)]">
+                    {v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
           <div className="card flex flex-col gap-3 p-3 sm:p-4">
@@ -92,16 +106,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
         </div>
 
-        <dl className="mt-6 grid gap-x-6 gap-y-3 border-t border-[var(--color-line)] pt-4 sm:grid-cols-2 lg:grid-cols-4">
-          {facts.map(([k, v]) => (
-            <div key={k} className="flex flex-col gap-0.5">
-              <dt className="eyebrow">{k}</dt>
-              <dd className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
-                {v}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </Container>
 
       {/* Ownership */}

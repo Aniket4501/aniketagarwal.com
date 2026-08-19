@@ -292,10 +292,12 @@
    --------------------------------------------------------------------------- */
 
 @layer components {
+  /* Left-aligned, not centred. A centred measure under a left-aligned page
+     heading reads as two different pages stacked; everything now shares one
+     left edge and figures extend right into the spare column. */
   .case-body {
     display: grid;
     grid-template-columns:
-      [full-start] minmax(0, 1fr)
       [text-start] min(100%, var(--measure)) [text-end]
       minmax(0, 1fr) [full-end];
   }
@@ -308,10 +310,10 @@
   .case-body > figure,
   .case-body > .decision-block,
   .case-body > aside {
-    grid-column: full;
-    justify-self: center;
+    grid-column: 1 / -1;
+    justify-self: start;
     width: 100%;
-    max-width: 60rem;
+    max-width: 58rem;
   }
 
   .case-body > p,
