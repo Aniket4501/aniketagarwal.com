@@ -3,7 +3,15 @@
 Every item is a specific, answerable question. Nothing here is a request for "more detail."
 Status legend: **BLOCKING** = the site is measurably weaker without it, and a `[NEEDS: …]` token is visible on the live page. **NON-BLOCKING** = handled with an honest hedge that costs little.
 
-Last updated: Phase 0 (2026-08-19). Updated at every phase gate.
+Last updated: Phase 10 (2026-08-19), after the site shipped.
+
+**Live:** https://aniketagarwal-com.vercel.app · **Repo:** https://github.com/Aniket4501/aniketagarwal.com
+
+**26 visible `[NEEDS:]` markers remain on the site.** They are grouped below by the answer that
+clears them, so one reply from you can close several at once. The site is honest as it stands and
+every gate passes, but **it should not be sent to anyone until at least the first four groups are
+answered** — a reviewer who counts twenty-six open questions reads a working draft, however good
+the reasoning around them is.
 
 ---
 
@@ -204,3 +212,74 @@ The site says "a health super-app" throughout because the product name is not in
 | A2 | Cold-start work targeted low-end Android devices. | Strategy §P1 target users. **Not in the resume.** | Flagged in B2 — the site does not assert a device population until confirmed. |
 | A3 | "1M+ users" means registered beneficiaries, not monthly actives. | The resume says "serving 1M+ users"; no activity qualifier. Conservative reading. | Site says "1M+ registered beneficiaries" and never "1M active users". |
 | A4 | The 22-month HCL tenure is continuous and current. | LinkedIn "Present". | Site says "Oct 2024 – present". |
+
+
+---
+
+## Where every remaining marker is, grouped by the answer that clears it
+
+Answer these in order. Group 1 alone removes seven markers.
+
+### Group 1 — Team shape and duration (7 markers)
+`content/work/two-seconds.mdx:8` · `steps-premier-league.mdx:8,9` · `ai-health-reports.mdx:8,9`
+
+**One answer covers all five case-study header fields:** for each of the three pieces of work, how
+many engineers, was there a designer, was there a QA function, and how long did it take from first
+analysis to launch? Two Seconds already has its eight weeks; the other two have nothing.
+
+### Group 2 — What the two headline numbers were measured on (4 markers)
+`home.mdx:59,67` · `two-seconds.mdx:28` · `steps-premier-league.mdx:27`
+
+- **Cold start:** which percentile, on which device population, read from what — a device lab,
+  production telemetry, or a staged pre/post comparison?
+- **Session time:** measured on league entrants or on everyone active, over what window, and is
+  3.5 → 7.8 a median or a mean?
+
+These two answers turn the proof strip from qualified-with-questions into simply qualified.
+
+### Group 3 — The postmortem (1 marker, and the highest-value one)
+`content/approach.mdx:47`
+
+One decision that did not work: what you decided, what happened, what it cost, and what you would
+put in its place. Not "I would have communicated more." Every reviewer who read `/approach` said the
+open slot is well-constructed but that an answer beats a well-constructed absence.
+
+### Group 4 — The AI Health Reports case study (6 markers)
+`ai-health-reports.mdx:24,30,63,99,146,222`
+
+This case study is the weakest of the three and all six markers are in it:
+- 15% of which revenue line, and over what period were the 5+ closes?
+- Who pays, and how do readers arrive — employer health plans, insurers, hospitals, or direct?
+- What data do the reports consume — lab results, self-reported data, wearables, or claims?
+- Where did the cross-sell hooks sit relative to the clinical content, and what did you rule out?
+- **How did the report avoid giving medical advice — prompt, rules, templates, review, or not at
+  all?** A real answer here moves this case study to the front of the site.
+
+### Group 5 — Method and guardrails (5 markers)
+`two-seconds.mdx:114,241` · `steps-premier-league.mdx:140,170,202`
+
+- Was the cold-start rollout staged by device tier, and was the comparison pre/post within tier?
+- Was any guardrail put in place afterwards to stop the win regressing?
+- What did you actually score content, incentives and gamification on?
+- Was Steps Premier League a holdback, a staged rollout, or a straight pre/post?
+- Were notification opt-outs and uninstalls watched at launch?
+
+### Group 6 — Everything else (3 markers)
+- `two-seconds.mdx:36` — were 25MB and 6MB download size, install size, or APK/AAB?
+- `steps-premier-league.mdx:43` — did the week-2 finding drive this league, the engagement suite, or
+  both? (The record puts them in different bullets, so the site keeps them apart.)
+- `kyc-wall.mdx:23,56` — baseline signup completion rate and N, and what share completed KYC after
+  the nudges.
+- `lab/grounded.mdx:65` — who with clinical training can review and correct the sixteen labels?
+
+---
+
+## What the site will NOT do, whatever is missing
+
+- It will not invent a denominator, a team size, a date, a percentile, a device population, an
+  experiment design, a user quote, or a failure.
+- It will not claim "two years" until October 2026.
+- It will not name a degree discipline until C2 is resolved.
+- It will not describe the golden set as hand-labelled until it is.
+- `scripts/check-truth.ts` enforces 21 of these mechanically, over source and built HTML, and fails
+  the build on a hit.

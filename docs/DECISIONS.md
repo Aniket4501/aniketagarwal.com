@@ -341,3 +341,76 @@ route — and the final report states the 90 KB criterion as **unmet, with the m
 where drawing matters.** The two scale comparisons and the option spread use real text so they stay
 selectable and legible at 320px without a viewBox fighting the type scale. Only the feedback-cadence
 argument diagram is SVG, because it is actually a drawing.
+
+---
+
+# Phase 8 — Review reconciliation
+
+Six independent reviews ran against real screenshots at eight widths: two visual QA passes (mobile,
+desktop) and four hiring-manager passes in character with real time budgets.
+
+## Verdicts
+
+| Reviewer | Verdict |
+|---|---|
+| **Startup CEO**, 90s, mobile | **YES**, same day. Remembered the hero verbatim. |
+| **VP Product**, `/approach` first | **YES**, unhesitating for a first screen. Belief 03 — attacking his own best number — is what buys it. |
+| **Head of Product**, 5–10 min, desktop | **Yes to the 30 minutes.** Would hire at APM / PM I, on the reasoning rather than the outcomes. |
+| **Recruiter**, 20s, mobile | **FAIL** — two of eight facts unreachable. The only outright failure, now fixed. |
+
+## What the reviews changed
+
+**D8-01 — The recruiter gate was failing on the two facts that matter most to that reader.** The
+resume was behind a "Menu" tap at 390px and absent from the hero link row entirely; location first
+appeared at 81% of page height. Both are now on the first screen, and the resume is in the mobile
+nav bar as well, because the hero row only exists on the homepage.
+
+**D8-02 — The hero's amber chip was the highest-leverage single fix on the site.** The CEO
+identified why, and he is right: everywhere else a chip says *"I refuse to invent a number"*; in the
+hero it said *"I have not written my own headline yet."* Identical treatment, opposite signal, in
+the two seconds where a reader decides whether the site is finished. Nothing needs a denominator for
+what is on your desk this month. Written as a sentence.
+
+**D8-03 — Three numbers were rendering as six tiles.** Hero, proof strip, and case cards each
+repeated the same figures. *"Repeating a stat is what people do when they only have one."* Each
+number now appears once on the homepage.
+
+**D8-04 — MetricDelta was re-encoded, and the earlier design was wrong.** The single-track version
+had three meanings for one widget — fill = after on `25MB → 6MB`, fill = before on `3.5 → 7.8 min`,
+fill = nothing where there was no baseline — separated only by hue. On a site whose whole argument
+is that figures are checkable, the signature element was the one thing a numerate reviewer would
+have called wrong. It is now two bars from a shared origin at a shared scale, each labelled at its
+own end.
+
+**D8-05 — `Stat` was added because the schema was pushing an author toward invention.** Requiring
+at least one *delta* per case study, against a record that gives outcomes without baselines,
+produced `unstated base ▸ +15%` — a bar with no left endpoint, on the same page that said the base
+was undefined — and `before: "0"` for enterprise closes, which invents a starting point. The schema
+now requires at least one *qualified figure*, delta or otherwise.
+
+**D8-06 — The decision table was clipped mid-word at 1440 with 570px of empty page beside it**, on
+both case studies. The prose *column* had been constrained to the text *measure*. It is now a
+content/wide grid: text keeps its 68-character measure, tables and diagrams take the column.
+
+**D8-07 — Two of three case studies rendered TEAM and TIMELINE as red questions and nothing else.**
+A three-column header block whose only populated column is ROLE reads as a broken form, not as
+honesty. Empty fields are dropped; the unknowns collapse into one sentence and one chip.
+
+**D8-08 — The `[NEEDS:]` chip was a spell-check squiggle.** Red text with a dotted underline is
+pixel-for-pixel the browser's own error affordance. It now has a tinted ground and a literal
+`NEEDS:` prefix, which gives a sighted reader the cue the `sr-only` span already gave a screen-reader
+user.
+
+## What was NOT fixed, and why
+
+- **"The right column is empty for 95% of every long page."** Real, and left as is. Filling it means
+  either moving load-bearing content out of the reading column — which breaks the single-pass read
+  the case studies are written for — or manufacturing marginalia. An empty margin beside a long
+  argument is a normal editorial choice; the alternative is furniture.
+- **"Every case is Aniket versus a dataset; not one sentence about persuading a person."** The
+  sharpest observation in the whole review, and it cannot be fixed by code. It is
+  `CONTENT_GAPS.md` Group 1 and the postmortem — one decision where a named person disagreed. Logged,
+  not invented.
+- **"Case studies run 900 words over budget once drawers are counted."** Reported rather than
+  closed. Closing it means deleting argument that is load-bearing and honest, and the *required*
+  reading path measures 736 words against a 1,200 budget.
