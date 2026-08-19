@@ -309,6 +309,7 @@
 
   .case-body > figure,
   .case-body > .decision-block,
+  .case-body > .wide-block,
   .case-body > aside {
     grid-column: 1 / -1;
     justify-self: start;

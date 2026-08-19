@@ -88,10 +88,30 @@ export function ogImage({
               width: '100%',
             }}
           >
-            <div style={{ display: 'flex', fontFamily: 'Mono', fontSize: 40, color: SIGNAL }}>
+            {/* The metric can be a figure ("5+ enterprise closes") or an
+                identification line, which is roughly twice as long. One size
+                cannot serve both without either wrapping into the byline or
+                leaving a short figure looking undersized. */}
+            <div
+              style={{
+                display: 'flex',
+                fontFamily: 'Mono',
+                fontSize: (metric ?? '').length > 32 ? 28 : 40,
+                color: SIGNAL,
+                maxWidth: 860,
+              }}
+            >
               {metric ?? ''}
             </div>
-            <div style={{ display: 'flex', fontFamily: 'Sans', fontSize: 26, color: MUTED }}>
+            <div
+              style={{
+                display: 'flex',
+                flexShrink: 0,
+                fontFamily: 'Sans',
+                fontSize: 26,
+                color: MUTED,
+              }}
+            >
               Aniket Agarwal
             </div>
           </div>

@@ -11,6 +11,9 @@ import { LaunchJourney, LaunchDurations, BundleImpact } from '@/components/diagr
 import { LeagueLoop, StrategySpread } from '@/components/diagrams/LeagueMechanic'
 import { ReportFlow, ThreeParties, KycFunnel } from '@/components/diagrams/ReportPipeline'
 import { EvalScorecard } from '@/components/diagrams/EvalScorecard'
+import { Reconstruction } from '@/components/product/Reconstruction'
+import { LeagueStandings } from '@/components/product/LeagueStandings'
+import { ReportPage } from '@/components/product/ReportPage'
 
 /**
  * Rendered entirely in a Server Component, so a case-study route ships zero
@@ -38,6 +41,9 @@ const components = {
   ThreeParties,
   KycFunnel,
   EvalScorecard,
+  Reconstruction,
+  LeagueStandings,
+  ReportPage,
 }
 
 export function Mdx({ source }: { source: string }) {
