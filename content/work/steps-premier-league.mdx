@@ -5,26 +5,26 @@ tagline: Three strategies, one choice, and the users that choice costs.
 headline: Content, incentives, competition. Two of the three you have to keep paying for.
 order: 2
 role: Product Analyst, HCL Healthcare
-teamShape: "[NEEDS: how many engineers? a designer? QA?]"
-timeline: "[NEEDS: how long from analysis to launch?]"
+teamShape: "[NEEDS: how many engineers, a designer, a QA function?]"
+timeline: "[NEEDS: how long from cohort analysis to launch?]"
 owned:
-  - The cohort analysis that put a drop-off on the table rather than a feature request
+  - The cohort analysis that put a drop-off on the table instead of a feature request
   - The evaluation of three strategies — content, incentives, gamification — and the argument for competition
   - Prioritising competitive mechanics as the core of the launch, over the other two candidates
 shipped:
   - Steps Premier League, launched 0→1
-  - "[NEEDS: what was in the first release?]"
+  - Competitive mechanics as the core of what went out
 notOwned:
-  - The implementation. I made the case for the mechanic; I did not build the league.
-  - "[NEEDS: was there a designer? who owned push policy?]"
-  - Whatever measurement this number came out of. I did not build the analytics, and its limits are the limits of what I can claim here
+  - The build. I made the case for the mechanic; I did not build the league
+  - The analytics. I did not build the instrument that produced 3.5 → 7.8, and its limits bound what I can claim from it
+  - Whether the mechanic held past the first read. My record stops at the session-time figure
 metrics:
   - label: SESSION TIME
     before: 3.5 min
     after: 7.8 min
-    denominator: "[NEEDS: league enrollees, or all daily actives?]"
-    timeframe: window and baseline period not stated
-    method: median or mean not stated
+    denominator: "[NEEDS: league players, or all daily actives?]"
+    timeframe: "[NEEDS: which window, against which baseline period?]"
+    method: The declared North Star. Median or mean is not stated
     direction: up-is-good
 artifacts: []
 description: Three retention strategies on the table — content, incentives, gamification. Why I shipped competitive mechanics, what that choice costs, and what session time could not tell me.
@@ -34,37 +34,54 @@ ogMetric: 3.5 → 7.8 min
 
 ## A step counter competes with the one already on the phone
 
-The app served a registered base above a million people, and session time sat at 3.5 minutes. Cohort analysis was the input to what happened next, and it is why this was a decision rather than a feature request.
+The app served a registered base above a million people, and session time sat at 3.5 minutes. Cohort
+analysis was the input to what happened next, and it is why this was a decision and not a feature
+request.
 
-What it found is something I would rather state precisely than approximately. There is a week-2 drop-off in my record, but it sits in a different line, against the engagement suite, and fusing the two would be me writing a tidier story than the one I have.
+There is a week-2 drop-off in my record, but it sits against a different initiative — the engagement
+suite — and fusing the two lines would be me telling a tidier story than the one I have.
 
 [NEEDS: week-2 finding — this league, the suite, or both?]
 
-The structural problem underneath is not specific to this app. A phone already counts steps — in the background, for free, on the lock screen, with nothing to open and nothing to log into. **Any step feature inside a health app is therefore competing with a widget the user never had to open**, and "come and see the number your operating system already showed you" is a request, not a reason.
+The structural problem underneath is not specific to this app. A phone already counts steps: in the
+background, for free, on the lock screen, with nothing to open and nothing to log into. **Any step
+feature inside a health app is competing with a widget the user never had to open**, and "come and see
+the number your operating system already showed you" is a request, not a reason.
 
 ## Two of the three options are a bill that never stops arriving
 
-Content, incentives and gamification arrive at a review looking like three things to scope: estimate the effort, guess the lift, pick the best ratio. I do not think that is what they are.
+Content, incentives and gamification arrive at a review looking like three things to scope: estimate
+the effort, guess the lift, pick the best ratio. I do not think that is what they are.
 
-**Content and incentives are subscriptions the company pays, not the user.** Content means somebody produces new material every week, forever, and the day production slows the reason to return slows with it. Incentives mean a reward keeps arriving; withdraw it and the behaviour it bought leaves too, and the user has now been told exactly what that behaviour was worth.
+**Content and incentives are subscriptions the company pays, not the user.** Content means somebody
+produces new material every week, forever, and the day production slows the reason to return slows
+with it. Incentives mean a reward keeps arriving; withdraw it and the behaviour it bought leaves too,
+and the user has now been told exactly what that behaviour was worth.
 
-Competition is different in kind. The mechanic is built once and the fuel comes from other people — their step counts, their position above yours, their view of yours. The recurring cost moves onto the users, and they pay it willingly, because what they are buying is standing.
+Competition works differently. The mechanic is built once and the fuel comes from other people. The
+recurring cost moves onto the users, and they pay it willingly, because what they are buying is
+standing.
 
 Not features.
 
-**The question that settles this is which of the three still works in a quarter when nobody is funding it.** That comparison decides the answer well before you get to effort estimates.
+**The question that settles this is which of the three still works in a quarter when nobody is funding
+it.** That comparison decides the answer well before you reach effort estimates.
 
 ## The benefit a health app sells arrives too late to change what you do tonight
 
-The method was cohort analysis. That much is documented, and it is what fed the decision. **The sample, the window and the shape of the curve are not things I can publish, so I am not going to draw them** — a cohort chart with plausible-looking values and a blank axis is a worse artifact than no chart at all.
+The method was cohort analysis. **The sample, the window and the shape of the curve are not things I
+can publish, so I am not going to draw them** — a cohort chart with plausible-looking values and a
+blank axis is a worse artifact than no chart at all. What survives without the values is the argument.
 
-[NEEDS: can the cohort sizes and window be published?]
+Walking has a payoff. It arrives as a number at a check-up years from now, or as something that
+quietly fails to happen to you in your fifties. None of that lands this evening. **A product whose
+promised benefit has a feedback cadence measured in decades has to borrow a loop that runs at the
+cadence of a day**, or the user has no signal to respond to between install and the next annual
+reminder.
 
-What survives without the values is the argument.
-
-Walking has a payoff. It arrives as a number at a check-up years from now, or as something that quietly fails to happen to you in your fifties. None of that lands this evening. **A product whose promised benefit has a feedback cadence measured in decades has to borrow a loop that runs at the cadence of a day**, or the user has no signal to respond to between install and the next annual reminder.
-
-Competition is the cheapest borrowed loop there is. Dropping two places overnight is felt tomorrow morning — a small, faintly ridiculous, entirely dependable signal arriving at exactly the frequency the behaviour underneath needs and cannot generate for itself.
+Competition is the cheapest borrowed loop there is. Dropping two places overnight is felt tomorrow
+morning: a small, faintly ridiculous, entirely dependable signal, arriving at exactly the frequency
+the behaviour underneath needs and cannot generate for itself.
 
 <Figure
   caption="Why a competitive mechanic exists in a health product: it supplies the daily feedback the health outcome cannot."
@@ -73,21 +90,22 @@ Competition is the cheapest borrowed loop there is. Dropping two places overnigh
   <FeedbackCadence />
 </Figure>
 
-<Drawer label="Why there is no cohort curve on this page">
-
-The obvious diagram for a case study like this one is a retention curve with the drop-off annotated. I am not drawing it. Every value on it would be invented, and the two things a reader would take away — how steep, how early — are precisely the two things the invention would be supplying.
-
-A chart is a claim. That one would be a claim I cannot source. The argument diagram above is the honest substitute: it asserts something about feedback cadence, which is reasoning, and reasoning does not need an export behind it.
-
-</Drawer>
-
 ## Three options, and the one I would have been safest choosing
 
-The safe answer was incentives. Incentives are the option nobody argues with in a review: the mechanism is legible, the lift shows up quickly, and if it underperforms you get to say the reward was too small rather than that the idea was wrong. That last property is why I distrust it. A strategy whose failure mode is always "we did not spend enough" is a strategy nobody learns anything from.
+The safe answer was incentives. Nobody argues with them in a review: the mechanism is legible, the
+lift shows up quickly, and if it underperforms you get to say the reward was too small rather than
+that the idea was wrong. That last property is why I distrust it. A strategy whose failure mode is
+always "we did not spend enough" teaches you nothing.
 
-The dimension I want on this comparison, and the one that usually goes missing, is reversibility. Not "can it be switched off" — everything can be switched off. Reversibility is what it costs to switch off in front of the people who were using it. Content decays quietly and almost nobody can name the week it ended. A rewards programme stops loudly, and a withdrawn reward reads as a downgrade. A league is the least reversible of the three, because standings are a public record and a season abandoned mid-table is a promise broken in front of an audience.
+The dimension that usually goes missing is reversibility, and not in the sense of "can it be switched
+off". Everything can be switched off. Reversibility is what it costs to switch off in front of the
+people who were using it. Content decays quietly and almost nobody can name the week it ended. A
+withdrawn reward reads as a downgrade. A league is the worst of the three on that dimension, because
+standings are a public record and a season abandoned mid-table is a promise broken in front of an
+audience.
 
-**I chose the least reversible of the three, and I would rather have that written down in advance than discovered in week nine.**
+**I chose the least reversible option, and I would rather have that written down in advance than
+discovered in week nine.**
 
 <DecisionTable
   caption="The three strategies in the record, on the dimensions I would defend today."
@@ -122,80 +140,95 @@ The dimension I want on this comparison, and the one that usually goes missing, 
   ]}
 />
 
-One caveat on that table: the third option is written down as gamification, and what I prioritised inside it was competitive mechanics specifically. Those dimensions are the ones I would argue for today, not a transcript of a scoring exercise.
+Those dimensions are the ones I would argue for today, not a transcript of a scoring exercise. My
+record names the option as gamification; what I prioritised inside it was competitive mechanics.
 
 [NEEDS: what did you actually score the three options on?]
 
 ## I shipped competition, and it costs the people who do not want to compete
 
-**I evaluated three ways to fix the drop-off — content, incentives, and competition — and shipped competition, because content and incentives buy attention you have to keep paying for, and competition manufactures a reason to open the app on the day your own motivation is gone.**
+**I evaluated three ways to fix the drop-off and shipped competition, because content and incentives
+buy attention you have to keep paying for, and competition manufactures a reason to open the app on
+the day your own motivation is gone.**
 
 What that buys is a mechanic that funds itself. What it costs is a population.
 
-A leaderboard does not read as neutral. To someone who is not competitive, or who is unwell, or deconditioned, or simply slower than the people they were placed beside, a standings table is a daily notice that they are losing at something they never entered to win. In a health product that group is not a rounding error. It overlaps heavily with the people the product exists for.
+A leaderboard does not read as neutral. To someone who is unwell, or deconditioned, or simply slower
+than the people they were placed beside, a standings table is a daily notice that they are losing at
+something they never entered to win. I would expect that group to overlap heavily with the people a
+health product exists for, which is what makes the cost worth naming instead of absorbing.
 
-I want to be exact about the limit of that paragraph. I can tell you that choosing competition means accepting that cost, and that accepting it knowingly is a different thing from never having thought about it. What the cost actually came to is a second sentence, and that one needs data behind it. I am not writing it here.
-
-## What a league has to answer before it can run
-
-There are no product screenshots on this page and there will not be any.
-
-What I can put down is the set of questions a launch like this has to close before a first season runs. How players are grouped, and whether groups are matched on ability or left to chance. What happens to a league that turns out lopsided by day three. What happens when a season ends. What the notification says, and how often it is allowed to say it.
-
-**Every one of those is a product decision wearing implementation clothes**, and together they decide whether the mechanic is motivating or humiliating for the bottom half of every table.
-
-[NEEDS: how were leagues formed, and how long was a season?]
+Be exact about the limit of that paragraph, though. Accepting the cost knowingly is a different thing
+from never having thought about it, and what the cost actually came to is a second sentence that needs
+data behind it.
 
 ## Session time went 3.5 to 7.8 minutes. Here is what that establishes.
 
-Session time moved from 3.5 minutes to 7.8 minutes, and my own record names it as the North Star Metric for this work. I am showing the two values without a percentage beside them. The division takes four seconds and I would rather you did it than took my rounding on trust.
+Session time moved from 3.5 minutes to 7.8 minutes, and my own record names it as the North Star
+Metric for this work. I show the two values with no percentage beside them. The division takes four
+seconds and I would rather you did it than took my rounding on trust.
 
-**That pair of numbers establishes that people who were in the app stayed in it longer. It does not establish that more people came back.** Those are different questions, and the second one is the one the problem statement asked.
+**That pair of numbers establishes that people who were in the app stayed in it longer. It does not
+establish that more people came back.** The second is the question the drop-off actually asked.
 
 I attribute the movement directionally, not causally.
 
 [NEEDS: holdback, staged rollout, or straight pre/post?]
 
-Separately: the engagement suite — Challenges, Streaks, Live Events, Trackers — is a different initiative over a different window, with its own DAU outcome. **I am not attaching that outcome to this league.** Keeping the two apart costs me the bigger-sounding claim, and it is the only version of this page I would take into a room with someone holding my resume.
+Separately: the engagement suite — Challenges, Streaks, Live Events, Trackers — is a different
+initiative over a different window, with its own DAU outcome. **I am not attaching that outcome to
+this league.** Keeping the two apart costs me the bigger-sounding claim, and it is the only version of
+this page I would take into a room with someone holding my resume.
 
 <Drawer label="How I would define session time before quoting it again">
 
-Three things move this number without anything changing in the product, and I would want all three settled before the figure is quoted again.
+Three things move this number without anything changing in the product, and I would want all three
+settled before the figure is quoted again.
 
-Median or mean. A leaderboard produces a long tail of very engaged users, and a mean follows that tail wherever it goes.
+Median or mean. A leaderboard produces a long tail of very engaged users, and a mean follows that tail
+wherever it goes.
 
-What ends a session. A thirty-second inactivity timeout and a five-minute one are different metrics sharing a name.
+What ends a session. A thirty-second inactivity timeout and a five-minute one are different metrics
+sharing a name.
 
-Who is in the denominator. Everyone who opened the app, or everyone who joined a league. That one matters most: league joiners are self-selected toward engagement, so measuring the mechanic on them is the most flattering reading available.
+Who is in the denominator. Everyone who opened the app, or everyone who joined a league — and that one
+matters most, because league joiners are self-selected toward engagement, so measuring the mechanic on
+them is the most flattering reading available.
 
 </Drawer>
 
-## The guardrails a competitive mechanic needs
+## An engagement win that burns notification permission is a loss
 
-A competitive mechanic has a failure mode that looks identical to success on a session-time chart. It works by manufacturing urgency; urgency is delivered by notification; and notification permission is not renewable. You get one revocation per user and it is permanent.
+A competitive mechanic has a failure mode that looks identical to success on a session-time chart. It
+works by manufacturing urgency, urgency is delivered by notification, and notification permission is
+not renewable — one revocation per user, permanent. A league that lifts session time this quarter by
+pushing four times a day has sold a durable asset to buy a temporary number. The dashboard shows the
+win. The cost does not appear on the same dashboard, or in the same quarter.
 
-So a league that lifts session time this quarter by pushing four times a day, and burns notification opt-in doing it, has sold a durable asset to buy a temporary number. The dashboard shows the win. The cost does not appear on the same dashboard, or in the same quarter.
-
-The counter-metrics that belong beside session time, agreed before launch rather than after: notification opt-out and system-level permission revocation, per cohort per week; uninstalls, split by whether the user ever joined a league; league exits and re-entry into a following season.
-
-**An engagement mechanic that burns notification permission is a loss disguised as a win, and the only thing separating the two is whether somebody decided to look.**
+Which is why the counter-metrics have to be agreed before launch: opt-out and system-level permission
+revocation per cohort per week, and uninstalls split by whether the user ever joined a league.
 
 [NEEDS: were opt-outs and uninstalls watched at launch?]
 
 ## Session time was the declared North Star. I would argue for a different instrument now.
 
-The case for session time is real and I will make it first. The mechanic's theory is that people come back to check standings; checking standings is a session; if the theory holds the number moves, and if it fails the number sits still. Sensitive, fast, readable by everyone in the room without a briefing.
+The case for it is real and I will make it first. The mechanic's theory is that people come back to
+check standings; checking standings is a session; if the theory holds the number moves, and if it
+fails it sits still. Sensitive, fast, readable by everyone in the room without a briefing.
 
-The case against it is stronger. **In a health app, a product working well can reduce session time.** Log the walk, see the number, close the app, go outside. A session that shortened because the flow improved and a session that shortened because the user gave up are indistinguishable in the aggregate. With a leaderboard the ambiguity runs both ways: longer sessions might mean the standings are compelling, or that they are hard to find.
-
-A drop-off asks whether people return. Session time asks what they do once they are already here.
+The case against is stronger. **In a health app, a product working well can reduce session time.** Log
+the walk, see the number, close the app, go outside. A session that shortened because the flow
+improved and a session that shortened because the user gave up look identical in the aggregate.
 
 <Callout variant="mistake" label="The instrument I would argue for instead">
 
-**A cohort return rate: of the people who joined a league in a given week, what share opened the app in each of the following weeks, against the same curve for people who did not join.** It answers the question that was actually asked. It is slower, far less flattering, and it has to be defined before launch — a cohort assembled afterwards is one assembled knowing the answer.
+**A cohort return rate: of the people who joined a league in a given week, what share opened the app
+in each of the following weeks, against the same curve for people who did not join.** It answers the
+question that was actually asked. It is slower, far less flattering, and it has to be defined before
+launch, because a cohort assembled afterwards is one assembled knowing the answer.
 
-Session time was the declared North Star and I am not going to pretend otherwise on a page read beside my resume. What I will say is that it was the wrong instrument for the question underneath, and that picking the instrument before the mechanic is the part I would sequence differently.
-
-[NEEDS: was a return rate tracked for the league cohort?]
+Session time was the declared North Star and I am not going to pretend otherwise on a page read beside
+my resume. It was the wrong instrument for the question underneath, and picking the instrument before
+the mechanic is the part I would sequence differently.
 
 </Callout>

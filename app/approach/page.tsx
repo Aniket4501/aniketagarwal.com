@@ -6,7 +6,7 @@ import { Mdx } from '@/lib/content/mdx'
 import { Container } from '@/components/layout/Container'
 import { extractHeadings } from '@/lib/content/headings'
 import { SectionIndex, Rail } from '@/components/content/ProgressRail'
-import { readingFontVariable } from '../fonts'
+import { readingFontVariable } from '../fonts-reading'
 
 export const metadata: Metadata = {
   title: 'Approach — how I work, and one thing I have not answered yet',

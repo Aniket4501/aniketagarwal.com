@@ -1,4 +1,4 @@
-import { readingFontVariable } from '../fonts'
+import { readingFontVariable } from '../fonts-reading'
 
 /**
  * The reading serif is applied here rather than in the root layout, so

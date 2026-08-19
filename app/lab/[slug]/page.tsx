@@ -6,7 +6,7 @@ import { extractHeadings } from '@/lib/content/headings'
 import { Container } from '@/components/layout/Container'
 import { SectionIndex, Rail } from '@/components/content/ProgressRail'
 import { GroundedDemo } from '@/components/lab/GroundedDemo'
-import { readingFontVariable } from '../../fonts'
+import { readingFontVariable } from '../../fonts-reading'
 
 export function generateStaticParams() {
   return getLabProjects().map((p) => ({ slug: p.meta.slug }))

@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 import { Mdx } from '@/lib/content/mdx'
 import { Container } from '@/components/layout/Container'
 import { CopyEmail } from '@/components/ui/CopyEmail'
-import { readingFontVariable } from '../fonts'
+import { readingFontVariable } from '../fonts-reading'
 import { Timeline } from '@/components/content/Timeline'
 import { site, tools, siteUrl } from '@/lib/site'
 
