@@ -32,7 +32,7 @@ The objection is fair. A health product that works can shorten sessions: open it
 
 What it cannot tell you is whether anybody came back. The number I would want next to it is week-2 to week-4 return, measured on the people who joined a league against the same weeks for people who did not.
 
-Which is also why session time and DAU appear here with their population, window and method left as open questions rather than filled in with the most flattering reading available.
+Which is also why session time and DAU appear here with their population, window and method left as open questions instead of filled in with the most flattering reading available.
 
 ## The postmortem is the section I cannot write yet
 
@@ -54,25 +54,17 @@ Still open.
 
 A point of view, not a case study. None of what follows is work I have shipped.
 
-Every engagement mechanic in a consumer health app is eventually competing with a person's willingness to type. Steps are the exception, and not because step challenges are clever: the phone counts steps whether or not anyone opens the app. The moment a loop needs a number only the user can supply, whether that is a meal, a reading, a home test or a paper report, it acquires a daily tax. The people who pay that tax longest tend to be the people who needed the product least.
+Every engagement mechanic in a consumer health app is eventually competing with a person's willingness to type. Steps are the exception, and not because step challenges are clever: the phone counts steps whether or not anyone opens the app. The moment a loop needs a number only the user can supply — a meal, a reading, a home test — it acquires a daily tax.
 
-India has a structural answer to this that most markets do not. Under the [Ayushman Bharat Digital Mission](https://abdm.gov.in), a person holds an ABHA identifier and can consent to their health records being shared between registered providers and applications. A lab report or a prescription can arrive in an app because someone consented once, rather than because they photographed it on a kitchen table.
+India has a structural answer that most markets do not. Under the [Ayushman Bharat Digital Mission](https://abdm.gov.in), a person holds an ABHA identifier and can consent to their health records being shared between registered providers and applications. A lab report can arrive in an app because someone consented once, rather than because they photographed it on a kitchen table. **That changes what the product is allowed to open on.** The first screen stops being a form.
 
-**That changes what the product is allowed to open on.** An app that receives a verified panel does not have to ask a person what their last result was, or rely on what they remember. The first screen stops being a form.
+The objections are stronger than the pitch, and there are three worth stating. Consent is a funnel: linking records means handing over a medical history on the strength of whatever trust the app has earned by signup, which is close to none, and the pull is most valuable exactly when the app has least earned it. Coverage decides whether the promise survives contact, because a pull returns only what a producer has published to the network, and an app that promises a complete history and returns two documents is worse off than one that promised nothing. And an identifier is not a user: a number created at a hospital registration desk and a person who knows they have one are different populations, so any adoption figure has to be read for which it counts.
 
-### The objections are stronger than the pitch
+There is a retention figure for ABDM-linked cohorts circulating in Indian healthtech writing. No uncited benchmark goes on this site, and that one has no study I can link to, so it is not here.
 
-**Consent is a funnel, and a hard one.** Linking records is not a permission dialog. It is a person handing over their medical history on the strength of whatever trust the app has earned so far, which at signup is close to none. The pull is most valuable at exactly the moment the app has least earned it, and every screen in that flow drops people.
+What would settle it is a funnel rather than a benchmark: what share of people who begin the linking flow finish it, what share of them have anything worth pulling, and what those people do in the fortnight afterwards. Until someone publishes that, everyone arguing this — me included — is arguing from mechanism.
 
-**Coverage decides whether the promise survives contact.** A pull returns what the producer of a record has published to the network. Where participation is uneven, the honest version of the feature is "some of your records, sometimes", and an app that promises a complete history and returns two documents is worse off than one that promised nothing.
-
-**An identifier is not a user.** A number created at a hospital registration desk, and a person who knows they have one and chooses to use it, are different populations. Any adoption figure has to be read for which of the two it counts before it means anything.
-
-**Getting the data is the easy half.** Pulling a verified report solves acquisition, and says nothing about whether the person holding it can read it. That is a different product problem, and it is the one I went and built [Grounded](/lab/grounded) for.
-
-There is a retention figure for ABDM-linked users circulating in Indian healthtech writing. I could not get to a study behind it, so it is not on this page. Mechanism is the argument here; a ranking is not mine to hand you.
-
-What would settle it is not a benchmark anyway. It is a funnel: what share of people who begin the linking flow finish it, what share of them have anything worth pulling, and what those people do in the fortnight afterwards. Until someone publishes that, everyone arguing this, me included, is arguing from mechanism.
+Getting the data is also the easy half. Pulling a verified report solves acquisition and says nothing about whether the person holding it can read it, which is the problem I went and built [Grounded](/lab/grounded) for.
 
 ## If you read one case study, make it the latency one
 

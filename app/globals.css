@@ -53,7 +53,14 @@
      feature every number on this site needs, and its weight axis is 400–700 —
      exactly the range used here. */
   --font-sans: var(--font-interface), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-reading), ui-serif, Georgia, serif;
+  /* NOTE: this token resolves at :root, where --font-reading is deliberately
+     unset (the serif is scoped to prose routes). A custom property inherits
+     its SUBSTITUTED value, so a nested element defining --font-reading cannot
+     retroactively change what --font-serif computed to up here. Anything that
+     must actually render in the serif therefore references --font-reading
+     directly — see .prose below. This token exists only so Tailwind's
+     `font-serif` utility has a sane value. */
+  --font-serif: ui-serif, Georgia, serif;
   --font-mono: var(--font-data), ui-monospace, 'SF Mono', monospace;
 
   /* Two scales, not one. A single 1.25 ratio forces interface and prose to
@@ -256,7 +263,10 @@
 
 @layer components {
   .prose {
-    font-family: var(--font-serif);
+    /* Reference --font-reading directly, not --font-serif: see the note at the
+       token. This is the register shift the whole design rests on — interface
+       grotesk for the argument's furniture, a text serif for the argument. */
+    font-family: var(--font-reading, ui-serif), Georgia, serif;
     font-size: 1.125rem; /* 18 on mobile */
     line-height: 1.65;
     letter-spacing: var(--track-body);
@@ -330,7 +340,7 @@
 
   /* The one lede paragraph per case study. */
   .prose-lede {
-    font-family: var(--font-serif);
+    font-family: var(--font-reading, ui-serif), Georgia, serif;
     font-size: var(--text-lede);
     line-height: 1.45;
     max-width: var(--measure);

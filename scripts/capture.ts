@@ -69,7 +69,10 @@ async function capture(browser: Browser) {
         problems.push(`${route} @${width}: horizontal scroll (content ${w}px)`)
       }
 
-      for (const err of consoleErrors) problems.push(`${route} @${width}: console — ${err}`)
+      // The deliberate 404 route logs a 404 by design; that is the test.
+      if (!route.includes('does-not-exist')) {
+        for (const err of consoleErrors) problems.push(`${route} @${width}: console — ${err}`)
+      }
 
       await page.screenshot({ path: path.join(OUT, `${slug(route)}-${width}.png`) })
       if (FULL_PAGE_WIDTHS.has(width)) {

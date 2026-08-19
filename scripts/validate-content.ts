@@ -152,15 +152,36 @@ for (const file of files) {
     warnings.push(`${rel}: visible placeholder ${n}`)
   }
 
-  // At most ONE token per metric. Three unqualified fields rendering as three
-  // separate chips under one number reads as a broken template; one chip
-  // naming what is missing reads as someone who knows their own number.
-  const metricBlocks = raw.match(/^\s*-\s+label:[\s\S]*?(?=^\s*-\s+label:|^[a-zA-Z]|\Z)/gm) ?? []
-  for (const block of metricBlocks) {
-    const count = (block.match(/\[NEEDS:/g) ?? []).length
-    if (count > 1) {
-      const label = block.match(/label:\s*(.+)/)?.[1]?.trim() ?? '?'
-      errors.push(`${rel}: metric "${label}" has ${count} [NEEDS:] tokens, max 1 per metric`)
+  // At most ONE token per metric, checked against the PARSED frontmatter
+  // rather than by pattern-matching the YAML — an earlier regex version
+  // silently matched nothing and let a two-chip metric ship. Three unqualified
+  // fields rendering as three red chips under one number reads as a broken
+  // template; one chip naming what is missing reads as someone who knows their
+  // own number.
+  const metrics = (data as { metrics?: unknown }).metrics
+  if (Array.isArray(metrics)) {
+    for (const m of metrics as Array<Record<string, unknown>>) {
+      const fields = ['denominator', 'timeframe', 'method']
+      const withToken = fields.filter((f) => /\[NEEDS:/.test(String(m[f] ?? '')))
+      if (withToken.length > 1) {
+        errors.push(
+          `${rel}: metric "${String(m.label)}" has ${withToken.length} [NEEDS:] tokens ` +
+            `(${withToken.join(', ')}), max 1. Collapse them into \`method\` and set the ` +
+            `others to the literal "not stated".`,
+        )
+      }
+    }
+  }
+  const heroMetric = (data as { heroMetric?: Record<string, unknown> }).heroMetric
+  if (heroMetric) {
+    const anyToken = ['denominator', 'timeframe', 'method'].some((f) =>
+      /\[NEEDS:/.test(String(heroMetric[f] ?? '')),
+    )
+    if (anyToken) {
+      errors.push(
+        `${rel}: heroMetric carries a [NEEDS:] token. The hero must show one complete number — ` +
+          `a reader in the first ten seconds should not meet a question.`,
+      )
     }
   }
 }
