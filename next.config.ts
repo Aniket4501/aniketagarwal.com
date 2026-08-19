@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
         destination: '/aniket-agarwal-resume.pdf',
         permanent: false,
       },
+      // V1 case-study URLs. They were live and shared; a renamed route that
+      // 404s is a broken link in somebody's inbox.
+      { source: '/work/two-seconds', destination: '/work/step-syncing', permanent: true },
+      { source: '/work/ai-health-reports', destination: '/work/ai-health-report', permanent: true },
     ]
   },
   async headers() {
