@@ -7,6 +7,7 @@ import { GuardrailTable } from '@/components/content/GuardrailTable'
 import { CutTable } from '@/components/content/CutTable'
 import { Figure } from '@/components/content/Figure'
 import { Metric, MetricDelta } from '@/components/content/Metric'
+import { StatRow } from '@/components/content/StatRow'
 import { Flow, BeforeAfterFlow, DurationBars, Funnel, LoopDiagram } from '@/components/diagrams/Flow'
 import { LaunchJourney, LaunchDurations, BundleImpact } from '@/components/diagrams/LaunchImpact'
 import { LeagueLoop, StrategySpread } from '@/components/diagrams/LeagueMechanic'
@@ -30,6 +31,7 @@ const components = {
   Figure,
   Metric,
   MetricDelta,
+  StatRow,
   Flow,
   BeforeAfterFlow,
   DurationBars,

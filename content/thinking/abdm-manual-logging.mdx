@@ -65,13 +65,26 @@ references a category.
 
 ## The evidence, and what it actually says
 
-From ABDM’s own public dashboard, read on 19 August 2026:
-
-<Metric value="96.7 crore" label="ABHA accounts created" context="967,178,326 — the identifier layer, at national scale." />
-
-<Metric value="113.2 crore" label="Health records linked" context="1,131,987,043 — records actually attached to those accounts." />
-
-<Metric value="5.5 lakh" label="Verified facilities on the registry" context="553,738 facilities, plus 10,58,921 verified healthcare professionals." />
+<StatRow
+  source="ABDM public dashboard, dashboard.abdm.gov.in, read 19 August 2026 and stamped “Last Updated 19/08/2026 07:46 AM”. Exact figures given beneath each rounded headline."
+  stats={[
+    {
+      value: '96.7 crore',
+      label: 'ABHA accounts created',
+      context: '967,178,326. The identifier layer, at national scale.',
+    },
+    {
+      value: '113.2 crore',
+      label: 'Health records linked',
+      context: '1,131,987,043. Records actually attached to those accounts.',
+    },
+    {
+      value: '5.5 lakh',
+      label: 'Verified facilities',
+      context: '553,738, plus 10,58,921 verified healthcare professionals.',
+    },
+  ]}
+/>
 
 The infrastructure is real, and it is not a pilot. Nearly a billion identifiers and over a billion
 linked records is not a proof of concept; it is one of the largest health data networks ever built.
