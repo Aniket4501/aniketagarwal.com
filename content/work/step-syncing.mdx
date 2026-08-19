@@ -1,0 +1,187 @@
+---
+slug: step-syncing
+title: Step Syncing
+category: Performance & adoption
+outcome: A fifteen-second launch cut to under two seconds, and step-sync completion up 35%.
+problem: The step count people opened the app for sat behind a fifteen-second wait.
+change: I reclassified launch time from an engineering backlog item into a product requirement, and held my own roadmap for eight weeks.
+order: 1
+
+role: Product Analyst, HCL Healthcare
+timeline: 8 weeks
+team: Cross-functional initiative with the engineering team
+scope: Diagnosis · prioritisation · scope arbitration · launch gate
+
+owned:
+  - Diagnosing launch time as the adoption blocker, and putting it ahead of the engagement features on the roadmap I had defined
+  - The decision to hold that roadmap for eight weeks, and the argument for why a latency number belonged to product rather than to an engineering backlog
+  - Treating launch time and bundle size as product requirements with a stated ceiling, not as housekeeping
+shipped:
+  - Launch time from 15s to under 2s
+  - App bundle from 25MB to 6MB
+  - Step-sync completion up 35%
+notOwned:
+  - The engineering. I did not choose the technical approach, profile the startup path, or write any of the code — the tech team did.
+  - The instrumentation. Whatever measurement existed was not built by me, and its limits bound what I can claim here.
+
+headline:
+  label: App launch time
+  before: 15s
+  after: under 2s
+  delta: At least 7.5× faster
+metrics:
+  - label: App launch time
+    before: 15s
+    after: under 2s
+    delta: At least 7.5× faster
+    note: Against a two-second benchmark. The record states a bound, so the bar is drawn to it.
+  - label: App bundle
+    before: 25MB
+    after: 6MB
+    delta: 76% smaller
+    note: Two stated totals, and the one exact percentage in this case study.
+figures:
+  - value: +35%
+    label: Step-sync completion
+    context: More people reached the number they opened the app for.
+
+drawers:
+  - label: Why you cannot A/B test a latency fix, and what you compare instead
+    body: >-
+      Randomisation is what makes an A/B test work: you assign the treatment, and because assignment
+      is random the two arms differ only in what you assigned. Device capability breaks that. A
+      phone's processor, its free storage and what the other apps on it are holding are the variables
+      that decide what a cold start costs, and none of them is assignable. You can randomise which
+      build a device receives. You cannot randomise the device. So the instrument degrades to a
+      staged rollout with a before-and-after comparison held within a device tier — weaker, and worth
+      saying out loud rather than dressing up as an experiment.
+  - label: Why a mean launch time is the wrong statistic here
+    body: >-
+      A mean is pulled toward the fast devices, and the fast devices belong disproportionately to the
+      people who build the app and the people least likely to leave. Abandonment lives in the tail. A
+      mean that improves while the tail does not is a number that got better for a population that
+      was never going anywhere, and it will look exactly like a win.
+
+description: A fifteen-second app launch was the real adoption blocker on a consumer health app with 1M+ registered users. Eight weeks took it under two seconds and lifted step-sync completion 35%.
+ogHeadline: The roadmap said engagement. The app took fifteen seconds to open.
+ogMetric: 15s → under 2s
+---
+
+## The step count was behind a fifteen-second wall
+
+HCL Healthcare's consumer health app serves more than a million registered users. I had defined the
+product roadmap, and what was on it was engagement — reasons to open a health app in a week when
+nothing about your health has changed.
+
+Then I timed the launch. Fifteen seconds, against a two-second benchmark.
+
+**That is not a performance statistic. It is the price of admission to everything else on the
+roadmap.** Someone who taps the icon and waits fifteen seconds is not forming an opinion about your
+streaks feature. They are forming one about whether the app works.
+
+<Figure
+  alt="The user's path to their step count, before and after: a fifteen-second splash screen removed, and sync completion rising 35%."
+  caption="The whole case study lives inside one arrow. Steps are counted by the phone whether or not the app is open — the product's only job is to be openable."
+>
+  <LaunchJourney />
+</Figure>
+
+## Latency sat in the engineering column. Adoption sat on my roadmap.
+
+The fifteen seconds were already known. They sat where slow things sit — next to refactors and
+platform upgrades, competing for engineering time against other engineering work. Classified that
+way it is a quality problem, and quality problems lose to deadlines for years at a stretch.
+
+I reclassified it, and not because I could fix it. I could not have written any of that code.
+**What a problem is filed under decides what it gets compared against, and a latency number owned by
+product competes against features.** That is the only comparison in which its real value is visible.
+
+<Callout variant="insight" label="The part that makes this worth a case study">
+
+The churn happened before the first analytics event fired. A funnel begins at the first event the
+app emits, and the app cannot emit one until it has finished launching — so everyone who abandoned
+during those fifteen seconds was never in the denominator. They did not show up as a drop-off. They
+showed up as nothing at all.
+
+</Callout>
+
+## Three ways to spend eight weeks
+
+<DecisionTable
+  caption="The reasoning laid out. Reversibility is in the table because it is the dimension that separates a strategist from a prioritiser, and it is the one this decision scored worst on."
+  columns={["What it costs", "Reversible?", "How you'd learn you were wrong"]}
+  rows={[
+    {
+      option: "Ship the engagement roadmap as written",
+      note: "The default. It needed no argument from anyone.",
+      cells: [
+        "Nothing new. It was already the plan.",
+        "Per feature, yes. The eight weeks, no.",
+        "You wouldn't. Every read is taken on the people who got in."
+      ]
+    },
+    {
+      option: "Instrument the pre-launch window first",
+      note: "The cheapest option to be wrong about.",
+      cells: [
+        "Engineering time on measurement, and the roadmap still waits.",
+        "Most reversible — the instrument outlives the decision either way.",
+        "Directly. That is the entire point of it."
+      ]
+    },
+    {
+      option: "Fix launch time first, hold the roadmap",
+      chosen: true,
+      note: "What I chose. It scored worst on reversibility.",
+      cells: [
+        "Eight weeks of engagement work, not shipped.",
+        "Least reversible in calendar terms. Durable in outcome, until it regresses.",
+        "The number moves and adoption doesn't follow. Then the diagnosis was wrong."
+      ]
+    }
+  ]}
+/>
+
+## What shipped
+
+Launch time under two seconds, and the app bundle down from 25MB to 6MB, inside eight weeks. The
+bundle is the number I trust most in this case study: two stated totals, one exact percentage, and
+no population to argue about.
+
+<Figure
+  alt="The app bundle falling from 25MB to 6MB, drawn as areas — the second square is roughly a quarter of the first."
+  caption="Area is proportional to size."
+  tone="canvas"
+>
+  <BundleImpact />
+</Figure>
+
+## What happened, and what it does not prove
+
+Step-sync completion rose 35%. More people reached the number they had opened the app for, because
+the thing standing between them and it was gone.
+
+**What it does not prove is that latency was the only thing in the way.** This shipped as part of a
+period with other work in it, and I would rather say that than let a clean number imply a clean
+experiment. What I can say without hedging is that 25MB became 6MB and fifteen seconds became under
+two, and those two are not attribution questions.
+
+## What I would do differently
+
+I picked a problem whose success criterion I could not measure cleanly. Device capability is not
+randomisable, so the clean instrument was never available — I traded a measurable bet for an
+unmeasurable one because I thought the unmeasurable one was bigger.
+
+The other thing I would change is durability. A performance win is not a state, it is a position
+you hold, and the next three sprints of feature work are where it goes back. If I ran this again the
+size ceiling would go into the build itself on week one, so the win stops depending on anyone
+remembering it.
+
+<Callout variant="tradeoff" label="The sceptical reading, answered">
+
+*"You fixed something engineering would have got to eventually."* Probably true — but not in eight
+weeks, and not while it was being ranked against other engineering work by people correctly
+optimising for engineering throughput. The reframe did not change who did the work. It changed what
+the work was being compared against, and that is what a PM is for.
+
+</Callout>

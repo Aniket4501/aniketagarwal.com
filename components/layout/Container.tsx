@@ -6,12 +6,16 @@ export function Container({
 }: {
   children: React.ReactNode
   className?: string
-  width?: 'default' | 'prose' | 'wide'
-  as?: 'div' | 'header' | 'section' | 'footer'
+  width?: 'default' | 'prose' | 'wide' | 'narrow'
+  as?: 'div' | 'header' | 'section' | 'footer' | 'article'
 }) {
-  const max =
-    width === 'prose' ? 'max-w-[var(--measure)]' : width === 'wide' ? 'max-w-[1400px]' : 'max-w-[1200px]'
+  const max = {
+    narrow: 'max-w-[52rem]',
+    prose: 'max-w-[var(--measure)]',
+    default: 'max-w-[76rem]',
+    wide: 'max-w-[88rem]',
+  }[width]
   return (
-    <Tag className={`mx-auto w-full ${max} px-3 sm:px-4 lg:px-5 ${className}`}>{children}</Tag>
+    <Tag className={`mx-auto w-full ${max} px-3 sm:px-5 lg:px-6 ${className}`}>{children}</Tag>
   )
 }

@@ -1,0 +1,142 @@
+---
+slug: ai-health-report
+title: AI Smart Health Report
+category: Applied AI · Monetisation
+outcome: A generated health report people could actually read, that became a key USP in five enterprise deals.
+problem: People finished a check-up and received clinical values they had no way to interpret.
+change: I designed the report as a product with three audiences — the reader, the buyer, and the person who has to sign it off.
+order: 3
+
+role: Product Analyst, HCL Healthcare
+team: Cross-functional, with engineering and design
+scope: Product requirements · UX flow · personalisation logic · cross-sell placement
+
+owned:
+  - The product requirements, the UX flow, and the personalisation logic that decides what an individual report says
+  - The decision that a health artifact would carry a commercial ask at all, and where that ask could defensibly sit
+  - Framing the report as something an enterprise buyer could point at, not only something a user reads
+shipped:
+  - The AI Smart Health Report, taken 0→1
+  - Cross-sell hooks inside the report
+notOwned:
+  - The sale. The report was cited as a key USP in enterprise closes; I built the artifact, I did not close the deals.
+  - The clinical content standards. What is and is not safe to say about a result is not a call I would make alone.
+
+headline:
+  label: Incremental revenue
+  before: Baseline
+  after: +15%
+  note: Attributed to the cross-sell hooks placed inside the report.
+metrics: []
+figures:
+  - value: 15%
+    label: Incremental revenue
+    context: From cross-sell placed inside the report, not around it.
+  - value: 5+
+    label: Enterprise closes
+    context: Where the report was cited as a key USP. I built the artifact; I did not own the sale.
+  - value: '0→1'
+    label: Built from nothing
+    context: Requirements, UX flow and personalisation logic.
+
+drawers:
+  - label: Where a commercial ask can and cannot sit inside a clinical artifact
+    body: >-
+      The placement that converts best is the placement that costs the most trust, and trust is the
+      entire asset — a report nobody believes is worth nothing to the reader and nothing to the
+      employer who bought the programme. The version I would defend puts the interpretation and the
+      ask in visibly different registers, keeps the ask out of the sentence that explains a result,
+      and never lets a commercial prompt be the answer to a concerning value. That is a design
+      constraint, not a copy guideline: if the boundary depends on whoever writes the next line, it
+      is not a boundary.
+  - label: The question an AI PM will ask about this, and where my answer stops
+    body: >-
+      The first question anyone will ask about a generated health report is how it avoids giving
+      medical advice. It is the right question. My published record covers what I designed — the
+      requirements, the flow, the personalisation logic and where the commercial ask sits — and not
+      the enforcement layer underneath it, so I am not going to reconstruct one here. What I can
+      show is what I think a defensible answer looks like, which is why I built Grounded: an
+      evaluator that scores generated health text against a visible rubric for grounding, scope,
+      escalation and readability. That is in the Lab, and it runs in your browser.
+
+description: A generated health report designed for three audiences at once — the reader, the employer who buys the programme, and the approver who signs it off. 15% incremental revenue, 5+ enterprise closes.
+ogHeadline: The beneficiary reads it. The employer buys it. Both had to be true.
+ogMetric: 5+ enterprise closes
+---
+
+## A page of numbers nobody could read
+
+People completed a health check-up and received their results: a column of clinical values, a column
+of reference ranges, and no way to tell which of it mattered.
+
+**"My haemoglobin is inside the range. Is that the same as fine?"** is not a question a table
+answers. It is the question the product had to answer, and it is a product problem rather than a
+clinical one — the information was already correct and already delivered.
+
+<Figure
+  alt="The report's product flow: check-up results become a plain-language interpretation, then one prompted next step, then evidence an employer can point at."
+  caption="What a person moves through. Input, interpretation, an action worth taking, and an outcome the buyer can see."
+  label="Illustrative product flow — the journey I designed, not a system architecture."
+>
+  <ReportFlow />
+</Figure>
+
+## Three people had to say yes, and only one of them reads it
+
+This is the part of the problem I find genuinely interesting, and the part most consumer product
+work never contains.
+
+<Figure
+  alt="Three audiences with three different tests: the beneficiary, the employer who buys the programme, and the internal approver who signs it off."
+  caption="Most consumer PMs only ever have to satisfy the first column."
+  tone="canvas"
+>
+  <ThreeParties />
+</Figure>
+
+**The beneficiary reads the report. The employer buys the programme. And someone internal has to be
+willing to put their name on what it says.** A report that delights the reader and worries the
+approver does not ship. One that satisfies the approver and bores the reader does not get read,
+which means the employer has nothing to point at either.
+
+## The decision I actually made
+
+Personalisation was the mechanism, not the point. The point was that a report has to be worth
+finishing, and a generic report is not — so the logic decides what an individual sees based on their
+own results rather than showing everyone the same page with different numbers in it.
+
+Then the commercial question. **A health artifact carrying a commercial ask is a real trade-off and
+I want to be plain that I chose to make it**, because the alternative — a beautiful report the
+business cannot justify building again next year — is not obviously the more ethical option.
+
+<Callout variant="tradeoff" label="Where I drew the line">
+
+The ask can follow the interpretation. It cannot *be* the interpretation. A concerning value routes
+to a person, never to a product — the moment a commercial prompt is the answer to something that
+worried you, the report has stopped being a health artifact and become a funnel with a stethoscope
+on.
+
+</Callout>
+
+## What happened
+
+The cross-sell hooks inside the report drove 15% incremental revenue, and the report itself was
+cited as a key USP in five or more enterprise closes.
+
+**I built the artifact. I did not own the sale**, and it matters which of those two things a number
+is evidence for. What the report demonstrably did was give a salesperson something concrete to put
+in front of a buyer, in a category where most of what gets promised is a programme rather than a
+thing.
+
+## What I would do differently
+
+**I would build the evaluation before the feature, not after.** The first question anyone asks about
+a generated health report is how it avoids giving medical advice, and the honest answer is that I
+designed the product surface and not the enforcement layer underneath it.
+
+So I went and built what I think that answer should look like. [Grounded](/lab/grounded) scores
+generated health text against a visible rubric — whether every claim traces to a source value,
+whether it crosses into diagnosis or dosage, whether an out-of-range value routes to a clinician,
+and whether a non-clinical adult can read it. It runs in your browser with no server and no key.
+
+That is the version of this case study I would rather have shipped the first time.

@@ -1,225 +1,141 @@
 ---
 slug: steps-premier-league
 title: Steps Premier League
-tagline: Three strategies, one choice, and the users that choice costs.
-headline: Content, incentives, competition. Two of the three you have to keep paying for.
+category: 0→1 · Engagement
+outcome: A competitive step league built from nothing, moving session time from 3.5 to 7.8 minutes.
+problem: A step counter competes with the one already on the phone. It needs a reason to be opened that the OS widget doesn't have.
+change: I evaluated three retention strategies and shipped the one with no recurring bill — and named who it costs.
 order: 2
+
 role: Product Analyst, HCL Healthcare
-teamShape: "[NEEDS: how many engineers, a designer, a QA function?]"
-timeline: "[NEEDS: how long from cohort analysis to launch?]"
+team: Cross-functional, with engineering and design
+scope: Cohort analysis · strategy evaluation · mechanic design · launch
+
 owned:
   - The cohort analysis that put a drop-off on the table instead of a feature request
   - The evaluation of three strategies — content, incentives, gamification — and the argument for competition
-  - Prioritising competitive mechanics as the core of the launch, over the other two candidates
+  - Prioritising competitive mechanics as the core of what shipped, and naming what that choice costs
 shipped:
   - Steps Premier League, launched 0→1
-  - Competitive mechanics as the core of what went out
+  - A competitive mechanic built on step data the phone already collects
 notOwned:
-  - The build. I made the case for the mechanic; I did not build the league
-  - The analytics. I did not build the instrument that produced 3.5 → 7.8, and its limits bound what I can claim from it
-  - Whether the mechanic held past the first read. My record stops at the session-time figure
+  - The build. I made the case for the mechanic; I did not build the league.
+  - The analytics. I did not build the instrument that produced 3.5 → 7.8, and its limits bound what I can claim from it.
+
+headline:
+  label: Session time
+  before: 3.5 min
+  after: 7.8 min
+  note: The declared north star for this launch — and a contestable one, which I take up below.
 metrics:
-  - label: SESSION TIME
+  - label: Session time
     before: 3.5 min
     after: 7.8 min
-    denominator: not stated
-    timeframe: not stated
-    method: "[NEEDS: population, window, median or mean?]"
-    direction: up-is-good
-artifacts: []
-description: Three retention strategies on the table — content, incentives, gamification. Why I shipped competitive mechanics, what that choice costs, and what session time could not tell me.
-ogHeadline: Content, incentives, competition — and why I shipped competition
+    note: The declared north star for this launch.
+figures:
+  - value: '0→1'
+    label: Built from nothing
+    context: No prior mechanic to extend.
+  - value: '3'
+    label: Strategies evaluated
+    context: Content, incentives, gamification. One shipped.
+
+drawers:
+  - label: Why the phone already having the data is the whole opportunity
+    body: >-
+      Almost every engagement mechanic in a consumer health app eventually competes with a person's
+      willingness to type. Steps are the exception, and not because step challenges are clever: the
+      phone counts them whether or not anyone opens the app. The moment a loop needs a number only
+      the user can supply — a meal, a reading, a home test — it acquires a daily tax, and the people
+      who pay that tax longest tend to be the people who needed the product least. A league built on
+      step data starts with the input problem already solved, which is why it was the cheapest of the
+      three options to get right.
+  - label: What a standings table costs the person in last place
+    body: >-
+      A competition sorts a user base into people who enjoy being ranked and people who feel worse
+      for having been ranked, and in a health product the second group is not a rounding error. The
+      honest version of this mechanic needs a way out that is not deletion — a smaller cohort, an
+      opt-out that does not read as quitting, or a second axis to be good at. That is the part of
+      the design I would push hardest on with more time, and it is the reason I would not ship this
+      mechanic into a clinical population without changing it.
+
+description: A 0→1 competitive step league for a consumer health app with 1M+ registered users. Three retention strategies evaluated, one shipped, session time from 3.5 to 7.8 minutes.
+ogHeadline: Three ways to fix the drop-off. I shipped the one with no recurring bill.
 ogMetric: 3.5 → 7.8 min
 ---
 
-## A step counter competes with the one already on the phone
+## A step counter competes with the phone in your pocket
 
-The app served a registered base above a million people, and session time sat at 3.5 minutes. Cohort
-analysis was the input to what happened next, which is why this was a decision and not a request.
+Cohort analysis put a drop-off on the table. Not a feature request from anyone — a shape in the data
+that said people were arriving and then not coming back.
 
-There is a week-2 drop-off in my record, but it sits against a different initiative — the engagement
-suite — and fusing the two lines would be me telling a tidier story than the one I have.
-
-[NEEDS: week-2 finding — this league, the suite, or both?]
-
-The structural problem underneath is not specific to this app. A phone already counts steps: in the
-background, for free, on the lock screen, with nothing to open and nothing to log into. **Any step
-feature inside a health app is competing with a widget the user never had to open**, and "come and see
-the number your phone already showed you" is a request, not a reason.
-
-## Two of the three options are a bill that never stops arriving
-
-Content, incentives and gamification arrive at a review looking like three things to scope: estimate
-the effort, guess the lift, pick the best ratio. I do not think that is what they are.
-
-**Content and incentives are subscriptions the company pays, not the user.** Somebody produces new
-material every week, forever, and the day production slows the reason to return slows with it. Or a
-reward keeps arriving; withdraw it and the behaviour it bought leaves too, and the user has now been
-told exactly what that behaviour was worth.
-
-Competition works differently. The mechanic is built once and the fuel comes from other people, so the
-recurring cost moves onto the users — and they pay it willingly, because what they are buying is
-standing.
-
-Not features.
-
-**The question that settles this is which of the three still works in a quarter when nobody is funding
-it.**
-
-## The benefit a health app sells arrives too late to change what you do tonight
-
-The method was cohort analysis. **The sample, the window and the shape of the curve are not things I
-can publish, so I am not going to draw them** — a cohort chart with plausible-looking values and a
-blank axis is worse than no chart. What survives without the values is the argument.
-
-Walking has a payoff. It arrives as a number at a check-up years from now, or as something that
-quietly fails to happen to you in your fifties. None of that lands this evening. **A product whose
-promised benefit has a feedback cadence measured in decades has to borrow a loop that runs at the
-cadence of a day.**
-
-Competition is the cheapest borrowed loop there is. Dropping two places overnight is felt tomorrow
-morning: a small, faintly ridiculous, entirely dependable signal, arriving at exactly the frequency
-the behaviour underneath needs and cannot generate for itself.
+The underlying problem is structural, and it is not specific to this app. **Your phone already
+counts your steps. It tells you the number for free, on the lock screen, without anyone opening
+anything.** A health app that shows you the same figure has to answer a question the operating
+system has already answered better.
 
 <Figure
-  caption="Why a competitive mechanic exists in a health product: it supplies the daily feedback the health outcome cannot."
-  alt="A health benefit registers once, years away. A league registers a signal every day between now and two weeks from now."
+  alt="The loop the league runs on: the phone supplies the data, a standing supplies the consequence, and a season reset supplies a fresh start."
+  caption="The mechanic, as designed. The phone supplies the input; other people supply the reason."
+  label="Illustrative mechanic — not a product screen."
 >
-  <FeedbackCadence />
+  <LeagueLoop />
 </Figure>
 
-## Three options, and the one I would have been safest choosing
+## Three strategies were live options. Only one had no recurring bill.
 
-The safe answer was incentives. Nobody argues with them in a review: the mechanism is legible, the
-lift shows up quickly, and if it underperforms you get to say the reward was too small rather than
-that the idea was wrong. That last property is why I distrust it. A strategy whose failure mode is
-always "we did not spend enough" teaches you nothing.
+Content, incentives, gamification. All three were real, all three had advocates, and there was
+appetite for roughly one.
 
-The dimension that usually goes missing is reversibility, and not in the sense of "can it be switched
-off". Everything can be switched off. Reversibility is what it costs to switch off in front of the
-people who were using it, and on that reading a league is the worst of the three.
+**Content and incentives buy attention you have to keep paying for.** Another article, another
+voucher, next week, forever. Competition manufactures the reason to come back out of other users,
+which makes it the only one of the three whose cost is the mechanic rather than the fuel.
 
-**I chose the least reversible option, and I would rather have that written down in advance than
-discovered in week nine.**
+<Figure
+  alt="Content and incentives carry a recurring cost after launch; competition is self-sustaining once seeded."
+  caption="The axis that decided it: what does this option cost in the twelfth week, not the first."
+  tone="canvas"
+>
+  <StrategySpread />
+</Figure>
 
-<DecisionTable
-  caption="The three strategies in the record, on the dimensions I would defend today."
-  columns={["Cost after launch", "Reversibility", "What it needs to be true"]}
-  rows={[
-    {
-      option: "Content",
-      cells: [
-        "Recurring. Every week needs new material and the bill never stops.",
-        "High — it decays quietly. Stop publishing and nobody can name the day it ended.",
-        "That people open a health app in order to read something."
-      ]
-    },
-    {
-      option: "Incentives",
-      cells: [
-        "Recurring. The reward has to keep arriving to keep buying the behaviour.",
-        "Low. Withdrawing a reward is a visible takeaway and is read as a downgrade.",
-        "That the behaviour outlives the reward that started it."
-      ]
-    },
-    {
-      option: "Gamification",
-      chosen: true,
-      note: "Shipped as competitive mechanics — Steps Premier League.",
-      cells: [
-        "One-time build. Other users supply the fuel from then on.",
-        "Lowest of the three. A season cannot be abandoned mid-table without breaking something public.",
-        "That enough people sit close enough together in step count for the comparison to bite."
-      ]
-    }
-  ]}
-/>
+<Callout variant="tradeoff" label="What the choice costs">
 
-Those dimensions are the ones I would argue for today, not a transcript of a scoring exercise.
+A leaderboard is a reason to open the app for the person who is winning and a reason to delete it
+for the person who is last. That is not a footnote to the decision, it is the decision — and in a
+health product, the people most likely to be last are frequently the people the product exists for.
 
-[NEEDS: what did you actually score the three options on?]
-
-## I shipped competition, and it costs the people who do not want to compete
-
-**I evaluated three ways to fix the drop-off and shipped competition, because content and incentives
-buy attention you have to keep paying for, and competition manufactures a reason to open the app on
-the day your own motivation is gone.**
-
-What that buys is a mechanic that funds itself. What it costs is a population.
-
-A leaderboard does not read as neutral. To someone who is unwell, or deconditioned, or simply slower
-than the people they were placed beside, a standings table is a daily notice that they are losing at
-something they never entered to win — and I would expect that group to overlap heavily with the people
-a health product exists for.
-
-Be exact about the limit of that paragraph, though. Accepting the cost knowingly is a different thing
-from never having thought about it, and what the cost actually came to is a second sentence that needs
-data behind it.
-
-## Session time went 3.5 to 7.8 minutes. Here is what that establishes.
-
-Session time moved from 3.5 minutes to 7.8 minutes, and my own record names it as the North Star
-Metric for this work. I show the two values with no percentage beside them; the division takes four
-seconds and I would rather you did it than took my rounding on trust.
-
-**That pair of numbers establishes that people who were in the app stayed in it longer. It does not
-establish that more people came back.** The second is the question the drop-off actually asked.
-
-I attribute the movement directionally, not causally.
-
-[NEEDS: holdback, staged rollout, or straight pre/post?]
-
-Separately: the engagement suite — Challenges, Streaks, Live Events, Trackers — is a different
-initiative over a different window, with its own DAU outcome. **I am not attaching that outcome to
-this league.** Keeping the two apart costs me the bigger-sounding claim, and it is the only version of
-this page I would take into a room with someone holding my resume.
-
-<Drawer label="How I would define session time before quoting it again">
-
-Median or mean. A leaderboard produces a long tail of very engaged users, and a mean follows that tail
-wherever it goes.
-
-What ends a session. A thirty-second inactivity timeout and a five-minute one are different metrics
-sharing a name.
-
-Who is in the denominator. Everyone who opened the app, or everyone who joined a league — and that one
-matters most, because league joiners are self-selected toward engagement, so measuring the mechanic on
-them is the most flattering reading available.
-
-</Drawer>
-
-## An engagement win that burns notification permission is a loss
-
-A competitive mechanic has a failure mode that looks identical to success on a session-time chart. It
-works by manufacturing urgency, urgency is delivered by notification, and notification permission is
-not renewable — one revocation per user, permanent. A league that lifts session time this quarter by
-pushing four times a day has sold a durable asset to buy a temporary number, and the cost does not
-appear on the same dashboard or in the same quarter as the win.
-
-Which is why the counter-metrics have to be agreed before launch: opt-out and system-level permission
-revocation per cohort per week, and uninstalls split by whether the user ever joined a league.
-
-[NEEDS: were opt-outs and uninstalls watched at launch?]
-
-## Session time was the declared North Star. I would argue for a different instrument now.
-
-The case for it is real: if the mechanic works, people come back to check standings, checking
-standings is a session, and the number moves. Sensitive, fast, readable by everyone in the room
-without a briefing.
-
-The case against is stronger. **In a health app, a product working well can reduce session time.** Log
-the walk, see the number, close the app, go outside. A session that shortened because the flow
-improved and one that shortened because the user gave up look identical in the aggregate.
-
-<Callout variant="mistake" label="The instrument I would argue for instead">
-
-**A cohort return rate: of the people who joined a league in a given week, what share opened the app
-in each of the following weeks, against the same curve for people who did not join.** It answers the
-question that was actually asked, and it has to be defined before launch, because a cohort assembled
-afterwards is one assembled knowing the answer.
-
-Session time was the declared North Star and I am not going to pretend otherwise on a page read beside
-my resume. It was the wrong instrument for the question underneath, and picking the instrument before
-the mechanic is the part I would sequence differently.
+**A decision with no cost was not a decision.** I would rather put this in the same sentence as the
+choice than in a retrospective.
 
 </Callout>
+
+## What shipped
+
+A recurring, time-boxed league built on step data the phone already collects — cohorts, standings, a
+season that ends and restarts. The design insight is in the restart: a league with no season end has
+no urgency, and one with no restart has no second chance for anybody who fell behind.
+
+## What happened
+
+Session time moved from 3.5 to 7.8 minutes. That was the declared north star for the launch.
+
+**It is also a contestable north star in a health app, and I would rather argue about it here than
+quietly swap it for something safer.** A health product that works can *shorten* a session: open it,
+log the thing, leave. Time in app is a reasonable metric for a competitive feature whose loop is
+checking where you stand, and a poor one for a product whose job is to get you out of the app and
+onto a walk. Both are true at once, which is why the number needs an argument beside it rather than
+a bigger typeface.
+
+## What I would do differently
+
+**I would instrument the cohort before picking the metric, not after.** What session time cannot
+tell you is whether anybody came back. The number I would want next to it is a week-two-to-week-four
+return rate, measured on people who joined a league against the same weeks for people who did not —
+and choosing the north star before that instrument existed meant choosing the metric the existing
+instrument could produce.
+
+The second thing is guardrails. A retention mechanic that burns notification permission is a loss
+wearing a win's clothes, and the counter-metrics that would catch it — notification opt-outs,
+uninstalls, how many people quietly stop entering a season — belong in the launch plan rather than
+in the post-mortem.

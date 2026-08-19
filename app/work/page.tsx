@@ -1,14 +1,71 @@
 import type { Metadata } from 'next'
 import { getCaseStudies, getShortCases } from '@/lib/content'
 import { Container } from '@/components/layout/Container'
-import { CaseCard } from '@/components/work/CaseCard'
+import { Section, SectionHead } from '@/components/layout/Section'
+import { CaseCard, CardMetric } from '@/components/work/CaseCard'
 import { ShortCase } from '@/components/work/ShortCase'
+import { LaunchDurations } from '@/components/diagrams/LaunchImpact'
 
 export const metadata: Metadata = {
-  title: 'Work — three case studies and two short ones',
+  title: 'Work',
   description:
-    'Cold-start latency on a consumer health app, choosing between three retention mechanics, and a generated health report that became a sales asset. Plus two shorter funnel cases.',
+    'Three case studies from a consumer health app with 1M+ registered users: app launch time and step syncing, a 0→1 competitive league, and an AI health report that became an enterprise USP.',
   alternates: { canonical: '/work' },
+}
+
+function visual(slug: string) {
+  switch (slug) {
+    case 'step-syncing':
+      return (
+        <div className="flex flex-col gap-3">
+          <LaunchDurations />
+          <dl className="grid grid-cols-2 gap-2 border-t border-[var(--color-line)] pt-2.5">
+            <div>
+              <dt className="text-[length:var(--text-lg)] font-semibold tabular-nums">+35%</dt>
+              <dd className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
+                Step-sync completion
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[length:var(--text-lg)] font-semibold tabular-nums">25 → 6MB</dt>
+              <dd className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
+                App bundle, 76% smaller
+              </dd>
+            </div>
+          </dl>
+        </div>
+      )
+    case 'steps-premier-league':
+      return (
+        <CardMetric
+          headline={{
+            value: '3.5 → 7.8',
+            label: 'Minutes per session',
+            note: 'The declared north star, and a choice I will argue about.',
+          }}
+          supporting={[
+            { value: '0→1', label: 'Built from nothing' },
+            { value: '3', label: 'Strategies evaluated' },
+          ]}
+        />
+      )
+    case 'ai-health-report':
+      return (
+        <CardMetric
+          headline={{
+            value: '15%',
+            label: 'Incremental revenue',
+            note: 'From cross-sell placed inside the report, not around it.',
+          }}
+          supporting={[
+            { value: '5+', label: 'Enterprise closes' },
+            { value: '0→1', label: 'Requirements to launch' },
+          ]}
+        />
+      )
+    default:
+      return null
+  }
 }
 
 export default function WorkIndex() {
@@ -17,38 +74,51 @@ export default function WorkIndex() {
 
   return (
     <>
-      <Container className="pt-6 pb-2 lg:pt-10">
+      <Container className="pt-6 pb-2 lg:pt-9">
         <p className="eyebrow">Work</p>
-        <h1 className="mt-2 max-w-[20ch] text-[length:var(--text-3xl)] leading-[1.08] font-semibold tracking-[var(--track-display)]">
-          Three problems of three different shapes, from one product surface.
+        <h1 className="mt-2 max-w-[18ch] text-[length:var(--text-3xl)] leading-[1.05] font-semibold tracking-[var(--track-display)] sm:text-[length:var(--text-hero)]">
+          Three problems, three shapes.
         </h1>
-        <p className="mt-2.5 max-w-[58ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
-          A latency problem, a choice between mechanics, and a commercial one. Each is written the
-          same way, so the pattern only has to be learned once: what the brief was, what the
-          evidence said, what was rejected, and what the decision cost.
+        <p className="mt-3 max-w-[58ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]">
+          A reliability problem, a choice between mechanics, and a commercial one — all on the same
+          product surface. Each is written the same way: what the problem was, what I changed, and
+          what it cost.
         </p>
       </Container>
 
-      <Container className="pb-4">
-        {cases.map((c) => (
-          <CaseCard key={c.meta.slug} meta={c.meta} level={2} />
-        ))}
-      </Container>
-
-      {shorts.length > 0 ? (
-        <Container className="pb-10 lg:pb-14">
-          <div className="mt-6 flex flex-col gap-1.5">
-            <p className="eyebrow">Two shorter ones</p>
-            <p className="max-w-[54ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
-              Both are funnel problems, and both are here for the trade-off rather than the result.
-            </p>
-          </div>
-          <div className="mt-5 flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:gap-7">
-            {shorts.map((s) => (
-              <ShortCase key={s.meta.slug} meta={s.meta} body={s.body} />
+      <Section className="pt-6">
+        <Container>
+          <div className="flex flex-col gap-3">
+            {cases.map((c, i) => (
+              <CaseCard
+                key={c.meta.slug}
+                meta={c.meta}
+                index={i + 1}
+                reversed={i % 2 === 1}
+                visual={visual(c.meta.slug)}
+                level={2}
+              />
             ))}
           </div>
         </Container>
+      </Section>
+
+      {shorts.length > 0 ? (
+        <Section band labelledBy="shorts-h">
+          <Container>
+            <SectionHead
+              id="shorts-h"
+              eyebrow="Two shorter ones"
+              title="Funnels I fixed before this job."
+              lead="Both are here for the trade-off rather than the result, and both fit in three hundred words — which is about what either is worth."
+            />
+            <div className="mt-6 grid gap-3 lg:grid-cols-2">
+              {shorts.map((s) => (
+                <ShortCase key={s.meta.slug} meta={s.meta} body={s.body} />
+              ))}
+            </div>
+          </Container>
+        </Section>
       ) : null}
     </>
   )

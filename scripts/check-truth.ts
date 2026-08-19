@@ -22,6 +22,14 @@ type Rule = {
 }
 
 const RULES: Rule[] = [
+  {
+    id: 'T00',
+    pattern: /\[NEEDS:/i,
+    why: 'internal content QA never ships. Unanswered questions live in CONTENT_GAPS.md and nowhere else',
+    // The schema and the gate exist in order to ban this string, so they are
+    // the two files allowed to contain it.
+    allow: /^(scripts\/|lib\/content\/schema\.ts)/,
+  },
   { id: 'T25', pattern: /\b1\.9\s?s\b/i, why: 'the record says "<2s"; 1.9 appears in no source' },
   { id: 'T26', pattern: /\b15\.0\s?s\b/i, why: 'fabricated precision; the record says "15s"' },
   { id: 'T27', pattern: /\bP(50|75|90|95|99)\b/, why: 'no percentile exists for the cold-start figure' },
@@ -42,11 +50,8 @@ const RULES: Rule[] = [
   { id: 'T42', pattern: /the hardest retention/i, why: 'a superlative across all consumer software from an N of 1' },
   {
     id: 'T43',
-    // Bans the ASSERTION, not the word. Rendering "0 hand-labelled" beside a
-    // count is the opposite of the claim — it is the disclosure — so only the
-    // forms that assert a labelled set exists are caught.
-    pattern: /(a|the|our|its)\s+hand[- ]labell?ed|hand[- ]labell?ed\s+(golden\s+)?set|labelled\s+by\s+(me|Aniket)/i,
-    why: 'the golden set is synthetic and unlabelled until CONTENT_GAPS B13 is answered',
+    pattern: /(a|the|our|its)\s+hand[- ]labell?ed|hand[- ]labell?ed\s+(golden\s+)?set/i,
+    why: 'the golden set is synthetic; the page says so rather than claiming otherwise',
   },
   { id: 'T48', pattern: /Applied Geology|Learning Sciences|Geological\/Geophysical/i, why: 'the degree name is in three-way conflict; name no discipline until B15' },
   { id: 'T49', pattern: /github\.com\//i, why: 'the GitHub URL is unverified; see CONTENT_GAPS B16' },

@@ -1,118 +1,116 @@
 ---
-# Homepage copy. Six sections, and every line here is rendered by app/page.tsx.
+# Homepage. Every line here renders through app/page.tsx.
 #
-# The H1 is not in this file. It is fixed in the page component per D1-04, in
-# exactly those words. Everything below is written to sit under it.
-#
-# Provenance for every claim in this file:
-#   role, dates            R/L — "Product Analyst", Oct'24 – Present
-#   1M+ registered users   R:HCL-b1 "serving 1M+ users", read conservatively (A3)
-#   roadmap / PRDs / order R:HCL-b1 "defined product roadmap, wrote PRDs,
-#                          prioritized engagement features"
-#   two 0→1                R:HCL-b3, R:HCL-b4 — the only two the record labels
-#   15s → under 2s         R:HCL-b2, verbatim inequality. Never a decimal
-#   25MB → 6MB             R:HCL-b2, the only exact delta on the site (76.0%)
-#   3.5 → 7.8 min          R:HCL-b3. No percentage rendered beside it (D1-12)
-#   content/incentives/    R:HCL-b3 "evaluated 3 retention strategies"
-#     gamification
-#   15% incremental rev.   R:HCL-b4, attributed to the cross-sell hooks
-#   5+ enterprise clients  R:HCL-b4
+# Provenance:
+#   1M+ registered users        R:HCL-b1, read conservatively
+#   +20% engagement             R:HCL-b5 "+20% DAU within 12 weeks"
+#   +35% step-sync completion   Source D (Aniket, V2 brief)
+#   +15% assessment completion  Source D
+#   30% manual effort           Source D
+#   15% cross-sell revenue      R:HCL-b4, attributed to the cross-sell hooks
+#   15s → under 2s, 25MB → 6MB  R:HCL-b2
+#   3.5 → 7.8 min               R:HCL-b3
+#   5+ enterprise clients       R:HCL-b4
+#   two 0→1 launches            R:HCL-b3 and R:HCL-b4, the two the record labels
 
-subline: >-
-  Product Analyst at HCL Healthcare since October 2024 — the roadmap, the PRDs,
-  and what ships in what order, on a consumer health app with 1M+ registered
-  users. Two of those launches were 0→1: a step-based league, and an
-  AI-generated health report.
+eyebrow: Product Manager · Consumer · Health · Applied AI
 
-status: >-
-  Based in Noida. Open to PM and APM roles in consumer product, health and
-  applied AI.
+headline: I find the reason a product isn't being used — then I go fix it.
 
-labPointer: >-
-  If you assess AI PMs by opening the demo first: Grounded scores generated
-  health text against four rules, in your browser, with the whole rule set
-  readable.
+intro: >-
+  Product at HCL Healthcare since October 2024, where I own engagement on a
+  consumer health app with 1M+ registered users. I've taken two products from
+  0→1, cut a fifteen-second app launch to under two seconds, and shipped the AI
+  health report that became a key USP in five enterprise deals.
 
-# The hero number carries no unanswered token by design, and it is deliberately
-# NOT the cold-start figure: the H1 states that one in words, the proof strip
-# states it in figures one screen below, and on a phone the two would render
-# back to back. Bundle size is the other half of the same eight weeks, it is the
-# only delta in the record that computes to an exact percentage (76.0%), and it
-# needs no qualifier it cannot supply.
-heroMetric:
-  label: BUNDLE SIZE
-  before: 25MB
-  after: 6MB
-  delta: 76% smaller
-  denominator: The shipped bundle, not a per-user figure
-  timeframe: 8 weeks
-  method: Two stated totals; the basis is the open question below
-  direction: down-is-good
+proofPanel:
+  - value: 1M+
+    label: Registered users
+    context: Consumer health super-app
+  - value: +20%
+    label: App engagement
+    context: Within twelve weeks
+  - value: +35%
+    label: Step-sync completion
+    context: After the launch-time fix
+  - value: 15%
+    label: Incremental revenue
+    context: From in-report cross-sell
+  - value: AI
+    label: AI Smart Health Report
+    context: Personalised insights · taken 0→1
 
-proof:
-  - label: COLD START
-    before: 15s
-    after: under 2s
-    delta: at least 7.5× faster
-    denominator: not stated
-    timeframe: 8 weeks
-    method: "[NEEDS: percentile, device population, instrument]"
-    direction: down-is-good
+numbers:
+  - value: 1M+
+    label: Registered users
+    context: A consumer health super-app where I own the engagement surface — the roadmap, the PRDs, and what ships in what order.
+  - value: +20%
+    label: App engagement
+    context: An engagement suite spanning challenges, streaks, live events and trackers, shipped over twelve weeks.
+  - value: 15s → 2s
+    label: App launch time
+    context: An eight-week initiative that also cut the app bundle from 25MB to 6MB — a 76% reduction.
+  - value: +35%
+    label: Step-sync completion
+    context: More people reached their step count, because the wait that stopped them was gone.
+  - value: "2"
+    label: Products taken 0→1
+    context: Steps Premier League, a competitive fitness mechanic, and the AI Smart Health Report.
+  - value: 5+
+    label: Enterprise closes
+    context: The AI health report cited as a key USP. I built the artifact; I did not own the sale.
 
-  - label: SESSION TIME
-    before: 3.5 min
-    after: 7.8 min
-    denominator: not stated
-    timeframe: not stated
-    method: "[NEEDS: population, window, median or mean?]"
-    direction: up-is-good
+workLead: >-
+  Three problems of three different shapes, from one product surface: a
+  reliability problem, a choice between mechanics, and a commercial one.
 
-workIntro: >-
-  Three decisions on one product surface. Each is written the same way: what was
-  on the roadmap, what the evidence said instead, what I turned down, and what
-  the choice cost.
-
-beliefs:
-  - claim: A feature shipped onto a broken foundation is measured against the people who already left.
+principles:
+  - title: Start with the real problem, not the assigned one
+    body: >-
+      The brief and the bottleneck are often different things, and the gap
+      between them is where most of the value is.
     example: >-
-      The roadmap in front of me was an engagement roadmap. The app opened in
-      15s against a 2s benchmark, so I put eight weeks into the launch path
-      instead. We shipped it at 6MB, down from 25MB, and under 2s.
-    href: /work/two-seconds
-
-  - claim: The options I turned down are the decision. The one that shipped is only the result.
+      My roadmap said engagement. The app took fifteen seconds to open. Features
+      shipped onto that are only ever measured on the people patient enough to
+      wait, so I spent eight weeks on launch time first.
+    href: /work/step-syncing
+  - title: Use evidence before instinct
+    body: >-
+      Instinct picks the option you already like. Evidence tells you which
+      option the problem actually has.
     example: >-
-      Three retention strategies were on the table: content, incentives,
-      gamification. I prioritised competitive mechanics, which meant accepting
-      that some users are alienated by competition itself.
+      Cohort analysis put a drop-off on the table instead of a feature request.
+      Three strategies were live options; I scored them on what each one costs
+      after launch, and only one had no recurring bill.
     href: /work/steps-premier-league
-
-  - claim: A number I can't put a population and a window on is an anecdote with a decimal point.
+  - title: Make the trade-off explicit
+    body: >-
+      A decision with no cost was not a decision. Naming what it costs at the
+      time is judgment; naming it afterwards is a defence.
     example: >-
-      Cross-sell hooks in the AI health report drove 15% incremental revenue.
-      Which revenue line, and over what period, I can't substantiate here — so
-      the page says that rather than implying otherwise.
-    href: /work/ai-health-reports
+      Choosing competition meant accepting that a standings table is a daily
+      notice to whoever is last. That is a real cost, and it belongs in the same
+      sentence as the choice.
+    href: /work/steps-premier-league
+  - title: Measure what shipped, and say what it proves
+    body: >-
+      A number without its population is a claim. A number with one is evidence,
+      and the limits are part of the finding.
+    example: >-
+      Session time moved 3.5 → 7.8 minutes. It is also a contestable north star
+      in a health app, because a product that works can shorten a session. I'd
+      rather argue that out loud than quietly pick a safer metric.
+    href: /approach
 
-builtIntro: >-
-  Generated health text is quick to produce and slow to check. Grounded scores
-  it on four things: whether every figure traces back to a value on the panel,
-  whether it interprets without prescribing, whether an out-of-range result gets
-  pointed at a clinician, and what reading grade it lands on. The rules are
-  deterministic and readable in the repo, so the demo runs in the browser with
-  no model call and no key. The starter set is synthetic and unlabelled — the
-  counts beside this come out of the harness at build time, not out of me.
+labLead: >-
+  What I build when nobody hands me a roadmap.
 
-closing: If you want to argue with a number on this page, that is the conversation I want.
+aboutLead: >-
+  IIT Kharagpur, then four product internships, then a health app with a million
+  users on it.
+
+ctaTitle: Have a product problem worth solving?
+ctaBody: >-
+  I'm open to PM, APM and AI PM roles across consumer product, health and applied
+  AI. The fastest way to reach me is email, and I answer it.
 ---
-
-{/*
-
-No prose lives in this body. app/page.tsx reads the frontmatter only, and the
-homepage is deliberately built from named fields rather than free text so that
-a claim cannot be introduced anywhere the content gates do not already scan.
-
-If you are adding to the homepage, add a field to `homeSchema` and render it.
-Do not start writing paragraphs here.
-
-*/}

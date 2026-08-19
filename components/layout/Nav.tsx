@@ -1,107 +1,120 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { site } from '@/lib/site'
 
 const LINKS = [
   { href: '/work', label: 'Work' },
   { href: '/approach', label: 'Approach' },
-  { href: '/lab/grounded', label: 'Lab' },
+  { href: '/lab', label: 'Lab' },
   { href: '/about', label: 'About' },
 ]
 
 /**
- * Zero client JavaScript.
+ * The one thing this needs that V1's nav did not have: an active state. On
+ * /work, V1 gave no indication of where you were, and its wordmark was an
+ * unstyled 16px label that picked up a browser focus outline and looked
+ * accidental.
  *
- * The brief allows Nav to be a Client Component for scroll state. It does not
- * need to be. The condense-on-scroll is a CSS scroll-driven animation against
- * a sentinel, and the mobile panel is a native <details> — which is keyboard
- * operable, screen-reader announced, and works before hydration, none of which
- * a useState toggle can claim.
- *
- * Mobile control is the word "Menu", not a hamburger glyph.
+ * The mobile panel is a native <details>, so it is keyboard operable and
+ * announced correctly, and its links are plain anchors — a client-side
+ * navigation would leave the element mounted and the panel open over the page
+ * you just arrived at.
  */
 export function Nav() {
+  const pathname = usePathname()
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
+
   return (
     <>
       <a
         href="#main"
-        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-1.5 focus-visible:left-1.5 focus-visible:z-50 focus-visible:rounded-[var(--radius)] focus-visible:bg-[var(--color-ink)] focus-visible:px-2 focus-visible:py-1 focus-visible:text-[var(--color-paper)]"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:rounded-[var(--radius)] focus-visible:bg-[var(--color-ink)] focus-visible:px-2.5 focus-visible:py-1.5 focus-visible:text-[var(--color-canvas)]"
       >
         Skip to content
       </a>
 
-      <header className="site-nav sticky top-0 z-40 border-b border-[var(--color-rule)] bg-[var(--color-paper)]">
-        <nav aria-label="Primary" className="mx-auto flex max-w-[1200px] items-center justify-between gap-3 px-3 sm:px-4 lg:px-5">
+      <header className="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-canvas)]/85 backdrop-blur-md">
+        <nav
+          aria-label="Primary"
+          className="mx-auto flex h-7 max-w-[76rem] items-center justify-between gap-4 px-3 sm:px-5 lg:px-6"
+        >
           <Link
             href="/"
-            className="nav-link text-[var(--text-base)] font-semibold tracking-[-0.01em] text-[var(--color-ink)]"
+            className="group flex items-center gap-1.5 text-[length:var(--text-base)] font-semibold tracking-[var(--track-heading)] text-[var(--color-ink)]"
           >
-            {site.name}
+            <span
+              aria-hidden="true"
+              className="grid h-3 w-3 place-items-center rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[10px] font-bold text-[var(--color-canvas)] transition-colors duration-[var(--duration-fast)] group-hover:bg-[var(--color-accent)]"
+            >
+              AA
+            </span>
+            <span className="hidden sm:inline">{site.name}</span>
+            <span className="sr-only sm:hidden">{site.name} — home</span>
           </Link>
 
-          {/* Desktop */}
-          <ul className="hidden items-center gap-3.5 md:flex">
+          <div className="hidden items-center gap-0.5 md:flex">
             {LINKS.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="nav-link text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-signal)]"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <a
-                href={site.resume}
-                className="rounded-[var(--radius)] border border-[var(--color-rule-strong)] px-1.5 py-0.75 text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={isActive(l.href) ? 'page' : undefined}
+                className={`rounded-[var(--radius-sm)] px-1.5 py-1 text-[length:var(--text-sm)] transition-colors duration-[var(--duration-fast)] ${
+                  isActive(l.href)
+                    ? 'font-medium text-[var(--color-ink)]'
+                    : 'text-[var(--color-muted)] hover:text-[var(--color-ink)]'
+                }`}
               >
-                Resume <span aria-hidden="true">↗</span>
-                <span className="sr-only">(PDF)</span>
-              </a>
-            </li>
-          </ul>
-
-          {/* Mobile */}
-          <div className="flex items-center gap-4 md:hidden">
+                {l.label}
+              </Link>
+            ))}
             <a
               href={site.resume}
-              className="nav-link font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-ink)]"
+              className="ml-1.5 rounded-[var(--radius)] border border-[var(--color-line-strong)] px-2 py-1 text-[length:var(--text-sm)] font-medium text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-ink)] hover:bg-[var(--color-surface)]"
             >
-              Resume <span aria-hidden="true">↗</span>
+              Résumé <span aria-hidden="true">↗</span>
               <span className="sr-only">(PDF)</span>
             </a>
-            <details className="nav-panel group">
-            <summary className="nav-link cursor-pointer list-none text-[var(--text-sm)] text-[var(--color-ink)] [&::-webkit-details-marker]:hidden">
-              <span className="group-open:hidden">Menu</span>
-              <span className="hidden group-open:inline">Close</span>
-            </summary>
-            <div className="absolute inset-x-0 top-full z-40 overflow-y-auto border-t border-[var(--color-rule)] bg-[var(--color-paper)] px-3 py-4">
-              <ul className="flex flex-col gap-0.5">
-                {LINKS.map((l) => (
-                  <li key={l.href}>
-                    <a
-                      href={l.href}
-                      className="block border-b border-[var(--color-rule)] py-2 text-[var(--text-lg)] text-[var(--color-ink)]"
-                    >
-                      {l.label}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <a
-                    href={site.resume}
-                    className="block border-b border-[var(--color-rule)] py-2 text-[var(--text-lg)] text-[var(--color-ink)]"
-                  >
-                    Resume <span aria-hidden="true">↗</span>
-                  </a>
-                </li>
-              </ul>
-              <a
-                href={`mailto:${site.email}`}
-                className="mt-4 inline-block font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]"
-              >
-                {site.email}
-              </a>
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <a
+              href={site.resume}
+              className="rounded-[var(--radius)] border border-[var(--color-line-strong)] px-1.5 py-0.75 text-[length:var(--text-sm)] font-medium text-[var(--color-ink)]"
+            >
+              Résumé <span aria-hidden="true">↗</span>
+              <span className="sr-only">(PDF)</span>
+            </a>
+            <details className="group/panel">
+              <summary className="flex cursor-pointer list-none items-center gap-1 rounded-[var(--radius-sm)] px-1 py-1 text-[length:var(--text-sm)] font-medium text-[var(--color-ink)] [&::-webkit-details-marker]:hidden">
+                <span className="group-open/panel:hidden">Menu</span>
+                <span className="hidden group-open/panel:inline">Close</span>
+              </summary>
+              <div className="absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-100%)] overflow-y-auto border-b border-[var(--color-line)] bg-[var(--color-canvas)] px-3 py-3 shadow-[var(--shadow-card)]">
+                <ul className="flex flex-col">
+                  {LINKS.map((l) => (
+                    <li key={l.href}>
+                      <a
+                        href={l.href}
+                        aria-current={isActive(l.href) ? 'page' : undefined}
+                        className={`block border-b border-[var(--color-line)] py-2 text-[length:var(--text-lg)] ${
+                          isActive(l.href)
+                            ? 'font-semibold text-[var(--color-ink)]'
+                            : 'text-[var(--color-body)]'
+                        }`}
+                      >
+                        {l.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="mt-3 inline-block text-[length:var(--text-sm)] font-medium text-[var(--color-accent)]"
+                >
+                  {site.email}
+                </a>
               </div>
             </details>
           </div>

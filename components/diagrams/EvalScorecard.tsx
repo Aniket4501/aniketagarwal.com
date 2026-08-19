@@ -31,19 +31,19 @@ export function EvalScorecard() {
           <div key={c.dimension} className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between gap-2">
               <span className="eyebrow">{c.dimension}</span>
-              <span className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] tabular-nums text-[var(--color-muted)]">
+              <span className="text-[length:var(--text-xs)] tabular-nums text-[var(--color-muted)]">
                 {c.passed}/{cases.length} pass
               </span>
             </div>
-            <div className="flex h-2 w-full bg-[var(--color-rule)]">
+            <div className="flex h-2 w-full bg-[var(--color-line)]">
               <div
-                className="h-full bg-[var(--color-signal)]"
+                className="h-full bg-[var(--color-accent)]"
                 style={{ width: `${(c.passed / cases.length) * 100}%` }}
               />
             </div>
           </div>
         ))}
-        <p className="mt-1 font-[family-name:var(--font-mono)] text-[var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
+        <p className="mt-1 text-[length:var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
           {allFour} of {cases.length} cases clear all four. The per-case matrix is on a wider
           screen.
         </p>
@@ -71,9 +71,9 @@ export function EvalScorecard() {
               ))}
             </tr>
           </thead>
-          <tbody className="font-[family-name:var(--font-mono)] text-[var(--text-xs)]">
+          <tbody className="text-[length:var(--text-xs)]">
             {cases.map((c) => (
-              <tr key={c.id} className="border-t border-[var(--color-rule)]">
+              <tr key={c.id} className="border-t border-[var(--color-line)]">
                 <th scope="row" className="px-1 py-0.75 font-normal whitespace-nowrap">
                   <span className="text-[var(--color-ink)]">{c.id}</span>{' '}
                   <span className="text-[var(--color-muted)]">{c.category}</span>
@@ -85,7 +85,7 @@ export function EvalScorecard() {
                     <td key={d} className="px-1 py-0.75">
                       <span
                         className={
-                          passed ? 'text-[var(--color-signal)]' : 'text-[var(--color-flag)]'
+                          passed ? 'text-[var(--color-accent)]' : 'text-[var(--color-flag)]'
                         }
                       >
                         {passed ? 'pass' : 'fail'}
@@ -98,7 +98,7 @@ export function EvalScorecard() {
           </tbody>
         </table>
       </div>
-      <p className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
+      <p className="text-[length:var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
         {baseline.stats.total} cases · {baseline.stats.handLabelled} hand-labelled ·{' '}
         {baseline.agreement.dimensions.matched}/{baseline.agreement.dimensions.total} agreement with
         the labels · {baseline.totalElapsedMs}ms total. Generated from a real run at build time.

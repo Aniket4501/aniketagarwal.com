@@ -1,22 +1,72 @@
 import Link from 'next/link'
 import { getHome, getCaseStudies, getLabProjects } from '@/lib/content'
 import { Container } from '@/components/layout/Container'
-import { ProofStrip } from '@/components/content/ProofStrip'
-import { MetricDelta } from '@/components/content/MetricDelta'
-import { CaseCard } from '@/components/work/CaseCard'
-import { Timeline } from '@/components/content/Timeline'
+import { Section, SectionHead, Eyebrow } from '@/components/layout/Section'
+import { Button, Tag } from '@/components/ui/Button'
 import { CopyEmail } from '@/components/ui/CopyEmail'
-import { WithNeeds } from '@/components/ui/Needs'
+import { HeroPanel } from '@/components/home/HeroPanel'
+import { Experience } from '@/components/home/Experience'
+import { CaseCard, CardMetric } from '@/components/work/CaseCard'
+import { LaunchDurations } from '@/components/diagrams/LaunchImpact'
+import { site, education, tools } from '@/lib/site'
 import baseline from '@/public/grounded-baseline.json'
-import { site } from '@/lib/site'
 
-/**
- * Six sections. Nothing else.
- *
- * Mobile is the design, desktop is the adaptation: recruiters open these links
- * on phones. The hero is tall but not empty — the proof strip has to be
- * partially visible at the fold so the page reads dense rather than sparse.
- */
+/** The visual half of each case card, keyed by slug. */
+function cardVisual(slug: string) {
+  switch (slug) {
+    case 'step-syncing':
+      return (
+        <div className="flex flex-col gap-3">
+          <LaunchDurations />
+          <dl className="grid grid-cols-2 gap-2 border-t border-[var(--color-line)] pt-2.5">
+            <div>
+              <dt className="text-[length:var(--text-lg)] font-semibold tabular-nums">+35%</dt>
+              <dd className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
+                Step-sync completion
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[length:var(--text-lg)] font-semibold tabular-nums">25 → 6MB</dt>
+              <dd className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
+                App bundle, 76% smaller
+              </dd>
+            </div>
+          </dl>
+        </div>
+      )
+    case 'steps-premier-league':
+      return (
+        <CardMetric
+          headline={{
+            value: '3.5 → 7.8',
+            label: 'Minutes per session',
+            note: 'The declared north star for the launch, and a choice I will argue about.',
+          }}
+          supporting={[
+            { value: '0→1', label: 'Built from nothing' },
+            { value: '3', label: 'Strategies evaluated, one shipped' },
+          ]}
+        />
+      )
+    case 'ai-health-report':
+      return (
+        <CardMetric
+          headline={{
+            value: '15%',
+            label: 'Incremental revenue',
+            note: 'From cross-sell placed inside the report, not around it.',
+          }}
+          supporting={[
+            { value: '5+', label: 'Enterprise closes citing it' },
+            { value: '0→1', label: 'Requirements, UX, personalisation' },
+          ]}
+        />
+      )
+    default:
+      return null
+  }
+}
+
 export default function Home() {
   const { meta } = getHome()
   const cases = getCaseStudies()
@@ -24,202 +74,280 @@ export default function Home() {
 
   return (
     <>
-      {/* 1 — Identity */}
+      {/* 1 — Hero */}
       <Container as="header" className="pt-6 pb-8 lg:pt-10 lg:pb-12">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-5">
-          <div className="flex flex-col gap-4 lg:col-span-7">
-            {/* Both sentences are in the h1 — the second one is the payoff and
-                the reason to keep reading, so it is set smaller rather than
-                greyer. A large block of muted type reads as de-emphasis, and
-                the judgment signal is the part that must not be de-emphasised. */}
-            <h1 className="flex flex-col gap-2">
-              <span className="max-w-[17ch] text-[length:var(--text-hero)] leading-[1.04] font-semibold tracking-[var(--track-display)] text-balance">
-                The roadmap was engagement. The app took fifteen seconds to open.
-              </span>
-              <span className="max-w-[30ch] text-[length:var(--text-xl)] leading-[1.25] font-medium tracking-[var(--track-h2)] text-balance sm:text-[length:var(--text-2xl)]">
-                I spent eight weeks there instead. We shipped it under two.
-              </span>
+        <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
+          <div className="flex flex-col gap-3">
+            <p className="animate-rise eyebrow">{meta.eyebrow}</p>
+
+            <h1
+              className="animate-rise max-w-[16ch] text-[length:var(--text-hero)] leading-[1.04] font-semibold tracking-[var(--track-display)]"
+              style={{ '--delay': '60ms' } as React.CSSProperties}
+            >
+              {meta.headline}
             </h1>
 
-            <p className="max-w-[54ch] text-[var(--text-lg)] leading-snug">{meta.subline}</p>
-
-            <p className="max-w-[54ch] font-[family-name:var(--font-mono)] text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
-              <WithNeeds text={meta.status} />
+            <p
+              className="animate-rise max-w-[54ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]"
+              style={{ '--delay': '120ms' } as React.CSSProperties}
+            >
+              {meta.intro}
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-0.5">
-              <a
-                href={site.resume}
-                className="rounded-[var(--radius)] border border-[var(--color-rule-strong)] px-2 py-1 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-ink)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
-              >
-                Resume <span aria-hidden="true">↗</span>
-                <span className="sr-only">(PDF)</span>
-              </a>
-              <a
-                href="#proof"
-                className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]"
-              >
-                Read the work <span aria-hidden="true">↓</span>
-              </a>
-              <CopyEmail />
+            <div
+              className="animate-rise mt-1 flex flex-wrap items-center gap-2"
+              style={{ '--delay': '180ms' } as React.CSSProperties}
+            >
+              <Button href="#work" size="large">
+                View my work <span aria-hidden="true">→</span>
+              </Button>
+              <Button href={site.resume} variant="secondary" size="large">
+                Résumé <span aria-hidden="true">↗</span>
+              </Button>
               <a
                 href={site.linkedin}
                 rel="me noopener"
-                className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-ink)] hover:text-[var(--color-signal)]"
+                className="px-1 py-1.5 text-[length:var(--text-sm)] font-medium text-[var(--color-muted)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-ink)]"
               >
                 LinkedIn <span aria-hidden="true">↗</span>
               </a>
             </div>
-
-            {lab ? (
-              <p className="max-w-[56ch] border-t border-[var(--color-rule)] pt-2.5 text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
-                {meta.labPointer}{' '}
-                <Link
-                  href={`/lab/${lab.meta.slug}`}
-                  className="text-[var(--color-signal)] underline decoration-[var(--color-signal)]/30 underline-offset-4 hover:decoration-[var(--color-signal)]"
-                >
-                  Run it <span aria-hidden="true">→</span>
-                </Link>
-              </p>
-            ) : null}
           </div>
 
-          {/* The first delta is the visual anchor, not decoration: it is the
-              number the headline just claimed. */}
-          {meta.heroMetric ? (
-            <div className="lg:col-span-4 lg:col-start-9 lg:pt-1.5">
-              <MetricDelta metric={{ ...meta.heroMetric, animate: true }} size="large" />
-            </div>
-          ) : null}
+          <HeroPanel figures={meta.proofPanel} />
         </div>
       </Container>
 
-      {/* 2 — Proof. Pure evidence, no call to action. */}
-      <section id="proof" aria-label="Evidence" className="scroll-mt-10">
+      {/* 2 — By the numbers */}
+      <Section band id="numbers" labelledBy="numbers-h">
         <Container>
-          <ProofStrip metrics={meta.proof} />
+          <SectionHead
+            id="numbers-h"
+            eyebrow="By the numbers"
+            title="What the work actually moved."
+            lead="Every figure below comes from shipped product work at HCL Healthcare."
+          />
+          <div className="mt-6 grid gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+            {meta.numbers.map((n, i) => (
+              <div
+                key={n.label}
+                className="flex flex-col gap-1.5 border-t border-[var(--color-line-strong)]/40 pt-3"
+              >
+                <p
+                  className="animate-rise text-[length:var(--text-metric)] leading-none font-semibold tracking-[var(--track-display)] tabular-nums"
+                  style={{ '--delay': `${i * 50}ms` } as React.CSSProperties}
+                >
+                  {n.value}
+                </p>
+                <p className="text-[length:var(--text-base)] font-medium">{n.label}</p>
+                {n.context ? (
+                  <p className="max-w-[36ch] text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+                    {n.context}
+                  </p>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </Container>
-      </section>
+      </Section>
 
       {/* 3 — Selected work */}
-      <Container className="py-7 lg:py-12">
-        <div className="flex flex-col gap-1.5">
-          <h2 className="eyebrow">Selected work</h2>
-          <p className="max-w-[56ch] text-[var(--text-lg)] leading-snug">{meta.workIntro}</p>
-        </div>
-        <div className="mt-5">
-          {cases.map((c) => (
-            <CaseCard key={c.meta.slug} meta={c.meta} showFigure={false} />
-          ))}
-        </div>
-        <p className="mt-4 text-[var(--text-base)] text-[var(--color-muted)]">
-          <Link
-            href="/work"
-            className="text-[var(--color-signal)] underline decoration-[var(--color-signal)]/30 underline-offset-4 hover:decoration-[var(--color-signal)]"
-          >
-            Two shorter ones: the KYC wall and the claims maze <span aria-hidden="true">→</span>
-          </Link>
-        </p>
-      </Container>
+      <Section id="work" labelledBy="work-h" className="scroll-mt-8">
+        <Container>
+          <SectionHead
+            id="work-h"
+            eyebrow="Selected work"
+            title="Three problems, three shapes."
+            lead={meta.workLead}
+            action={
+              <Button href="/work" variant="secondary">
+                All work <span aria-hidden="true">→</span>
+              </Button>
+            }
+          />
+          <div className="mt-6 flex flex-col gap-3">
+            {cases.map((c, i) => (
+              <CaseCard
+                key={c.meta.slug}
+                meta={c.meta}
+                index={i + 1}
+                reversed={i % 2 === 1}
+                visual={cardVisual(c.meta.slug)}
+              />
+            ))}
+          </div>
+        </Container>
+      </Section>
 
-      {/* 4 — How I work. The calmest section on the page. */}
-      <Container className="py-7 lg:py-12">
-        <h2 className="eyebrow">How I work</h2>
-        <div className="mt-4 border-t border-[var(--color-rule)]">
-          {meta.beliefs.map((b) => (
-            <div
-              key={b.claim}
-              className="grid gap-1.5 border-b border-[var(--color-rule)] py-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-7"
-            >
-              <h3 className="max-w-[24ch] text-[var(--text-xl)] leading-snug font-semibold tracking-[var(--track-h2)]">
-                <Link href={b.href} className="hover:text-[var(--color-signal)]">
-                  {b.claim}
-                </Link>
-              </h3>
-              <p className="max-w-[54ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
-                <WithNeeds text={b.example} />
-              </p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-4">
-          <Link
-            href="/approach"
-            className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]"
-          >
-            The full version, and the one thing I have not answered{' '}
-            <span aria-hidden="true">→</span>
-          </Link>
-        </p>
-      </Container>
+      {/* 4 — Experience */}
+      <Section band labelledBy="exp-h">
+        <Container>
+          <SectionHead
+            id="exp-h"
+            eyebrow="Experience"
+            title="Four years of product work, one of them owning a surface."
+          />
+          <div className="mt-6">
+            <Experience />
+          </div>
+        </Container>
+      </Section>
 
-      {/* 5 — Built */}
-      {lab ? (
-        <Container className="py-7 lg:py-12">
-          <h2 className="eyebrow">Built</h2>
-          <div className="mt-4 border border-[var(--color-rule)] bg-[var(--color-paper-raised)] p-3 sm:p-4">
-            <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-7">
-              <div className="flex flex-col gap-2">
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="eyebrow rounded-[var(--radius-sm)] border border-[var(--color-signal)]/40 px-1 py-0.25 text-[var(--color-signal)]">
-                    Live
-                  </span>
-                  <span className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)]">
-                    {lab.meta.statusNote}
-                  </span>
-                </div>
-                <h3 className="text-[var(--text-2xl)] leading-snug font-semibold tracking-[var(--track-h2)]">
-                  {lab.meta.title}
+      {/* 5 — How I work */}
+      <Section labelledBy="how-h">
+        <Container>
+          <SectionHead
+            id="how-h"
+            eyebrow="How I work"
+            title="How I make product decisions."
+            action={
+              <Button href="/approach" variant="secondary">
+                The longer version <span aria-hidden="true">→</span>
+              </Button>
+            }
+          />
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {meta.principles.map((p, i) => (
+              <div key={p.title} className="card flex flex-col gap-2 p-3">
+                <span className="text-[length:var(--text-sm)] font-semibold tabular-nums text-[var(--color-accent)]">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="max-w-[26ch] text-[length:var(--text-lg)] leading-snug font-semibold tracking-[var(--track-heading)]">
+                  {p.title}
                 </h3>
-                <p className="max-w-[52ch] text-[var(--text-base)] leading-relaxed">
-                  {meta.builtIntro}
+                <p className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
+                  {p.body}
                 </p>
-                <p className="pt-0.5">
+                <p className="mt-auto border-t border-[var(--color-line)] pt-2 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+                  {p.example}
+                </p>
+                {p.href ? (
                   <Link
-                    href={`/lab/${lab.meta.slug}`}
-                    className="inline-block rounded-[var(--radius)] border border-[var(--color-signal)] px-2 py-1 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)] transition-colors duration-[var(--duration-fast)] hover:bg-[var(--color-signal)] hover:text-[var(--color-paper)]"
+                    href={p.href}
+                    className="text-[length:var(--text-sm)] font-medium text-[var(--color-accent)]"
                   >
-                    Run it <span aria-hidden="true">→</span>
+                    See it in the work <span aria-hidden="true">→</span>
                   </Link>
-                </p>
+                ) : null}
               </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
-              <dl className="grid grid-cols-2 gap-x-3 gap-y-2.5 self-start border-t border-[var(--color-rule)] pt-3 lg:border-t-0 lg:pt-0">
-                {[
-                  ['Cases', String(baseline.stats.total)],
-                  ['Hand-labelled', String(baseline.stats.handLabelled)],
-                  [
-                    'Label agreement',
-                    `${baseline.agreement.dimensions.matched}/${baseline.agreement.dimensions.total}`,
-                  ],
-                  ['Full run', `${baseline.totalElapsedMs}ms`],
-                ].map(([k, v]) => (
-                  <div key={k} className="flex flex-col gap-0.5">
-                    <dt className="eyebrow">{k}</dt>
-                    <dd className="font-[family-name:var(--font-mono)] text-[var(--text-lg)] tabular-nums">
-                      {v}
-                    </dd>
+      {/* 6 — Product Lab */}
+      {lab ? (
+        <Section band labelledBy="lab-h">
+          <Container>
+            <SectionHead id="lab-h" eyebrow="Product lab" title={meta.labLead} />
+            <div className="card mt-6 overflow-hidden">
+              <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+                <div className="flex flex-col gap-2.5 p-3 sm:p-4">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <Tag tone={lab.meta.status === 'live' ? 'accent' : 'flag'}>
+                      {lab.meta.status === 'live' ? 'Live' : lab.meta.status.replace('-', ' ')}
+                    </Tag>
+                    <span className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
+                      {lab.meta.statusNote}
+                    </span>
                   </div>
+                  <h3 className="text-[length:var(--text-2xl)] leading-tight font-semibold tracking-[var(--track-heading)]">
+                    {lab.meta.title}
+                  </h3>
+                  <p className="max-w-[52ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]">
+                    {lab.meta.tagline}
+                  </p>
+                  <p className="max-w-[52ch] text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+                    <span className="font-medium text-[var(--color-ink)]">Why I built it: </span>
+                    {lab.meta.why}
+                  </p>
+                  <div className="mt-1 flex flex-wrap gap-2">
+                    <Button href={`/lab/${lab.meta.slug}`}>
+                      Run it <span aria-hidden="true">→</span>
+                    </Button>
+                  </div>
+                </div>
+                <dl className="grid grid-cols-2 content-start gap-px border-t border-[var(--color-line)] bg-[var(--color-line)] lg:border-t-0 lg:border-l">
+                  {[
+                    ['Cases in the set', String(baseline.stats.total)],
+                    ['Scored dimensions', '4'],
+                    ['Full run', `${baseline.totalElapsedMs}ms`],
+                    ['Server calls', '0'],
+                  ].map(([k, v]) => (
+                    <div key={k} className="flex flex-col gap-0.5 bg-[var(--color-surface)] p-2.5">
+                      <dt className="eyebrow">{k}</dt>
+                      <dd className="text-[length:var(--text-xl)] font-semibold tabular-nums">
+                        {v}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {/* 7 — About */}
+      <Section labelledBy="about-h">
+        <Container>
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-10">
+            <div className="flex flex-col gap-2">
+              <Eyebrow>About</Eyebrow>
+              <h2
+                id="about-h"
+                className="max-w-[18ch] text-[length:var(--text-xl)] tracking-[var(--track-heading)] sm:text-[length:var(--text-2xl)]"
+              >
+                {meta.aboutLead}
+              </h2>
+              <Button href="/about" variant="secondary" className="mt-2 self-start">
+                More about me <span aria-hidden="true">→</span>
+              </Button>
+            </div>
+            <div className="flex flex-col gap-3">
+              <p className="text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]">
+                I like problems where the product already exists and something is quietly stopping
+                people from using it — a wait, a wall, a number nobody can read. Finding that thing
+                is most of the job.
+              </p>
+              <p className="text-[length:var(--text-base)] leading-relaxed text-[var(--color-muted)]">
+                {education.degree}, {education.school}, {education.period}. Product work since 2022
+                across media, marketplaces, fintech onboarding, insurance claims and now health.
+              </p>
+              <div className="mt-1 flex flex-wrap gap-1.5">
+                {tools.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-[var(--radius-sm)] border border-[var(--color-line)] bg-[var(--color-surface)] px-1.5 py-0.5 text-[length:var(--text-xs)] text-[var(--color-muted)]"
+                  >
+                    {t}
+                  </span>
                 ))}
-              </dl>
+              </div>
             </div>
           </div>
         </Container>
-      ) : null}
+      </Section>
 
-      {/* 6 — Track record and contact */}
-      <Container className="py-7 lg:py-12">
-        <h2 className="eyebrow">Track record</h2>
-        <div className="mt-4">
-          <Timeline />
-        </div>
-
-        <div className="mt-7 flex flex-col gap-2.5 border-t border-[var(--color-rule)] pt-5">
-          <p className="max-w-[46ch] text-[var(--text-xl)] leading-snug font-semibold tracking-[var(--track-h2)]">
-            {meta.closing}
-          </p>
-        </div>
-      </Container>
+      {/* 8 — Final CTA */}
+      <Section band labelledBy="cta-h">
+        <Container>
+          <div className="flex flex-col items-start gap-3">
+            <h2
+              id="cta-h"
+              className="max-w-[20ch] text-[length:var(--text-2xl)] tracking-[var(--track-heading)] sm:text-[length:var(--text-3xl)]"
+            >
+              {meta.ctaTitle}
+            </h2>
+            <p className="max-w-[54ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]">
+              {meta.ctaBody}
+            </p>
+            <div className="mt-1">
+              <CopyEmail size="large" />
+            </div>
+          </div>
+        </Container>
+      </Section>
     </>
   )
 }

@@ -1,106 +1,103 @@
 import { z } from 'zod'
 
 /**
- * Content schema.
+ * Content schema — V2.
  *
- * Two fields here are deliberately non-optional and exist to force a
- * credibility behaviour into every case study that is ever added to this site:
+ * Two rules are enforced here rather than trusted to an author:
  *
- *   1. `notOwned` — a case study that cannot state what it did NOT own does
- *      not ship. Candidates maximise ownership claims; strong ones bound them.
- *   2. `metrics[].denominator` — no number reaches a reader without a
- *      population, a timeframe and a measurement method attached.
+ *   1. `notOwned` is required. A case study that cannot state what it did NOT
+ *      own does not ship. Candidates maximise ownership claims; bounding yours
+ *      is what makes the unbounded ones believable.
  *
- * Do not relax either one. `npm run check:content` fails the build on both.
+ *   2. No field may contain an internal gap marker. V1 rendered `[NEEDS: …]`
+ *      tokens in production — twenty-six of them, in red — which read as a form
+ *      with validation errors rather than as rigour. Unanswered questions now
+ *      live in CONTENT_GAPS.md and nowhere else, and the build fails if one
+ *      leaks back in.
  */
 
-/** A number that has earned the right to be displayed. */
+/** No internal QA marker may reach the public site. */
+const clean = (label: string) =>
+  z.string().refine((v) => !/\[NEEDS:/i.test(v), {
+    message: `${label} contains an internal [NEEDS:] marker. Those belong in CONTENT_GAPS.md, never on the site.`,
+  })
+
+const cleanMin = (label: string, min = 1) => clean(label).pipe(z.string().min(min))
+
+/** A before → after movement. */
 export const metricSchema = z.object({
-  /** Short uppercase label, e.g. "COLD START". Rendered in mono. */
-  label: z.string().min(1),
-  /** Value before the work. Include the unit: "15s", "3.5 min", "25MB". */
-  before: z.string().min(1),
-  /** Value after the work. Same unit as `before`. */
-  after: z.string().min(1),
-  /** Population or segment the number is measured over. REQUIRED. */
-  denominator: z.string().min(1),
-  /** Measurement window. REQUIRED. */
-  timeframe: z.string().min(1),
-  /** How it was measured. REQUIRED. */
-  method: z.string().min(1),
-  /** Which direction counts as good. Drives the delta colour, not the sign. */
-  direction: z.enum(['down-is-good', 'up-is-good']),
-  /** Pre-computed delta string, e.g. "−87%". Omit when a % is meaningless. */
-  delta: z.string().optional(),
-  /** Set only on the hero instances. Everything else is static. */
-  animate: z.boolean().default(false),
+  label: cleanMin('metric.label'),
+  before: cleanMin('metric.before'),
+  after: cleanMin('metric.after'),
+  /** Pre-computed delta, e.g. "76% smaller". Omit where a % is meaningless. */
+  delta: clean('metric.delta').optional(),
+  /**
+   * One readable line of measurement context — population, window, method —
+   * written as prose rather than three separate fields. Omitted entirely when
+   * it is not known, which is the honest render; the open question is tracked
+   * in CONTENT_GAPS.md.
+   */
+  note: clean('metric.note').optional(),
 })
 
 export type Metric = z.infer<typeof metricSchema>
 
-/** A collapsed disclosure containing depth, not decoration. */
-export const artifactSchema = z.object({
-  /**
-   * A specific claim, never "Read more".
-   * Good: "How I defined session time, and the metric I nearly used instead"
-   */
-  label: z.string().min(12, 'Artifact labels must be a specific claim, not a generic prompt'),
-  kind: z.enum(['reasoning', 'method', 'decision', 'data']),
-  /** Server-rendered markdown body. Indexed and Cmd-F-able while collapsed. */
-  body: z.string().min(1),
+/** A headline figure with no before: "1M+ users", "5+ enterprise clients". */
+export const figureSchema = z.object({
+  value: cleanMin('figure.value'),
+  label: cleanMin('figure.label'),
+  context: clean('figure.context').optional(),
 })
 
-export type Artifact = z.infer<typeof artifactSchema>
+export type Figure = z.infer<typeof figureSchema>
 
-/**
- * A figure with no before. Same qualifier discipline, different shape — the
- * rule was never "every delta carries a denominator", it was every number.
- */
-export const statSchema = z.object({
-  label: z.string().min(1),
-  value: z.string().min(1),
-  denominator: z.string().min(1),
-  timeframe: z.string().min(1),
-  method: z.string().min(1),
+/** Collapsed depth. The label is a specific claim, never "Read more". */
+export const drawerSchema = z.object({
+  label: cleanMin('drawer.label', 12),
+  body: cleanMin('drawer.body'),
 })
-
-export type Stat = z.infer<typeof statSchema>
 
 export const caseStudySchema = z
   .object({
-  slug: z.string().regex(/^[a-z0-9-]+$/),
-  title: z.string().min(1),
-  tagline: z.string().min(1),
-  /** The tension line used on the homepage card. Never a feature name. */
-  headline: z.string().min(1),
-  /** Manual ordering. Never sort by date. */
-  order: z.number().int().positive(),
-  role: z.string().min(1),
-  teamShape: z.string().min(1),
-  timeline: z.string().min(1),
-  /** What Aniket personally decided, prioritised or led. */
-  owned: z.array(z.string().min(1)).min(1),
-  /** What the team delivered together. */
-  shipped: z.array(z.string().min(1)).min(1),
-  /** What engineering, design, leadership or another team owned. REQUIRED. */
-  notOwned: z
-    .array(z.string().min(1))
-    .min(1, 'A case study that cannot state what it did not own does not ship.'),
-  /**
-   * A delta needs a real before. Where the record gives an outcome with no
-   * baseline, it belongs in `stats`, not here with an invented starting point.
-   */
-  metrics: z.array(metricSchema).default([]),
-  stats: z.array(statSchema).default([]),
-  artifacts: z.array(artifactSchema).max(4, 'Maximum four artifact drawers per case study'),
-  /** SEO. 150–160 chars. */
-  description: z.string().min(80).max(200),
-  ogHeadline: z.string().min(1),
-  ogMetric: z.string().min(1),
-  published: z.boolean().default(true),
+    slug: z.string().regex(/^[a-z0-9-]+$/),
+    /** Short product name, used as the card and page title. */
+    title: cleanMin('title'),
+    /** One line: what the work achieved. Shown under the title. */
+    outcome: cleanMin('outcome'),
+    /** The card's category chip — "Performance", "0→1 Growth", "Applied AI". */
+    category: cleanMin('category'),
+    /** One line stating the problem, for the card. */
+    problem: cleanMin('problem'),
+    /** What changed, for the card. */
+    change: cleanMin('change'),
+    order: z.number().int().positive(),
+
+    role: cleanMin('role'),
+    timeline: clean('timeline').optional(),
+    team: clean('team').optional(),
+    scope: clean('scope').optional(),
+
+    owned: z.array(cleanMin('owned')).min(1),
+    shipped: z.array(cleanMin('shipped')).min(1),
+    notOwned: z
+      .array(cleanMin('notOwned'))
+      .min(1, 'A case study that cannot state what it did not own does not ship.'),
+
+    /** The one number the card leads with. */
+    headline: metricSchema,
+    /** Everything measured, shown in the results block. */
+    metrics: z.array(metricSchema).default([]),
+    figures: z.array(figureSchema).default([]),
+
+    drawers: z.array(drawerSchema).max(3).default([]),
+
+    description: clean('description').pipe(z.string().min(80).max(200)),
+    ogHeadline: cleanMin('ogHeadline'),
+    ogMetric: cleanMin('ogMetric'),
+    published: z.boolean().default(true),
   })
-  .refine((c) => c.metrics.length + c.stats.length >= 1, {
-    message: 'A case study must display at least one qualified figure, delta or otherwise.',
+  .refine((c) => c.metrics.length + c.figures.length >= 1, {
+    message: 'A case study must show at least one measured figure.',
     path: ['metrics'],
   })
 
@@ -108,72 +105,71 @@ export type CaseStudyFrontmatter = z.infer<typeof caseStudySchema>
 
 export const shortCaseSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
-  title: z.string().min(1),
-  company: z.string().min(1),
-  timeline: z.string().min(1),
-  role: z.string().min(1),
+  title: cleanMin('title'),
+  company: cleanMin('company'),
+  timeline: cleanMin('timeline'),
+  role: cleanMin('role'),
   order: z.number().int().positive(),
-  /** The trade-off, stated first. Short cases lead with the cost, not the win. */
-  tradeoff: z.string().min(1),
-  metrics: z.array(metricSchema),
-  notOwned: z.array(z.string().min(1)).min(1),
+  problem: cleanMin('problem'),
+  /** Short cases lead with the cut, not the result. */
+  tradeoff: cleanMin('tradeoff'),
+  metrics: z.array(metricSchema).default([]),
+  figures: z.array(figureSchema).default([]),
+  notOwned: z.array(cleanMin('notOwned')).min(1),
 })
 
 export type ShortCaseFrontmatter = z.infer<typeof shortCaseSchema>
 
 export const labProjectSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
-  title: z.string().min(1),
-  tagline: z.string().min(1),
-  /**
-   * Honest liveness. `live` may only be used when the demo runs end to end in
-   * production. Everything else says so on the page, in the badge.
-   */
+  title: cleanMin('title'),
+  tagline: cleanMin('tagline'),
+  /** Honest liveness. `live` only where the thing runs end to end in production. */
   status: z.enum(['live', 'in-development', 'concept']),
-  statusNote: z.string().min(1),
+  statusNote: cleanMin('statusNote'),
+  /** Why it was built, in one line. */
+  why: cleanMin('why'),
   repo: z.string().url().optional(),
   order: z.number().int().positive(),
-  description: z.string().min(80).max(200),
+  description: clean('description').pipe(z.string().min(80).max(200)),
 })
 
 export type LabProjectFrontmatter = z.infer<typeof labProjectSchema>
 
-/**
- * The homepage.
- *
- * Its six sections are fixed; only the words move. Keeping them in content
- * rather than in the page component means the copy is diffable and the one
- * place a claim can be introduced is a content file the gates already scan.
- */
-export const beliefSchema = z.object({
-  /** One sentence. Present tense. Something an operator says. */
-  claim: z.string().min(10),
-  /** Two lines of concrete example. Must trace to the record. */
-  example: z.string().min(20),
-  /** The case study that evidences it. */
-  href: z.string().startsWith('/'),
+/** A belief, with the work that evidences it. */
+export const principleSchema = z.object({
+  title: cleanMin('principle.title'),
+  body: cleanMin('principle.body'),
+  example: cleanMin('principle.example'),
+  href: z.string().startsWith('/').optional(),
 })
 
 export const homeSchema = z.object({
-  /** Names the role, the scale and the arrival. Never "1M users". */
-  subline: z.string().min(20),
-  /** Renders with a [NEEDS:] token until CONTENT_GAPS B12 is answered. */
-  status: z.string().min(10),
-  /** One line pointing at Grounded, for the reader who opens the demo first. */
-  labPointer: z.string().min(10),
-  /**
-   * The visual anchor beside the headline. It is a separate field rather than
-   * proof[0] because the hero must carry NO unanswered token — a reader in the
-   * first ten seconds should meet a number that is complete. Unqualified
-   * fields belong in the proof strip, where there is room to say what is
-   * missing.
-   */
-  heroMetric: metricSchema,
-  proof: z.array(metricSchema).min(2).max(3),
-  workIntro: z.string().min(20),
-  beliefs: z.array(beliefSchema).min(3).max(3),
-  builtIntro: z.string().min(20),
-  closing: z.string().min(10),
+  eyebrow: cleanMin('eyebrow'),
+  headline: cleanMin('headline'),
+  /** 2–3 lines: current role, product scope, scale, what makes him different. */
+  intro: cleanMin('intro'),
+  /** The hero's evidence panel. */
+  proofPanel: z.array(figureSchema).min(3).max(5),
+  /** "By the numbers" — the section immediately after the hero. */
+  numbers: z.array(figureSchema).min(3).max(6),
+  workLead: cleanMin('workLead'),
+  principles: z.array(principleSchema).min(3).max(4),
+  labLead: cleanMin('labLead'),
+  aboutLead: cleanMin('aboutLead'),
+  ctaTitle: cleanMin('ctaTitle'),
+  ctaBody: cleanMin('ctaBody'),
 })
 
 export type HomeFrontmatter = z.infer<typeof homeSchema>
+
+/** One role on the experience timeline. */
+export type Role = {
+  company: string
+  title: string
+  period: string
+  place: string
+  summary: string
+  points: string[]
+  current?: boolean
+}

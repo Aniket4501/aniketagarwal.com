@@ -147,3 +147,30 @@ Consequence, decided at Phase 0 and binding on every later phase: **the artifact
 ## 8. Facts that do NOT exist in any source and must never be invented
 
 Team sizes · reporting lines · number of engineers or designers · named colleagues · user quotes · interview counts · testimonials · sample sizes for any metric · A/B test results · statistical significance · specific device models · specific analytics tool used at HCL · the app's name · the enterprise clients' names · revenue figures in currency · what Aniket is shipping right now · any failure or postmortem · the GitHub URL · dates of any HCL initiative beyond "8 weeks" / "12 weeks" durations.
+
+---
+
+## 9. Source D — direct from Aniket, V2 brief (2026-08-19)
+
+The V2 redesign brief supplied product names and metrics that appear in **neither the resume nor
+the LinkedIn export**. Aniket is the subject, so his own statement is a primary source and outranks
+my extraction. Recorded here so the provenance of every V2 number is traceable.
+
+| Fact | Status vs resume | Used where |
+|---|---|---|
+| `1M+ users` | in resume | hero, proof, case studies |
+| `+20% app usage / engagement` | in resume as "+20% DAU within 12 weeks" | proof, engagement suite |
+| `15% cross-sell` | in resume as "15% incremental revenue" from cross-sell hooks | AI report case |
+| **`+35% sync completion`** | **NEW — Source D only** | Step Syncing case, proof |
+| **`+15% HRA completion`** | **NEW — Source D only** | proof |
+| **`30% manual effort reduction`** | **NEW — Source D only** | proof |
+| **Product name: "Step Syncing"** | **NEW** — reframes the 15s→2s work as step-sync reliability, not only cold start | Case study 01 |
+| **Product name: "AI Smart Health Report"** | **NEW** — the resume says "AI-powered Health Reports" | Case study 03 |
+| `Steps Premier League` | in resume | Case study 02 |
+| `15s → <2s`, `25MB → 6MB` | in resume | Case study 01 |
+| `3.5 → 7.8 min session time` | in resume | Case study 02 |
+| `5+ enterprise clients` | in resume | Case study 03 |
+
+**Denominators for the three new metrics are still unrecorded** and are logged in `CONTENT_GAPS.md`.
+Per the V2 brief they are **not** surfaced on the public site; the numbers ship with the context
+Aniket supplied and the open questions stay internal.

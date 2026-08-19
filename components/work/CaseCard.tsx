@@ -1,68 +1,127 @@
 import Link from 'next/link'
-import { MetricDelta } from '@/components/content/MetricDelta'
-import { Stat } from '@/components/content/Stat'
+import type { ReactNode } from 'react'
+import { Tag } from '@/components/ui/Button'
 import type { CaseStudyFrontmatter } from '@/lib/content/schema'
 
 /**
- * A full-width stacked row, not a card in a three-up grid.
+ * A case study as a product card, not a paragraph.
  *
- * Attention demonstrably runs out around the third case study, and a grid
- * invites parallel skimming of all three and deep reading of none. Rows force
- * a sequence. Alignment stays consistent across rows — alternating reads as
- * decoration.
- *
- * The headline is the tension or the outcome. Never a feature name.
+ * V1 rendered these as a left column of text and a right column holding a
+ * single abstract bar chart, using about 35% of the horizontal band. Here the
+ * visual occupies roughly half the card and the text is four short blocks —
+ * problem, change, outcome, metric — so the card is scannable in about five
+ * seconds and complete on its own.
  */
 export function CaseCard({
   meta,
+  visual,
+  index,
+  reversed = false,
   level = 3,
-  showFigure = true,
 }: {
   meta: CaseStudyFrontmatter
+  visual: ReactNode
+  index: number
+  /** Alternates the visual side on desktop so three cards do not march. */
+  reversed?: boolean
+  /** h3 under a section heading, h2 directly under a page h1. */
   level?: 2 | 3
-  /**
-   * False on the homepage, where the proof strip one screen above already
-   * carries these numbers. A figure repeated three times in a screen and a
-   * half stops reading as a system and starts reading as a loop that did not
-   * terminate.
-   */
-  showFigure?: boolean
 }) {
-  const Heading = level === 2 ? ("h2" as const) : ("h3" as const)
-  const lead = meta.metrics[0]
-  const leadStat = meta.stats[0]
-
+  const Heading = level === 2 ? ('h2' as const) : ('h3' as const)
   return (
-    <Link
-      href={`/work/${meta.slug}`}
-      className="group block border-t border-[var(--color-rule)] py-5 transition-colors duration-[var(--duration-fast)] last:border-b lg:py-6"
-    >
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-8">
-        <div className="flex flex-col gap-2">
-          <p className="eyebrow">
-            {String(meta.order).padStart(2, '0')} · {meta.title}
-          </p>
-          <Heading className="max-w-[24ch] text-[var(--text-xl)] leading-[1.18] font-semibold tracking-[var(--track-h2)] transition-colors duration-[var(--duration-fast)] group-hover:text-[var(--color-signal)] sm:text-[var(--text-2xl)]">
-            {meta.headline}
+    <article className="card card-interactive group relative overflow-hidden">
+      <div
+        className={`grid lg:grid-cols-2 ${reversed ? 'lg:[&>*:first-child]:order-2' : ''}`}
+      >
+        <div className="flex flex-col gap-2.5 p-3 sm:p-4">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[length:var(--text-xs)] font-semibold tabular-nums text-[var(--color-muted)]">
+              {String(index).padStart(2, '0')}
+            </span>
+            <Tag>{meta.category}</Tag>
+          </div>
+
+          <Heading className="text-[length:var(--text-xl)] leading-tight font-semibold tracking-[var(--track-heading)] sm:text-[length:var(--text-2xl)]">
+            <Link href={`/work/${meta.slug}`} className="after:absolute after:inset-0">
+              {meta.title}
+            </Link>
           </Heading>
-          <p className="max-w-[52ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
-            {meta.tagline}
+
+          <p className="max-w-[46ch] text-[length:var(--text-md)] leading-snug text-[var(--color-body)]">
+            {meta.outcome}
           </p>
-          <p className="mt-0.5 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)]">
-            Read <span aria-hidden="true">→</span>
+
+          <dl className="mt-1 flex flex-col gap-2 border-t border-[var(--color-line)] pt-2.5">
+            <div className="flex flex-col gap-0.5">
+              <dt className="eyebrow">Problem</dt>
+              <dd className="max-w-[48ch] text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
+                {meta.problem}
+              </dd>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <dt className="eyebrow">What I changed</dt>
+              <dd className="max-w-[48ch] text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
+                {meta.change}
+              </dd>
+            </div>
+          </dl>
+
+          <p className="mt-auto pt-2 text-[length:var(--text-sm)] font-medium text-[var(--color-accent)]">
+            Read the case study{' '}
+            <span
+              aria-hidden="true"
+              className="inline-block transition-transform duration-[var(--duration-fast)] group-hover:translate-x-0.5"
+            >
+              →
+            </span>
           </p>
         </div>
 
-        {showFigure && lead ? (
-          <div className="lg:pt-4">
-            <MetricDelta metric={lead} />
-          </div>
-        ) : showFigure && leadStat ? (
-          <div className="lg:pt-4">
-            <Stat stat={leadStat} />
-          </div>
+        <div className="flex items-center border-t border-[var(--color-line)] bg-[var(--color-canvas)] p-3 sm:p-4 lg:border-t-0 lg:border-l">
+          <div className="w-full">{visual}</div>
+        </div>
+      </div>
+    </article>
+  )
+}
+
+/** The compact outcome block that sits inside a card's visual half. */
+export function CardMetric({
+  headline,
+  supporting,
+}: {
+  headline: { value: string; label: string; note?: string }
+  supporting?: { value: string; label: string }[]
+}) {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-1">
+        <p className="text-[length:var(--text-metric)] leading-none font-semibold tracking-[var(--track-display)] text-[var(--color-ink)] tabular-nums">
+          {headline.value}
+        </p>
+        <p className="text-[length:var(--text-sm)] font-medium text-[var(--color-ink)]">
+          {headline.label}
+        </p>
+        {headline.note ? (
+          <p className="max-w-[32ch] text-[length:var(--text-xs)] leading-snug text-[var(--color-muted)]">
+            {headline.note}
+          </p>
         ) : null}
       </div>
-    </Link>
+      {supporting?.length ? (
+        <dl className="grid grid-cols-2 gap-2 border-t border-[var(--color-line)] pt-2.5">
+          {supporting.map((s) => (
+            <div key={s.label} className="flex flex-col gap-0.5">
+              <dt className="text-[length:var(--text-lg)] font-semibold tabular-nums text-[var(--color-ink)]">
+                {s.value}
+              </dt>
+              <dd className="text-[length:var(--text-xs)] leading-snug text-[var(--color-muted)]">
+                {s.label}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
+    </div>
   )
 }

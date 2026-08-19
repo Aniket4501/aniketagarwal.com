@@ -1,42 +1,22 @@
 import type { ReactNode } from 'react'
 
-type Variant = 'insight' | 'tradeoff' | 'mistake' | 'gap'
+type Variant = 'insight' | 'tradeoff' | 'mistake'
 
-const STYLE: Record<Variant, { rule: string; ground: string; label: string }> = {
+const STYLE: Record<Variant, { wrap: string; label: string }> = {
   insight: {
-    rule: 'border-t-[var(--color-signal)]',
-    ground: '',
-    label: 'text-[var(--color-signal)]',
+    wrap: 'border-[var(--color-accent)]/25 bg-[var(--color-accent-soft)]',
+    label: 'text-[var(--color-accent-ink)]',
   },
   tradeoff: {
-    rule: 'border-t-[var(--color-rule-strong)]',
-    ground: '',
+    wrap: 'border-[var(--color-line)] bg-[var(--color-surface)]',
     label: 'text-[var(--color-muted)]',
   },
   mistake: {
-    rule: 'border-t-[var(--color-flag)]',
-    ground: 'bg-[var(--color-flag-tint)] px-3',
-    label: 'text-[var(--color-flag)]',
-  },
-  gap: {
-    rule: 'border-t-[var(--color-flag)]',
-    ground: 'bg-[var(--color-flag-tint)] px-3',
+    wrap: 'border-[var(--color-flag)]/25 bg-[var(--color-flag-soft)]',
     label: 'text-[var(--color-flag)]',
   },
 }
 
-/**
- * A passage under a rule, not a box.
- *
- * The obvious construction — a card with a coloured left border — is one of the
- * more reliable signatures of generated design, so the accent runs across the
- * top instead. Scannability is unchanged: a reader still finds the amber block
- * while scrolling, which is the whole job.
- *
- * `mistake` and `gap` share the correction red on purpose. A decision that went
- * wrong and a claim that cannot yet be substantiated are the same kind of
- * honesty.
- */
 export function Callout({
   variant = 'insight',
   label,
@@ -48,11 +28,11 @@ export function Callout({
 }) {
   const s = STYLE[variant]
   return (
-    <div className={`my-4 border-t py-3 ${s.rule} ${s.ground}`}>
-      <p className={`mb-1 eyebrow ${s.label}`}>{label}</p>
-      <div className="[&>*+*]:mt-1.5 [&>p]:text-[var(--text-base)] [&>p]:leading-relaxed">
+    <aside className={`my-4 rounded-[var(--radius)] border p-3 ${s.wrap}`}>
+      <p className={`eyebrow mb-1.5 ${s.label}`}>{label}</p>
+      <div className="text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)] [&>*+*]:mt-2">
         {children}
       </div>
-    </div>
+    </aside>
   )
 }

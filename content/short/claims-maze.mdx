@@ -2,53 +2,29 @@
 slug: claims-maze
 title: The claims maze
 company: Circle Health
-timeline: Jul – Sep 2024
 role: Product Intern
+timeline: Jul — Sep 2024
 order: 2
-# Title is the conservative reading of the two sources (CONTENT_GAPS C6).
-# Traces to two resume bullets:
-#   "Owned product discovery for user claims journey; identified drop-offs
-#    through user journey mapping; redesigned … claims flow and wrote user
-#    stories for Tech.; reduced user drop-offs"
-#   "Built real-time dashboard tracking 50K+ user journeys → informed sprint
-#    prioritization"
-# The satisfaction figure in the same bullet is cut entirely per D1-10: no
-# scale, no baseline, no N, no period.
-tradeoff: >-
-  Redesigning the whole claims journey instead of patching the single worst step
-  buys a coherent flow and gives up attribution. Change several things at once
-  and nobody can say afterwards which one moved the drop-off.
-metrics: []
+problem: People starting an insurance claim were abandoning it partway, and nobody could say where.
+tradeoff: A claims flow can be short or it can be complete, and the places it asks for the most are the places it needs the most. Cutting steps was not available; resequencing them was.
+figures:
+  - value: 50K+
+    label: User journeys tracked
+  - value: 20+
+    label: Enterprise clients analysed
 notOwned:
-  - The build. I wrote the user stories; Tech shipped the flow.
-  - Sprint scope. The dashboard informed prioritisation; it did not set it.
+  - The claims policy. What a claim requires is a regulatory question, not a product one.
+  - The build. I wrote the user stories; engineering shipped them.
 ---
 
-A claims flow is not a growth funnel and should not be designed like one.
-Nobody browses it. Everyone inside it has already had the bad thing happen and
-is now doing paperwork about it, which changes what a badly placed field costs:
-friction applied to an obligation nobody asked for, at the worst moment anybody
-could apply it.
+I owned discovery for the claims journey and mapped it end to end, which is how the drop-off points
+stopped being anecdotal. Then I built a real-time dashboard tracking 50K+ user journeys, so the
+question in sprint planning changed from *where do we think people leave* to *here is where they
+leave.*
 
-So the work started with the journey rather than the screens. I mapped it, found
-where people stopped, and the redesign that followed went to Tech as user
-stories — a form engineers can argue with, not a document about how the flow
-ought to feel.
+The redesign resequenced the flow rather than shortening it. **A claim cannot ask for less — it can
+only ask in a better order**, front-loading what a person already has to hand and deferring what
+they need to go and find.
 
-Drop-offs came down.
-
-**The dashboard is the part of this with the longest half-life.** Real-time,
-tracking 50K+ user journeys, feeding sprint prioritisation. A drop-off found in a one-off
-analysis is found once, by the person doing the analysis, and it goes stale the
-week after. A drop-off visible in a live view of 50K+ journeys is found every
-sprint by whoever happens to be looking, which is a different kind of asset —
-the analysis is an answer, and the dashboard is a habit.
-
-There is a satisfaction number attached to this work on my resume. It has no
-scale, no baseline and no sample size that I can state, so I have left it off
-this page instead of asking you to take it on trust.
-
-The honest limit on all of it: three months is enough time to map a journey,
-redesign it and hand over the stories. It is not enough to watch whether the
-redesign held once real volume ran through it, and a claims flow is exactly the
-kind of surface where the second quarter tells you more than the first.
+Alongside it I ran year-on-year claims analysis across 20+ enterprise clients, which gave the
+commercial team something concrete to take into renewal conversations.

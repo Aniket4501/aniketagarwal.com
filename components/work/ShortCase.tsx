@@ -1,55 +1,56 @@
 import { Mdx } from '@/lib/content/mdx'
-import { MetricDelta } from '@/components/content/MetricDelta'
-import { WithNeeds } from '@/components/ui/Needs'
 import type { ShortCaseFrontmatter } from '@/lib/content/schema'
 
 /**
- * ~300 words, and the brevity is itself the signal: being able to make a point
- * in 300 words is a product skill. These lead with the TRADE-OFF, not the
- * outcome — the cut is the judgment, the result is just the result.
+ * ~300 words, and the brevity is the signal. These lead with the trade-off
+ * rather than the result: the cut is the judgment, the number is just what
+ * happened afterwards.
  */
-export function ShortCase({
-  meta,
-  body,
-}: {
-  meta: ShortCaseFrontmatter
-  body: string
-}) {
+export function ShortCase({ meta, body }: { meta: ShortCaseFrontmatter; body: string }) {
   return (
-    <article className="flex flex-col gap-2.5 border-t border-[var(--color-rule)] pt-4">
+    <article className="card flex flex-col gap-3 p-3 sm:p-4">
       <div className="flex flex-col gap-1">
         <p className="eyebrow">
           {meta.company} · {meta.role} · {meta.timeline}
         </p>
-        <h3 className="max-w-[26ch] text-[var(--text-xl)] leading-snug font-semibold tracking-[var(--track-h2)]">
+        <h3 className="text-[length:var(--text-lg)] leading-snug font-semibold tracking-[var(--track-heading)]">
           {meta.title}
         </h3>
       </div>
 
-      <p className="max-w-[56ch] border-l-2 border-[var(--color-rule-strong)] pl-2 text-[var(--text-base)] leading-relaxed">
-        <span className="eyebrow mr-1">The trade-off</span>
-        <WithNeeds text={meta.tradeoff} />
+      <p className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
+        {meta.problem}
       </p>
 
-      <div className="prose-short max-w-[56ch] text-[var(--text-base)] leading-relaxed [&>p+p]:mt-2">
+      <div className="rounded-[var(--radius)] bg-[var(--color-canvas)] p-2.5">
+        <p className="eyebrow mb-1">The trade-off</p>
+        <p className="text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
+          {meta.tradeoff}
+        </p>
+      </div>
+
+      <div className="short-body text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)] [&>p+p]:mt-2">
         <Mdx source={body} />
       </div>
 
-      {meta.metrics.length > 0 ? (
-        <div className="flex flex-col gap-3 pt-1 sm:grid sm:grid-cols-2">
-          {meta.metrics.map((m) => (
-            <MetricDelta key={m.label} metric={m} size="compact" />
+      {meta.figures.length > 0 ? (
+        <dl className="grid grid-cols-2 gap-3 border-t border-[var(--color-line)] pt-3">
+          {meta.figures.map((f) => (
+            <div key={f.label} className="flex flex-col gap-0.5">
+              <dt className="text-[length:var(--text-xl)] font-semibold tabular-nums">{f.value}</dt>
+              <dd className="text-[length:var(--text-xs)] leading-snug text-[var(--color-muted)]">
+                {f.label}
+              </dd>
+            </div>
           ))}
-        </div>
+        </dl>
       ) : null}
 
-      <div className="flex flex-col gap-1 pt-0.5">
+      <div className="flex flex-col gap-1 border-t border-[var(--color-line)] pt-3">
         <p className="eyebrow">I did not own</p>
-        <ul className="flex flex-col gap-0.5 text-[var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+        <ul className="flex flex-col gap-1 text-[length:var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
           {meta.notOwned.map((n, i) => (
-            <li key={i}>
-              <WithNeeds text={n} />
-            </li>
+            <li key={i}>{n}</li>
           ))}
         </ul>
       </div>

@@ -6,8 +6,8 @@ export const alt = 'Aniket Agarwal — Product, consumer health'
 
 export default function Image() {
   return ogImage({
-    eyebrow: 'Product · consumer health',
-    headline: 'The roadmap was engagement. The app took fifteen seconds to open.',
-    metric: '15s → under 2s',
+    eyebrow: 'Product Manager · Consumer · Health · Applied AI',
+    headline: "I find the reason a product isn't being used — then I go fix it.",
+    metric: '1M+ users · 0→1 · applied AI',
   })
 }

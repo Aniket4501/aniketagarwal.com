@@ -1,42 +1,26 @@
+import type { Role } from './content/schema'
+
 /**
- * Site-wide constants.
+ * Site-wide facts.
  *
- * Every value here traces to docs/00-source-facts.md. Nothing is invented.
- * Conflicts between the resume and the LinkedIn export are resolved to the
- * more conservative claim and logged in CONTENT_GAPS.md.
+ * Every value traces to the resume, the LinkedIn export, or Aniket's own V2
+ * brief (recorded as Source D in docs/00-source-facts.md). Where the resume and
+ * LinkedIn disagree, the value below is the one that claims less.
  */
 
 export const site = {
   name: 'Aniket Agarwal',
-  /** Conservative: 22 months at HCL as of Aug 2026 is not "two years". */
-  role: 'Product',
+  role: 'Product Manager',
   company: 'HCL Healthcare',
   location: 'Noida, India',
   email: 'aniketagarwalmhq24@gmail.com',
   linkedin: 'https://www.linkedin.com/in/aniket-agarwal-pm',
-  // No GitHub URL. The resume hyperlinks the word "GitHub" but the target is
-  // not recoverable from the PDF's text layer, and `gh` being authenticated as
-  // a handle on this machine is a local credential, not a stated public
-  // profile. Guessing it would publish an unverified link in the footer and in
-  // JSON-LD. See CONTENT_GAPS.md B16.
-  /**
-   * The speakable URL, not the file path. It 307s to the PDF via next.config,
-   * so the filename can change without breaking a link anyone has said out
-   * loud or written on a resume.
-   */
+  /** The speakable URL. 307s to the PDF, so the filename can change freely. */
   resume: '/resume',
-  // Rewritten per D1-03: "retention" may appear only as a problem, never as an
-  // outcome. The previous string used it as an outcome, in the one sentence
-  // that shows up in search results. Case three is a monetisation case (D1-07),
-  // so it is described that way and not as AI safety work.
   defaultDescription:
-    // "retention" is deliberately absent. It appears in the record only as a
-  // problem being addressed, never as an outcome, and a meta description is
-  // read out of context where the distinction is invisible.
-  'Product Analyst at HCL Healthcare — engagement on a consumer health app with 1M+ registered users. Cold-start latency, three strategies on the table and one choice, and a health report that ended up inside the enterprise sale.',
+    'Product Manager at HCL Healthcare building consumer health and applied-AI products for 1M+ registered users. Step syncing, a 0→1 engagement league, and an AI health report that became an enterprise USP.',
 } as const
 
-/** Resolved once, so metadata, sitemap, robots and OG tags agree. */
 export function siteUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL
   if (explicit) return explicit.replace(/\/$/, '')
@@ -46,50 +30,88 @@ export function siteUrl(): string {
 }
 
 /**
- * The timeline. One line per role, in reverse chronological order.
- *
- * Where the resume and LinkedIn disagree on a title or a duration, the value
- * below is the one that CLAIMS LESS. Conflict IDs refer to CONTENT_GAPS.md.
+ * Experience. Four or five high-value points per role, not every resume
+ * bullet — the purpose is trajectory, not reproduction.
  */
-export const timeline = [
+export const experience: Role[] = [
   {
-    period: '2024 — now',
-    role: 'Product Analyst',
-    org: 'HCL Healthcare',
+    company: 'HCL Healthcare',
+    title: 'Product Analyst',
+    period: 'Oct 2024 — Present',
     place: 'Noida',
-    note: 'Consumer health · 1M+ registered users',
+    current: true,
+    summary:
+      'Own engagement on a consumer health super-app with 1M+ registered users — the roadmap, the PRDs, and what ships in what order.',
+    points: [
+      'Diagnosed a fifteen-second app launch as the real adoption blocker, and led an eight-week cross-functional initiative that brought it under two seconds and cut the bundle from 25MB to 6MB.',
+      'Ran cohort analysis across three retention strategies and took Steps Premier League from 0→1, moving session time from 3.5 to 7.8 minutes.',
+      'Built the AI Smart Health Report 0→1 — product requirements, UX flow and personalisation logic — with cross-sell hooks driving 15% incremental revenue and the report becoming a key USP in 5+ enterprise closes.',
+      'Shipped an engagement suite spanning challenges, streaks, live events and trackers, lifting daily actives 20% within twelve weeks.',
+      'Raised step-sync completion 35% and health-assessment completion 15%, and cut 30% of the manual effort in the reporting loop.',
+    ],
   },
   {
-    period: '2024',
-    role: 'Product Intern',
-    org: 'Circle Health',
+    company: 'Circle Health',
+    title: 'Product Intern',
+    period: 'Jul — Sep 2024',
     place: 'Bangalore',
-    note: 'Claims journey',
-    conflict: 'C6',
+    summary: 'Discovery and redesign on the insurance claims journey.',
+    points: [
+      'Owned discovery for the claims journey, mapped the drop-off points, and redesigned the flow with user stories written for engineering.',
+      'Built a real-time dashboard tracking 50K+ user journeys, which set sprint priorities.',
+      'Strengthened client pitches with year-on-year claims analysis across 20+ enterprise clients, contributing to a 15% lift in renewals.',
+    ],
   },
   {
-    period: '2023',
-    role: 'Product Management Intern',
-    org: 'Droom',
+    company: 'Droom',
+    title: 'Product Management Intern',
+    period: 'May — Jul 2023',
     place: 'Gurugram',
+    summary: 'Listing quality and report monetisation on an online marketplace.',
+    points: [
+      'Revamped the QuickSell listing flow with fraud detection, validated through A/B testing.',
+      'Rebuilt the vehicle valuation report page from user and competitor research, growing report purchases 16%.',
+    ],
   },
   {
-    period: '2023',
-    role: 'Product Operations',
-    org: 'Infinyte Club',
+    company: 'Infinyte Club',
+    title: 'Product Operations',
+    period: 'Feb — Apr 2023',
     place: 'Bangalore',
-    note: 'Signup and KYC',
-    conflict: 'C3, C4',
+    summary: 'Signup funnel and verification.',
+    points: [
+      'Found a five-step verification wall was where signups were dying, proposed deferring it past the signup boundary, aligned the CEO, and doubled signup completion.',
+      'Shipped a push and in-app nudge system with engineering in three weeks to recover verification after signup.',
+    ],
   },
   {
-    period: '2022',
-    role: 'Product Management Intern',
-    org: 'YourStory Media',
+    company: 'YourStory Media',
+    title: 'Product Management Intern',
+    period: 'Jun — Sep 2022',
     place: 'Bangalore',
-    conflict: 'C5',
+    summary: 'Discovery for a new content vertical.',
+    points: [
+      'Ran discovery across 5,000+ surveyed users and wrote the go/no-go recommendation that shaped the vertical.',
+      'Launched See, Read and Listen for the Hindi podcast catalogue after evaluating five audio platforms.',
+    ],
   },
-] as const
+]
 
-/** Tools. One line, at the bottom of /about, and nowhere else on the site. */
-export const tools =
-  'SQL · Python · Mixpanel · Amplitude · CleverTap · Tableau · Figma · JIRA · Confluence · Notion'
+export const education = {
+  school: 'Indian Institute of Technology Kharagpur',
+  degree: 'Dual degree',
+  period: '2019 — 2024',
+}
+
+export const tools = [
+  'SQL',
+  'Python',
+  'Mixpanel',
+  'Amplitude',
+  'CleverTap',
+  'Tableau',
+  'Figma',
+  'JIRA',
+  'Confluence',
+  'Notion',
+]

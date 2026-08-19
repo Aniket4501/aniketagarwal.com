@@ -4,10 +4,9 @@ import { useState } from 'react'
 import { site } from '@/lib/site'
 
 /**
- * One of the six micro-interactions on the site, and one of only three client
- * components. The address is a real mailto link first; the copy button is an
- * addition to it, never a replacement — a control that only works with
- * JavaScript is not how you let someone contact you.
+ * The address is a real mailto link first; the copy control is an addition to
+ * it, never a replacement. A way of contacting someone that only works with
+ * JavaScript is not a way of contacting someone.
  */
 export function CopyEmail({ size = 'default' }: { size?: 'default' | 'large' }) {
   const [copied, setCopied] = useState(false)
@@ -18,30 +17,29 @@ export function CopyEmail({ size = 'default' }: { size?: 'default' | 'large' }) 
       setCopied(true)
       window.setTimeout(() => setCopied(false), 2000)
     } catch {
-      // Clipboard blocked (insecure context, permissions). The mailto link
-      // beside this button still works, so there is nothing to recover from.
+      // Clipboard blocked. The mailto link beside this still works, so there
+      // is nothing to recover from.
     }
   }
 
-  const type =
-    size === 'large'
-      ? 'text-[var(--text-lg)] sm:text-[var(--text-xl)]'
-      : 'text-[var(--text-base)]'
-
   return (
-    <span className="inline-flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+    <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1.5">
       <a
         href={`mailto:${site.email}`}
-        className={`font-[family-name:var(--font-mono)] ${type} text-[var(--color-signal)] underline decoration-[var(--color-signal)]/30 underline-offset-[6px] transition-colors duration-[var(--duration-fast)] hover:decoration-[var(--color-signal)]`}
+        className={`inline-flex items-center gap-1.5 rounded-[var(--radius)] bg-[var(--color-ink)] font-medium text-[var(--color-canvas)] transition-colors duration-[var(--duration-fast)] hover:bg-[var(--color-accent)] ${
+          size === 'large'
+            ? 'px-3.5 py-2 text-[length:var(--text-base)]'
+            : 'px-2.5 py-1.5 text-[length:var(--text-sm)]'
+        }`}
       >
-        {site.email}
+        {site.email} <span aria-hidden="true">→</span>
       </a>
       <button
         type="button"
         onClick={copy}
-        className="copy-btn rounded-[var(--radius-sm)] border border-[var(--color-rule-strong)] px-1 py-0.25 font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+        className="copy-btn relative rounded-[var(--radius-sm)] px-1.5 py-1 text-[length:var(--text-xs)] font-medium text-[var(--color-muted)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-ink)]"
       >
-        {copied ? 'copied' : 'copy'}
+        {copied ? 'Copied' : 'Copy'}
       </button>
       <span aria-live="polite" className="sr-only">
         {copied ? 'Email address copied to clipboard' : ''}

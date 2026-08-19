@@ -1,60 +1,31 @@
 ---
 slug: kyc-wall
-title: The KYC wall
+title: The verification wall
 company: Infinyte Club
-timeline: Feb – Apr 2023
 role: Product Operations
+timeline: Feb — Apr 2023
 order: 1
-# Title and dates are the conservative reading of the two sources
-# (CONTENT_GAPS C3, C4). Everything factual below traces to two resume bullets:
-#   "Identified 5-step KYC as signup blocker via funnel analysis; proposed
-#    deferred-verification flow, aligned with CEO → +100% signup completion"
-#   "Implemented nudge system (push + in-app) to drive post-signup KYC
-#    completion; shipped with engineering in 3 weeks"
-tradeoff: >-
-  Deferring verification does not delete the KYC step, it moves it — and it buys
-  completed signups by accepting a population of unverified accounts that
-  somebody then has to bring back. I proposed the deferral, which made the
-  recovery mine to design as well.
-metrics:
-  - label: SIGNUP COMPLETION
-    before: baseline
-    after: 2× baseline
-    denominator: "[NEEDS: baseline completion rate, of which step, N?]"
-    timeframe: Window and baseline period not stated
-    method: Funnel analysis
-    direction: up-is-good
+problem: Funnel analysis showed signups dying inside a five-step verification flow that ran before the account existed.
+tradeoff: Deferring verification means accepting a population of unverified users and owning the recovery. That was the decision — the doubling was just what happened next.
+figures:
+  - value: 2×
+    label: Signup completion
+  - value: 3 weeks
+    label: From proposal to shipped nudges
 notOwned:
-  - The decision to carry the risk. I proposed deferring verification; the CEO signed it off.
+  - The compliance call. I proposed moving verification later; I did not decide what was acceptable to defer.
   - The build. Engineering shipped the nudge system in three weeks.
 ---
 
-Five steps of identity verification stood between a new user and the product,
-and the funnel said that is where people stopped. That finding offers two very
-different remedies. Make the five steps less painful, or stop making them a
-precondition for seeing anything at all.
+I ran the funnel and the drop was not gradual. It sat inside a five-step verification flow placed
+before anyone had an account, which meant the product was asking for identity documents from people
+who had not yet seen what they were signing up for.
 
-I proposed the second one, and took it to the CEO rather than handling it as a
-flow change. Moving a compliance step is a decision about what risk the company
-will hold and for how long, which makes it a decision above the level of anyone
-redrawing a signup screen.
+The proposal was to move verification past the signup boundary. **That is not a UX tidy-up — it
+means accepting users you have not verified, and it only works if you own what happens next.** I
+took it to the CEO with that framing rather than as a conversion win, because the risk was the part
+that needed the decision.
 
-**Signup completion doubled, which is the least interesting sentence in this
-case.** What doubling produced was a queue: accounts sitting inside the product
-that had not been verified, each one a promise to finish something later. A
-deferred step is a debt, and a debt is only a good decision when somebody has
-written down how it gets collected.
-
-Collection was the nudge system. Push and in-app, aimed at post-signup KYC
-completion, shipped with engineering in three weeks — and I would argue it is
-the product here, not the follow-up to it.
-
-Deferral moves the wall. The nudges are what take it down.
-
-The number I would want, and the one this record does not contain, sits on the
-other side of the deferral.
-[NEEDS: what share completed KYC after the nudges?]
-Without it, "+100% signup completion" counts arrivals at a door and says nothing
-about how many people ended up in the room. That is the easiest kind of funnel
-to move and the least useful kind to report, so if I ran this again the
-collection target would be agreed before the deferral shipped rather than after.
+What made it shippable was the recovery: a push and in-app nudge system, built with engineering in
+three weeks, that pulled people back to verification once they had a reason to finish it. Signup
+completion doubled.

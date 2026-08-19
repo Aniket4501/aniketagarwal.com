@@ -1,20 +1,15 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { getLabProjects } from '@/lib/content'
 import { Container } from '@/components/layout/Container'
+import { Section } from '@/components/layout/Section'
+import { Tag, Button } from '@/components/ui/Button'
 import baseline from '@/public/grounded-baseline.json'
 
 export const metadata: Metadata = {
-  title: 'Lab — things I built',
+  title: 'Lab',
   description:
-    'Grounded: an open evaluation harness that scores LLM-generated health summaries on grounding, scope, escalation and readability against a visible rubric. Runs in the browser, no key required.',
+    'Grounded — an evaluation harness that scores LLM-generated health summaries on grounding, scope, escalation and readability against a visible rubric. Runs in the browser, no key required.',
   alternates: { canonical: '/lab' },
-}
-
-const STATUS_COPY: Record<string, string> = {
-  live: 'Live',
-  'in-development': 'In development',
-  concept: 'Concept',
 }
 
 export default function LabIndex() {
@@ -22,75 +17,80 @@ export default function LabIndex() {
 
   return (
     <>
-      <Container className="pt-6 pb-2 lg:pt-10">
-        <p className="eyebrow">Lab</p>
-        <h1 className="mt-2 max-w-[22ch] text-[length:var(--text-3xl)] leading-[1.08] font-semibold tracking-[var(--track-display)]">
-          One thing, built properly, that you can actually use.
+      <Container className="pt-6 pb-2 lg:pt-9">
+        <p className="eyebrow">Product lab</p>
+        <h1 className="mt-2 max-w-[20ch] text-[length:var(--text-3xl)] leading-[1.05] font-semibold tracking-[var(--track-display)] sm:text-[length:var(--text-hero)]">
+          What I build when nobody hands me a roadmap.
         </h1>
-        <p className="mt-2.5 max-w-[58ch] text-[var(--text-base)] leading-relaxed text-[var(--color-muted)]">
-          Everything else on this site is something to read. This is the one page with something to
-          run.
+        <p className="mt-3 max-w-[56ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]">
+          Everything else on this site is something to read. This is the page with something to run.
         </p>
       </Container>
 
-      <Container className="pb-10 lg:pb-14">
-        {projects.map((p) => (
-          <article
-            key={p.meta.slug}
-            className="mt-4 border border-[var(--color-rule)] bg-[var(--color-paper-raised)]"
-          >
-            <div className="flex flex-col gap-2 p-3 sm:p-4">
-              <div className="flex flex-wrap items-center gap-1.5">
-                <span
-                  className={`eyebrow rounded-[var(--radius-sm)] border px-1 py-0.25 ${
-                    p.meta.status === 'live'
-                      ? 'border-[var(--color-signal)]/40 text-[var(--color-signal)]'
-                      : 'border-[var(--color-flag)]/40 text-[var(--color-flag)]'
-                  }`}
-                >
-                  {STATUS_COPY[p.meta.status] ?? p.meta.status}
-                </span>
-                <span className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] text-[var(--color-muted)]">
-                  {p.meta.statusNote}
-                </span>
-              </div>
-
-              <h2 className="text-[var(--text-2xl)] leading-snug font-semibold tracking-[var(--track-h2)]">
-                {p.meta.title}
-              </h2>
-              <p className="max-w-[60ch] text-[var(--text-base)] leading-relaxed">
-                {p.meta.tagline}
-              </p>
-
-              <dl className="mt-1 flex flex-wrap gap-x-4 gap-y-1.5 border-t border-[var(--color-rule)] pt-2 font-[family-name:var(--font-mono)] text-[var(--text-xs)] tabular-nums">
-                {[
-                  ['Cases', String(baseline.stats.total)],
-                  ['Hand-labelled', String(baseline.stats.handLabelled)],
-                  [
-                    'Label agreement',
-                    `${baseline.agreement.dimensions.matched}/${baseline.agreement.dimensions.total}`,
-                  ],
-                  ['Full run', `${baseline.totalElapsedMs}ms`],
-                ].map(([k, v]) => (
-                  <div key={k} className="flex flex-col gap-0.5">
-                    <dt className="eyebrow">{k}</dt>
-                    <dd className="text-[var(--text-sm)]">{v}</dd>
+      <Section className="pt-6">
+        <Container>
+          <div className="flex flex-col gap-3">
+            {projects.map((p) => (
+              <article key={p.meta.slug} className="card card-interactive relative overflow-hidden">
+                <div className="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+                  <div className="flex flex-col gap-2.5 p-3 sm:p-4">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <Tag tone={p.meta.status === 'live' ? 'accent' : 'flag'}>
+                        {p.meta.status === 'live' ? 'Live' : p.meta.status.replace('-', ' ')}
+                      </Tag>
+                      <span className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
+                        {p.meta.statusNote}
+                      </span>
+                    </div>
+                    <h2 className="text-[length:var(--text-2xl)] leading-tight font-semibold tracking-[var(--track-heading)]">
+                      <a href={`/lab/${p.meta.slug}`} className="after:absolute after:inset-0">
+                        {p.meta.title}
+                      </a>
+                    </h2>
+                    <p className="max-w-[50ch] text-[length:var(--text-md)] leading-relaxed text-[var(--color-body)]">
+                      {p.meta.tagline}
+                    </p>
+                    <p className="max-w-[50ch] text-[length:var(--text-sm)] leading-relaxed text-[var(--color-muted)]">
+                      <span className="font-medium text-[var(--color-ink)]">Why I built it: </span>
+                      {p.meta.why}
+                    </p>
+                    <p className="mt-auto pt-2 text-[length:var(--text-sm)] font-medium text-[var(--color-accent)]">
+                      Run it <span aria-hidden="true">→</span>
+                    </p>
                   </div>
-                ))}
-              </dl>
+                  <dl className="grid grid-cols-2 content-start gap-px border-t border-[var(--color-line)] bg-[var(--color-line)] lg:border-t-0 lg:border-l">
+                    {[
+                      ['Cases in the set', String(baseline.stats.total)],
+                      ['Scored dimensions', '4'],
+                      ['Full run', `${baseline.totalElapsedMs}ms`],
+                      ['Server calls', '0'],
+                    ].map(([k, v]) => (
+                      <div key={k} className="flex flex-col gap-0.5 bg-[var(--color-surface)] p-2.5">
+                        <dt className="eyebrow">{k}</dt>
+                        <dd className="text-[length:var(--text-xl)] font-semibold tabular-nums">
+                          {v}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
+            ))}
+          </div>
 
-              <div className="mt-1.5 flex flex-wrap gap-2">
-                <Link
-                  href={`/lab/${p.meta.slug}`}
-                  className="rounded-[var(--radius)] border border-[var(--color-signal)] px-2 py-1 font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-signal)] transition-colors duration-[var(--duration-fast)] hover:bg-[var(--color-signal)] hover:text-[var(--color-paper)]"
-                >
-                  Run it <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </div>
-          </article>
-        ))}
-      </Container>
+          <div className="card mt-3 flex flex-col items-start gap-2 border-dashed p-3 sm:p-4">
+            <p className="eyebrow">In progress</p>
+            <p className="max-w-[48ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)]">
+              A faithfulness judge for Grounded — checking whether an interpretation follows from the
+              values, not merely whether the values appear. Grounded catches invented figures today;
+              it does not catch a correctly-quoted number with the meaning reversed.
+            </p>
+            <Button href="/lab/grounded" variant="secondary" className="mt-1">
+              Where it stops today <span aria-hidden="true">→</span>
+            </Button>
+          </div>
+        </Container>
+      </Section>
     </>
   )
 }
