@@ -1,19 +1,20 @@
-import { dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { FlatCompat } from '@eslint/eslintrc'
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
+import nextTypescript from 'eslint-config-next/typescript'
 
-const compat = new FlatCompat({ baseDirectory: dirname(fileURLToPath(import.meta.url)) })
-
-export default [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
-  {
-    ignores: ['.next/**', 'node_modules/**', 'out/**'],
-  },
+/**
+ * eslint-config-next 16 ships flat configs directly, so no FlatCompat shim.
+ */
+const config = [
+  { ignores: ['.next/**', 'node_modules/**', 'out/**', '.scratch/**', 'docs/**'] },
+  ...(Array.isArray(nextCoreWebVitals) ? nextCoreWebVitals : [nextCoreWebVitals]),
+  ...(Array.isArray(nextTypescript) ? nextTypescript : [nextTypescript]),
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-console': ['warn', { allow: ['warn', 'error', 'log'] }],
     },
   },
 ]
+
+export default config

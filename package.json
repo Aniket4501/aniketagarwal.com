@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "check:content": "tsx scripts/validate-content.ts",
     "check:budget": "tsx scripts/check-budget.ts",
@@ -16,7 +16,7 @@
     "check:a11y": "tsx scripts/check-a11y.ts",
     "lighthouse": "tsx scripts/lighthouse.mts",
     "analyze": "ANALYZE=true next build",
-    "verify": "npm run typecheck && npm run check:truth && npm run check:content && npm run build && npm run check:budget"
+    "verify": "npm run typecheck && npm run lint && npm run check:truth && npm run check:content && npm run build && npm run check:budget"
   },
   "dependencies": {
     "next": "16.3.1",
@@ -25,7 +25,6 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
-    "@eslint/eslintrc": "^3.3.6",
     "@next/bundle-analyzer": "16.3.1",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "26.2.0",
