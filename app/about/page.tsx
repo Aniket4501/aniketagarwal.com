@@ -6,7 +6,6 @@ import { Mdx } from '@/lib/content/mdx'
 import { Container } from '@/components/layout/Container'
 import { Section, SectionHead } from '@/components/layout/Section'
 import { Experience } from '@/components/home/Experience'
-import { CopyEmail } from '@/components/ui/CopyEmail'
 import { Button } from '@/components/ui/Button'
 import { readingFontVariable } from '../fonts-reading'
 import { site, tools, siteUrl } from '@/lib/site'
@@ -114,53 +113,39 @@ export default function About() {
       </Section>
 
       {/* Five openings, not a call to action. A reader who has an argument to
-          make emails; a reader looking at a "get in touch" button does not. */}
+          make emails; a reader looking at a "get in touch" button does not.
+          The footer already carries the address, so this replaces the contact
+          block that used to sit here rather than stacking on top of it. */}
       <Container className="py-8 lg:py-10">
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-8">
-          <div>
-            <h2
-              id="ask-h"
-              className="max-w-[16ch] text-[length:var(--text-2xl)] leading-tight font-semibold tracking-[var(--track-heading)]"
-            >
-              Ask me about
-            </h2>
-            <p className="mt-2 max-w-[38ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-muted)]">
-              Five things I would rather be argued with about than complimented on.
-            </p>
-          </div>
+        <h2
+          id="ask-h"
+          className="max-w-[16ch] text-[length:var(--text-2xl)] leading-tight font-semibold tracking-[var(--track-heading)]"
+        >
+          Ask me about
+        </h2>
+        <p className="mt-2 max-w-[46ch] text-[length:var(--text-base)] leading-relaxed text-[var(--color-muted)]">
+          Five things I would rather be argued with about than complimented on. My address is at the
+          bottom of this page.
+        </p>
 
-          <ul aria-labelledby="ask-h" className="flex flex-col">
-            {[
-              'Why session time was the wrong north star for a retention feature, and what I would use instead.',
-              'Whether a health artifact should carry a commercial ask at all, and where the line sits if it does.',
-              'What a regression number needs before it means anything — mine did not have it.',
-              'Why you cannot A/B test a latency fix, and what you compare instead.',
-              'Whether ABDM changes the retention ceiling for Indian health apps, or just moves it.',
-            ].map((q) => (
-              <li
-                key={q}
-                className="border-t border-[var(--color-line)] py-2.5 text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)] last:border-b last:border-[var(--color-line)]"
-              >
-                {q}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul aria-labelledby="ask-h" className="mt-4 max-w-[62ch]">
+          {[
+            'Why session time was the wrong north star for a retention feature, and what I would use instead.',
+            'Whether a health artifact should carry a commercial ask at all, and where the line sits if it does.',
+            'What a regression number needs before it means anything — mine did not have it.',
+            'Why you cannot A/B test a latency fix, and what you compare instead.',
+            'Whether ABDM changes the retention ceiling for Indian health apps, or just moves it.',
+          ].map((q) => (
+            <li
+              key={q}
+              className="border-t border-[var(--color-line)] py-2.5 text-[length:var(--text-base)] leading-relaxed text-[var(--color-body)] last:border-b last:border-[var(--color-line)]"
+            >
+              {q}
+            </li>
+          ))}
+        </ul>
       </Container>
 
-      <Section band labelledBy="talk-h">
-        <Container>
-          <div className="flex flex-col items-start gap-3">
-            <h2
-              id="talk-h"
-              className="max-w-[20ch] text-[length:var(--text-2xl)] tracking-[var(--track-heading)]"
-            >
-              Want to talk about a product problem?
-            </h2>
-            <CopyEmail size="large" />
-          </div>
-        </Container>
-      </Section>
     </div>
   )
 }
