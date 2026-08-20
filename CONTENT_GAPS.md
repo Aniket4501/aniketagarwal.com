@@ -17,6 +17,14 @@ Last updated: expansion round 2, 2026-08-19.
 Each is phrased as a question you can answer in one sitting. Everything below this section is
 secondary to these.
 
+### B0. What share of the deferred-verification signups ever finished verification?
+`[NEEDS: verification completion rate for the Infinyte deferred-verification cohort]`
+
+`/work` says signup completion doubled after verification moved out of the signup funnel. That is
+most of what moving the failing steps was always going to do, and the page now says so. The number
+that decides whether the change actually worked — how many of those signups came back and verified —
+is the one missing, and it is the number the whole trade-off turns on.
+
 ### B1. One user quote, with its method and sample size.
 `[NEEDS: one anonymised user verbatim per case study, plus method and N — e.g. "8 moderated sessions, mid-tier Android, March 2025"]`
 
