@@ -86,6 +86,16 @@ streaks feature. They are forming one about whether the app works.
   <LaunchJourney />
 </Figure>
 
+Two frames, same phone. The only figure that differs is how long you waited for the second one:
+
+<Reconstruction
+  title="Launch · before and after"
+  wide
+  note="The screen on the left has nothing to read and nothing to do. It is not a bad screen — it is the correct screen for an app that is not ready yet, which is the point. Fifteen seconds of it stands between a person and the one number they opened the app to see."
+>
+  <LaunchFrames />
+</Reconstruction>
+
 ## Latency sat in the engineering column. Adoption sat on my roadmap.
 
 The fifteen seconds were already known. They sat where slow things sit — next to refactors and
@@ -156,15 +166,14 @@ no population to argue about.
   <BundleImpact />
 </Figure>
 
-## What happened, and what it does not prove
+## What happened
+
+**The app bundle went from 25MB to 6MB. That is a 76% reduction and it computes exactly from two
+stated totals.** Launch time went from fifteen seconds to under two.
 
 Step-sync completion rose 35%. More people reached the number they had opened the app for, because
-the thing standing between them and it was gone.
-
-**What it does not prove is that latency was the only thing in the way.** This shipped as part of a
-period with other work in it, and I would rather say that than let a clean number imply a clean
-experiment. What I can say without hedging is that 25MB became 6MB and fifteen seconds became under
-two, and those two are not attribution questions.
+the thing standing between them and it was gone — though this shipped inside a period with other
+work in it, so latency was not necessarily the only thing in the way.
 
 ## What "step-sync completion" actually counts
 
@@ -210,9 +219,8 @@ this one are defensible and they are not the same number.
 did.** That is the whole reason per-session is out: it would have given me a bigger number and a
 worse argument.
 
-**Where my published record stops.** It does not fix which of the three the 35% was measured
-against, and I am not going to assert one after the fact. That is why this figure carries a caveat
-rather than a denominator, and it is the single thing I would most want back.
+My record does not fix which of the three the 35% was measured against (the single thing I would
+most want back), which is why that figure travels with a caveat and the bundle number does not.
 
 ## What I would do differently
 

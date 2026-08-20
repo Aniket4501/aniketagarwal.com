@@ -7,6 +7,16 @@ import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { Tag, Button } from '@/components/ui/Button'
 
+/** "19 August 2026" — a published date a reader can weigh the analysis against. */
+function formatDate(iso: string): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 export function generateStaticParams() {
   return getThinking().map((p) => ({ slug: p.meta.slug }))
 }
@@ -47,7 +57,8 @@ export default async function ThinkingPage({ params }: { params: Promise<{ slug:
         <div className="flex flex-wrap items-center gap-1.5">
           <Tag tone="flag">{meta.eyebrow}</Tag>
           <span className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
-            {meta.subject} · {meta.readingTime}
+            {meta.subject} · {meta.readingTime} ·{' '}
+            <time dateTime={meta.published}>{formatDate(meta.published)}</time>
           </span>
         </div>
 
@@ -71,6 +82,11 @@ export default async function ThinkingPage({ params }: { params: Promise<{ slug:
           <div className="grid gap-4 lg:grid-cols-3 lg:gap-6">
             <div>
               <h2 className="eyebrow">What this is built on</h2>
+              {meta.walkedOn ? (
+                <p className="mt-2 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
+                  {meta.walkedOn}
+                </p>
+              ) : null}
               <dl className="mt-2 flex flex-col gap-2">
                 {meta.sources.map((s) => (
                   <div key={s.label}>

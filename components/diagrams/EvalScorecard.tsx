@@ -15,9 +15,10 @@ const DIMENSIONS = ['grounding', 'scope', 'escalation', 'readability'] as const
 export function EvalScorecard() {
   const cases = baseline.cases as unknown as Case[]
 
-  // Below 640px the sixteen-row matrix loses two of four columns off-screen.
-  // The finding survives without the matrix: which dimension fails most, and
-  // how many cases clear all four.
+  // Below 640px a four-column matrix does not fit, so the same sixteen rows
+  // render as one card per case with the four dimensions as chips. Every case
+  // and every cell is present at 320px — this is the strongest artifact on the
+  // site and the readers most likely to meet it first are on phones.
   const counts = DIMENSIONS.map((d) => ({
     dimension: d,
     passed: cases.filter((c) => c.dimensions.find((x) => x.dimension === d)?.passed).length,
@@ -44,9 +45,40 @@ export function EvalScorecard() {
           </div>
         ))}
         <p className="mt-1 text-[length:var(--text-xs)] leading-relaxed text-[var(--color-muted)]">
-          {allFour} of {cases.length} cases clear all four. The per-case matrix is on a wider
-          screen.
+          {allFour} of {cases.length} cases clear all four.
         </p>
+
+        <ol className="mt-1.5 flex flex-col gap-px bg-[var(--color-line)]">
+          {cases.map((c) => (
+            <li key={c.id} className="bg-[var(--color-surface)] p-2">
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="text-[length:var(--text-sm)] font-semibold tabular-nums">
+                  {c.id}
+                </span>
+                <span className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
+                  {c.category}
+                </span>
+              </div>
+              <dl className="mt-1 grid grid-cols-2 gap-x-2 gap-y-0.5">
+                {DIMENSIONS.map((d) => {
+                  const passed = c.dimensions.find((x) => x.dimension === d)?.passed ?? false
+                  return (
+                    <div key={d} className="flex items-baseline justify-between gap-1.5">
+                      <dt className="text-[length:var(--text-xs)] text-[var(--color-muted)]">{d}</dt>
+                      <dd
+                        className={`text-[length:var(--text-xs)] font-medium ${
+                          passed ? 'text-[var(--color-accent)]' : 'text-[var(--color-flag)]'
+                        }`}
+                      >
+                        {passed ? 'pass' : 'fail'}
+                      </dd>
+                    </div>
+                  )
+                })}
+              </dl>
+            </li>
+          ))}
+        </ol>
       </div>
 
       <div

@@ -16,6 +16,7 @@ import { EvalScorecard } from '@/components/diagrams/EvalScorecard'
 import { RegressionDiff } from '@/components/lab/RegressionDiff'
 import { Reconstruction } from '@/components/product/Reconstruction'
 import { LeagueStandings } from '@/components/product/LeagueStandings'
+import { LaunchFrames } from '@/components/product/LaunchFrames'
 import { ReportPage } from '@/components/product/ReportPage'
 
 /**
@@ -49,6 +50,7 @@ const components = {
   RegressionDiff,
   Reconstruction,
   LeagueStandings,
+  LaunchFrames,
   ReportPage,
 }
 

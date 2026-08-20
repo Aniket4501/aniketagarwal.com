@@ -12,12 +12,42 @@ Last updated: expansion round 2, 2026-08-19.
 
 ---
 
-## BLOCKING — the five things that would change the site most
+## BLOCKING — eight things, in priority order
 
 Each is phrased as a question you can answer in one sitting. Everything below this section is
 secondary to these.
 
-### B0. Name one person who disagreed with you, and what happened.
+### B1. One user quote, with its method and sample size.
+`[NEEDS: one anonymised user verbatim per case study, plus method and N — e.g. "8 moderated sessions, mid-tier Android, March 2025"]`
+
+**The site's headline is "I find the reason a product isn't being used." It contains no evidence of
+ever having asked one.** Across three case studies, two short cases, a teardown and a thesis there
+is not one user quote, not one interview count, not one usability session. Every reason on this site
+is inferred from behavioural data at a distance.
+
+**What the record does say**, and why this is a gap rather than an absence: the résumé states the
+engagement suite was shipped *"based on user research"*, Droom's OBV page was rebuilt *"based on
+user research"*, Circle Health used *"user journey mapping"*, and YourStory *"surveyed 5,000+
+users"*. So the research happened. What does not exist anywhere is a method, a sample size, a date,
+or a single sentence somebody actually said.
+
+One quote and one method line in two case studies would close the largest remaining hole on the
+site. `/approach` now names the gap in one line rather than pretending it is not there.
+
+### B2. Team size and composition, per case study.
+`[NEEDS: engineers, designer, QA, analyst — for Step Syncing, Steps Premier League and AI Smart Health Report]`
+
+The case-study headers currently say *"Cross-functional initiative with the engineering team"* and
+*"Cross-functional, with engineering and design"*. **A Head of Product cannot level a candidate from
+that.** Four engineers or fourteen is the difference between two seniority bands, and the record
+contains no headcount anywhere — the only team signal in any source is *"cross-functional
+collaboration with VP-Product and stakeholders"*.
+
+`4 engineers · 1 designer · no dedicated QA` is worth more than three sentences of description, and
+it is a two-minute answer that materially changes how a hiring manager reads every number on the
+site.
+
+### B3. Name one person who disagreed with you, and what happened.
 `[NEEDS: one decision where a named colleague pushed back, on what grounds, and how it resolved]`
 
 **Two independent reviewers found the same hole, and it is now the site's largest.** There is not one
@@ -31,14 +61,14 @@ The question the site cannot currently survive: *tell me about a time you were w
 specific person told you so, and you changed your mind.* Two sentences would close it. More writing
 in the current register will not.
 
-### B0b. What is the population and window behind "+20% daily actives"?
+### B4. What is the population and window behind "+20% daily actives"?
 `[NEEDS: denominator, window and method for +20% DAU]`
 
 The site now dissects a 4.3-minute session-time delta in several places and says nothing about the
 20% DAU lift, which has no case study, no caveat and no attribution boundary. A reviewer noticed the
 asymmetry immediately and said it is where they would attack. Either qualify it or cut it.
 
-### B1. What was the week-2 → week-4 return rate for people who joined a Steps Premier League season?
+### B5. What was the week-2 → week-4 return rate for people who joined a Steps Premier League season?
 `[NEEDS: week-2 → week-4 return rate for people who joined a league, against the same weeks for
 people who did not, with N for each group]`
 
@@ -53,7 +83,7 @@ drop-off" to a *different* bullet — the engagement suite (Challenges, Streaks,
 Trackers), whose stated outcome is `+20% DAU within 12 weeks`. That is DAU, not retention, and it
 belongs to different work. The site does not borrow it for the league, and will not.
 
-### B2. One redacted page of a real document.
+### B6. One redacted page of a real document.
 `[NEEDS: one redacted PRD page, experiment brief, or cohort export — any single one]`
 
 The highest-value asset still missing from the site, and it has been the highest-value missing asset
@@ -63,14 +93,19 @@ chart behind *"cohort analysis put a drop-off on the table"* is the single most 
 unbacked claim on the site — the résumé confirms the analysis happened and says nothing about what
 it found.
 
-### B3. Denominators for the three percentages on the homepage proof panel.
+### B7. Denominators for the three percentages on the homepage proof panel.
 `[NEEDS: population + window + method for +35% step-sync completion, +20% DAU, 15% incremental revenue]`
 
 `+35% step-sync completion` sits on the hero panel carrying three of the four qualifiers the site's
 own rule requires, all missing. See `docs/11-evidence-audit.md` §B for the full table. This cannot
 be fixed by writing.
 
-### B4. Two LinkedIn recommendations, requested today.
+### B8. Two LinkedIn recommendations, requested today.
+
+**Third-party attestation of ownership is the fastest available way to neutralise a "Product
+Analyst" title. Two sentences from a manager outweigh anything else on this list** — it is ranked
+eighth only because it is the one item whose timeline you do not control, so it should be *asked
+for* first and will *land* last.
 `[NEEDS: public LinkedIn recommendations from the VP-Product at HCL Healthcare and the Circle Health manager]`
 
 **Ask for LinkedIn recommendations, not site testimonials.** A quote hosted on your own site is

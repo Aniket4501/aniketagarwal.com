@@ -58,17 +58,14 @@ with it — nothing here is stored.
 
 <RegressionDiff />
 
-Five verdicts moved and none moved the wrong way — **and the table says out loud why that is worth
-less than it sounds.** v1 fails every case, so it cannot produce a pass→fail regression no matter
-what v2 does, and its 11/16 is just the share of fail-labels in the set. Zero regressions here is a
-property of the baseline, not evidence that I was careful.
+Five verdicts moved and none moved the wrong way. **Zero regressions is a property of the baseline,
+not evidence that I was careful:** v1 fails every case, so it cannot produce a pass→fail regression
+whatever v2 does, and its 11/16 is just the share of fail-labels in the set.
 
-I would rather ship that admission than the flattering reading. The real payload is one fact: v2
-fixed five false failures and introduced none. Getting a regression number that means something
-needs a v1 that passes something, which is the next thing to fix about this harness rather than
-about this page.
+The payload is one fact. v2 fixed five false failures and introduced none. A regression number that
+means anything needs a v1 that passes something, which is the next thing to fix about the harness.
 
-<Callout variant="caveat" label="The part that is not flattering">
+<Callout variant="caveat" label="Two of those five were my labels moving, not the rule">
 
 Two of those five cases were closed by **changing the label, not the rule** — the evaluator was
 right and my expectation was wrong. `65 mg` in `o-02` is an ungrounded figure as well as a dosage,
@@ -87,8 +84,7 @@ correctness.** I wrote the rules and I wrote the labels, in the same afternoon, 
 agree.
 
 The number that would mean something is agreement against labels written by someone with clinical
-training. That set does not exist yet, and I would rather say so than let a clean figure imply a
-validation that has not happened.
+training. That set does not exist yet.
 
 ## Where it stops
 

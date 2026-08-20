@@ -169,6 +169,17 @@ export const thinkingSchema = z.object({
   }),
   order: z.number().int().positive(),
   readingTime: cleanMin('readingTime'),
+  /**
+   * Analysis of a live product goes stale — Strava's free tier will change —
+   * and undated commentary reads as abandoned within a year.
+   */
+  published: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'published must be YYYY-MM-DD'),
+  /**
+   * For a teardown: when the product was actually walked, and on what. This
+   * bounds what the analysis can claim more tightly than the publication date
+   * does, because the two can drift apart.
+   */
+  walkedOn: clean('walkedOn').optional(),
   hook: clean('hook').pipe(z.string().min(60).max(320)),
   sources: z.array(thinkingSourceSchema).min(1, 'A piece with no sources is an opinion.'),
   reached: z.array(cleanMin('reached')).optional(),

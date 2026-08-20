@@ -6,7 +6,7 @@ import { Section } from '@/components/layout/Section'
 import { Tag } from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'Thinking',
+  title: 'Analysis',
   description:
     'A product teardown of Strava’s free tier, and a point of view on why manual logging caps engagement for Indian health apps. Analysis, not shipped work — labelled as such.',
   alternates: { canonical: '/thinking' },
@@ -18,7 +18,7 @@ export default function ThinkingIndex() {
   return (
     <>
       <Container className="pt-6 pb-0 lg:pt-9">
-        <p className="eyebrow">Thinking</p>
+        <p className="eyebrow">Analysis</p>
         <h1 className="mt-2 max-w-[22ch] text-[length:var(--text-3xl)] leading-[1.05] font-semibold tracking-[var(--track-display)] sm:text-[length:var(--text-hero)]">
           Product judgement, applied to things nobody handed me.
         </h1>
@@ -41,7 +41,15 @@ export default function ThinkingIndex() {
                   <div className="flex flex-wrap items-center gap-1.5">
                     <Tag tone="flag">{p.meta.kind}</Tag>
                     <span className="text-[length:var(--text-xs)] text-[var(--color-muted)]">
-                      {p.meta.subject} · {p.meta.readingTime} · not shipped work
+                      {p.meta.subject} · {p.meta.readingTime} ·{' '}
+                      <time dateTime={p.meta.published}>
+                        {new Date(`${p.meta.published}T00:00:00Z`).toLocaleDateString('en-GB', {
+                          month: 'long',
+                          year: 'numeric',
+                          timeZone: 'UTC',
+                        })}
+                      </time>{' '}
+                      · not shipped work
                     </span>
                   </div>
 

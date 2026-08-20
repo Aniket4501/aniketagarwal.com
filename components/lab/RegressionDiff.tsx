@@ -172,27 +172,53 @@ export function RegressionDiff() {
           </tbody>
         </table>
 
-        {/* Five columns do not survive 342px. Below sm, only the rows that
-            moved are listed — the unchanged twelve are the boring half and the
-            count above already states them. */}
-        <ul className="sm:hidden">
-          {changed.map((r) => (
-            <li key={r.id} className="border-b border-[var(--color-line)] p-2.5 last:border-b-0">
-              <p className="font-semibold">
-                <span className="tabular-nums">{r.id}</span> — {r.title}
-              </p>
-              <p className="mt-0.5 text-[length:var(--text-sm)] text-[var(--color-muted)]">
-                v1 <span className="text-[var(--color-flag)]">{verdict(r.v1)} ✗</span> → v2{' '}
-                <span className="font-semibold text-[var(--color-ink)]">{verdict(r.v2)}</span> ·
-                label {verdict(r.expected)}
-              </p>
-            </li>
-          ))}
-          <li className="p-2.5 text-[length:var(--text-sm)] text-[var(--color-muted)]">
-            The other {rows.length - changed.length} cases returned the same verdict in both
-            versions.
-          </li>
-        </ul>
+        {/* Five columns do not survive 342px, so every case becomes a card.
+            All sixteen are here, not just the five that moved — a reader on a
+            phone gets the same matrix a reader on a desktop gets. */}
+        <ol className="sm:hidden">
+          {rows.map((r) => {
+            const moved = r.v1 !== r.v2
+            return (
+              <li
+                key={r.id}
+                className={`border-b border-[var(--color-line)] p-2.5 last:border-b-0 ${
+                  moved ? 'bg-[var(--color-accent-soft)]' : ''
+                }`}
+              >
+                <p className="flex items-baseline gap-1.5 font-semibold">
+                  <span className="tabular-nums">{r.id}</span>
+                  <span className="min-w-0 flex-1">{r.title}</span>
+                </p>
+                <p className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-0.5 text-[length:var(--text-sm)] text-[var(--color-muted)]">
+                  <span>
+                    v1{' '}
+                    <span
+                      className={r.v1 === r.expected ? 'text-[var(--color-ink)]' : 'text-[var(--color-flag)]'}
+                    >
+                      {verdict(r.v1)}
+                      {r.v1 === r.expected ? '' : ' ✗'}
+                    </span>
+                  </span>
+                  <span>
+                    v2{' '}
+                    <span
+                      className={`font-semibold ${
+                        r.v2 === r.expected ? 'text-[var(--color-ink)]' : 'text-[var(--color-flag)]'
+                      }`}
+                    >
+                      {verdict(r.v2)}
+                      {r.v2 === r.expected ? '' : ' ✗'}
+                    </span>
+                  </span>
+                  <span>label {verdict(r.expected)}</span>
+                  {moved ? (
+                    <span className="text-[var(--color-accent-ink)]">changed</span>
+                  ) : null}
+                </p>
+              </li>
+            )
+          })}
+        </ol>
       </div>
     </div>
   )

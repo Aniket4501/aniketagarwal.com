@@ -7,7 +7,7 @@ import { CopyEmail } from '@/components/ui/CopyEmail'
 import { HeroPanel } from '@/components/home/HeroPanel'
 import { CaseCard, CardMetric } from '@/components/work/CaseCard'
 import { LaunchDurations } from '@/components/diagrams/LaunchImpact'
-import { site, education, tools, experience } from '@/lib/site'
+import { site, education, experience, ownershipMonths } from '@/lib/site'
 import baseline from '@/public/grounded-baseline.json'
 
 /** Inline links in body copy. The homepage has no prose stylesheet, so a bare
@@ -211,7 +211,7 @@ export default function Home() {
           <SectionHead
             id="exp-h"
             eyebrow="Experience"
-            title="Four years of product work, nearly two of them owning a surface."
+            title={`Four product internships since 2022, then ${ownershipMonths()} months owning one surface.`}
             action={
               <Button href="/about" variant="secondary">
                 Full timeline <span aria-hidden="true">→</span>
@@ -390,16 +390,6 @@ export default function Home() {
                 {education.degree}, {education.school}, {education.period}. Product work since 2022
                 across media, marketplaces, fintech onboarding, insurance claims and now health.
               </p>
-              <div className="mt-1 flex flex-wrap gap-1.5">
-                {tools.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-[var(--radius-sm)] border border-[var(--color-line)] bg-[var(--color-surface)] px-1.5 py-0.5 text-[length:var(--text-xs)] text-[var(--color-muted)]"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </Container>

@@ -34,6 +34,32 @@ export function siteUrl(): string {
  * Experience. Four or five high-value points per role, not every resume
  * bullet — the purpose is trajectory, not reproduction.
  */
+/**
+ * Months of continuous ownership, computed rather than written down.
+ *
+ * The homepage previously claimed "one of them owning a surface", which was
+ * true in month one and had been wrong for a year by the time anyone noticed.
+ * A duration hard-coded into copy is a fact with an expiry date, so this one
+ * is derived at build time from the start date and cannot rot.
+ */
+/**
+ * Build date, formatted for the footer. Nothing on the site said whether it was
+ * current, and an undated portfolio reads as abandoned after a year. Derived
+ * from the build so it needs no maintenance.
+ */
+export function lastUpdated(now: Date = new Date()): string {
+  return now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })
+}
+
+export const OWNERSHIP_START = new Date(2024, 9) // October 2024
+
+export function ownershipMonths(now: Date = new Date()): number {
+  return (
+    (now.getFullYear() - OWNERSHIP_START.getFullYear()) * 12 +
+    (now.getMonth() - OWNERSHIP_START.getMonth())
+  )
+}
+
 export const experience: Role[] = [
   {
     company: 'HCL Healthcare',

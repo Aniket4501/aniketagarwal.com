@@ -20,6 +20,7 @@ export function Reconstruction({
   title,
   note,
   device = false,
+  wide = false,
 }: {
   children: ReactNode
   /** What screen this is. */
@@ -27,6 +28,12 @@ export function Reconstruction({
   /** What the reader should look at. */
   note?: string
   device?: boolean
+  /**
+   * The inner frame is sized for one phone screen. A side-by-side comparison
+   * needs the whole figure track or both frames end up at 180px with their
+   * labels wrapping.
+   */
+  wide?: boolean
 }) {
   return (
     <div className="wide-block my-5">
@@ -46,7 +53,13 @@ export function Reconstruction({
               </div>
             </div>
           ) : (
-            <div className="mx-auto max-w-[26rem] overflow-hidden rounded-[var(--radius)] border border-[var(--color-line)] bg-[var(--color-surface)]">
+            <div
+              className={
+                wide
+                  ? 'mx-auto max-w-[34rem]'
+                  : 'mx-auto max-w-[26rem] overflow-hidden rounded-[var(--radius)] border border-[var(--color-line)] bg-[var(--color-surface)]'
+              }
+            >
               {children}
             </div>
           )}

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Container } from './Container'
 import { CopyEmail } from '@/components/ui/CopyEmail'
-import { site } from '@/lib/site'
+import { site, lastUpdated } from '@/lib/site'
 
 export function Footer() {
   return (
@@ -26,7 +26,7 @@ export function Footer() {
               {[
                 ['/work', 'Work'],
                 ['/approach', 'Approach'],
-                ['/thinking', 'Thinking'],
+                ['/thinking', 'Analysis'],
                 ['/lab/grounded', 'Lab'],
                 ['/about', 'About'],
               ].map(([href, label]) => (
@@ -59,7 +59,7 @@ export function Footer() {
         </div>
 
         <p className="mt-8 border-t border-[var(--color-line)] pt-3 text-[length:var(--text-xs)] text-[var(--color-muted)]">
-          {site.name} · {site.location} · Built with Next.js
+          {site.name} · {site.location} · Built with Next.js · Last updated {lastUpdated()}
         </p>
       </Container>
     </footer>

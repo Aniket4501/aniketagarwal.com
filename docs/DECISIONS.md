@@ -463,3 +463,27 @@ Nothing does. Inventing one to fill a grid is the exact failure mode this round 
 The regression view is also the more valuable half: Grounded currently scores one output against a
 rubric, which makes it a scorer. An eval harness is a thing you run *again* — its job is to tell you
 what a change broke. Adding the diff turns the demo into the argument it was already making.
+
+### D42 — `Thinking` becomes `Analysis`, and `Approach` stays
+
+Two nav items both parsed as "this person's opinions", which meant a recruiter opening one and
+finding the wrong thing would not open the other. Three options were on the table.
+
+**Fold Thinking under Work.** Rejected. `/work` is the shipped-and-accountable surface and the whole
+point of the teardown and the thesis is that they are *not* that. Putting unshipped analysis inside
+Work is the exact confusion the collection's labelling exists to prevent, and it would trade a
+navigation problem for a credibility one.
+
+**`Principles` + `Teardowns`.** Rejected. "Teardowns" is accurate for the Strava piece and wrong for
+the ABDM thesis, which is a market argument rather than a product critique. A label that fits one of
+two items is not a label.
+
+**`Approach` + `Analysis`.** Chosen. The pair states content type rather than category: *Approach* is
+how he decides — the four principles and the cut-list, all drawn from his own shipped work.
+*Analysis* is judgement applied to things nobody handed him. A reader who wants "how does he think
+about his own work" and a reader who wants "can he think about mine" now have different doors, and
+neither has to open both to find out.
+
+Nav stays at five. `/thinking/*` keeps its URLs and gains permanent redirects from `/analysis/*` so
+the shorter path also resolves — renaming the paths would break the links already shared from the
+last round for no gain, since the visible label is what was ambiguous, not the slug.

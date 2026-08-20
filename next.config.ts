@@ -26,6 +26,11 @@ const nextConfig: NextConfig = {
       // The lab index was a single card repeating the homepage block and then
       // charging a click for the demo. The demo is the point; go straight there.
       { source: '/lab', destination: '/lab/grounded', permanent: false },
+      // The nav label became "Analysis" while the paths stayed /thinking — the
+      // label was what was ambiguous, not the slug, and the /thinking links
+      // are already shared. These make the shorter path resolve too.
+      { source: '/analysis', destination: '/thinking', permanent: false },
+      { source: '/analysis/:slug', destination: '/thinking/:slug', permanent: false },
     ]
   },
   async headers() {

@@ -10,7 +10,7 @@ import { site } from '@/lib/site'
  */
 const LINKS = [
   { href: '/work', label: 'Work' },
-  { href: '/thinking', label: 'Thinking' },
+  { href: '/thinking', label: 'Analysis' },
   { href: '/approach', label: 'Approach' },
   { href: '/lab/grounded', label: 'Lab' },
   { href: '/about', label: 'About' },
