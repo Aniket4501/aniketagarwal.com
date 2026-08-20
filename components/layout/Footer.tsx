@@ -24,9 +24,11 @@ export function Footer() {
             <nav aria-label="Site" className="flex flex-col gap-1.5">
               <p className="eyebrow mb-0.5">Site</p>
               {[
+                // Same order as the header. Two orderings of five identical
+                // words is a worse scan problem than any single label.
                 ['/work', 'Work'],
-                ['/approach', 'Approach'],
                 ['/thinking', 'Analysis'],
+                ['/approach', 'Method'],
                 ['/lab/grounded', 'Lab'],
                 ['/about', 'About'],
               ].map(([href, label]) => (

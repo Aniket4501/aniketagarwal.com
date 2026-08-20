@@ -11,7 +11,7 @@ import { site } from '@/lib/site'
 const LINKS = [
   { href: '/work', label: 'Work' },
   { href: '/thinking', label: 'Analysis' },
-  { href: '/approach', label: 'Approach' },
+  { href: '/approach', label: 'Method' },
   { href: '/lab/grounded', label: 'Lab' },
   { href: '/about', label: 'About' },
 ]
@@ -46,11 +46,11 @@ export function Nav() {
       <header className="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-canvas)]/85 backdrop-blur-md">
         <nav
           aria-label="Primary"
-          className="mx-auto flex h-7 max-w-[76rem] items-center justify-between gap-4 px-3 sm:px-5 lg:px-6"
+          className="mx-auto flex h-7 max-w-[76rem] items-center justify-between gap-2 px-3 sm:gap-4 sm:px-5 lg:px-6"
         >
           <Link
             href="/"
-            className="group flex items-center gap-1.5 text-[length:var(--text-base)] font-semibold tracking-[var(--track-heading)] text-[var(--color-ink)]"
+            className="group flex items-center gap-1.5 text-[length:var(--text-sm)] font-semibold tracking-[var(--track-heading)] text-[var(--color-ink)] sm:text-[length:var(--text-base)]"
           >
             <span
               aria-hidden="true"
@@ -58,7 +58,7 @@ export function Nav() {
             >
               AA
             </span>
-            <span>{site.name}</span>
+            <span className="whitespace-nowrap">{site.name}</span>
           </Link>
 
           <div className="hidden items-center gap-0.5 md:flex">
@@ -85,10 +85,10 @@ export function Nav() {
             </a>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex shrink-0 items-center gap-1.5 md:hidden">
             <a
               href={site.resume}
-              className="rounded-[var(--radius)] border border-[var(--color-line-strong)] px-1.5 py-0.75 text-[length:var(--text-sm)] font-medium text-[var(--color-ink)]"
+              className="rounded-[var(--radius)] border border-[var(--color-line-strong)] px-1.5 py-0.75 text-[length:var(--text-sm)] font-medium whitespace-nowrap text-[var(--color-ink)]"
             >
               Résumé <span aria-hidden="true">↗</span>
               <span className="sr-only">(PDF)</span>
@@ -116,6 +116,18 @@ export function Nav() {
                     </li>
                   ))}
                 </ul>
+
+                {/* LinkedIn was reachable on a phone only from the footer, at
+                    the very bottom of an 11,000px page — and it is the second
+                    thing a recruiter copies. The hero button sits a few pixels
+                    below the fold at 390 and well below it at 320, so the
+                    drawer is where it has to be. */}
+                <a
+                  href={site.linkedin}
+                  className="mt-2 block border-b border-[var(--color-line)] py-2 text-[length:var(--text-lg)] text-[var(--color-body)]"
+                >
+                  LinkedIn <span aria-hidden="true">↗</span>
+                </a>
                 <a
                   href={`mailto:${site.email}`}
                   className="mt-3 block break-all text-[length:var(--text-sm)] font-medium text-[var(--color-accent)]"

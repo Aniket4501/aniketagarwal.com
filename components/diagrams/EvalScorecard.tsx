@@ -27,7 +27,7 @@ export function EvalScorecard() {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex flex-col gap-2 sm:hidden">
+      <div className="flex flex-col gap-2">
         {counts.map((c) => (
           <div key={c.dimension} className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between gap-2">
@@ -48,7 +48,7 @@ export function EvalScorecard() {
           {allFour} of {cases.length} cases clear all four.
         </p>
 
-        <ol className="mt-1.5 flex flex-col gap-px bg-[var(--color-line)]">
+        <ol className="mt-1.5 flex flex-col gap-px bg-[var(--color-line)] sm:hidden">
           {cases.map((c) => (
             <li key={c.id} className="bg-[var(--color-surface)] p-2">
               <div className="flex items-baseline justify-between gap-2">
@@ -63,11 +63,11 @@ export function EvalScorecard() {
                 {DIMENSIONS.map((d) => {
                   const passed = c.dimensions.find((x) => x.dimension === d)?.passed ?? false
                   return (
-                    <div key={d} className="flex items-baseline justify-between gap-1.5">
+                    <div key={d} className="flex items-baseline gap-1">
                       <dt className="text-[length:var(--text-xs)] text-[var(--color-muted)]">{d}</dt>
                       <dd
                         className={`text-[length:var(--text-xs)] font-medium ${
-                          passed ? 'text-[var(--color-accent)]' : 'text-[var(--color-flag)]'
+                          passed ? 'text-[var(--color-ink)]' : 'text-[var(--color-flag)]'
                         }`}
                       >
                         {passed ? 'pass' : 'fail'}
@@ -117,7 +117,10 @@ export function EvalScorecard() {
                     <td key={d} className="px-1 py-0.75">
                       <span
                         className={
-                          passed ? 'text-[var(--color-accent)]' : 'text-[var(--color-flag)]'
+                          // Only failure is coloured. Fifty-five green "pass"
+                          // tokens made accent green the page's background
+                          // rather than its signal.
+                          passed ? 'text-[var(--color-ink)]' : 'text-[var(--color-flag)]'
                         }
                       >
                         {passed ? 'pass' : 'fail'}

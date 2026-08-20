@@ -24,7 +24,7 @@ export function Flow({ steps, className = '' }: { steps: FlowStep[]; className?:
   return (
     <ol className={`flex flex-col gap-1.5 sm:flex-row sm:items-stretch ${className}`}>
       {steps.map((s, i) => (
-        <li key={s.label} className="flex flex-1 items-stretch gap-1.5 sm:flex-col sm:gap-0">
+        <li key={s.label} className="flex flex-1 flex-col items-stretch gap-1.5 sm:flex-row sm:gap-0">
           <div
             className={`flex min-w-0 flex-1 flex-col gap-0.5 rounded-[var(--radius)] border p-2 ${TONE[s.tone ?? 'default']}`}
           >
@@ -43,9 +43,14 @@ export function Flow({ steps, className = '' }: { steps: FlowStep[]; className?:
           {i < steps.length - 1 ? (
             <span
               aria-hidden="true"
-              className="flex shrink-0 items-center justify-center text-[var(--color-line-strong)] sm:h-2 sm:w-full sm:rotate-90 sm:self-center"
+              className="flex h-2 w-full shrink-0 items-center justify-center self-center text-[var(--color-line-strong)] sm:h-auto sm:w-auto sm:px-1"
             >
-              <svg width="14" height="10" viewBox="0 0 14 10" className="fill-current sm:rotate-0">
+              <svg
+                width="14"
+                height="10"
+                viewBox="0 0 14 10"
+                className="rotate-90 fill-current sm:rotate-0"
+              >
                 <path d="M0 4h9V0l5 5-5 5V6H0z" />
               </svg>
             </span>

@@ -53,12 +53,14 @@ export function LaunchFrames() {
       <Phone label="Before" elapsed="15s" tone="before">
         {/* The splash. Nothing to read, nothing to do, and it is the screen
             standing between a person and the number they opened the app for. */}
-        <div className="flex flex-1 flex-col items-center justify-center gap-2 bg-[var(--color-wash)]">
+        <div className="flex flex-1 flex-col items-center justify-center gap-1.5 bg-[var(--color-wash)]">
           <span
             aria-hidden="true"
-            className="h-6 w-6 rounded-[var(--radius)] bg-[var(--color-line-strong)]/50"
-          />
-          <span className="h-1 w-10 rounded-full bg-[var(--color-line-strong)]/40" />
+            className="grid h-7 w-7 place-items-center rounded-[var(--radius)] bg-[var(--color-muted)] text-[10px] font-bold text-[var(--color-canvas)]"
+          >
+            AA
+          </span>
+          <span className="text-[length:var(--text-2xs)] text-[var(--color-muted)]">Loading…</span>
         </div>
       </Phone>
 
@@ -75,9 +77,10 @@ export function LaunchFrames() {
               className="block h-1 w-3/4 rounded-full bg-[var(--color-accent)]"
             />
           </span>
-          <div className="mt-auto flex flex-col gap-1">
-            <span className="h-1 w-full rounded-full bg-[var(--color-line)]" />
-            <span className="h-1 w-2/3 rounded-full bg-[var(--color-line)]" />
+          <div className="mt-auto flex flex-col gap-0.5">
+            <span className="text-[length:var(--text-2xs)] text-[var(--color-muted)]">
+              Synced just now
+            </span>
           </div>
         </div>
       </Phone>

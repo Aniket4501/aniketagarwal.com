@@ -211,7 +211,7 @@ export default function Home() {
           <SectionHead
             id="exp-h"
             eyebrow="Experience"
-            title={`Four product internships since 2022, then ${ownershipMonths()} months owning one surface.`}
+            title={`${ownershipMonths()} months owning one surface, after four product internships since 2022.`}
             action={
               <Button href="/about" variant="secondary">
                 Full timeline <span aria-hidden="true">→</span>

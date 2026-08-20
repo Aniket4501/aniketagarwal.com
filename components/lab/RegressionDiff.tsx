@@ -89,7 +89,7 @@ export function RegressionDiff() {
         </dl>
 
         {v1Degenerate ? (
-          <p className="border-b border-[var(--color-line)] bg-[var(--color-flag-soft)] px-2.5 py-2 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
+          <p className="border-b border-[var(--color-line)] px-2.5 py-2 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-body)]">
             <span className="eyebrow text-[var(--color-flag)]">
               * What these two numbers do not prove
             </span>
