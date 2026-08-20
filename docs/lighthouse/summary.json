@@ -6,7 +6,7 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.4 s",
+    "lcp": "2.5 s",
     "cls": "0",
     "tbt": "20 ms"
   },
@@ -24,13 +24,13 @@
   {
     "route": "/work",
     "form": "mobile",
-    "perf": 97,
+    "perf": 100,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.0 s",
+    "lcp": "1.9 s",
     "cls": "0",
-    "tbt": "0 ms"
+    "tbt": "10 ms"
   },
   {
     "route": "/work",
@@ -50,7 +50,7 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.1 s",
+    "lcp": "2.0 s",
     "cls": "0",
     "tbt": "10 ms"
   },
@@ -90,13 +90,13 @@
   {
     "route": "/work/ai-health-report",
     "form": "mobile",
-    "perf": 98,
+    "perf": 99,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
     "lcp": "2.1 s",
     "cls": "0",
-    "tbt": "10 ms"
+    "tbt": "20 ms"
   },
   {
     "route": "/work/ai-health-report",
@@ -105,20 +105,20 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.4 s",
+    "lcp": "0.3 s",
     "cls": "0",
     "tbt": "0 ms"
   },
   {
     "route": "/thinking/strava-free-tier",
     "form": "mobile",
-    "perf": 96,
+    "perf": 99,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
     "lcp": "2.1 s",
     "cls": "0",
-    "tbt": "10 ms"
+    "tbt": "20 ms"
   },
   {
     "route": "/thinking/strava-free-tier",
@@ -134,11 +134,11 @@
   {
     "route": "/approach",
     "form": "mobile",
-    "perf": 97,
+    "perf": 100,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "2.0 s",
+    "lcp": "1.2 s",
     "cls": "0",
     "tbt": "10 ms"
   },
@@ -171,20 +171,20 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.5 s",
+    "lcp": "0.4 s",
     "cls": "0",
     "tbt": "0 ms"
   },
   {
     "route": "/lab/grounded",
     "form": "mobile",
-    "perf": 97,
+    "perf": 98,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
     "lcp": "2.1 s",
     "cls": "0",
-    "tbt": "30 ms"
+    "tbt": "10 ms"
   },
   {
     "route": "/lab/grounded",
@@ -200,7 +200,7 @@
   {
     "route": "/about",
     "form": "mobile",
-    "perf": 98,
+    "perf": 99,
     "a11y": 100,
     "bp": 100,
     "seo": 100,
@@ -215,7 +215,7 @@
     "a11y": 100,
     "bp": 100,
     "seo": 100,
-    "lcp": "0.6 s",
+    "lcp": "0.4 s",
     "cls": "0",
     "tbt": "0 ms"
   }
